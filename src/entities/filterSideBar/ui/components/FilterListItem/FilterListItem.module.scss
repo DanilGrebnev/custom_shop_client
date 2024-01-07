@@ -1,0 +1,11 @@
+.filter-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-filter {
+    width: fit-content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}

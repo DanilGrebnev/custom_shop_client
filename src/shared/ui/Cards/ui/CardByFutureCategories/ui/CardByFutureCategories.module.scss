@@ -1,0 +1,34 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    
+    img {
+        transition: 0.3s;
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.img-wrapper {
+    width: 100%;
+    min-height: 140px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: contain;
+    }
+}

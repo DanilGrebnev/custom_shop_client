@@ -1,0 +1,42 @@
+.ColorCheckBox {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    cursor: pointer;
+    // background: black;
+    border: 1px solid var(--global-palette7);
+    border-radius: 50%;
+    overflow: hidden;
+
+    input {
+        display: none;
+
+        &:checked ~ .icon {
+            opacity: 1;
+        }
+    }
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.2);
+
+    svg {
+        width: 15px;
+        height: 15px;
+    }
+}

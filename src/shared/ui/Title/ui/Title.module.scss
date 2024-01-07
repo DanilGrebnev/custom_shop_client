@@ -1,0 +1,41 @@
+.width-100 {
+    width: 100%;
+}
+
+.content-width {
+    width: fit-content;
+}
+
+.Title {
+    color: var(--global-palette2);
+    font-weight: 500;
+
+    &.l {
+        font-size: var(--font-size-1);
+        line-height: 1.5;
+    }
+
+    &.m {
+        line-height: 1;
+        font-size: var(--font-size-2);
+    }
+
+    &.s {
+        font-size: var(--font-size-4);
+        line-height: 2.4;
+    }
+}
+
+.underline {
+    width: 150px;
+    height: 2px;
+    margin-top: 12px;
+    background: var(--global-palette1);
+}
+
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

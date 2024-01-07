@@ -1,0 +1,11 @@
+.Title {
+    font-size: var(--font-size-6);
+    font-weight: 500;
+    color: var(--global-palette5);
+    max-width: 200px;
+    width: 100%;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

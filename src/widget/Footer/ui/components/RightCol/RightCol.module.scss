@@ -1,0 +1,17 @@
+.right-col {
+    display: flex;
+    gap: 45px;
+    padding-left: 20px;
+}
+
+.right-col-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.right-col-item-title {
+    margin-bottom: 10px;
+}

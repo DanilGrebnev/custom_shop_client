@@ -1,0 +1,9 @@
+$font-small: 15px;
+
+.footer-container {
+    color: var(--global-palette2);
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    padding-top: var(--margin-between-widget);
+    padding-bottom: 50px;
+}

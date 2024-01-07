@@ -1,0 +1,22 @@
+.card-preview {
+    position: relative;
+    width: 100%;
+    min-height: 211px;
+
+    img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: var(--transition1);
+        object-fit: contain;
+        top: 0;
+        left: 0;
+    }
+
+    & img:nth-child(1) {
+        opacity: 1;
+    }
+    & img:nth-child(2) {
+        opacity: 0;
+    }
+}

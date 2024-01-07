@@ -1,0 +1,11 @@
+.CheckBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: var(--font-s);
+
+    span,
+    input {
+        cursor: pointer;
+    }
+}

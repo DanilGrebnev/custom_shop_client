@@ -1,0 +1,11 @@
+.slider {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    overflow-x: hidden;
+}
+
+.slider-skeleton__wrapper {
+    display: flex;
+    gap: 20px;
+}

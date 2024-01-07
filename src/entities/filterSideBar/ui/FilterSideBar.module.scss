@@ -1,0 +1,16 @@
+.FilterSideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    max-width: 280px;
+    width: 100%;
+
+    border: 1px solid var(--global-palette7);
+    border-radius: var(--global-border-radius);
+    padding: 15px;
+
+    h2 {
+        font-size: var(--font-size-4);
+        margin-bottom: 1em;
+    }
+}

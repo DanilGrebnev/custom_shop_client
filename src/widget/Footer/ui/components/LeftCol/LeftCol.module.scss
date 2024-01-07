@@ -1,0 +1,35 @@
+.left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 1px solid var(--global-palette7);
+}
+
+.number-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+    margin: 20px 0;
+}
+
+.number-list {
+    a {
+        font-size: var(--font-sm);
+        font-weight: 500;
+    }
+}
+
+.addres {
+    font-size: var(--font-s);
+}
+
+.mail {
+    &:hover {
+        color: var(--global-palette1);
+    }
+}
+
+.call-icon {
+    width: 50px;
+    grid-row: 1/3;
+}

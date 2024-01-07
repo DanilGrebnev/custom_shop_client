@@ -1,0 +1,35 @@
+.ProductPage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.left-col {
+    border-right: 1px solid var(--global-palette7);
+}
+
+.right-col {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px;
+}
+
+.category-title {
+    font-size: var(--font-s);
+    color: var(--global-palette6);
+}
+
+.name {
+    font-size: var(--font-l);
+}
+
+.description {
+    font-size: var(--font-s);
+}
+
+.price {
+    color: var(--global-palette4);
+    font-size: var(--font-m);
+    font-weight: 500;
+}

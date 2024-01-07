@@ -1,0 +1,47 @@
+.error_component {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.error_component {
+    &_name,
+    &_code {
+        span {
+            color: green;
+        }
+    }
+}
+
+// .details {
+//     border: 1px solid black;
+//     width: fit-content;
+//     border-radius: 4px;
+//     padding: 10px;
+//     cursor: pointer;
+
+//     summary {
+//         font-weight: bold;
+//     }
+
+//     code {
+//         color: green;
+//         display: block;
+//     }
+
+//     &[open] {
+//         padding: 0;
+//         cursor: auto;
+
+//         summary {
+//             cursor: pointer;
+//             user-select: none;
+//             padding: 10px;
+//             border-bottom: 1px solid black;
+//         }
+
+//         .details_content {
+//             padding: 10px;
+//         }
+//     }
+// }

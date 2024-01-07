@@ -1,0 +1,24 @@
+$border: 1px solid var(--global-palette7);
+
+.category-widget-content {
+    width: 100%;
+    border: $border;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    padding: 0 15px;
+    z-index: 2;
+    background: white;
+    max-height: 600px;
+    overflow: auto;
+
+    & li {
+        padding: 15px 0;
+        font-size: var(--font-s);
+        display: flex;
+        align-items: center;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--global-palette7);
+        }
+    }
+}

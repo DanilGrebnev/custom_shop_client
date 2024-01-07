@@ -1,0 +1,34 @@
+:root {
+    // sizes
+    --container-max-width: 1600px;
+
+    // font-size
+    --font-size-1: 30px;
+    --font-size-2: 24px;
+    --font-size-3: 20px;
+    --font-size-4: 18px;
+    --font-size-5: 16px;
+    --font-size-6: 15px;
+
+    // color
+    --global-palette1: #59b210;
+    --global-palette2: #404040;
+    --global-palette3: #1a202c;
+    --global-palette4: #a90000;
+    --global-palette5: #0961b3;
+    --global-palette6: #999999;
+    --global-palette7: #e5e5e5;
+    --global-palette8: #f2f2f2;
+    --global-palette9: #ffffff;
+
+    // animation
+    --transition1: 0.3s;
+
+    // effects
+    --box-shadow-1: 0 0 16px 0 rgba(0, 0, 0, 0.11);
+    --box-shadow-2: 0 0 10px 0 rgb(0 0 0 / 8%);
+    --global-border-radius: 5px;
+
+    // global margin / padding
+    --margin-between-widget: 30px;
+}

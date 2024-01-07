@@ -1,0 +1,21 @@
+.AmountAdded {
+    display: flex;
+    min-width: 120px;
+    max-width: max-content;
+    height: 42px;
+    border-radius: 3px;
+    background: var(--global-palette7);
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        font-size: var(--font-s);
+        color: var(--global-palette6);
+        padding: 0 20px;
+        display: flex;
+
+        &:hover {
+            color: black;
+        }
+    }
+}

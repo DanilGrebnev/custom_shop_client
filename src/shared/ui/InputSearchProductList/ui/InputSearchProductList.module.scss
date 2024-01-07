@@ -1,0 +1,17 @@
+.product-list {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    max-height: 600px;
+    overflow-y: auto;
+    z-index: 2;
+    border-radius: var(--global-border-radius);
+    background: white;
+    border: 1px solid var(--global-palette7);
+    padding: 10px;
+    display: flex;
+    transition: 0.5s;
+    flex-direction: column;
+    gap: 20px;
+}

@@ -1,0 +1,11 @@
+.FilterSideBarSkeleton {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.title {
+    width: 70%;
+    margin-bottom: 1em !important;
+}

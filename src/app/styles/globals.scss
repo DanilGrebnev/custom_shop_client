@@ -1,0 +1,58 @@
+@import './variables';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body,
+input,
+select,
+a,
+textarea {
+    font-size: var(--font-s);
+    font-weight: 400;
+    color: var(--global-palette2);
+}
+
+a,
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+a,
+button,
+select,
+option {
+    cursor: pointer;
+}
+
+#App {
+    position: relative;
+    max-width: 100vw;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.mr-top {
+    margin-top: var(--margin-between-widget);
+}
+
+.contain {
+    max-width: var(--container-max-width);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}

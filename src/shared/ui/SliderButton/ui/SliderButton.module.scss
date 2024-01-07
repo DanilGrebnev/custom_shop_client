@@ -1,0 +1,37 @@
+$btn-size: 40px;
+
+.btn {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    z-index: 4;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    height: $btn-size;
+    width: $btn-size;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+    pointer-events: none;
+    opacity: 0;
+
+    &:hover,
+    &:focus {
+        background: var(--global-palette1);
+    }
+
+    &.theme2 {
+        background: white;
+        box-shadow: var(--box-shadow-1);
+
+        & svg {
+            fill: black;
+        }
+    }
+}
+
+.icon {
+    margin: auto;
+    width: 20px;
+}

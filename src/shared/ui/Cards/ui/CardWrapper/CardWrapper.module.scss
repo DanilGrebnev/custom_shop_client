@@ -1,0 +1,19 @@
+.CardWrapper {
+    background: var(--global-palette9);
+    padding: 20px;
+    border-radius: 5px;
+    width: auto;
+    box-shadow: var(--box-shadow-2);
+}
+
+.default {
+    width: auto;
+}
+
+.full {
+    width: 100%;
+}
+
+.max-content {
+    width: max-content;
+}

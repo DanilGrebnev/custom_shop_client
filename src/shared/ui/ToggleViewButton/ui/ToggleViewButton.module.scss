@@ -1,0 +1,35 @@
+.ToggleViewButton {
+    cursor: pointer;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-template-rows: repeat(3, 4px);
+    justify-content: center;
+    align-content: center;
+    gap: 2px;
+    padding: 10px;
+    border: 1px solid var(--global-palette6);
+    border-radius: 3px;
+
+    &.active {
+        border: 1px solid var(--global-palette1);
+        div {
+            background: var(--global-palette1);
+        }
+    }
+
+    &.list {
+        grid-template-columns: repeat(3, 7px);
+        column-gap: 0;
+
+        div {
+            border-radius: 0px;
+        }
+    }
+
+    div {
+        width: 100%;
+        background: var(--global-palette6);
+        border-radius: 1px;
+    }
+}

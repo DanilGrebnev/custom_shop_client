@@ -1,0 +1,45 @@
+.select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select-wrapper {
+    position: relative;
+    width: max-content;
+}
+
+.select {
+    color: var(--global-palette3);
+    width: 240px;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 8px 10px;
+    min-width: 24px;
+    line-height: 1.6;
+    border: 1px solid var(--global-palette7);
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+.title {
+    font-size: var(--font-s);
+    font-weight: 500;
+}
+
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    width: 12px;
+    fill: var(--global-palette6);
+    cursor: pointer;
+    pointer-events: none;
+}

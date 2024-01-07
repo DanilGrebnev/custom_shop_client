@@ -1,0 +1,87 @@
+@mixin active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.product-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 380px;
+    overflow-x: hidden;
+    img {
+        opacity: 0;
+    }
+
+    & img:nth-child(1) {
+        opacity: 1;
+    }
+
+    & img:nth-child(2) {
+        opacity: 0;
+    }
+
+    &:hover {
+        .menu {
+            @include active;
+            right: 10px;
+        }
+
+        & img:nth-child(1) {
+            opacity: 0;
+        }
+
+        & img:nth-child(2) {
+            opacity: 1;
+        }
+
+        .button {
+            @include active;
+            bottom: 0;
+        }
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 10px 0;
+    border-right: 1px solid var(--global-palette7);
+}
+
+.product-card.list {
+    padding-bottom: 24px;
+    min-height: auto;
+    max-height: 380px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    height: fit-content;
+    position: static;
+    border-bottom: 1px solid var(--global-palette7);
+
+    .card-preview {
+        width: 200px;
+    }
+
+    .left-col {
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .right-col {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .description {
+        margin-top: 15px;
+    }
+
+    .button {
+        position: static;
+        opacity: 1;
+        width: fit-content;
+    }
+}

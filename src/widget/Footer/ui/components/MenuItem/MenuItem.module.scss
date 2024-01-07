@@ -1,0 +1,20 @@
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 11px;
+    height: 11px;
+    fill: var(--global-palette6);
+    transform: rotate(90deg);
+}
+
+.text {
+    font-size: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    &:hover {
+        color: var(--global-palette1);
+    }
+}

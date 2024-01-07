@@ -1,0 +1,27 @@
+.slider-skeleton__item {
+    display: contents;
+
+    &-6,
+    &-7 {
+        @media screen and (max-width: 1250px) {
+            display: none;
+        }
+    }
+    &-4,
+    &-5 {
+        @media screen and (max-width: 980px) {
+            display: none;
+        }
+    }
+    &-3 {
+        @media screen and (max-width: 639px) {
+            display: none;
+        }
+    }
+
+    &-2 {
+        @media screen and (max-width: 349px) {
+            display: none;
+        }
+    }
+}

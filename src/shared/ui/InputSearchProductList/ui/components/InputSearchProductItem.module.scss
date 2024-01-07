@@ -1,0 +1,13 @@
+.item {
+    display: flex;
+    border-radius: 10px;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.price {
+    color: var(--global-palette4);
+}
