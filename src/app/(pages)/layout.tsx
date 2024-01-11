@@ -7,7 +7,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import { StoreProvider } from '../providers/StoreProvider'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 
-import '../styles/globals.scss'
+import '../styles/root-var.css'
+import '../styles/global.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

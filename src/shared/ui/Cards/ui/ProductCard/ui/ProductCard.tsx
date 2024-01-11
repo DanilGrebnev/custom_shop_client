@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 import { ProductListPreviewType } from '@/app/types/Product'
-import { CardPreview, CardButton, Price, SideMenu, Name } from './components'
+import { CardPreview, Price, SideMenu, Name } from './components'
 import { Rating } from '@/shared/ui/Rating'
 import { IProductCard } from '../model/types/type'
 import { Description } from './components/Description/Description'
@@ -44,7 +44,6 @@ export const ProductCard: FC<IProductCard> = (props) => {
                 </Link>
 
                 <SideMenu className={s.menu} />
-                <CardButton className={s.button} />
             </div>
         )
     }
@@ -76,7 +75,6 @@ export const ProductCard: FC<IProductCard> = (props) => {
                             text={description}
                         />
                     )}
-                    <CardButton className={s.button} />
                 </div>
             </div>
         )

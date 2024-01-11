@@ -1,13 +1,13 @@
 'use client'
 
 import { type FC } from 'react'
-import { Button } from '@/shared/ui/Button'
 import { useRouter } from 'next/navigation'
 import { useAppSelector, useAppDispatch } from '@/shared/hooks'
 import {
     ProductSearchInputState,
     toggleVisibleSearchList,
 } from '@/entities/productSearchInput'
+import s from './s.module.scss'
 
 interface ISearchButtonProps {
     className?: string
@@ -26,14 +26,7 @@ export const SearchButton: FC<ISearchButtonProps> = (props) => {
         dispatch(toggleVisibleSearchList(false))
     }
 
-    return (
-        <Button
-            onClick={onClick}
-            className={className}
-            borderRadius="right">
-            Search
-        </Button>
-    )
+    return <button className={s.button}>Поиск</button>
 }
 
 SearchButton.displayName = 'SearchButton'

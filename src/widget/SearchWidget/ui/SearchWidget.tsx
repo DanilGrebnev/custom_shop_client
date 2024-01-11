@@ -1,4 +1,5 @@
 'use client'
+
 import { SearchButton } from './SearchButton/SearchButton'
 import { ProductSearchInput } from '@/entities/productSearchInput'
 
