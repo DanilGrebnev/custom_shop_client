@@ -7,6 +7,7 @@ import { type IFilterSideBarSchema } from '@/entities/filterSideBar'
 import { type AxiosInstance } from 'axios'
 import { type IProductSearchInputSchema } from '@/entities/productSearchInput'
 import { type ISearchProductParamsSchema } from '@/entities/searchProductParams'
+import { type IFooterSchema } from '@/entities/footer'
 
 export interface StateSchema {
     categories: ICategorySchema
@@ -17,6 +18,7 @@ export interface StateSchema {
     filterSideBar: IFilterSideBarSchema
     productSearchInput: IProductSearchInputSchema
     searchProductParams: ISearchProductParamsSchema
+    footer: IFooterSchema
 }
 
 export interface ThunkExtraConfig {

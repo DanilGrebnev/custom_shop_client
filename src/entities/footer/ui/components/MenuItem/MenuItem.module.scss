@@ -1,0 +1,11 @@
+.MenuItem {
+    display: flex;
+    gap: 10px;
+}
+
+.icon {
+    width: 11px;
+    height: 11px;
+    fill: var(--global-palette1);
+    transform: rotate(90deg);
+}

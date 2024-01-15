@@ -13,6 +13,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/thumbs'
 import './ThumbsGallery.scss'
+import s from './ThumbGallery.module.scss'
 
 interface IThumbsGalleryProps {
     images: { image: string | StaticImageData }[]
@@ -39,12 +40,13 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                             className="main-swiper__slide"
                             key={i}>
                             <Image
+                                className={s.main_image}
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
                                 alt={alt}
-                                width={1000}
+                                width={600}
+                                height={600}
                                 quality={100}
-                                height={1000}
                                 src={urlToBackend + item.image}
                             />
                         </SwiperSlide>

@@ -6,6 +6,7 @@ import { productListReducer } from '@/entities/productList'
 import { productListPaginationReducer } from '@/entities/productListPagination'
 import { productPageReducer } from '@/entities/productPage'
 import { searchProductParamsReducer } from '@/entities/searchProductParams'
+import { footerReducer } from '@/entities/footer'
 
 export const reducerManager = {
     categories: categoryReducer,
@@ -16,4 +17,5 @@ export const reducerManager = {
     filterSideBar: filterSidebarReducer,
     productSearchInput: productSearchInputReducer,
     searchProductParams: searchProductParamsReducer,
+    footer: footerReducer
 }
