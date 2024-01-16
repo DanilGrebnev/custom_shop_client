@@ -16,7 +16,7 @@ export const Footer = () => {
 
     useEffect(() => {
         dispatch(fetchFooter())
-    }, [])
+    }, [dispatch])
 
     return (
         <footer className={s.footer}>

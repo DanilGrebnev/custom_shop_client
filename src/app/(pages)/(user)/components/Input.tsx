@@ -16,3 +16,5 @@ export const Input: FC<IInputProps> = memo((props) => {
         />
     )
 })
+
+Input.displayName = 'Input'
