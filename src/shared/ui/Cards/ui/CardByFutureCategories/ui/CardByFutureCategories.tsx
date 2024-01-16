@@ -27,9 +27,8 @@ export const CardByFutureCategories: FC<ICardByFutureCategoriesProps> = (
                     fill={true}
                 />
             </div>
-            <p>
-                {name} ({amount})
-            </p>
+            <p>{name}</p>
+            <p>({amount})</p>
         </CardWrapper>
     )
 }

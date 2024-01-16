@@ -1,6 +1,6 @@
 export { categoryReducer } from './model/slice/categoriesSlice'
 export { type ICategorySchema } from './model/types'
-export { CategoryMenuWidget } from './ui/CategoryMenuWidget'
+export { CategoryMenuWidgetLazy } from './ui/CategoryMenuWidget/CategoryMenuWidgetLazy'
 export {
     getCategoryData,
     getCategoryIsError,

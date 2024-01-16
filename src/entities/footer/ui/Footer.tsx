@@ -8,7 +8,7 @@ import { MenuItem } from './components/MenuItem/MenuItem'
 
 import s from './Footer.module.scss'
 
-export const Footer = ()=> {
+export const Footer = () => {
     const dispatch = useAppDispatch()
     const footer = useAppSelector(GetFooterSelector.getFooterData)
     const isLoading = useAppSelector(GetFooterSelector.getFooterIsLoading)
@@ -18,12 +18,14 @@ export const Footer = ()=> {
         dispatch(fetchFooter())
     }, [])
 
-    return <footer className={s.footer}>
-        <MenuItem>{footer.address}</MenuItem>
-        <MenuItem>{footer.contact}</MenuItem>
-        <MenuItem>{footer.email}</MenuItem>
-        <MenuItem>{footer.text}</MenuItem>
-    </footer>
+    return (
+        <footer className={s.footer}>
+            <MenuItem>{footer.address}</MenuItem>
+            <MenuItem>{footer.contact}</MenuItem>
+            <MenuItem>{footer.email}</MenuItem>
+            <MenuItem>{footer.text}</MenuItem>
+        </footer>
+    )
 }
 
 Footer.displayName = 'Footer'

@@ -1,3 +1,4 @@
+export { CategoryMenuWidgetSkeleton } from './CategoryMenuWidgetSkeleton'
 export { ProductCardSkeleton } from './ProductCardSkeleton/ProductCardSkeleton'
 export { SliderSkeleton } from './SliderSkeleton/SliderSkeleton'
 export { SliderSkeletonWithContainer } from './SliderSkeletonWithContainer/SliderSkeletonWithContainer'

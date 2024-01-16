@@ -1,1 +1,2 @@
-export { Modal } from './ui/Modal'
+export { ModalCard } from './ui/ModalCard/ModalCard'
+export { ModalBackgroundFilter } from './ui/ModalBackgroundFilter/ModalBackgroundFilter'

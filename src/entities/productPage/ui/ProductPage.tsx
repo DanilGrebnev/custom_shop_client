@@ -1,4 +1,3 @@
-//@ts-nocheck
 'use client'
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
@@ -37,9 +36,11 @@ export const ProductPage = (props: IProductPage) => {
                     { href: NavigationRoutes.main(), label: 'Home' },
                     { href: NavigationRoutes.shop(), label: 'Shop' },
                     {
-                        //! ошибка в категориях, нет name, там приходит массив!
-                        href: '/shop?=' + product.category?.name,
-                        label: product.category?.name,
+                        href: '/shop?=' + product?.category?.[0]?.name,
+                        label: product?.category?.[0]?.name,
+                        onClick: () => {
+                            console.log('Hello')
+                        },
                     },
                     { href: '/', label: product.name, active: true },
                 ]}
@@ -55,7 +56,7 @@ export const ProductPage = (props: IProductPage) => {
                 </div>
                 <div className={s['right-col']}>
                     <span className={s['category-title']}>
-                        {product.category?.name}
+                        {product.category?.[0]?.name}
                     </span>
 
                     <h1 className={s.name}>{product.name}</h1>

@@ -41,10 +41,12 @@ export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
                     className={s['category-menu-widget-button']}
                     menuIcon={true}
                     borderRadius="top">
-                    Shop by category
+                    Категории
                 </Button>
             }>
             <DropDown categories={categories} />
         </DropDownMenu>
     )
 }
+
+export default CategoryMenuWidget

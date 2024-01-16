@@ -1,6 +1,10 @@
-import { Footer as FooterUI } from '@/entities/footer'
-
+import { Footer as FooterEntities } from '@/entities/footer'
+import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 
 export const Footer = () => {
-    return <FooterUI />
+    return (
+        <ClientErrorBoundary>
+            <FooterEntities />
+        </ClientErrorBoundary>
+    )
 }

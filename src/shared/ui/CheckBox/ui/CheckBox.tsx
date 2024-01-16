@@ -1,38 +1,34 @@
 'use client'
 
 import { FC, ChangeEvent, memo, ReactNode } from 'react'
-import { Checkbox, FormControlLabel } from '@mui/material'
+import { Checkbox } from '@mui/material'
 
 import clsx from 'clsx'
 import s from './CheckBox.module.scss'
 
 interface ICheckBoxProps {
     className?: string
-    label: ReactNode
+    label?: ReactNode
     name: string
-    value: string
+    value?: string
+    chilren?: ReactNode
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
-    const { className, name, value, label, onChange } = props
+    const { className, name, value, label, chilren, onChange } = props
 
     return (
-        <FormControlLabel
-            className={clsx(s.CheckBox, className)}
-            value={value}
-            control={
-                <Checkbox
-                    size="small"
-                    name={name}
-                    value={value}
-                    color="success"
-                    onChange={onChange}
-                />
-            }
-            label={label}
-            labelPlacement="end"
-        />
+        <div className={clsx(s.CheckBox, className)}>
+            <Checkbox
+                size="small"
+                name={name}
+                value={value}
+                color="success"
+                onChange={onChange}
+            />
+            <div>{label}</div>
+        </div>
     )
 })
 

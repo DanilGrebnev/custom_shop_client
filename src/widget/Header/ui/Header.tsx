@@ -1,11 +1,12 @@
+'use client'
+
+import { SearchWidget } from '@/widget/SearchWidget'
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import { CategoryMenuWidgetLazy } from '@/entities/categories'
 import RefreshIcon from '/public/static/icons/compare.svg'
 import WishListIcon from '/public/static/icons/wishlist.svg'
 import CartIcon from '/public/static/icons/cart.svg'
 import TargetStoreLogo from '/public/static/images/logo.svg'
-import { CategoryMenuWidget } from '@/entities/categories'
-import { SearchWidget } from '@/widget/SearchWidget'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-
 import Link from 'next/link'
 
 import { clsx } from 'clsx'
@@ -45,20 +46,20 @@ export const Header = () => {
                 </div>
 
                 <div className={s['header-bottom']}>
-                    <CategoryMenuWidget />
+                    <CategoryMenuWidgetLazy />
                     <ul
                         className={clsx(
                             s['page-list'],
                             s['header-bottom-section-center']
                         )}>
                         <li className={s['list-item']}>
-                            <Link href={NavigationRoutes.main()}>Home</Link>
+                            <Link href={NavigationRoutes.main()}>Главная</Link>
                         </li>
                         <li className={s['list-item']}>
-                            <Link href={NavigationRoutes.shop()}>Shop</Link>
+                            <Link href={NavigationRoutes.shop()}>Магазин</Link>
                         </li>
                         <li className={s['list-item']}>
-                            <a>More</a>
+                            <a>Личный кабинет</a>
                         </li>
                     </ul>
                 </div>

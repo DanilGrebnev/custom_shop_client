@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { IFilterItemChoices, IFilterItemCode } from '@/app/types/filters'
 import { useOnChangeListFilter } from '@/entities/filterSideBar/model/hooks/useOnChangeListFilter'
 import { CheckBox } from '@/shared/ui/CheckBox'
@@ -12,7 +12,7 @@ interface IChoiceItem {
     choicesItem: IFilterItemChoices
 }
 
-export const ChoicesItemCheckBox: FC<IChoiceItem> = (props) => {
+export const ChoicesItemCheckBox: FC<IChoiceItem> = memo((props) => {
     const { choicesItem, code } = props
     const onChange = useOnChangeListFilter()
 
@@ -24,9 +24,9 @@ export const ChoicesItemCheckBox: FC<IChoiceItem> = (props) => {
             value={choicesItem.value}
         />
     )
-}
+})
 
-export const ChoicesItemColorCheckBox: FC<IChoiceItem> = (props) => {
+export const ChoicesItemColorCheckBox: FC<IChoiceItem> = memo((props) => {
     const { choicesItem, code } = props
     const onChange = useOnChangeListFilter()
 
@@ -38,9 +38,9 @@ export const ChoicesItemColorCheckBox: FC<IChoiceItem> = (props) => {
             value={choicesItem.value}
         />
     )
-}
+})
 
-export const ChoicesItemRatingCheckBox: FC<IChoiceItem> = (props) => {
+export const ChoicesItemRatingCheckBox: FC<IChoiceItem> = memo((props) => {
     const { choicesItem, code } = props
     const onChange = useOnChangeListFilter()
 
@@ -52,4 +52,8 @@ export const ChoicesItemRatingCheckBox: FC<IChoiceItem> = (props) => {
             value={choicesItem.value}
         />
     )
-}
+})
+
+ChoicesItemCheckBox.displayName = 'ChoicesItemCheckBox'
+ChoicesItemColorCheckBox.displayName = 'ChoicesItemColorCheckBox'
+ChoicesItemRatingCheckBox.displayName = 'ChoicesItemRatingCheckBox'

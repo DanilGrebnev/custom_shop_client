@@ -5,15 +5,16 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import s from './BreadCrumbs.module.scss'
 
-interface BreadCrumb {
+interface IBreadCrumb {
     label: string
     href: string
     active?: boolean
+    onClick?: (...args:any) => any
 }
 
 interface IBreadCrumbsProps {
     className?: string
-    breadcrumbs: BreadCrumb[]
+    breadcrumbs: IBreadCrumb[]
     current?: string
 }
 

@@ -13,6 +13,7 @@ import { useEffect } from 'react'
 import { HomePageSelectors } from '../model/selectors'
 import { HomePageSkeleton } from '@/shared/ui/Skeletons'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+import { ModalCard } from '@/shared/ui/Modal'
 
 export const HomePage = () => {
     const dispatch = useAppDispatch()
