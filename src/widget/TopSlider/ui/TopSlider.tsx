@@ -1,22 +1,23 @@
+'use client'
+
 import { FC } from 'react'
 import { Slider } from '@/shared/ui/Slider'
 import { LargeSliderCard } from '@/shared/ui/Cards'
 import { IImage } from '@/app/types/Product'
-import data from '@/mock/mock'
+// import data from '@/mock/mock'
 
 import clsx from 'clsx'
 import s from './TopSlider.module.scss'
 
 interface ITopSliderProps {
-    className?: string
     sliderImages: IImage[]
 }
 
-export const TopSlider: FC<ITopSliderProps> = async (props) => {
-    const { className, sliderImages } = props
+export const TopSlider: FC<ITopSliderProps> = (props) => {
+    const { sliderImages } = props
 
     return (
-        <div className={clsx(s.TopSlider, 'contain', className)}>
+        <div className={clsx(s.TopSlider, 'contain')}>
             <Slider
                 spaceBetween={20}
                 slidesPerView={1}
