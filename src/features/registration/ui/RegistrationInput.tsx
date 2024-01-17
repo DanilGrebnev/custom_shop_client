@@ -33,6 +33,7 @@ export const RegistrationInput: FC<IRegistrationInputProps> = (props) => {
         <CustomInput
             value={value}
             onChange={onChange}
+            color="var(--global-palette1)"
             {...otherProps}
         />
     )
