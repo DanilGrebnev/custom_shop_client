@@ -5,13 +5,13 @@ import { useAppSelector, useAppDispatch } from '@/shared/hooks'
 import { CustomInput } from '@/shared/ui/CustomInput'
 import { RegistrationSelectors } from '../model/selectors/registrationSelectors'
 import { setRegistrationField } from '../model/slice/registrationSlice'
-import { IRegistrationSchema } from '../model/schema/registrationSchema'
+import { IRegistrationFields } from '../model/schema/registrationSchema'
 
 type IRegistrationInputProps = Omit<
     Parameters<typeof CustomInput>[0],
     'name'
 > & {
-    name: keyof IRegistrationSchema
+    name: keyof IRegistrationFields
     selector: keyof typeof RegistrationSelectors
 }
 
@@ -24,7 +24,7 @@ export const RegistrationInput: FC<IRegistrationInputProps> = (props) => {
     )
 
     const onChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-        const name = target.name as keyof IRegistrationSchema
+        const name = target.name as keyof IRegistrationFields
         const value = target.value
         dispatch(setRegistrationField({ name, value }))
     }

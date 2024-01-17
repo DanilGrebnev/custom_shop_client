@@ -29,3 +29,5 @@ export const MUIButton: FC<IMUIButtonProps> = memo((props) => {
         </ThemeProvider>
     )
 })
+
+MUIButton.displayName = 'MUIButton'

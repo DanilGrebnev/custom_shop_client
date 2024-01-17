@@ -2,15 +2,15 @@ import { StateSchema } from '@/app/providers/StoreProvider'
 
 export class RegistrationSelectors {
     static getEmail(state: StateSchema) {
-        return state.registration.email
+        return state.registration.fields.email
     }
     static getFirstName(state: StateSchema) {
-        return state.registration.first_name
+        return state.registration.fields.first_name
     }
     static getLastName(state: StateSchema) {
-        return state.registration.last_name
+        return state.registration.fields.last_name
     }
     static getPassword(state: StateSchema) {
-        return state.registration.password
+        return state.registration.fields.password
     }
 }
