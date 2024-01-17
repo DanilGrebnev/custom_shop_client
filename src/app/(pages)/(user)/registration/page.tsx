@@ -1,7 +1,7 @@
 'use client'
 
-import { Input } from '../components/Input'
 import { MUIButton } from '@/shared/ui/MUIButton'
+import { RegistrationInput } from '@/features/registration'
 
 import s from '../s.module.scss'
 
@@ -10,22 +10,28 @@ const RegistrationPage = () => {
         <section
             className={s.page}
             id="Registration">
-            <Input
-                name="first_name"
-                label="Имя"
-            />
-            <Input
-                name="last_name"
-                label="Фамилия"
-            />
-            <Input
-                name="email"
+            <RegistrationInput
                 label="Почта"
+                name="email"
+                selector="getEmail"
             />
-            <Input
-                name="password"
+            <RegistrationInput
+                label="Имя"
+                name="first_name"
+                selector="getFirstName"
+            />
+
+            <RegistrationInput
+                label="Фамилия"
+                name="last_name"
+                selector="getLastName"
+            />
+            <RegistrationInput
                 label="Пароль"
+                name="password"
+                selector="getPassword"
             />
+
             <MUIButton className={s.button}>Зарегестрироваться</MUIButton>
         </section>
     )

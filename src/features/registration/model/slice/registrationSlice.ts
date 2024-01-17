@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IRegistrationSchema } from '../schema/registrationSchema'
-import { ChangeEvent } from 'react'
 
 const initialState: IRegistrationSchema = {
-    fields: {
-        email: '',
-        first_name: '',
-        last_name: '',
-        password: '',
-    },
+    email: '',
+    first_name: '',
+    last_name: '',
+    password: '',
 }
 
 const registrationSlice = createSlice({
@@ -17,14 +14,18 @@ const registrationSlice = createSlice({
     reducers: {
         setRegistrationField(
             state,
-            action: PayloadAction<ChangeEvent<HTMLInputElement>>
+            action: PayloadAction<{
+                name: keyof IRegistrationSchema
+                value: string
+            }>
         ) {
-            const name = action.payload.target.name as keyof typeof initialState.fields
-            const value = action.payload.target.value
+            const name = action.payload.name
+            const value = action.payload.value
 
-            state.fields[name] = value
+            state[name] = value
         },
     },
 })
 
 export const registrationReducer = registrationSlice.reducer
+export const { setRegistrationField } = registrationSlice.actions

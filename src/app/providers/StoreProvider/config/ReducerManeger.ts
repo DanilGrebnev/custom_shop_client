@@ -7,6 +7,7 @@ import { productListPaginationReducer } from '@/entities/productListPagination'
 import { productPageReducer } from '@/entities/productPage'
 import { searchProductParamsReducer } from '@/entities/searchProductParams'
 import { footerReducer } from '@/entities/footer'
+import { registrationReducer } from '@/features/registration'
 
 export const staticReducers = {
     categories: categoryReducer,
@@ -17,5 +18,6 @@ export const staticReducers = {
     filterSideBar: filterSidebarReducer,
     productSearchInput: productSearchInputReducer,
     searchProductParams: searchProductParamsReducer,
-    footer: footerReducer
+    footer: footerReducer,
+    registration: registrationReducer,
 }

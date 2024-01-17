@@ -8,6 +8,7 @@ import { type AxiosInstance } from 'axios'
 import { type IProductSearchInputSchema } from '@/entities/productSearchInput'
 import { type ISearchProductParamsSchema } from '@/entities/searchProductParams'
 import { type IFooterSchema } from '@/entities/footer'
+import { type IRegistrationSchema } from '@/features/registration/model/schema/registrationSchema'
 
 export interface StateSchema {
     categories: ICategorySchema
@@ -19,6 +20,7 @@ export interface StateSchema {
     productSearchInput: IProductSearchInputSchema
     searchProductParams: ISearchProductParamsSchema
     footer: IFooterSchema
+    registration: IRegistrationSchema
 }
 
 export interface ThunkExtraConfig {
