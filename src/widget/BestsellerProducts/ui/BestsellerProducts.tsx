@@ -16,7 +16,7 @@ export const BestsellerProducts = (props: IBestsellerProducts) => {
     return (
         <ContainerWithTitle
             className={clsx('mr-top')}
-            title="Bestseller Products">
+            title="Рекумендуемое">
             <Slider
                 theme="theme2"
                 breakpoints="default">

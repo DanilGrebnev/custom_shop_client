@@ -22,7 +22,7 @@ export const ShopByFeaturedCategories: FC<IShopByFeaturedCategoriesProps> = (
     return (
         <div className={'mr-top'}>
             <FullWidthContainer>
-                <ContainerWithTitle title="Shop by Featured Categories">
+                <ContainerWithTitle title="Делайте покупки по избранным категориям">
                     <Slider
                         style={{ background: 'transparent' }}
                         breakpoints="category-slider"

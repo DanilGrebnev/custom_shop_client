@@ -19,7 +19,7 @@ export const FeedBackBlock: FC<IFeedBackBlockProps> = (props) => {
             id="Feed-back block"
             className={'mr-top'}>
             <FullWidthContainer>
-                <ContainerWithTitle title="See What Our Customers Says">
+                <ContainerWithTitle title="Отзывы покупателей">
                     <Slider
                         breakpoints="feedback-slider"
                         spaceBetween={20}

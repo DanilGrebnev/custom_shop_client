@@ -14,7 +14,7 @@ export const FeaturedProducts = (props: IFeaturedProductsProps) => {
     const { products } = props
 
     return (
-        <ContainerWithTitle title="Featured Products">
+        <ContainerWithTitle title="Рекомендуемые продукты">
             <Slider
                 theme="theme2"
                 breakpoints="default">

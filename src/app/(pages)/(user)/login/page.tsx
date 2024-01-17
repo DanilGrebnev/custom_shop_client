@@ -3,6 +3,7 @@
 import { Button } from '@mui/material'
 import { Input } from '../components/Input'
 import { CheckBox } from '@/shared/ui/CheckBox'
+import { MUIButton } from '@/shared/ui/MUIButton'
 
 import s from '../s.module.scss'
 import { useCallback, useState } from 'react'
@@ -25,7 +26,7 @@ const LoginPage = () => {
                 label="Запомнить меня"
                 name="remember_me"
             />
-            <Button className={s.button}>Отправить</Button>
+            <MUIButton className={s.button}>Отправить</MUIButton>
         </section>
     )
 }

@@ -1,8 +1,9 @@
 'use client'
-import { CustomInput } from '@/shared/ui/CustomInput'
-import { Button } from '@mui/material'
-import s from '../s.module.scss'
+
 import { Input } from '../components/Input'
+import { MUIButton } from '@/shared/ui/MUIButton'
+
+import s from '../s.module.scss'
 
 const RegistrationPage = () => {
     return (
@@ -25,7 +26,7 @@ const RegistrationPage = () => {
                 name="password"
                 label="Пароль"
             />
-            <Button className={s.button}>Зарегестрироваться</Button>
+            <MUIButton className={s.button}>Зарегестрироваться</MUIButton>
         </section>
     )
 }

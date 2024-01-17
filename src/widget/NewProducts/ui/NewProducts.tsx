@@ -18,7 +18,7 @@ export const NewProducts: FC<INewProductsProps> = (props) => {
     return (
         <ContainerWithTitle
             className={clsx('mr-top', className)}
-            title="New Products">
+            title="Новые продукты">
             <Slider
                 breakpoints="default"
                 theme="theme2">
