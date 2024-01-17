@@ -8,7 +8,7 @@ import { productPageReducer } from '@/entities/productPage'
 import { searchProductParamsReducer } from '@/entities/searchProductParams'
 import { footerReducer } from '@/entities/footer'
 
-export const reducerManager = {
+export const staticReducers = {
     categories: categoryReducer,
     productList: productListReducer,
     homePage: homePageReducer,

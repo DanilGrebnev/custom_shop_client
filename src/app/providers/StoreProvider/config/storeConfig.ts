@@ -1,10 +1,10 @@
 'use client'
 import { configureStore } from '@reduxjs/toolkit'
-import { reducerManager } from './ReducerManeger'
+import { staticReducers } from './ReducerManeger'
 
 export const createStore = () => {
     const store = configureStore({
-        reducer: reducerManager,
+        reducer: staticReducers,
     })
 
     return store
