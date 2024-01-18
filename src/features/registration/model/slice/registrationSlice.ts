@@ -3,6 +3,8 @@ import {
     IRegistrationFields,
     IRegistrationSchema,
 } from '../schema/registrationSchema'
+import { sendRegistrationData } from '../services/sendRegistrationData'
+import { AxiosErrorResponse } from '../services/sendRegistrationData'
 
 const initialState: IRegistrationSchema = {
     fields: {
@@ -11,6 +13,8 @@ const initialState: IRegistrationSchema = {
         last_name: '',
         password: '',
     },
+    loading: false,
+    error: {},
 }
 
 const registrationSlice = createSlice({
@@ -29,6 +33,22 @@ const registrationSlice = createSlice({
 
             state.fields[name] = value
         },
+    },
+
+    extraReducers(builder) {
+        builder
+            .addCase(sendRegistrationData.fulfilled, (state, action) => {
+                console.log('action.payload', action.payload)
+                state.loading = false
+            })
+            .addCase(sendRegistrationData.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(sendRegistrationData.rejected, (state, action) => {
+                state.error = action.payload
+
+                state.loading = false
+            })
     },
 })
 

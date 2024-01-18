@@ -7,4 +7,6 @@ export interface IRegistrationFields {
 
 export interface IRegistrationSchema {
     fields: IRegistrationFields
+    loading: boolean
+    error: any
 }

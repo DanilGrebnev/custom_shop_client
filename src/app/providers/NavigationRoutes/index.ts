@@ -10,4 +10,11 @@ export class NavigationRoutes {
     static shop() {
         return '/shop'
     }
+    static login() {
+        return '/login'
+    }
+
+    static registration() {
+        return '/registration'
+    }
 }

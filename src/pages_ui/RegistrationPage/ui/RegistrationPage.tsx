@@ -1,15 +1,20 @@
 'use client'
 
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { MUIButton } from '@/shared/ui/MUIButton'
 import { RegistrationInput } from '@/features/registration'
+import { sendRegistrationData } from '@/features/registration'
+import { useAppDispatch } from '@/shared/hooks'
 
-import s from '../s.module.scss'
+export const RegistrationPage = () => {
+    const dispatch = useAppDispatch()
 
-const RegistrationPage = () => {
+    const onClick = () => {
+        dispatch(sendRegistrationData())
+    }
+
     return (
-        <section
-            className={s.page}
-            id="Registration">
+        <>
             <RegistrationInput
                 label="Почта"
                 name="email"
@@ -20,7 +25,6 @@ const RegistrationPage = () => {
                 name="first_name"
                 selector="getFirstName"
             />
-
             <RegistrationInput
                 label="Фамилия"
                 name="last_name"
@@ -32,9 +36,16 @@ const RegistrationPage = () => {
                 selector="getPassword"
             />
 
-            <MUIButton className={s.button}>Зарегестрироваться</MUIButton>
-        </section>
+            <MUIButton
+                onClick={onClick}
+                className="button">
+                Зарегестрироваться
+            </MUIButton>
+            <MUIButton
+                href={NavigationRoutes.login()}
+                className="button">
+                войти
+            </MUIButton>
+        </>
     )
 }
-
-export default RegistrationPage

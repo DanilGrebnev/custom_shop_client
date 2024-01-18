@@ -1,19 +1,16 @@
 'use client'
 
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { CheckBox } from '@/shared/ui/CheckBox'
 import { MUIButton } from '@/shared/ui/MUIButton'
 import { LoginInput } from '@/features/login'
+import { useCallback } from 'react'
 
-import s from '../s.module.scss'
-import { useCallback, useState } from 'react'
-
-const LoginPage = () => {
+export const LoginPage = () => {
     const onChange = useCallback((e: any) => {}, [])
 
     return (
-        <section
-            className={s.page}
-            id="Login">
+        <>
             <LoginInput
                 label="Логин"
                 name="login"
@@ -29,9 +26,12 @@ const LoginPage = () => {
                 label="Запомнить меня"
                 name="remember_me"
             />
-            <MUIButton className={s.button}>Отправить</MUIButton>
-        </section>
+            <MUIButton className="button">Войти</MUIButton>
+            <MUIButton
+                href={NavigationRoutes.registration()}
+                className="button">
+                Зарегистрироваться
+            </MUIButton>
+        </>
     )
 }
-
-export default LoginPage
