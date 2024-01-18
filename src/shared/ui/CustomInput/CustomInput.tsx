@@ -2,9 +2,9 @@
 
 import { FC } from 'react'
 import { TextField } from '@mui/material'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles'
 
-type TCustomInput = Omit<Parameters<typeof TextField>[0], 'color'> & {
+export type TCustomInput = Omit<Parameters<typeof TextField>[0], 'color'> & {
     color?: string
 }
 
@@ -19,6 +19,18 @@ export const CustomInput: FC<TCustomInput> = (props) => {
             },
         },
     })
+
+    // const theme = createTheme({
+    //     components: {
+    //         MuiTextField: {
+    //             styleOverrides: {
+    //                 root: () => ({
+    //                     color: 'var(--global-palette1)',
+    //                 }),
+    //             },
+    //         },
+    //     },
+    // })
 
     return (
         <ThemeProvider theme={theme}>

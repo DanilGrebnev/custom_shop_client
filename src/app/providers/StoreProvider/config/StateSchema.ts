@@ -9,6 +9,7 @@ import { type IProductSearchInputSchema } from '@/entities/productSearchInput'
 import { type ISearchProductParamsSchema } from '@/entities/searchProductParams'
 import { type IFooterSchema } from '@/entities/footer'
 import { type IRegistrationSchema } from '@/features/registration/model/schema/registrationSchema'
+import { ILoginSchema } from '@/features/login'
 
 export interface StateSchema {
     categories: ICategorySchema
@@ -20,6 +21,7 @@ export interface StateSchema {
     productSearchInput: IProductSearchInputSchema
     searchProductParams: ISearchProductParamsSchema
     footer: IFooterSchema
+    login: ILoginSchema
     registration: IRegistrationSchema
 }
 

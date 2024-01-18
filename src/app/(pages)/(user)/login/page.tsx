@@ -1,26 +1,29 @@
 'use client'
 
-import { Button } from '@mui/material'
-import { Input } from '../components/Input'
 import { CheckBox } from '@/shared/ui/CheckBox'
 import { MUIButton } from '@/shared/ui/MUIButton'
+import { LoginInput } from '@/features/login'
 
 import s from '../s.module.scss'
 import { useCallback, useState } from 'react'
 
 const LoginPage = () => {
     const onChange = useCallback((e: any) => {}, [])
-    const [state, setState] = useState('')
 
     return (
         <section
             className={s.page}
             id="Login">
-            <Input
+            <LoginInput
                 label="Логин"
-                onChange={(e) => setState(e.target.value)}
+                name="login"
+                selector="getLogin"
             />
-            <Input label="Пароль" />
+            <LoginInput
+                label="Пароль"
+                name="password"
+                selector="getPassword"
+            />
             <CheckBox
                 onChange={onChange}
                 label="Запомнить меня"

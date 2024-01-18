@@ -8,6 +8,7 @@ import { productPageReducer } from '@/entities/productPage'
 import { searchProductParamsReducer } from '@/entities/searchProductParams'
 import { footerReducer } from '@/entities/footer'
 import { registrationReducer } from '@/features/registration'
+import { loginReducer } from '@/features/login'
 
 export const staticReducers = {
     categories: categoryReducer,
@@ -19,5 +20,6 @@ export const staticReducers = {
     productSearchInput: productSearchInputReducer,
     searchProductParams: searchProductParamsReducer,
     footer: footerReducer,
+    login: loginReducer,
     registration: registrationReducer,
 }
