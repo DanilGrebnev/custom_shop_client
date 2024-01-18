@@ -13,4 +13,7 @@ export class RegistrationSelectors {
     static getPassword(state: StateSchema) {
         return state.registration.fields.password
     }
+    static getIsLoading(state: StateSchema) {
+        return state.registration.loading
+    }
 }

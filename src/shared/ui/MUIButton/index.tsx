@@ -12,12 +12,7 @@ type IMUIButtonProps = Omit<Parameters<typeof Button>[0], 'color'> & {
 }
 
 export const MUIButton: FC<IMUIButtonProps> = memo((props) => {
-    const {
-        color = 'var(--global-palette1)',
-        href,
-        className,
-        ...otherProps
-    } = props
+    const { color, href, className, ...otherProps } = props
 
     const theme = createTheme({
         components: {

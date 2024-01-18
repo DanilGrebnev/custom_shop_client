@@ -1,10 +1,17 @@
 import { StateSchema } from '@/app/providers/StoreProvider'
 
 export class LoginSelector {
-    static getLogin(state: StateSchema) {
-        return state.login.fields.login
+    static getUsername(state: StateSchema) {
+        return state.login.fields.username
     }
     static getPassword(state: StateSchema) {
         return state.login.fields.password
+    }
+
+    static getIsLoading(state: StateSchema) {
+        return state.login.loading
+    }
+    static getIsSucces(state: StateSchema) {
+        return state.login.succes
     }
 }

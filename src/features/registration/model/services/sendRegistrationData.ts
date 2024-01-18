@@ -11,8 +11,9 @@ interface AxiosResponse {
 }
 
 export interface AxiosErrorResponse {
-    email: string[]
-    password: string[]
+    email?: string[]
+    password?: string[]
+    detail?: string
 }
 
 export const sendRegistrationData = createAsyncThunk(

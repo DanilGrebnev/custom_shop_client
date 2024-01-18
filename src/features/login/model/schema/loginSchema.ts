@@ -1,8 +1,10 @@
 export interface ILoginFields {
-    login: string
+    username: string
     password: string
 }
 
 export interface ILoginSchema {
     fields: ILoginFields
+    loading: boolean
+    succes: boolean
 }

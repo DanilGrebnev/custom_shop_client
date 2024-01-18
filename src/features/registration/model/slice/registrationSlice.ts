@@ -46,6 +46,7 @@ const registrationSlice = createSlice({
             })
             .addCase(sendRegistrationData.rejected, (state, action) => {
                 state.error = action.payload
+                console.error(action.payload)
 
                 state.loading = false
             })
