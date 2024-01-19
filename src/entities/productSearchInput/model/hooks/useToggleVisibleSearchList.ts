@@ -10,11 +10,15 @@ export const useToggleVisibleSearchList = () => {
     const dispatch = useAppDispatch()
     const products = useAppSelector(ProductSearchInputState.getProducts)
 
+    const isHidden = useAppSelector(
+        ProductSearchInputState.getIsHiddenSearchList
+    )
+
     useEffect(() => {
-        if (products.length) {
+        if (products.length && !isHidden) {
             dispatch(toggleVisibleSearchList(true))
             return
         }
         dispatch(toggleVisibleSearchList(false))
-    }, [products, dispatch])
+    }, [products, isHidden, dispatch])
 }

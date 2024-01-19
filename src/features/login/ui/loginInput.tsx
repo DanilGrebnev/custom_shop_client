@@ -15,7 +15,7 @@ export const LoginInput: FC<ILoginInputProps> = (props) => {
 
     const dispatch = useAppDispatch()
     const value = useAppSelector(
-        LoginSelector[selector] as typeof LoginSelector.getLogin
+        LoginSelector[selector] as typeof LoginSelector.getUsername
     )
 
     const onChange = ({ target }: ChangeEvent<HTMLInputElement>) => {

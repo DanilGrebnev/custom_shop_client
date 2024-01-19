@@ -33,6 +33,21 @@ export const ProductCardSkeleton: FC<ISliderCardSkeleton> = (props) => {
                 variant="text"
                 height={20}
             />
+            <Skeleton
+                animation="wave"
+                variant="text"
+                height={20}
+            />
+            <Skeleton
+                animation="wave"
+                variant="text"
+                height={20}
+            />
+            <Skeleton
+                animation="wave"
+                variant="text"
+                height={20}
+            />
         </div>
     )
 }

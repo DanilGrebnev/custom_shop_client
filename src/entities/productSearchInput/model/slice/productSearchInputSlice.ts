@@ -9,6 +9,7 @@ const initialState: IProductSearchInputSchema = {
     isOpenSearchList: false,
     input: '',
     loading: false,
+    hiddenSearchList: false,
     error: '',
 }
 
@@ -28,6 +29,9 @@ const productSearchInputSlice = createSlice({
         resetState(state) {
             state.products = []
             state.totalСount = 0
+        },
+        isHiddenSearchList(state, action: PayloadAction<boolean>) {
+            state.hiddenSearchList = action.payload
         },
     },
     extraReducers(builder) {
@@ -50,4 +54,5 @@ const productSearchInputSlice = createSlice({
 })
 export const { resetState, setInput, toggleVisibleSearchList, resetInput } =
     productSearchInputSlice.actions
+export const productSearchInputActions = productSearchInputSlice.actions
 export const productSearchInputReducer = productSearchInputSlice.reducer

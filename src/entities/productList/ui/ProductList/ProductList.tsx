@@ -8,6 +8,7 @@ import { ProductListSelectors } from '../../model/selectors/productListSelectors
 import { ProductListPagination } from '@/entities/productListPagination'
 import { ProductListSkeleton } from '@/shared/ui/Skeletons'
 import { getSearchProductParams } from '@/entities/searchProductParams'
+import { productSearchInputActions } from '@/entities/productSearchInput'
 
 import clsx from 'clsx'
 import s from './ProductList.module.scss'
@@ -18,6 +19,14 @@ const ProductList = () => {
     const isLoading = useAppSelector(ProductListSelectors.getIsLoading)
 
     const usp = useAppSelector(getSearchProductParams)
+
+    useEffect(() => {
+        dispatch(productSearchInputActions.isHiddenSearchList(true))
+
+        return () => {
+            dispatch(productSearchInputActions.isHiddenSearchList(false))
+        }
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(fetchProductList({ offset: 0 }))

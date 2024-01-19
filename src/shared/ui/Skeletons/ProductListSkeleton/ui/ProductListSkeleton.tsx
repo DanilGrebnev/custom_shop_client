@@ -6,10 +6,22 @@ import s from './ProductListSkeleton.module.scss'
 
 interface IProductListSkeletonProps {
     className?: string
+    wrapper?: boolean
 }
 
 export const ProductListSkeleton: FC<IProductListSkeletonProps> = (props) => {
-    const { className } = props
+    const { wrapper } = props
+    if (wrapper) {
+        return (
+            <div className={s.wrapper}>
+                <CreateArrayAndFill
+                    childrenClassName={s['skeleton-item']}
+                    amount={12}>
+                    <ProductCardSkeleton />
+                </CreateArrayAndFill>
+            </div>
+        )
+    }
 
     return (
         <CreateArrayAndFill

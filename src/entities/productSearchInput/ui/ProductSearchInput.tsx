@@ -16,6 +16,7 @@ import { useOnChangeForShopPage } from '../model/hooks/useOnChangeForShopPage'
 import { Input } from './Input/Input'
 import { searchProductParamsActions } from '@/entities/searchProductParams'
 import { useToggleVisibleSearchList } from '../model/hooks/useToggleVisibleSearchList'
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 import s from './ProductSearchInput.module.scss'
 import clsx from 'clsx'
@@ -26,29 +27,30 @@ interface ProductSearchInputProps {
 
 export const ProductSearchInput: FC<ProductSearchInputProps> = (props) => {
     const { className } = props
+    const pathname = usePathname()
+    const dispatch = useAppDispatch()
 
     useToggleVisibleSearchList()
 
-    const dispatch = useAppDispatch()
     const products = useAppSelector(ProductSearchInputState.getProducts)
     const isOpenSearchList = useAppSelector(
         ProductSearchInputState.getIsOpenSearchList
     )
-    const pathname = usePathname()
     const { onChangeForShopPage } = useOnChangeForShopPage()
 
     const uspInstance = new URLSearchParams()
 
     const onChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.trim()
-        uspInstance.set('search', value)
-
-        dispatch(searchProductParamsActions.setUSP(uspInstance.toString()))
-
-        if (pathname === '/shop') {
+        
+        if (pathname === NavigationRoutes.shop()) {
             onChangeForShopPage(value)
             return
         }
+
+        uspInstance.set('search', value)
+
+        dispatch(searchProductParamsActions.setUSP(uspInstance.toString()))
 
         if (!value) {
             return dispatch(resetState())
@@ -56,10 +58,6 @@ export const ProductSearchInput: FC<ProductSearchInputProps> = (props) => {
 
         dispatch(fetchSearchInputProducts(value))
     }, 1000)
-
-    const onFocus = () => {
-        
-    }
 
     const onClose = useCallback(() => {
         dispatch(toggleVisibleSearchList(false))

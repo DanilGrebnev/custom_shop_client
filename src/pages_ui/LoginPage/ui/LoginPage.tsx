@@ -22,29 +22,29 @@ export const LoginPage = () => {
             .then(() => router.push(NavigationRoutes.main()))
     }, [dispatch, router])
 
-    if (isLoading) {
-        return <PageLoader />
-    }
-
     return (
         <>
             <h1>Вход</h1>
             <LoginInput
+                disabled={isLoading}
                 label="Имя пользователя"
                 name="username"
                 selector="getUsername"
             />
             <LoginInput
+                disabled={isLoading}
                 label="Пароль"
                 name="password"
                 selector="getPassword"
                 type="password"
             />
             <CheckBox
+                disabled={isLoading}
                 label="Запомнить меня"
                 name="remember_me"
             />
             <MUIButton
+                disabled={isLoading}
                 color="var(--global-palette1)"
                 onClick={onSubmit}
                 variant="text"
@@ -54,6 +54,7 @@ export const LoginPage = () => {
             <div>
                 <span>Нет аккаунта?</span>
                 <MUIButton
+                    disabled={isLoading}
                     size="small"
                     variant="text"
                     href={NavigationRoutes.registration()}

@@ -2,14 +2,17 @@
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { MUIButton } from '@/shared/ui/MUIButton'
-import { RegistrationInput } from '@/features/registration'
+import {
+    RegistrationInput,
+    RegistrationSelectors,
+} from '@/features/registration'
 import { sendRegistrationData } from '@/features/registration'
-import { useAppDispatch } from '@/shared/hooks'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { redirect } from 'next/navigation'
-import {} from '@/app/providers/NavigationRoutes'
 
 export const RegistrationPage = () => {
     const dispatch = useAppDispatch()
+    const isLoading = useAppSelector(RegistrationSelectors.getIsLoading)
 
     const onClick = () => {
         dispatch(sendRegistrationData())
@@ -25,28 +28,33 @@ export const RegistrationPage = () => {
                 name="email"
                 selector="getEmail"
                 type="email"
+                disabled={isLoading}
             />
             <RegistrationInput
                 label="Имя"
                 name="first_name"
                 selector="getFirstName"
+                disabled={isLoading}
             />
             <RegistrationInput
                 label="Фамилия"
                 name="last_name"
                 selector="getLastName"
+                disabled={isLoading}
             />
             <RegistrationInput
                 label="Пароль"
                 name="password"
                 selector="getPassword"
                 type="password"
+                disabled={isLoading}
             />
             <MUIButton
                 type="submit"
                 color="var(--global-palette1)"
                 onClick={onClick}
-                className="button">
+                className="button"
+                disabled={isLoading}>
                 Зарегестрироваться
             </MUIButton>
             <div>
@@ -54,7 +62,8 @@ export const RegistrationPage = () => {
                 <MUIButton
                     size="small"
                     href={NavigationRoutes.login()}
-                    className="button">
+                    className="button"
+                    disabled={isLoading}>
                     войти
                 </MUIButton>
             </div>

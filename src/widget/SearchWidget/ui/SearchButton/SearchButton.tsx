@@ -18,15 +18,19 @@ export const SearchButton: FC<ISearchButtonProps> = (props) => {
 
     const router = useRouter()
     const searchInput = useAppSelector(ProductSearchInputState.getInput)
-    const dispatch = useAppDispatch()
 
     const onClick = () => {
         if (!searchInput.trim()) return
         router.push('/shop')
-        dispatch(toggleVisibleSearchList(false))
     }
 
-    return <button className={s.button}>Поиск</button>
+    return (
+        <button
+            onClick={onClick}
+            className={s.button}>
+            Поиск
+        </button>
+    )
 }
 
 SearchButton.displayName = 'SearchButton'

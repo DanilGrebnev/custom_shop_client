@@ -7,4 +7,5 @@ export interface IProductSearchInputSchema {
     isOpenSearchList: boolean
     loading: boolean
     error: any
+    hiddenSearchList: boolean
 }

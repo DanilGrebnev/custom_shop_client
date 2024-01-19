@@ -7,24 +7,29 @@ import { Checkbox } from '@mui/material'
 import clsx from 'clsx'
 import s from './CheckBox.module.scss'
 
-interface ICheckBoxProps {
-    className?: string
+type ICheckBoxProps = Parameters<typeof Checkbox>[0] & {
     label?: ReactNode
-    name: string
-    value?: string
-    chilren?: ReactNode
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    children?: ReactNode
 }
 
-export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
-    const { className, name, value, label, chilren, onChange } = props
-
-    const CustomCheckbox = styled(Checkbox)(() => ({
+const CustomCheckbox = styled(Checkbox)(() => ({
+    color: 'var(--global-palette1)',
+    '&.Mui-checked': {
         color: 'var(--global-palette1)',
-        '&.Mui-checked': {
-            color: 'var(--global-palette1)',
-        },
-    }))
+    },
+}))
+
+export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
+    const {
+        className,
+        name,
+        disabled,
+        value,
+        label,
+        children,
+        onChange,
+        ...otherProps
+    } = props
 
     return (
         <div className={clsx(s.CheckBox, className)}>
@@ -32,9 +37,11 @@ export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
                 size="small"
                 name={name}
                 value={value}
+                disabled={disabled}
                 onChange={onChange}
+                {...otherProps}
             />
-            <div>{label}</div>
+            <div className={clsx({ [s.disabled]: disabled })}>{label}</div>
         </div>
     )
 })

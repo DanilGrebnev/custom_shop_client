@@ -20,7 +20,7 @@ const RootLayout = ({ children }: ILayout) => {
             <body className={inter.className}>
                 <StoreProvider>
                     <AppRouterCacheProvider>
-                        <form id="App">{children}</form>
+                        <section id="App">{children}</section>
                     </AppRouterCacheProvider>
                 </StoreProvider>
             </body>

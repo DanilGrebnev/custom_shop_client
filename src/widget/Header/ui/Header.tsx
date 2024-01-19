@@ -1,5 +1,3 @@
-'use client'
-
 import { SearchWidget } from '@/widget/SearchWidget'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { CategoryMenuWidgetLazy } from '@/entities/categories'

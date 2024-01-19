@@ -16,9 +16,9 @@ interface ICategoryMenuWidgetProps {
 
 export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
     const [open, setOpen] = useState(false)
+    const dispatch = useAppDispatch()
 
     const categories = useAppSelector(getCategoryData)
-    const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(fetchCategories())
@@ -27,8 +27,7 @@ export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
                 console.error('Ошиба получения категорий')
                 console.error(err)
             })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [dispatch])
 
     return (
         <DropDownMenu

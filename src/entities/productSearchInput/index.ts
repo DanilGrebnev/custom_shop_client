@@ -7,3 +7,4 @@ export {
     resetInput,
 } from './model/slice/productSearchInputSlice'
 export { ProductSearchInputState } from './model/selectors/ProductSearchInputState'
+export { productSearchInputActions } from './model/slice/productSearchInputSlice'

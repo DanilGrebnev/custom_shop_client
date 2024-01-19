@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { ReserveErrorComponent } from '@/shared/ui/ReserveErrorComponent'
-import { ProductList } from '@/entities/productList'
+import { DynamicProductList } from '@/entities/productList'
 import { FilterSideBar } from '@/entities/filterSideBar'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+import { FilterSideBarDynamic } from '@/entities/filterSideBar'
+import { Suspense } from 'react'
+import {
+    FilterSideBarSkeleton,
+    ProductListSkeleton,
+} from '@/shared/ui/Skeletons'
 
 import clsx from 'clsx'
 import s from './page.module.scss'
@@ -20,26 +25,27 @@ export default async function ShopPage() {
     return (
         <>
             <BreadCrumbs
-                current="Shop"
+                current="Магазин"
                 breadcrumbs={[
-                    { href: NavigationRoutes.main(), label: 'Home' },
+                    { href: NavigationRoutes.main(), label: 'Главная' },
                     {
                         href: NavigationRoutes.shop(),
-                        label: 'Shop',
+                        label: 'Магазин',
                         active: true,
                     },
                 ]}
             />
-            
+
             <section
                 id="Shop-Page"
                 className={clsx('contain', s['shop-page'])}>
                 <ClientErrorBoundary>
-                    <FilterSideBar />
+                    {/* <FilterSideBar /> */}
+                    <FilterSideBarDynamic />
                 </ClientErrorBoundary>
 
                 <ClientErrorBoundary>
-                    <ProductList />
+                    <DynamicProductList />
                 </ClientErrorBoundary>
             </section>
         </>

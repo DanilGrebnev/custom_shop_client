@@ -16,4 +16,7 @@ export class ProductSearchInputState {
     static getIsLoading(state: StateSchema) {
         return state.productSearchInput.loading
     }
+    static getIsHiddenSearchList(state: StateSchema) {
+        return state.productSearchInput.hiddenSearchList
+    }
 }

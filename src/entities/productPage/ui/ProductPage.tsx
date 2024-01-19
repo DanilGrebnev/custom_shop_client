@@ -32,9 +32,10 @@ export const ProductPage = (props: IProductPage) => {
     return (
         <>
             <BreadCrumbs
+                current={product.name}
                 breadcrumbs={[
-                    { href: NavigationRoutes.main(), label: 'Home' },
-                    { href: NavigationRoutes.shop(), label: 'Shop' },
+                    { href: NavigationRoutes.main(), label: 'Главная' },
+                    { href: NavigationRoutes.shop(), label: 'Магазин' },
                     {
                         href: '/shop?=' + product?.category?.[0]?.name,
                         label: product?.category?.[0]?.name,
