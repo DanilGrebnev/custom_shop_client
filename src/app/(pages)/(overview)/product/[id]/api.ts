@@ -1,6 +1,6 @@
 import { IProduct } from '@/app/types/Product'
 import { $axios } from '@/app/API'
-import mock from '@/mock/mock'
+// import mock from '@/mock/mock'
 
 export const getProduct = async (productId: string) => {
     const res = await $axios.get<IProduct>(`product/${productId}`)
@@ -8,5 +8,6 @@ export const getProduct = async (productId: string) => {
 }
 
 export const getProductTEST = async () => {
+    const mock = (await import('@/mock/mock')).default
     return await Promise.resolve(mock.productById)
 }

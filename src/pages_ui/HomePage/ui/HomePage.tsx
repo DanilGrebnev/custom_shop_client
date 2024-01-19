@@ -5,15 +5,14 @@ import { FeaturedProducts } from '@/widget/FeaturedProducts'
 import { NewProducts } from '@/widget/NewProducts'
 import { FeedBackBlock } from '@/widget/FeedBackBlock'
 import { BestsellerProducts } from '@/widget/BestsellerProducts'
-import { ShopByFeaturedCategories } from '@/widget/ShopByFeaturedCategories'
-import { fetchHomePageData } from '../model/services/fetchHomePageData'
+import { fetchHomePageData } from '@/entities/homePage'
 import { useAppDispatch } from '@/shared/hooks'
 import { useAppSelector } from '@/shared/hooks'
 import { useEffect } from 'react'
-import { HomePageSelectors } from '../model/selectors'
+import { HomePageSelectors } from '@/entities/homePage'
 import { HomePageSkeleton } from '@/shared/ui/Skeletons'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
-import { ModalCard } from '@/shared/ui/Modal'
+import { ShopByFeaturedCategoriesDynamic } from '@/widget/ShopByFeaturedCategories'
 
 export const HomePage = () => {
     const dispatch = useAppDispatch()
@@ -53,7 +52,10 @@ export const HomePage = () => {
             </ClientErrorBoundary>
 
             <ClientErrorBoundary className="contain">
-                <ShopByFeaturedCategories
+                {/* <ShopByFeaturedCategories
+                    categories={homePageData?.featuredCategories}
+                /> */}
+                <ShopByFeaturedCategoriesDynamic
                     categories={homePageData?.featuredCategories}
                 />
             </ClientErrorBoundary>

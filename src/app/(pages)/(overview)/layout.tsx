@@ -1,13 +1,18 @@
 import { Header } from '@/widget/Header'
-import { Footer } from '@/widget/Footer'
 import { ILayout } from '@/app/types/layout'
+import { FooterDynamic } from '@/entities/footer'
+import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 
 const ShopLayout = ({ children }: ILayout) => {
     return (
         <>
-            <Header />
+            <ClientErrorBoundary>
+                <Header />
+            </ClientErrorBoundary>
             {children}
-            <Footer />
+            <ClientErrorBoundary>
+                <FooterDynamic />
+            </ClientErrorBoundary>
         </>
     )
 }

@@ -1,1 +1,1 @@
-export { ShopByFeaturedCategories } from './ui/ShopByFeaturedCategories'
+export { ShopByFeaturedCategoriesDynamic } from './ui/ShopByFeaturedCategoriesDynamic'

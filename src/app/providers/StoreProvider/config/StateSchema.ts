@@ -10,6 +10,7 @@ import { type ISearchProductParamsSchema } from '@/entities/searchProductParams'
 import { type IFooterSchema } from '@/entities/footer'
 import { type IRegistrationSchema } from '@/features/registration/model/schema/registrationSchema'
 import { ILoginSchema } from '@/features/login'
+import { IUserProfileSchema } from '@/features/userProfile'
 
 export interface StateSchema {
     categories: ICategorySchema
@@ -23,6 +24,7 @@ export interface StateSchema {
     footer: IFooterSchema
     login: ILoginSchema
     registration: IRegistrationSchema
+    userProfile: IUserProfileSchema
 }
 
 export interface ThunkExtraConfig {

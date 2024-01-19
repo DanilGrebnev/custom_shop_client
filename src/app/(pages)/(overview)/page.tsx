@@ -1,5 +1,1 @@
-import { HomePage } from '@/entities/homePage'
-
-export default function HomePages() {
-    return <HomePage />
-}
+export { HomePage as default } from '@/pages_ui/HomePage'

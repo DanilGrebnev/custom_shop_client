@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { authByLogin } from '@/features/login'
 import { useRouter } from 'next/navigation'
 import { LoginSelector } from '@/features/login/model/selectors/loginSelector'
-import { PageLoader } from '@/shared/ui/LoadersSpinners'
 
 export const LoginPage = () => {
     const router = useRouter()

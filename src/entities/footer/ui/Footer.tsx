@@ -12,7 +12,6 @@ export const Footer = () => {
     const dispatch = useAppDispatch()
     const footer = useAppSelector(GetFooterSelector.getFooterData)
     const isLoading = useAppSelector(GetFooterSelector.getFooterIsLoading)
-    const error = useAppSelector(GetFooterSelector.getFooterError)
 
     useEffect(() => {
         dispatch(fetchFooter())
@@ -29,3 +28,5 @@ export const Footer = () => {
 }
 
 Footer.displayName = 'Footer'
+
+export default Footer
