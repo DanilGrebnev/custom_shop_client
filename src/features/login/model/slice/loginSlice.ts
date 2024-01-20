@@ -30,6 +30,7 @@ const loginSlice = createSlice({
         builder
             .addCase(authByLogin.fulfilled, (state, action) => {
                 state.loading = false
+                localStorage.setItem('access_token', action.payload.token)
                 console.log(action.payload)
             })
             .addCase(authByLogin.pending, (state) => {
