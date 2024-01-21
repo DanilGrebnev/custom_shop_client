@@ -1,4 +1,4 @@
-import { getProduct, getProductTEST } from './api'
+import { getProduct } from './api'
 import { ProductPage as ProductPageClient } from '@/entities/productPage'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 
@@ -24,14 +24,10 @@ export const generateMetadata = async ({ params }: IProductPage) => {
     }
 }
 
-const ProductPage = async ({ params }: IProductPage) => {
-    const { id } = params
-
-    return (
-        <ClientErrorBoundary>
-            <ProductPageClient productId={id} />
-        </ClientErrorBoundary>
-    )
-}
+const ProductPage = ({ params }: IProductPage) => (
+    <ClientErrorBoundary>
+        <ProductPageClient productId={params.id} />
+    </ClientErrorBoundary>
+)
 
 export default ProductPage

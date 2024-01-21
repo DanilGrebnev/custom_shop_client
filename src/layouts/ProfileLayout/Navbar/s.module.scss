@@ -1,0 +1,11 @@
+.navbar {
+    background: white;
+    padding: 20px;
+    box-shadow: var(--box-shadow-3);
+    border-radius: var(--global-border-radius);
+    height: max-content;
+
+    a {
+        font-size: var(--font-size-2);
+    }
+}

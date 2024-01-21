@@ -1,5 +1,1 @@
-import { PageLoader } from '@/shared/ui/LoadersSpinners'
-
-export default function Loader() {
-    return <PageLoader />
-}
+export { PageLoader as default } from '@/shared/ui/LoadersSpinners'

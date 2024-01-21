@@ -1,0 +1,32 @@
+$icon-size: 25px;
+
+.item {
+    padding: 20px;
+
+    a {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        p {
+            font-size: var(--font-size-4);
+        }
+
+        & > svg {
+            width: $icon-size;
+            height: $icon-size;
+        }
+    }
+
+    &.active {
+        a {
+            p {
+                color: var(--global-palette1);
+            }
+
+            & > svg {
+                fill: var(--global-palette1);
+            }
+        }
+    }
+}

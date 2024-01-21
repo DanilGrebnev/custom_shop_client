@@ -1,6 +1,5 @@
 'use client'
 
-import { FC } from 'react'
 import { PulseLoader } from 'react-spinners'
 import s from './s.module.scss'
 
@@ -8,7 +7,7 @@ interface IPageLoaderProps {
     className?: string
 }
 
-export const PageLoader: FC<IPageLoaderProps> = (props) => {
+export const PageLoader = (props: IPageLoaderProps) => {
     return (
         <div className={s['pulse-loader']}>
             <PulseLoader
