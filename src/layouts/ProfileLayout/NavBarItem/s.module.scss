@@ -1,12 +1,11 @@
 $icon-size: 25px;
 
 .item {
-    padding: 20px;
-
     a {
         display: flex;
         gap: 10px;
         align-items: center;
+        padding: 10px 20px;
 
         p {
             font-size: var(--font-size-4);
@@ -19,6 +18,18 @@ $icon-size: 25px;
     }
 
     &.active {
+        position: relative;
+
+        &:before {
+            position: absolute;
+            content: '';
+            width: 2px;
+            background: var(--global-palette1);
+            height: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         a {
             p {
                 color: var(--global-palette1);

@@ -4,8 +4,7 @@ import { $axios } from '@/app/API'
 export const fetchUserProfile = createAsyncThunk(
     'userProfile/fetchUserProfile',
     async (_, thunkApi) => {
-        const response = await $axios.get('user/me')
-
+        const response = await $axios.get('user/me', { withCredentials: true })
         return response.data
     }
 )

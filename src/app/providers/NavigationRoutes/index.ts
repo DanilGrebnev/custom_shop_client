@@ -17,4 +17,10 @@ export class NavigationRoutes {
     static registration() {
         return '/registration'
     }
+    static profileMe() {
+        return '/profile/me'
+    }
+    static profileOrders() {
+        return '/profile/orders'
+    }
 }

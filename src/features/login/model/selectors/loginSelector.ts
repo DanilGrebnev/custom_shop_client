@@ -7,11 +7,10 @@ export class LoginSelector {
     static getPassword(state: StateSchema) {
         return state.login.fields.password
     }
-
     static getIsLoading(state: StateSchema) {
         return state.login.loading
     }
-    static getIsSucces(state: StateSchema) {
-        return state.login.succes
+    static getIsAuth(state: StateSchema) {
+        return state.login.isAuth
     }
 }

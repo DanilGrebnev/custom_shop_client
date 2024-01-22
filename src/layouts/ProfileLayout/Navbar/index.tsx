@@ -1,23 +1,19 @@
 import { NavBarItem } from '../NavBarItem'
-
-import SettingIcon from '@/shared/assets/setting-icon.svg'
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import OrderIcon from '@/shared/assets/orders-icon.svg'
 import ProfileIcon from '@/shared/assets/profile-icon.svg'
+
 import s from './s.module.scss'
 
 const itemsList = [
     {
-        href: '/profile/me',
+        href: NavigationRoutes.profileMe(),
         icon: <ProfileIcon />,
         text: 'Профиль',
     },
     {
-        href: '/profile/setting',
-        icon: <SettingIcon />,
-        text: 'Настройки',
-    },
-    {
-        href: '/profile/orders',
-        icon: '',
+        href: NavigationRoutes.profileOrders(),
+        icon: <OrderIcon />,
         text: 'Заказы',
     },
 ]

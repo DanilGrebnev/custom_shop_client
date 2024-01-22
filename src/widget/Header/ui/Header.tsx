@@ -60,6 +60,7 @@ export const Header = () => {
                             <a>Личный кабинет</a>
                         </li>
                     </ul>
+                    <Link href={NavigationRoutes.profileMe()}>Профиль</Link>
                 </div>
             </div>
         </header>

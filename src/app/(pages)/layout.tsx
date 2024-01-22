@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { type ILayout } from '../types/layout'
 import { Inter } from 'next/font/google'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
-import { StoreProvider } from '../providers/StoreProvider'
+import { AppProvider } from '../providers/AppProvider'
 
 import '../styles/root-var.css'
 import '../styles/global.css'
@@ -16,13 +15,11 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: ILayout) => {
     return (
-        <html lang="en">
+        <html lang="ru">
             <body className={inter.className}>
-                <StoreProvider>
-                    <AppRouterCacheProvider>
-                        <section id="App">{children}</section>
-                    </AppRouterCacheProvider>
-                </StoreProvider>
+                <AppProvider>
+                    <section id="App">{children}</section>
+                </AppProvider>
             </body>
         </html>
     )

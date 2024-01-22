@@ -9,7 +9,7 @@ const initialState: ILoginSchema = {
         password: '',
     },
     loading: false,
-    succes: false,
+    isAuth: false,
 }
 
 const loginSlice = createSlice({
@@ -30,15 +30,14 @@ const loginSlice = createSlice({
         builder
             .addCase(authByLogin.fulfilled, (state, action) => {
                 state.loading = false
-                localStorage.setItem('access_token', action.payload.token)
-                console.log(action.payload)
+                state.isAuth = true
             })
             .addCase(authByLogin.pending, (state) => {
                 state.loading = true
             })
             .addCase(authByLogin.rejected, (state, action) => {
                 state.loading = false
-                console.warn(action.payload)
+                console.error(action.payload)
             })
     },
 })

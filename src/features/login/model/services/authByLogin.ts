@@ -9,7 +9,8 @@ export const authByLogin = createAsyncThunk(
 
         const response = await $axios.post<{ token: string }>(
             'auth/token/login',
-            state.login.fields
+            state.login.fields,
+            { withCredentials: true }
         )
 
         return response.data

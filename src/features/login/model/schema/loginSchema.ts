@@ -6,5 +6,5 @@ export interface ILoginFields {
 export interface ILoginSchema {
     fields: ILoginFields
     loading: boolean
-    succes: boolean
+    isAuth: boolean
 }
