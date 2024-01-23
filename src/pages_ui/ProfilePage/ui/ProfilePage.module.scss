@@ -1,16 +1,21 @@
 .profile-page {
-    background: white;
-    max-width: 100vw;
     overflow-x: hidden;
     display: flex;
     flex-grow: 1;
     padding: 20px;
+    height: max-content;
 }
 
-.setting-wrapper {
+.setting {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 300px;
+}
+
+.registration-date {
+    padding: 20px;
+    border-radius: var(--global-border-radius);
+    background: rgba(0, 0, 0, 0.05);
 }

@@ -2,6 +2,7 @@ import { NavBarItem } from '../NavBarItem'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import OrderIcon from '@/shared/assets/orders-icon.svg'
 import ProfileIcon from '@/shared/assets/profile-icon.svg'
+import { Papper } from '@/shared/ui/Papper'
 
 import s from './s.module.scss'
 
@@ -20,7 +21,7 @@ const itemsList = [
 
 export const NavBar = () => {
     return (
-        <div className={s.navbar}>
+        <Papper className={s.navbar}>
             <ul>
                 {itemsList.map((item) => (
                     <NavBarItem
@@ -29,6 +30,6 @@ export const NavBar = () => {
                     />
                 ))}
             </ul>
-        </div>
+        </Papper>
     )
 }

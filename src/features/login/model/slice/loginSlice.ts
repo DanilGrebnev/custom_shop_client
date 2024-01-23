@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ILoginSchema } from '../schema/loginSchema'
-import { ILoginFields } from '../schema/loginSchema'
+import { ILoginSchema, ILoginFields } from '../schema/loginSchema'
 import { authByLogin } from '../services/authByLogin'
 
 const initialState: ILoginSchema = {
     fields: {
         username: '',
         password: '',
+        remember_me: false,
     },
     loading: false,
     isAuth: false,
@@ -19,11 +19,14 @@ const loginSlice = createSlice({
         setLoginValue(
             state,
             action: PayloadAction<{
-                name: keyof ILoginFields
+                name: keyof Omit<ILoginFields, 'remember_me'>
                 value: string
             }>
         ) {
             state.fields[action.payload.name] = action.payload.value
+        },
+        setRememberMe(state, action: PayloadAction<boolean>) {
+            state.fields.remember_me = action.payload
         },
     },
     extraReducers(builder) {
@@ -43,4 +46,4 @@ const loginSlice = createSlice({
 })
 
 export const loginReducer = loginSlice.reducer
-export const { setLoginValue } = loginSlice.actions
+export const loginActions = loginSlice.actions

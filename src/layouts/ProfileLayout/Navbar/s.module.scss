@@ -1,5 +1,4 @@
 .navbar {
-    background: white;
     padding: 20px 20px 20px 0;
 
     ul {
@@ -7,9 +6,7 @@
         flex-direction: column;
         gap: 20px;
     }
-    
-    box-shadow: var(--box-shadow-3);
-    border-radius: var(--global-border-radius);
+
     height: max-content;
 
     a {

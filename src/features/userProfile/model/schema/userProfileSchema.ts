@@ -4,7 +4,7 @@ export interface IUserProfileFavorites {
     price: number
 }
 
-export interface IUserProfileSchema {
+export interface IUserProfileFields {
     id: number
     first_name: string
     last_name: string
@@ -12,5 +12,11 @@ export interface IUserProfileSchema {
     phone_number: string
     username: string
     date_joined: string
-    favorites: IUserProfileFavorites[]
+    favorites: IUserProfileFavorites[] | []
+}
+
+export interface IUserProfileSchema {
+    fields: IUserProfileFields
+    loading: boolean
+    error: any
 }

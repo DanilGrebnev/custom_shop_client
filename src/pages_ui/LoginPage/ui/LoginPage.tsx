@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { authByLogin } from '@/features/login'
 import { useRouter } from 'next/navigation'
 import { LoginSelector } from '@/features/login/model/selectors/loginSelector'
+import { LoginCheckBox } from '@/features/login/ui/LoginCheckBox'
 
 export const LoginPage = () => {
     const router = useRouter()
@@ -28,16 +29,14 @@ export const LoginPage = () => {
                 disabled={isLoading}
                 label="Имя пользователя"
                 name="username"
-                selector="getUsername"
             />
             <LoginInput
                 disabled={isLoading}
                 label="Пароль"
                 name="password"
-                selector="getPassword"
                 type="password"
             />
-            <CheckBox
+            <LoginCheckBox
                 disabled={isLoading}
                 label="Запомнить меня"
                 name="remember_me"

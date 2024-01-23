@@ -1,75 +1,100 @@
 'use client'
 
-import { UserProfileServices } from '@/features/userProfile'
-import { useEffect } from 'react'
+import {
+    UserProfileSelectors,
+    UserProfileServices,
+} from '@/features/userProfile'
+import { ChangeEvent, useCallback, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { CustomInput } from '@/shared/ui/CustomInput'
-import { LoginSelector } from '@/features/login'
-import { useRouter } from 'next/navigation'
-import { IsAuth } from '@/shared/HOC/IsAuth'
+import { Papper } from '@/shared/ui/Papper'
+import { userProfileActions } from '@/features/userProfile'
+import { dateParse } from '@/shared/lib/dateParse'
 
 import ProfileImage from '@/shared/assets/profile_icon_160.webp'
 import Image from 'next/image'
 import s from './ProfilePage.module.scss'
 import clsx from 'clsx'
+import { NumberInput } from '@/shared/ui/NumberInput'
 
 export const ProfilePage = () => {
     const dispatch = useAppDispatch()
+    const user = useAppSelector(UserProfileSelectors.getData)
 
     useEffect(() => {
         dispatch(UserProfileServices.fetchUserProfile())
     }, [dispatch])
 
-    // "first_name": "string",
-    // "last_name": "string",
-    // "email": "user@example.com",
-    // "phone_number": "string",
-    // "username": "string",
-    // "date_joined": "2024-01-21T16:50:35.284Z",
+    const onChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            const name = e.target.name as any
+            const value = e.target.value
+            dispatch(userProfileActions.setUserProfileValue({ name, value }))
+        },
+        [dispatch]
+    )
 
     return (
-        <IsAuth>
-            <section
-                id="Profile"
-                className={s['profile-page']}>
-                <div className={clsx(s.container, 'contain')}>
-                    <div className={s['profile-card']}>
-                        <Image
-                            width={160}
-                            height={160}
-                            placeholder="blur"
-                            quality={100}
-                            alt="Изображение профиля"
-                            src={ProfileImage}
+        <Papper
+            id="Profile"
+            className={s['profile-page']}>
+            <div className={clsx(s.container, 'contain')}>
+                <div className={s['profile-card']}>
+                    <Image
+                        width={160}
+                        height={160}
+                        placeholder="blur"
+                        quality={100}
+                        alt="Изображение профиля"
+                        src={ProfileImage}
+                    />
+                    <div className={s.setting}>
+                        <CustomInput
+                            label="Имя"
+                            variant="standard"
+                            name="first_name"
+                            defaultValue={user.first_name}
+                            onChange={onChange}
                         />
-                        <div className={s['setting-wrapper']}>
-                            <CustomInput
-                                label="Имя"
-                                defaultValue="Данил"
-                            />
-                            <CustomInput
-                                label="Фамилия"
-                                defaultValue="Гребнев"
-                            />
-                            <CustomInput
-                                label="Телефон"
-                                type="tel"
-                                defaultValue="8-937-697-69-01"
-                            />
-                            <CustomInput
-                                label="Никнейм"
-                                type="text"
-                                defaultValue="Danil_Grebnev"
-                            />
-                            <CustomInput
-                                label="Дата рождения"
-                                type="date"
-                                defaultValue="1998-08-12"
-                            />
-                        </div>
+                        <CustomInput
+                            onChange={onChange}
+                            label="Фамилия"
+                            name="last_name"
+                            variant="standard"
+                            defaultValue={user.last_name}
+                        />
+                        <NumberInput defaultValue={'+7-937-697-69-01'} />
+                        <CustomInput
+                            variant="standard"
+                            onChange={onChange}
+                            label="Почта"
+                            name="email"
+                            type="text"
+                            defaultValue={user.email}
+                        />
+                        <CustomInput
+                            variant="standard"
+                            onChange={onChange}
+                            label="Никнейм"
+                            name="nick"
+                            type="text"
+                            defaultValue={user.username}
+                        />
+
+                        <CustomInput
+                            variant="standard"
+                            onChange={onChange}
+                            label="Дата рождения"
+                            type="date"
+                            defaultValue="1998-08-12"
+                        />
+                        <p className={s['registration-date']}>
+                            Дата регистрации:{' '}
+                            <b>{dateParse(user.date_joined)}</b>
+                        </p>
                     </div>
                 </div>
-            </section>
-        </IsAuth>
+            </div>
+        </Papper>
     )
 }
