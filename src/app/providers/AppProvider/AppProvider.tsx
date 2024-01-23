@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { StoreProvider } from '../StoreProvider'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
+import { FetchingSettingComponent } from '@/entities/settings'
 
 interface IAppProvider {
     children: ReactNode
@@ -9,7 +10,9 @@ interface IAppProvider {
 export const AppProvider = ({ children }: IAppProvider) => {
     return (
         <StoreProvider>
-            <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+            <FetchingSettingComponent>
+                <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+            </FetchingSettingComponent>
         </StoreProvider>
     )
 }

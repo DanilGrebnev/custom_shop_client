@@ -11,6 +11,7 @@ import { type IFooterSchema } from '@/entities/footer'
 import { type IRegistrationSchema } from '@/features/registration/model/schema/registrationSchema'
 import { ILoginSchema } from '@/features/login'
 import { IUserProfileSchema } from '@/features/userProfile'
+import { ISettingSchema } from '@/entities/settings'
 
 export interface StateSchema {
     categories: ICategorySchema
@@ -25,6 +26,7 @@ export interface StateSchema {
     login: ILoginSchema
     registration: IRegistrationSchema
     userProfile: IUserProfileSchema
+    setting: ISettingSchema
 }
 
 export interface ThunkExtraConfig {

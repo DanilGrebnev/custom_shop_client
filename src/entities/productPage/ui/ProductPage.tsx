@@ -14,6 +14,7 @@ import { getProductPageIsLoading } from '../model/selectors/getProductPageIsLoad
 
 import clsx from 'clsx'
 import s from './ProductPage.module.scss'
+import { SettingSelectors } from '@/entities/settings'
 
 interface IProductPage {
     productId: string
@@ -23,6 +24,7 @@ export const ProductPage = (props: IProductPage) => {
     const { productId } = props
     const product = useAppSelector(getProductPageData)
     const isLoading = useAppSelector(getProductPageIsLoading)
+    const currency = useAppSelector(SettingSelectors.getCurrency)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -32,7 +34,6 @@ export const ProductPage = (props: IProductPage) => {
     return (
         <>
             <BreadCrumbs
-                current={product.name}
                 breadcrumbs={[
                     { href: NavigationRoutes.main(), label: 'Главная' },
                     { href: NavigationRoutes.shop(), label: 'Магазин' },
@@ -64,7 +65,9 @@ export const ProductPage = (props: IProductPage) => {
 
                     <Rating rating={4} />
 
-                    <div className={s.price}>₽{product.price}</div>
+                    <div className={s.price}>
+                        {currency} {product.price}
+                    </div>
 
                     <p className={s.description}>{product.description}</p>
 

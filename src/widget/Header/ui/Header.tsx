@@ -1,13 +1,9 @@
 import { SearchWidget } from '@/widget/SearchWidget'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { CategoryMenuWidgetLazy } from '@/entities/categories'
-import RefreshIcon from '/public/static/icons/compare.svg'
-import WishListIcon from '/public/static/icons/wishlist.svg'
-import CartIcon from '/public/static/icons/cart.svg'
-import TargetStoreLogo from '/public/static/images/logo.svg'
-import Link from 'next/link'
+import { HeaderUserWidget } from '@/widget/HeaderUserWidget'
+import { LinkList } from './LinkList'
+import { LogoDynamic } from '@/entities/settings'
 
-import { clsx } from 'clsx'
 import s from './Header.module.scss'
 
 export const Header = () => {
@@ -18,49 +14,15 @@ export const Header = () => {
             <div className="contain">
                 <div className={s['header-top']}>
                     <div className={s['header-section-left']}>
-                        <Link href={NavigationRoutes.main()}>
-                            <TargetStoreLogo />
-                        </Link>
+                        <LogoDynamic />
                     </div>
-
                     <SearchWidget />
-
-                    <div className={s['header-section-user']}>
-                        <div className={s['user-icon']}>
-                            <RefreshIcon />
-                            <span>0</span>
-                        </div>
-
-                        <div className={s['user-icon']}>
-                            <WishListIcon />
-                            <span>0</span>
-                        </div>
-
-                        <div className={s['user-icon']}>
-                            <CartIcon />
-                            <span>0</span>
-                        </div>
-                    </div>
+                    <HeaderUserWidget />
                 </div>
 
                 <div className={s['header-bottom']}>
                     <CategoryMenuWidgetLazy />
-                    <ul
-                        className={clsx(
-                            s['page-list'],
-                            s['header-bottom-section-center']
-                        )}>
-                        <li className={s['list-item']}>
-                            <Link href={NavigationRoutes.main()}>Главная</Link>
-                        </li>
-                        <li className={s['list-item']}>
-                            <Link href={NavigationRoutes.shop()}>Магазин</Link>
-                        </li>
-                        <li className={s['list-item']}>
-                            <a>Личный кабинет</a>
-                        </li>
-                    </ul>
-                    <Link href={NavigationRoutes.profileMe()}>Профиль</Link>
+                    <LinkList />
                 </div>
             </div>
         </header>

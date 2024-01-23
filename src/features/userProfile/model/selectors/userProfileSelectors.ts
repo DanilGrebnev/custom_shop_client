@@ -4,4 +4,7 @@ export class UserProfileSelectors {
     static getData(state: StateSchema) {
         return state.userProfile.fields
     }
+    static getWishList(state: StateSchema) {
+        return state.userProfile.fields.favorites
+    }
 }

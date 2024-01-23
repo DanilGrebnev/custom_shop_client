@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import { type Metadata } from 'next'
 import { type ILayout } from '../types/layout'
 import { Inter } from 'next/font/google'
 import { AppProvider } from '../providers/AppProvider'

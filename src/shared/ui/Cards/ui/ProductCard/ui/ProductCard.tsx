@@ -11,6 +11,8 @@ import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import Link from 'next/link'
 import clsx from 'clsx'
 import s from './ProductCard.module.scss'
+import { useAppSelector } from '@/shared/hooks'
+import { SettingSelectors } from '@/entities/settings'
 
 export const ProductCard: FC<IProductCard> = (props) => {
     const {

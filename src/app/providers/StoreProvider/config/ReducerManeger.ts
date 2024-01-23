@@ -10,6 +10,7 @@ import { footerReducer } from '@/entities/footer'
 import { registrationReducer } from '@/features/registration'
 import { loginReducer } from '@/features/login'
 import { userProfileReducer } from '@/features/userProfile'
+import { settingReducer } from '@/entities/settings'
 
 export const staticReducers = {
     categories: categoryReducer,
@@ -24,4 +25,5 @@ export const staticReducers = {
     login: loginReducer,
     registration: registrationReducer,
     userProfile: userProfileReducer,
+    setting: settingReducer,
 }

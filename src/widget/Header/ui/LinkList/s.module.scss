@@ -1,0 +1,18 @@
+.page-list {
+    display: flex;
+}
+
+.list-item {
+    padding: 12px 0;
+    color: var(--global-palette2);
+    font-weight: 500;
+    position: relative;
+
+    & a {
+        padding: 0 24px;
+    }
+
+    &:not(:last-child) a {
+        border-right: 1px solid var(--global-palette7);
+    }
+}
