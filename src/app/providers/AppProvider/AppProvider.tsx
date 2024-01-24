@@ -1,17 +1,18 @@
-import { ReactNode } from 'react'
+'use client'
+
 import { StoreProvider } from '../StoreProvider'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import { FetchingSettingComponent } from '@/entities/settings'
+import { ILayout } from '@/app/types/layout'
+import { ThemeProvider } from '../ThemeProvider'
 
-interface IAppProvider {
-    children: ReactNode
-}
-
-export const AppProvider = ({ children }: IAppProvider) => {
+export const AppProvider = ({ children }: ILayout) => {
     return (
         <StoreProvider>
             <FetchingSettingComponent>
-                <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+                <ThemeProvider>
+                    <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+                </ThemeProvider>
             </FetchingSettingComponent>
         </StoreProvider>
     )

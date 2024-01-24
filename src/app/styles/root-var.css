@@ -34,3 +34,7 @@
     /* global margin / padding */
     --margin-between-widget: 30px;
 }
+
+.App.dark {
+    --global-palette1: blue;
+}

@@ -17,9 +17,7 @@ const RootLayout = ({ children }: ILayout) => {
     return (
         <html lang="ru">
             <body className={inter.className}>
-                <AppProvider>
-                    <section id="App">{children}</section>
-                </AppProvider>
+                <AppProvider>{children}</AppProvider>
             </body>
         </html>
     )
