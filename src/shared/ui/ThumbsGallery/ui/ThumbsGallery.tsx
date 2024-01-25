@@ -29,7 +29,6 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
     return (
         <div className="thumbs-gallery">
             <Swiper
-                spaceBetween={10}
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[Thumbs]}

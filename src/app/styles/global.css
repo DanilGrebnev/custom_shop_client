@@ -44,6 +44,10 @@ option {
     flex-direction: column;
 }
 
+.App {
+    background: var(--pages-background-palette);
+}
+
 .mr-top {
     margin-top: var(--margin-between-widget);
 }

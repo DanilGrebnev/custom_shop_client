@@ -19,9 +19,8 @@
 
 .main-swiper__slide img {
     display: block;
-    // width: 100%;
-    // height: 100%;
     object-fit: contain;
+    border-radius: var(--global-border-radius);
 }
 
 // ---------navigation-swiper--------- //
@@ -48,11 +47,12 @@
     justify-content: center;
 
     & img {
-        width: 102px;
+        width: max-content;
         display: block;
         height: 100%;
         object-fit: contain;
         cursor: pointer;
+        border-radius: var(--global-border-radius);
     }
 
     &.swiper-slide-thumb-active img {

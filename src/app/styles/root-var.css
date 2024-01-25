@@ -24,28 +24,25 @@
 
     /*text-color*/
     --text-color1: white;
+    --text-color1-not-inverted: white;
     --text-color2: #404040;
+    --text-color2-not-inverted: #404040;
+    --text-color3: #a90000;
     --pages-background-palette: #ffffff;
 
-    /* animation */
-    --transition1: 0.3s;
+    /* dark theme color */
+    --dark: black;
+    --white: white;
 
     /* effects */
     --box-shadow-1: 0 0 16px 0 rgba(0, 0, 0, 0.11);
     --box-shadow-2: 0 0 10px 0 rgb(0 0 0 / 8%);
     --box-shadow-3: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
     --global-border-radius: 5px;
+    --transition1: 0.3s;
 
     /* global margin / padding */
     --margin-between-widget: 30px;
-
-    /* dark theme color */
-    --dark: black;
-    --white: white;
-}
-
-.App {
-    background: var(--pages-background-palette);
 }
 
 .App.dark {
@@ -61,4 +58,5 @@
     /*text color*/
     --text-color1: var(--dark);
     --text-color2: var(--white);
+    --text-color3: var(--white);
 }

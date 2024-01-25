@@ -22,14 +22,20 @@
 
 .name {
     font-size: var(--font-l);
+    color: var(--text-color2);
 }
 
 .description {
     font-size: var(--font-s);
+    color: var(--text-color2);
 }
 
 .price {
-    color: var(--global-palette4);
+    color: var(--text-color3);
     font-size: var(--font-m);
     font-weight: 500;
+}
+
+.App.dark .price {
+    color: var(--white);
 }
