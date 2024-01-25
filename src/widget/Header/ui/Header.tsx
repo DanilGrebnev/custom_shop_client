@@ -3,6 +3,7 @@ import { CategoryMenuWidgetLazy } from '@/entities/categories'
 import { HeaderUserWidget } from '@/widget/HeaderUserWidget'
 import { LinkList } from './LinkList'
 import { LogoDynamic } from '@/entities/settings'
+import { ThemeToggler } from '@/app/providers/ThemeProvider'
 
 import s from './Header.module.scss'
 

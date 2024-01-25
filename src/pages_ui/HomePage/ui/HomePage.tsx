@@ -53,9 +53,6 @@ export const HomePage = () => {
             </ClientErrorBoundary>
 
             <ClientErrorBoundary className="contain">
-                {/* <ShopByFeaturedCategories
-                    categories={homePageData?.featuredCategories}
-                /> */}
                 <ShopByFeaturedCategoriesDynamic
                     categories={homePageData?.featuredCategories}
                 />

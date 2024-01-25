@@ -29,6 +29,9 @@
     --text-color2-not-inverted: #404040;
     --text-color3: #a90000;
     --pages-background-palette: #ffffff;
+    --background2: rgba(0, 0, 0, 0.05);
+    --background3: transparent;
+    --pages-background-palette-not-inverted: #ffffff;
 
     /* dark theme color */
     --dark: black;
@@ -53,6 +56,7 @@
     --global-palette6: var(--white);
     --global-palette8: var(--dark);
     --border-ui-color1: var(--white);
+    --background2: rgba(255, 255, 255, 0.3);
     --pages-background-palette: var(--dark);
 
     /*text color*/

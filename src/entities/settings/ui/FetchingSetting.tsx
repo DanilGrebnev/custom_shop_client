@@ -17,7 +17,7 @@ const FetchingSettingComponent = ({ children }: ILayout) => {
     }, [])
 
     const root = document.documentElement
-    // root.style.setProperty('--global-palette1', setting.color)
+    root.style.setProperty('--global-palette1', setting.color)
 
     return children
 }

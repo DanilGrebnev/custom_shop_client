@@ -4,6 +4,8 @@
     flex-grow: 1;
     padding: 20px;
     height: max-content;
+    border: 1px solid var(--border-ui-color1);
+    box-shadow: none;
 }
 
 .setting {
@@ -17,5 +19,6 @@
 .registration-date {
     padding: 20px;
     border-radius: var(--global-border-radius);
-    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-color2);
+    background: var(--background2);
 }

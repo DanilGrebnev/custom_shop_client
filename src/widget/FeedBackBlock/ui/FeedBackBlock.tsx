@@ -4,7 +4,6 @@ import { FullWidthContainer } from '@/shared/ui/Containers/FullWidthContainer/ui
 import { ContainerWithTitle } from '@/shared/ui/Containers/ContainerWithTitle'
 import { FeedBackCard } from '@/shared/ui/Cards'
 
-import { getData } from '@/mock/mock'
 import { IComment } from '@/app/types/comments'
 
 interface IFeedBackBlockProps {

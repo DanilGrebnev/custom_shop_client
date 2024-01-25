@@ -13,7 +13,7 @@ interface IFeedBackCardProps extends IComment {
 
 export const FeedBackCard: FC<IFeedBackCardProps> = (props) => {
     const { img, text, name, className, profession, children } = props
-
+    
     if (!children) {
         return (
             <CardWrapper

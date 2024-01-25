@@ -3,6 +3,7 @@ import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import { Input, TextField } from '@mui/material'
 import { TextMaskCustom } from './TextMaskCustom'
+import './NumberInput.scss'
 
 type INumberInputProps = Parameters<typeof TextField>[0]
 

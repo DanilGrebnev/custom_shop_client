@@ -1,0 +1,11 @@
+.MuiFormControl-root label.Mui-focused {
+    color: var(--global-palette1) !important;
+}
+
+.MuiInputBase-root {
+    color: var(--text-color2) !important;
+}
+
+.mui-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+    border-color: var(--global-palette1) !important;
+}

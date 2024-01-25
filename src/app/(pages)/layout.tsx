@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: ILayout) => {
     return (
         <html lang="ru">
-            <body className={inter.className}>
+            <body
+                style={{ display: 'flex', flexDirection: 'column' }}
+                className={inter.className}>
                 <AppProvider>{children}</AppProvider>
             </body>
         </html>

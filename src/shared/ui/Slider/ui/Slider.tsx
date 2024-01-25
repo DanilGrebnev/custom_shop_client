@@ -11,10 +11,6 @@ import s from './Slider.module.scss'
 
 import 'swiper/css'
 
-const Item = () => {
-    return <div className={s.item}></div>
-}
-
 export const Slider: FC<ISliderProps> = (props) => {
     const {
         children = [],

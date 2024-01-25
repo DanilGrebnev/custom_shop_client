@@ -1,7 +1,6 @@
 $border: 1px solid var(--border-ui-color1);
 
 .header {
-    border-top: $border;
     border-bottom: $border;
     padding-top: 20px;
     display: flex;
@@ -26,5 +25,3 @@ $border: 1px solid var(--border-ui-color1);
     display: grid;
     grid-template-columns: auto auto 1fr;
 }
-
-

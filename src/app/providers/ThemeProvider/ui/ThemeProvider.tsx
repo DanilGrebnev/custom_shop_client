@@ -6,7 +6,6 @@ import { ThemeContext } from '../model/themeContext'
 import { TTheme } from '../model/themeContextTypes'
 
 import clsx from 'clsx'
-import { ThemeToggler } from '..'
 
 const getTheme = (): TTheme => {
     const th = localStorage.getItem('theme') as TTheme
@@ -22,9 +21,9 @@ export const ThemeProvider = ({ children }: ILayout) => {
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
-            <ThemeToggler />
             <section className={clsx('App', theme)}>{children}</section>
         </ThemeContext.Provider>
     )
 }
+
 export default ThemeProvider

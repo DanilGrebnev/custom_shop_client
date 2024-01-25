@@ -4,6 +4,10 @@ import { ChangeEvent, useEffect, useState, memo } from 'react'
 import { TextField } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
+import './input.scss'
+import s from './CustomInput.module.scss'
+import clsx from 'clsx'
+
 export type TCustomInput = Omit<Parameters<typeof TextField>[0], 'color'> & {
     color?: string
 }
@@ -13,6 +17,7 @@ export const CustomInput = memo((props: TCustomInput) => {
         color = 'var(--global-palette1)',
         onChange,
         defaultValue,
+        className,
         ...otherProps
     } = props
 
@@ -43,6 +48,7 @@ export const CustomInput = memo((props: TCustomInput) => {
                 color="custom"
                 onChange={handleChange}
                 value={input}
+                className={clsx(s.input, className)}
                 {...otherProps}
             />
         </ThemeProvider>
