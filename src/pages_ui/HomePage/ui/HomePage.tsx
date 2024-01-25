@@ -13,6 +13,7 @@ import { HomePageSelectors } from '@/entities/homePage'
 import { HomePageSkeleton } from '@/shared/ui/Skeletons'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 import { ShopByFeaturedCategoriesDynamic } from '@/widget/ShopByFeaturedCategories'
+import { ThemeToggler } from '@/app/providers/ThemeProvider'
 
 export const HomePage = () => {
     const dispatch = useAppDispatch()

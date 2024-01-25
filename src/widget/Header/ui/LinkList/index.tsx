@@ -12,7 +12,7 @@ export const LinkList = () => {
                 <Link href={NavigationRoutes.shop()}>Магазин</Link>
             </li>
             <li className={s['list-item']}>
-                <a>Личный кабинет</a>
+                <Link href={NavigationRoutes.profileMe()}>Личный кабинет</Link>
             </li>
         </ul>
     )

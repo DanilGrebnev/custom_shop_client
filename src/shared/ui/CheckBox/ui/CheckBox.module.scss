@@ -4,7 +4,9 @@
     width: 100%;
     font-size: var(--font-s);
 }
-
+.label{
+    color:var(--text-color2)
+}
 .disabled {
     opacity: 0.3;
 }

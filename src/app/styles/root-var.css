@@ -17,11 +17,16 @@
     --global-palette4: #a90000;
     --global-palette5: #0961b3;
     --global-palette6: #999999;
-    --global-palette7: #e5e5e5;
     --global-palette8: #f2f2f2;
     --global-palette9: #ffffff;
-    --global-palette10: #f7f7f7;
-    --pages-background-palette: #f7f7f7;
+
+    --border-ui-color1: #e5e5e5;
+
+    /*text-color*/
+    --text-color1: white;
+    --text-color2: #404040;
+    --pages-background-palette: #ffffff;
+
     /* animation */
     --transition1: 0.3s;
 
@@ -33,8 +38,27 @@
 
     /* global margin / padding */
     --margin-between-widget: 30px;
+
+    /* dark theme color */
+    --dark: black;
+    --white: white;
+}
+
+.App {
+    background: var(--pages-background-palette);
 }
 
 .App.dark {
-    --global-palette1: blue;
+    --global-palette1: var(--white);
+    --global-palette2: var(--white);
+    --global-palette3: var(--white);
+    --global-palette4: var(--dark);
+    --global-palette6: var(--white);
+    --global-palette8: var(--dark);
+    --border-ui-color1: var(--white);
+    --pages-background-palette: var(--dark);
+
+    /*text color*/
+    --text-color1: var(--dark);
+    --text-color2: var(--white);
 }

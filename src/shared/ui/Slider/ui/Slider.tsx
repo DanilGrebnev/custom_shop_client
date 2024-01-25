@@ -30,6 +30,7 @@ export const Slider: FC<ISliderProps> = (props) => {
         <Swiper
             {...otherProps}
             loop={loop}
+            spaceBetween={15}
             breakpoints={changeBreakPoints(breakpoints)}
             className={clsx(s.swiper, className)}
             slidesPerView={slidesPerView}>

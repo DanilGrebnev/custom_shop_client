@@ -1,7 +1,7 @@
 .product-search-input {
     border-radius: 5px 0 0 5px;
     flex-grow: 1;
-    border: 3px solid #cccccc;
+    border: 3px solid var(--border-ui-color1);
     border-right: none;
     padding: 6px 15px;
     font-size: 100%;
@@ -11,5 +11,6 @@
         width: 100%;
         height: 100%;
         border: none;
+        background: transparent;
     }
 }

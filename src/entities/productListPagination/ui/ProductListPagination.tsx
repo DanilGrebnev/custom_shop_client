@@ -8,7 +8,8 @@ import { fetchProductList } from '@/entities/productList'
 import { calculatePagesAmount } from '../model/lib/calculatePagesAmount'
 import { calculateOffset } from '../model/lib/calculateOffset'
 import { ProductListPaginationSelectors } from '../model/selectors/productListPaginationSelectors'
-import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+
+import './paginations.scss'
 
 interface IProductListPaginationProps {
     className?: string
@@ -41,13 +42,11 @@ export const ProductListPagination: FC<IProductListPaginationProps> = ({
     }, [productsAmount, previewItemsOnPage])
 
     return (
-        <ClientErrorBoundary>
-            <Pagination
-                className={className}
-                count={pagesAmount}
-                onChange={onChange}
-            />
-        </ClientErrorBoundary>
+        <Pagination
+            className={className}
+            count={pagesAmount}
+            onChange={onChange}
+        />
     )
 }
 

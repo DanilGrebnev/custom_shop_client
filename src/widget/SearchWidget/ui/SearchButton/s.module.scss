@@ -4,13 +4,9 @@
     background: var(--global-palette1);
     height: 42px;
     padding: 0 40px;
-    color: var(--global-palette9);
+    color: var(--text-color1);
     font-size: var(--font-size-6);
     border-radius: 0px var(--global-border-radius) var(--global-border-radius)
         0px;
     transition: 0.1s;
-    &:focus,
-    &:hover {
-        @include button-outline;
-    }
 }

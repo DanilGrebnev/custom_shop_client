@@ -1,2 +1,5 @@
 export { ThemeProvider } from './ui/ThemeProvider'
-export { ThemeContext } from './ui/themeContext'
+export { ThemeContext } from './model/themeContext'
+export { useToggleTheme } from './model/useToggleTheme'
+export { ThemeToggler } from './ui/ThemeToggler/ThemeTogglerDynamic'
+export { ThemeProviderDynamic } from './ui/ThemeProviderDynamic'

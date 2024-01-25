@@ -57,14 +57,14 @@ export const Button: FC<IButtonProps> = memo((props) => {
             {menuIcon && (
                 <MenuIcon
                     className={s['menu-icon']}
-                    fill="white"
+                    fill="var(--text-color1)"
                 />
             )}
             <div className={s.children}>{children}</div>
             {icon && (
                 <div className={clsx(s.icon, { [s.open]: open })}>
                     <ArrowIcon
-                        fill="white"
+                        fill="var(--text-color1)"
                         width={12}
                         height={12}
                     />

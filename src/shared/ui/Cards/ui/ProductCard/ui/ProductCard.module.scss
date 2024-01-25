@@ -9,6 +9,8 @@
     position: relative;
     min-height: 380px;
     overflow-x: hidden;
+    background: var(--global-palette9);
+    border-radius: var(--global-border-radius);
     img {
         opacity: 0;
     }
@@ -47,7 +49,7 @@
     flex-direction: column;
     gap: 12px;
     padding: 0 10px 0;
-    border-right: 1px solid var(--global-palette7);
+    border-right: 1px solid var(--border-ui-color1);
 }
 
 .product-card.list {
@@ -58,7 +60,7 @@
     grid-template-columns: auto 1fr;
     height: fit-content;
     position: static;
-    border-bottom: 1px solid var(--global-palette7);
+    border-bottom: 1px solid var(--border-ui-color1);
 
     .card-preview {
         width: 200px;

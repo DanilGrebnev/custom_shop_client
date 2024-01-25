@@ -41,7 +41,9 @@ export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
                 onChange={onChange}
                 {...otherProps}
             />
-            <div className={clsx({ [s.disabled]: disabled })}>{label}</div>
+            <div className={clsx(s.label, { [s.disabled]: disabled })}>
+                {label}
+            </div>
         </div>
     )
 })

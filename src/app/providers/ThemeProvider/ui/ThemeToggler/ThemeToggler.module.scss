@@ -1,0 +1,43 @@
+$toggler-size: 20px;
+$wrapper-border: 2px;
+$wrapper-height: $toggler-size + $wrapper-border * 2;
+$wrapper-border-radius: $toggler-size;
+$wrapper-width: ($toggler-size * 2.2) + $wrapper-border * 2;
+$transition: 0.3s;
+.wrapper {
+    position: relative;
+    height: $wrapper-height;
+    width: $wrapper-width;
+    border-radius: $wrapper-border-radius;
+    display: flex;
+    align-items: center;
+    border: $wrapper-border solid var(--border-ui-color1);
+    background: white;
+    cursor: pointer;
+
+    &.dark {
+        transition: $transition;
+        background: black;
+        border-color: white;
+
+        .toggler {
+            background: white;
+            transform: translate($toggler-size * 1.2, -50%);
+        }
+    }
+}
+
+.toggler {
+    position: absolute;
+    transition: $transition;
+    width: $toggler-size;
+    height: $toggler-size;
+    border-radius: 50%;
+    background: var(--global-palette1);
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+
+.wrapper * {
+    user-select: none;
+}

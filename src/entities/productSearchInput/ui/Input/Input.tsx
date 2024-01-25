@@ -33,7 +33,7 @@ export const Input: FC<IInputProps> = (props) => {
                 <BeatLoader
                     className={s.loader}
                     size={8}
-                    color="green"
+                    color="var(--global-palette1)"
                 />
             )}
         </div>

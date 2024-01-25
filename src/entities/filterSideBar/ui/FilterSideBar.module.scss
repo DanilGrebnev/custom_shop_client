@@ -5,12 +5,13 @@
     max-width: 280px;
     width: 100%;
 
-    border: 1px solid var(--global-palette7);
+    border: 1px solid var(--border-ui-color1);
     border-radius: var(--global-border-radius);
     padding: 15px;
 
     h2 {
         font-size: var(--font-size-4);
+        color: var(--text-color2);
         margin-bottom: 1em;
     }
 }

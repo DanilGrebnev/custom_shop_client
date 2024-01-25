@@ -2,18 +2,18 @@
 
 import { StoreProvider } from '../StoreProvider'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
-import { FetchingSettingComponent } from '@/entities/settings'
 import { ILayout } from '@/app/types/layout'
-import { ThemeProvider } from '../ThemeProvider'
+import { ThemeProviderDynamic } from '../ThemeProvider'
+import { FetchSettingDynamic } from '@/entities/settings'
 
 export const AppProvider = ({ children }: ILayout) => {
     return (
         <StoreProvider>
-            <FetchingSettingComponent>
-                <ThemeProvider>
+            <FetchSettingDynamic>
+                <ThemeProviderDynamic>
                     <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-                </ThemeProvider>
-            </FetchingSettingComponent>
+                </ThemeProviderDynamic>
+            </FetchSettingDynamic>
         </StoreProvider>
     )
 }

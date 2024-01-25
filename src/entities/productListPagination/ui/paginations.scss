@@ -1,0 +1,16 @@
+.MuiPagination-ul {
+    margin-top: 20px !important;
+}
+
+.App.dark .Mui-selected {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.MuiButtonBase-root {
+    border-color: var(--global-palette1) !important;
+    color: var(--text-color2) !important;
+}
+
+.App.dark.Mui-selected {
+    background: white !important;
+}

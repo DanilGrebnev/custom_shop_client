@@ -1,4 +1,8 @@
 .LargeSliderCard {
     width: 100%;
     height: 480px;
+
+    img {
+        border-radius: var(--global-border-radius);
+    }
 }

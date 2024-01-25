@@ -13,7 +13,7 @@ export const PageLoader = (props: IPageLoaderProps) => {
             <PulseLoader
                 size={30}
                 margin={20}
-                color="green"
+                color="var(--global-palette1)"
             />
         </div>
     )

@@ -1,11 +1,11 @@
 import { ILayout } from '@/app/types/layout'
 import { NavBar } from './Navbar'
 import { IsAuthDynamic } from '@/shared/HOC/IsAuth/IsAuthDynamic'
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
-import s from './ProfileLayout.module.scss'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import s from './ProfileLayout.module.scss'
 
 export const ProfileLayout = ({ children }: ILayout) => {
     return (

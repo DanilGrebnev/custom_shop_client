@@ -1,3 +1,3 @@
 @mixin button-outline {
-    outline: 5px solid rgba(121, 209, 105, 0.661);
+    outline: 5px solid rgba(var(--global-palette1), 0.5);
 }
