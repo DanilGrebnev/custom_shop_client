@@ -1,59 +1,83 @@
 'use client'
 
-import { FC, memo } from 'react'
-import { IFilterItemChoices, IFilterItemCode } from '@/app/types/filters'
+import { ChangeEvent, FC, useCallback, memo } from 'react'
+import { IFilterItemChoices } from '@/app/types/filters'
 import { useOnChangeListFilter } from '@/entities/filterSideBar/model/hooks/useOnChangeListFilter'
-import { CheckBox } from '@/shared/ui/CheckBox'
-import { ColorCheckBox } from '@/shared/ui/ColorCheckBox'
-import { Rating } from '@/shared/ui/Rating'
+import { useSetValueInRedux } from '../../../../model/hooks/useSetValueInRedux'
+
+import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
+import { ColorCheckBox } from '@/shared/ui/CheckBoxes/ColorCheckBox'
+import { RatingCheckBox } from '@/shared/ui/CheckBoxes/RatingCheckBox'
+import {
+    ICheckBox,
+    IColorCheckBox,
+    IRatingCheckBox,
+} from '@/shared/ui/CheckBoxes/CheckBoxTypes'
 
 interface IChoiceItem {
     code: string
     choicesItem: IFilterItemChoices
 }
 
-export const ChoicesItemCheckBox: FC<IChoiceItem> = memo((props) => {
-    const { choicesItem, code } = props
-    const onChange = useOnChangeListFilter()
+interface CheckBoxItem extends IChoiceItem {
+    Component: FC<ICheckBox | IColorCheckBox | IRatingCheckBox>
+}
+
+const CheckBoxItem: FC<CheckBoxItem> = (props) => {
+    const { choicesItem, code, Component } = props
+    const onChangeListFilter = useOnChangeListFilter()
+
+    const inputName = choicesItem.label
+    const inputLabel = choicesItem.label
+
+    const [thisInput, setValueInRedux] = useSetValueInRedux({ name: inputName })
+
+    const onChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            const { value } = e.target
+            const name = code
+            onChangeListFilter(e, { value, name })
+            setValueInRedux(e)
+        },
+        [code, setValueInRedux, onChangeListFilter]
+    )
 
     return (
-        <CheckBox
+        <Component
             onChange={onChange}
-            name={code}
-            label={choicesItem.label}
+            checked={thisInput?.checked || false}
+            name={inputName}
+            label={inputLabel}
             value={choicesItem.value}
+            labelcolor={choicesItem.value}
+            rating={choicesItem.value}
         />
     )
-})
+}
 
-export const ChoicesItemColorCheckBox: FC<IChoiceItem> = memo((props) => {
-    const { choicesItem, code } = props
-    const onChange = useOnChangeListFilter()
-
+export const ChoicesItemCheckBox: FC<IChoiceItem> = (props) => {
     return (
-        <ColorCheckBox
-            onChange={onChange}
-            name={code}
-            color={choicesItem.label}
-            value={choicesItem.value}
+        <CheckBoxItem
+            {...props}
+            Component={CheckBox}
         />
     )
-})
+}
 
-export const ChoicesItemRatingCheckBox: FC<IChoiceItem> = memo((props) => {
-    const { choicesItem, code } = props
-    const onChange = useOnChangeListFilter()
-
+export const ChoicesItemColorCheckBox: FC<IChoiceItem> = (props) => {
     return (
-        <CheckBox
-            onChange={onChange}
-            name={code}
-            label={<Rating rating={+choicesItem.label} />}
-            value={choicesItem.value}
+        <CheckBoxItem
+            {...props}
+            Component={ColorCheckBox}
         />
     )
-})
+}
 
-ChoicesItemCheckBox.displayName = 'ChoicesItemCheckBox'
-ChoicesItemColorCheckBox.displayName = 'ChoicesItemColorCheckBox'
-ChoicesItemRatingCheckBox.displayName = 'ChoicesItemRatingCheckBox'
+export const ChoicesItemRatingCheckBox: FC<IChoiceItem> = (props) => {
+    return (
+        <CheckBoxItem
+            {...props}
+            Component={RatingCheckBox}
+        />
+    )
+}

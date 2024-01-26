@@ -1,21 +1,16 @@
+.checkbox {
+    display: none !important;
+}
+
 .ColorCheckBox {
     display: block;
     width: fit-content;
     height: fit-content;
     position: relative;
     cursor: pointer;
-    // background: black;
     border: 1px solid var(--border-ui-color1);
     border-radius: 50%;
     overflow: hidden;
-
-    input {
-        display: none;
-
-        &:checked ~ .icon {
-            opacity: 1;
-        }
-    }
 }
 
 .circle {
@@ -38,5 +33,9 @@
     svg {
         width: 15px;
         height: 15px;
+    }
+
+    &.checked {
+        opacity: 1;
     }
 }

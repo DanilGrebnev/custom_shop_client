@@ -5,6 +5,11 @@ import {
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { ChangeEvent, useCallback } from 'react'
 
+interface IOnChange {
+    name: string
+    value: string
+}
+
 /**
  * Хук возвращает onChange для checkBox фильтров.
  * onChange формирует query параметры и устанавливает их
@@ -15,9 +20,7 @@ export const useOnChangeListFilter = () => {
     const searchParams = useAppSelector(getSearchProductParams)
 
     const onChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
-            const value = e.target.value
-            const name = e.target.name
+        (e: ChangeEvent<HTMLInputElement>, { name, value }: IOnChange) => {
             const usp = new URLSearchParams(searchParams)
 
             if (e.target.checked) {

@@ -4,6 +4,7 @@ import { type FC, useState, ChangeEvent } from 'react'
 import { TextField } from '@mui/material'
 import { IFilterItem } from '@/app/types/filters'
 import { isNumber } from '@/shared/lib/isNumber'
+import { useSessionStorage } from '@/shared/hooks'
 
 import clsx from 'clsx'
 import s from './RangeFilter.module.scss'
@@ -22,11 +23,18 @@ interface IRangeFilterProps {
 export const RangeFilter: FC<IRangeFilterProps> = (props) => {
     const { className, filterItem, onChange } = props
 
-    const [input1, setInput1] = useState('')
-    const [input2, setInput2] = useState('')
-
     const key1 = filterItem.code + '_min'
     const key2 = filterItem.code + '_max'
+
+    const [input1, setInput1] = useSessionStorage({
+        key: key1,
+        defaultValue: '',
+    })
+
+    const [input2, setInput2] = useSessionStorage({
+        key: key2,
+        defaultValue: '',
+    })
 
     const onChangeValue1 = (e: Event) => {
         const { value } = e.target

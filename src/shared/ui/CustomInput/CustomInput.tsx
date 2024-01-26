@@ -21,7 +21,7 @@ export const CustomInput = memo((props: TCustomInput) => {
         ...otherProps
     } = props
 
-    const [input, setValue] = useState('')
+    const [input, setValue] = useState<string>('')
 
     useEffect(() => {
         setValue(defaultValue as string)

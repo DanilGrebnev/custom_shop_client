@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ILoginSchema, ILoginFields } from '../schema/loginSchema'
 import { authByLogin } from '../services/authByLogin'
+import { ChangeEvent } from 'react'
 
 const initialState: ILoginSchema = {
     fields: {

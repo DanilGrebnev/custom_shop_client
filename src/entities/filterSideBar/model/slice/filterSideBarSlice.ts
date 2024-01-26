@@ -1,9 +1,12 @@
+import { ChangeEvent } from 'react'
 import { IFilterSideBarSchema } from '../schema/filterSchema'
 import { fetchSidebarFilters } from '../services/fetchSidebarFilters'
 import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: IFilterSideBarSchema = {
     filters: [],
+    filtersItem: {},
     loading: false,
     error: '',
 }
@@ -11,7 +14,23 @@ const initialState: IFilterSideBarSchema = {
 const filterSidebarSlice = createSlice({
     name: 'filterSidebar',
     initialState,
-    reducers: {},
+    reducers: {
+        setFilterValue(
+            state,
+            action: PayloadAction<{
+                name: string
+                value?: string
+                defaultValue?: string
+                checked?: boolean
+            }>
+        ) {
+            const { name, value, checked, defaultValue } = action.payload
+
+            const thisItem = state.filtersItem[name]
+
+            state.filtersItem[name] = { ...thisItem, value, checked }
+        },
+    },
     extraReducers(builder) {
         builder
             .addCase(fetchSidebarFilters.fulfilled, (state, action) => {
@@ -30,3 +49,4 @@ const filterSidebarSlice = createSlice({
 })
 
 export const filterSidebarReducer = filterSidebarSlice.reducer
+export const filterSideBarActions = filterSidebarSlice.actions

@@ -6,7 +6,7 @@ const initialState: ISettingSchema = {
     fields: {
         color: '',
         currency: '',
-        home_logo: '',
+        homeLogo: '',
         is_active: true,
         id: 0,
     },

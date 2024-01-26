@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react'
+import { type FC } from 'react'
 import { IFilterItem } from '@/app/types/filters'
 import { FilterListItem } from '../FilterListItem/FilterListItem'
 import { FilterRangeItem } from '../FilterRangeItem/FilterRangeItem'
@@ -8,19 +8,19 @@ interface IFilterListProps {
     filters: IFilterItem[]
 }
 
-export const FiltersList: FC<IFilterListProps> = memo((props) => {
+export const FiltersList: FC<IFilterListProps> = (props) => {
     const { filters } = props
 
     return (
         <>
             {filters?.map((filterItem) => {
-                return filterItem.type === 'number' ? (
-                    <FilterRangeItem
+                return filterItem.type !== 'number' ? (
+                    <FilterListItem
                         key={v4()}
                         filterItem={filterItem}
                     />
                 ) : (
-                    <FilterListItem
+                    <FilterRangeItem
                         key={v4()}
                         filterItem={filterItem}
                     />
@@ -28,6 +28,6 @@ export const FiltersList: FC<IFilterListProps> = memo((props) => {
             })}
         </>
     )
-})
+}
 
 FiltersList.displayName = 'FiltersList'

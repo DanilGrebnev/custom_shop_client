@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { getSearchProductParams } from '@/entities/searchProductParams'
 import { searchProductParamsActions } from '@/entities/searchProductParams'
 import { debounce } from '@/shared/lib/debounce'
+import { useSessionStorage } from '@/shared/hooks'
 
 interface IFilterRangeItemProps {
     filterItem: IFilterItem

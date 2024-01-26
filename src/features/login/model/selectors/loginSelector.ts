@@ -7,6 +7,11 @@ export class LoginSelector {
     static getPassword(state: StateSchema) {
         return state.login.fields.password
     }
+
+    static getIsRememberMe(state: StateSchema) {
+        return state.login.fields.remember_me
+    }
+
     static getIsLoading(state: StateSchema) {
         return state.login.loading
     }

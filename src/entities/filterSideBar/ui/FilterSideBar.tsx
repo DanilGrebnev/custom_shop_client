@@ -19,10 +19,6 @@ export const FilterSideBar = () => {
         dispatch(fetchSidebarFilters())
     }, [dispatch])
 
-    useEffect(() => {
-        console.log('FilterSIdeBar render')
-    }, [])
-
     return (
         <div
             id="Filter-Sidebar"

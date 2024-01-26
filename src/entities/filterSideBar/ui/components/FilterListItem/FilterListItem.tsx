@@ -15,7 +15,7 @@ interface IFilterListItemProps {
     filterItem: IFilterItem
 }
 
-export const FilterListItem: FC<IFilterListItemProps> = memo((props) => {
+export const FilterListItem: FC<IFilterListItemProps> = (props) => {
     const { className, filterItem } = props
 
     return (
@@ -28,7 +28,7 @@ export const FilterListItem: FC<IFilterListItemProps> = memo((props) => {
                     [s['color-filter']]: filterItem.code === 'color',
                 })}>
                 {filterItem?.choices?.map((choicesItem) => {
-                    const code = filterItem.code
+                    const { code } = filterItem
 
                     return (
                         <li key={v4()}>
@@ -54,6 +54,4 @@ export const FilterListItem: FC<IFilterListItemProps> = memo((props) => {
             </ul>
         </div>
     )
-})
-
-FilterListItem.displayName = 'FilterListItem'
+}
