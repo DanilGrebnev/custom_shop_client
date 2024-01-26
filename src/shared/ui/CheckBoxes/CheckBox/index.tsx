@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, ChangeEvent, memo, ReactNode } from 'react'
+import { FC, memo, ReactNode } from 'react'
 import { styled } from '@mui/material/styles'
 import { Checkbox } from '@mui/material'
 
@@ -20,30 +20,20 @@ const CustomCheckbox = styled(Checkbox)(() => ({
 }))
 
 export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
-    const {
-        className,
-        name,
-        disabled,
-        value,
-        label,
-        children,
-        onChange,
-        ...otherProps
-    } = props
-    
+    const { className, label, disabled, children, onChange, ...other } = props
+
     return (
         <div className={clsx(s.CheckBox, className)}>
             <CustomCheckbox
-                size="small"
-                name={name}
-                value={value}
                 disabled={disabled}
                 onChange={onChange}
-                {...otherProps}
+                {...other}
             />
-            <div className={clsx(s.label, { [s.disabled]: disabled })}>
-                {label}
-            </div>
+            {label && (
+                <div className={clsx(s.label, { [s.disabled]: disabled })}>
+                    {label}
+                </div>
+            )}
         </div>
     )
 })
