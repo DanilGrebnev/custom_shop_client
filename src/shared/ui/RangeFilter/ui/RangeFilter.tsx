@@ -5,6 +5,7 @@ import { TextField } from '@mui/material'
 import { IFilterItem } from '@/app/types/filters'
 import { isNumber } from '@/shared/lib/isNumber'
 import { useSessionStorage } from '@/shared/hooks'
+import { CustomInput } from '../../CustomInput'
 
 import clsx from 'clsx'
 import s from './RangeFilter.module.scss'
@@ -52,8 +53,7 @@ export const RangeFilter: FC<IRangeFilterProps> = (props) => {
 
     return (
         <div className={clsx(s.RangeFilter, className)}>
-            <TextField
-                color="success"
+            <CustomInput
                 size="small"
                 name={key1}
                 value={input1}
@@ -61,8 +61,7 @@ export const RangeFilter: FC<IRangeFilterProps> = (props) => {
                 label={`от ${filterItem.min_value}`}
                 variant="outlined"
             />
-            <TextField
-                color="success"
+            <CustomInput
                 name={key2}
                 value={input2}
                 onChange={onChangeValue2}

@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react'
 import { IFilterSideBarSchema } from '../schema/filterSchema'
 import { fetchSidebarFilters } from '../services/fetchSidebarFilters'
 import { createSlice } from '@reduxjs/toolkit'
@@ -24,11 +23,10 @@ const filterSidebarSlice = createSlice({
                 checked?: boolean
             }>
         ) {
-            const { name, value, checked, defaultValue } = action.payload
-
+            const { name, ...otherPayload } = action.payload
             const thisItem = state.filtersItem[name]
 
-            state.filtersItem[name] = { ...thisItem, value, checked }
+            state.filtersItem[name] = { ...thisItem, ...otherPayload }
         },
     },
     extraReducers(builder) {

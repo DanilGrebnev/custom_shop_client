@@ -6,6 +6,7 @@ import { DropDownMenu } from '@/shared/ui/DropDownMenu'
 import { DropDown } from './components/DropDown/DropDown'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { fetchCategories, getCategoryData } from '@/entities/categories'
+import { filterSideBarActions } from '@/entities/filterSideBar/model/slice/filterSideBarSlice'
 
 import s from './CategoryMenuWidget.module.scss'
 

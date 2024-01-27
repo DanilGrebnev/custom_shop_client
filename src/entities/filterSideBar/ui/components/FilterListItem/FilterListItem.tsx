@@ -29,7 +29,7 @@ export const FilterListItem: FC<IFilterListItemProps> = (props) => {
                 })}>
                 {filterItem?.choices?.map((choicesItem) => {
                     const { code } = filterItem
-
+                        
                     return (
                         <li key={v4()}>
                             {code === 'color' ? (

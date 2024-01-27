@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, FC, useCallback, memo } from 'react'
+import { ChangeEvent, FC, useCallback, useEffect } from 'react'
 import { IFilterItemChoices } from '@/app/types/filters'
 import { useOnChangeListFilter } from '@/entities/filterSideBar/model/hooks/useOnChangeListFilter'
 import { useSetValueInRedux } from '../../../../model/hooks/useSetValueInRedux'
@@ -27,16 +27,22 @@ const CheckBoxItem: FC<CheckBoxItem> = (props) => {
     const { choicesItem, code, Component } = props
     const onChangeListFilter = useOnChangeListFilter()
 
-    const inputName = choicesItem.label
+    const name = choicesItem.label
     const inputLabel = choicesItem.label
 
-    const [thisInput, setValueInRedux] = useSetValueInRedux({ name: inputName })
+    const [thisInput, setValueInRedux] = useSetValueInRedux({ name })
 
     const onChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
-            const { value } = e.target
-            const name = code
-            onChangeListFilter(e, { value, name })
+            onChangeListFilter(e, {
+                value: e.target.value,
+                name: code,
+            })
+            /*
+                Дублирует состояние в редакс 
+                для сохранения состояния между 
+                страницами 
+            */
             setValueInRedux(e)
         },
         [code, setValueInRedux, onChangeListFilter]
@@ -46,7 +52,7 @@ const CheckBoxItem: FC<CheckBoxItem> = (props) => {
         <Component
             onChange={onChange}
             checked={thisInput?.checked || false}
-            name={inputName}
+            name={name}
             label={inputLabel}
             value={choicesItem.value}
             labelcolor={choicesItem.value}
