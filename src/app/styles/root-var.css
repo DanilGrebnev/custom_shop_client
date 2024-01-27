@@ -18,7 +18,6 @@
     --global-palette5: #0961b3;
     --global-palette6: #999999;
     --global-palette8: #f2f2f2;
-    --global-palette9: #ffffff;
 
     --border-ui-color1: #e5e5e5;
 
@@ -28,14 +27,16 @@
     --text-color2: #404040;
     --text-color2-not-inverted: #404040;
     --text-color3: #a90000;
+    --text-color4: #404040;
+
+    /*Components backgrounds*/
+    --cmp-background1: white;
+    --text-color-with-cmp-background1: #8f8f8f;
+
+    --pages-background-palette-not-inverted: #ffffff;
     --pages-background-palette: #ffffff;
     --background2: rgba(0, 0, 0, 0.05);
     --background3: transparent;
-    --pages-background-palette-not-inverted: #ffffff;
-
-    /* dark theme color */
-    --dark: black;
-    --white: white;
 
     /* effects */
     --box-shadow-1: 0 0 16px 0 rgba(0, 0, 0, 0.11);
@@ -43,24 +44,36 @@
     --box-shadow-3: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
     --global-border-radius: 5px;
     --transition1: 0.3s;
+    --text-hover1: var(--global-palette1);
 
     /* global margin / padding */
     --margin-between-widget: 30px;
+
+    /* dark theme color */
+    --dark: black;
+    --white: white;
 }
 
 .App.dark {
-    --global-palette1: var(--white);
+    /* --global-palette1: var(--white); */
     --global-palette2: var(--white);
     --global-palette3: var(--white);
     --global-palette4: var(--dark);
     --global-palette6: var(--white);
     --global-palette8: var(--dark);
-    --border-ui-color1: var(--white);
+
+    /*Components backgrounds*/
+    --border-ui-color1: hsla(0, 0%, 16%);
     --background2: rgba(255, 255, 255, 0.3);
     --pages-background-palette: var(--dark);
+    --cmp-background1: #1a1a1a;
+    --text-color-with-cmp-background1: #8f8f8f;
 
     /*text color*/
-    --text-color1: var(--dark);
-    --text-color2: var(--white);
-    --text-color3: var(--white);
+    --text-color2: #888888;
+    --text-color3: #888888;
+    --text-color4: #888888;
+
+    /*effects*/
+    --text-hover1: white;
 }

@@ -3,7 +3,6 @@
     flex-grow: 1;
     border: 3px solid var(--border-ui-color1);
     border-right: none;
-    padding: 6px 15px;
     font-size: 100%;
     font-weight: 400;
 
@@ -13,4 +12,8 @@
         border: none;
         background: transparent;
     }
+}
+
+.App.dark .product-search-input {
+    border-color: var(--cmp-background1);
 }

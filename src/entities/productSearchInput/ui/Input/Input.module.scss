@@ -3,13 +3,13 @@
     display: flex;
     align-items: center;
     height: 100%;
+    background: var(--cmp-background1);
 
-    & {
-        input {
-            &::placeholder {
-                color: var(--text-color2);
-                opacity: 0.5;
-            }
+    & input {
+        padding: 6px 10px;
+        &::placeholder {
+            color: var(--text-color4);
+            opacity: 0.5;
         }
     }
 }

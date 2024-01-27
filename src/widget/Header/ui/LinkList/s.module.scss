@@ -4,12 +4,20 @@
 
 .list-item {
     padding: 12px 0;
-    color: var(--global-palette2);
-    font-weight: 500;
+
     position: relative;
 
     & a {
         padding: 0 24px;
+        color: var(--text-color4);
+        transition: var(--transition1);
+        &:hover {
+            color: var(--text-hover1);
+        }
+
+        &.active {
+            color: var(--global-palette1);
+        }
     }
 
     &:not(:last-child) a {

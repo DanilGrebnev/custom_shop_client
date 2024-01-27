@@ -17,7 +17,7 @@ select,
 a,
 textarea {
     font-size: var(--font-s);
-    font-weight: 400;
+    font-weight: 500;
     color: var(--global-palette2);
 }
 
