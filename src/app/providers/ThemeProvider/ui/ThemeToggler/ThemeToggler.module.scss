@@ -4,6 +4,7 @@ $wrapper-height: $toggler-size + $wrapper-border * 2;
 $wrapper-border-radius: $toggler-size;
 $wrapper-width: ($toggler-size * 2.2) + $wrapper-border * 2;
 $transition: 0.3s;
+
 .wrapper {
     position: relative;
     height: $wrapper-height;

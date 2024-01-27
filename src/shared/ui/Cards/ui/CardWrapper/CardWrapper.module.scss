@@ -1,7 +1,8 @@
 .CardWrapper {
-    background: var(--global-palette9);
+    background: var(--card-background-1);
     padding: 20px;
     border-radius: 5px;
+    border: 1px solid var(--border-ui-color1);
     width: auto;
     box-shadow: var(--box-shadow-2);
 }

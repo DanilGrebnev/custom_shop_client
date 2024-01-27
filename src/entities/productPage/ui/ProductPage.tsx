@@ -73,7 +73,7 @@ export const ProductPage = (props: IProductPage) => {
 
                     <StandartDropDown title="color" />
                     <StandartDropDown title="storage" />
-                    <p>{product.quantity} в наличии</p>
+                    <p className={s.quantity}>{product.quantity} в наличии</p>
                 </div>
             </section>
         </>

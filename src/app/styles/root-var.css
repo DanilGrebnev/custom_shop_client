@@ -2,7 +2,7 @@
     /* sizes */
     --container-max-width: 1600px;
 
-    /* font-size */
+    /* font sizes */
     --font-size-1: 30px;
     --font-size-2: 24px;
     --font-size-3: 20px;
@@ -19,6 +19,19 @@
     --global-palette6: #999999;
     --global-palette8: #f2f2f2;
 
+    /* Цвета для заднего фона компонентов */
+
+    /* Colors for pages background */
+    --pages-background-palette: #ffffff;
+    --pages-background-palette-not-inverted: #ffffff;
+
+    /*Colors for cards background*/
+    --card-background-1: white;
+
+    /*Colors for container backgrounds*/
+    --container-background-1: #f2f2f2;
+
+    /*Border colors*/
     --border-ui-color1: #e5e5e5;
 
     /*text-color*/
@@ -29,12 +42,6 @@
     --text-color3: #a90000;
     --text-color4: #404040;
 
-    /*Components backgrounds*/
-    --cmp-background1: white;
-    --text-color-with-cmp-background1: #8f8f8f;
-
-    --pages-background-palette-not-inverted: #ffffff;
-    --pages-background-palette: #ffffff;
     --background2: rgba(0, 0, 0, 0.05);
     --background3: transparent;
 
@@ -58,7 +65,6 @@
     /* --global-palette1: var(--white); */
     --global-palette2: var(--white);
     --global-palette3: var(--white);
-    --global-palette4: var(--dark);
     --global-palette6: var(--white);
     --global-palette8: var(--dark);
 
@@ -66,13 +72,15 @@
     --border-ui-color1: hsla(0, 0%, 16%);
     --background2: rgba(255, 255, 255, 0.3);
     --pages-background-palette: var(--dark);
-    --cmp-background1: #1a1a1a;
     --text-color-with-cmp-background1: #8f8f8f;
 
-    /*text color*/
+    /* text color */
     --text-color2: #888888;
     --text-color3: #888888;
     --text-color4: #888888;
+
+    /*Colors for container backgrounds*/
+    --container-background-1: #111111;
 
     /*effects*/
     --text-hover1: white;
