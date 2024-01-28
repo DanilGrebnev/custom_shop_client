@@ -1,10 +1,9 @@
 'use client'
 
-import { ChangeEvent, FC, useCallback, useEffect } from 'react'
+import { ChangeEvent, FC, useCallback } from 'react'
 import { IFilterItemChoices } from '@/app/types/filters'
 import { useOnChangeListFilter } from '@/entities/filterSideBar/model/hooks/useOnChangeListFilter'
 import { useSetValueInRedux } from '../../../../model/hooks/useSetValueInRedux'
-
 import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { ColorCheckBox } from '@/shared/ui/CheckBoxes/ColorCheckBox'
 import { RatingCheckBox } from '@/shared/ui/CheckBoxes/RatingCheckBox'
@@ -13,6 +12,7 @@ import {
     IColorCheckBox,
     IRatingCheckBox,
 } from '@/shared/ui/CheckBoxes/CheckBoxTypes'
+import { v4 } from 'uuid'
 
 interface IChoiceItem {
     code: string
@@ -23,7 +23,11 @@ interface CheckBoxItem extends IChoiceItem {
     Component: FC<ICheckBox | IColorCheckBox | IRatingCheckBox>
 }
 
-const CheckBoxItem: FC<CheckBoxItem> = (props) => {
+interface FilterCheckBox extends IChoiceItem {
+    children?: IFilterItemChoices[] | []
+}
+
+const CheckBoxProvider: FC<CheckBoxItem> = (props) => {
     const { choicesItem, code, Component } = props
     const onChangeListFilter = useOnChangeListFilter()
 
@@ -48,40 +52,64 @@ const CheckBoxItem: FC<CheckBoxItem> = (props) => {
         [code, setValueInRedux, onChangeListFilter]
     )
 
-    return (
-        <Component
-            onChange={onChange}
-            checked={thisInput?.checked || false}
-            name={name}
-            label={inputLabel}
-            value={choicesItem.value}
-            labelcolor={choicesItem.value}
-            rating={choicesItem.value}
-        />
-    )
+    const properties = {
+        onChange,
+        checked: thisInput?.checked || false,
+        name: name,
+        label: inputLabel,
+        value: choicesItem.value,
+        labelcolor: choicesItem.value,
+        rating: choicesItem.value,
+    }
+
+    return <Component {...properties} />
 }
 
-export const ChoicesItemCheckBox: FC<IChoiceItem> = (props) => {
-    return (
-        <CheckBoxItem
-            {...props}
-            Component={CheckBox}
-        />
+export const FilterCheckBox: FC<IChoiceItem> = (props) => {
+    const { choicesItem, code } = props
+
+    const onChangeListFilter = useOnChangeListFilter()
+    const name = choicesItem.label
+    const inputLabel = choicesItem.label
+    const [thisInput, setValueInRedux] = useSetValueInRedux({ name })
+
+    const onChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            onChangeListFilter(e, {
+                value: e.target.value,
+                name: code,
+            })
+            setValueInRedux(e)
+        },
+
+        [code, setValueInRedux, onChangeListFilter]
     )
+
+    const properties = {
+        onChange,
+        checked: thisInput?.checked || false,
+        name: name,
+        label: inputLabel,
+        value: choicesItem.value,
+        labelcolor: choicesItem.value,
+        rating: choicesItem.value,
+    }
+
+    return <CheckBox {...properties} />
 }
 
-export const ChoicesItemColorCheckBox: FC<IChoiceItem> = (props) => {
+export const FilterColorCheckBox: FC<IChoiceItem> = (props) => {
     return (
-        <CheckBoxItem
+        <CheckBoxProvider
             {...props}
             Component={ColorCheckBox}
         />
     )
 }
 
-export const ChoicesItemRatingCheckBox: FC<IChoiceItem> = (props) => {
+export const FilterRatingCheckBox: FC<IChoiceItem> = (props) => {
     return (
-        <CheckBoxItem
+        <CheckBoxProvider
             {...props}
             Component={RatingCheckBox}
         />

@@ -2,9 +2,9 @@ import { type FC, memo } from 'react'
 import { type IFilterItem } from '@/app/types/filters'
 import { v4 } from 'uuid'
 import {
-    ChoicesItemCheckBox,
-    ChoicesItemColorCheckBox,
-    ChoicesItemRatingCheckBox,
+    FilterCheckBox,
+    FilterColorCheckBox,
+    FilterRatingCheckBox,
 } from './ChoicesItem/ChoicesItem'
 
 import clsx from 'clsx'
@@ -29,21 +29,21 @@ export const FilterListItem: FC<IFilterListItemProps> = (props) => {
                 })}>
                 {filterItem?.choices?.map((choicesItem) => {
                     const { code } = filterItem
-                        
+
                     return (
                         <li key={v4()}>
                             {code === 'color' ? (
-                                <ChoicesItemColorCheckBox
+                                <FilterColorCheckBox
                                     code={code}
                                     choicesItem={choicesItem}
                                 />
                             ) : code === 'rating' ? (
-                                <ChoicesItemRatingCheckBox
+                                <FilterRatingCheckBox
                                     code={code}
                                     choicesItem={choicesItem}
                                 />
                             ) : (
-                                <ChoicesItemCheckBox
+                                <FilterCheckBox
                                     code={code}
                                     choicesItem={choicesItem}
                                 />

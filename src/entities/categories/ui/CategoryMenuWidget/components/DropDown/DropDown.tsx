@@ -15,7 +15,6 @@ interface IDropDown {
 export const DropDown = memo((props: IDropDown) => {
     const onClick = useSelectCategoryAndSetUSP()
     const { categories } = props
-    const dispatch = useAppDispatch()
 
     return (
         <nav>

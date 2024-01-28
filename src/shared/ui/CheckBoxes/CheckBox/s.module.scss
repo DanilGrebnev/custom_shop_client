@@ -1,12 +1,46 @@
 .CheckBox {
-    display: flex;
-    align-items: center;
+    cursor: pointer;
     width: 100%;
     font-size: var(--font-s);
+    user-select: none;
+    max-height: 50px;
+    transition: 0.3s;
+    overflow: hidden;
 }
+
+.CheckBox.active {
+    transition: 0.3s;
+    max-height: 200px;
+}
+
+.icon {
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    margin-left: 10px;
+    fill: var(--global-palette1);
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    width: max-content;
+
+    &.active {
+        .icon {
+            transform: rotate(180deg);
+        }
+    }
+}
+
 .label {
     color: var(--text-color2);
 }
+
 .disabled {
     opacity: 0.3;
+}
+
+.children-wrapper {
+    margin-left: 20px;
 }

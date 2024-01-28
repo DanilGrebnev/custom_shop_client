@@ -28,6 +28,21 @@ const filterSidebarSlice = createSlice({
 
             state.filtersItem[name] = { ...thisItem, ...otherPayload }
         },
+
+        resetAllFilterItems(state, action: PayloadAction<string | undefined>) {
+            const keys = Object.keys(state.filtersItem)
+            const name = action.payload
+
+            keys?.forEach((filterName) => {
+                if (!action.payload) {
+                    state.filtersItem[filterName].checked = false
+                    return
+                }
+
+                if (filterName === name) return
+                state.filtersItem[filterName].checked = false
+            })
+        },
     },
     extraReducers(builder) {
         builder

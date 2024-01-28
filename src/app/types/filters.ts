@@ -1,9 +1,13 @@
-export interface IFilterItemChoices {
+interface IFilter {
     label: string
     value: string
 }
 
-export type IFilterItemCode = 'color' | 'rating' | string
+export interface IFilterItemChoices extends IFilter {
+    children?: IFilter[]
+}
+
+export type IFilterItemCode = 'color' | 'rating'
 
 interface IFilter {
     code: IFilterItemCode
@@ -21,4 +25,4 @@ interface IFilterItemList extends IFilter {
     choices?: IFilterItemChoices[]
 }
 
-export type IFilterItem = IFilterItemNumber & IFilterItemList
+export type IFilterItem = IFilterItemList & IFilterItemNumber
