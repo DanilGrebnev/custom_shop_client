@@ -20,5 +20,10 @@ $border: 1px solid var(--border-ui-color1);
         &:not(:last-child) {
             border-bottom: 1px solid var(--border-ui-color1);
         }
+
+        &:hover a {
+            transition: var(--transition1);
+            color: var(--global-palette1);
+        }
     }
 }

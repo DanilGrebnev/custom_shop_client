@@ -24,6 +24,7 @@ export const DropDown = memo((props: IDropDown) => {
                     const { id, name } = category
                     return (
                         <li
+                            className={s.link}
                             key={id}
                             onClick={() => onClick(category)}>
                             <Link href="/shop">{name}</Link>

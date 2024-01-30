@@ -15,6 +15,7 @@ const initialState: IUserProfileSchema = {
         favorites: [],
     },
     loading: false,
+    wishListLoading: false,
     error: {},
 }
 
@@ -33,27 +34,31 @@ const userProfileSlice = createSlice({
         },
     },
     extraReducers(builder) {
+        const { fetchUserProfile, toggleWishList } = UserProfileServices
+
         builder
-            .addCase(
-                UserProfileServices.fetchUserProfile.fulfilled,
-                (state, action) => {
-                    state.fields = action.payload
-                    state.loading = false
-                }
-            )
-            .addCase(
-                UserProfileServices.fetchUserProfile.pending,
-                (state, action) => {
-                    state.loading = true
-                }
-            )
-            .addCase(
-                UserProfileServices.fetchUserProfile.rejected,
-                (state, action) => {
-                    state.loading = false
-                    console.error(action.error)
-                }
-            )
+            .addCase(fetchUserProfile.fulfilled, (state, action) => {
+                state.fields = action.payload
+                state.loading = false
+            })
+            .addCase(fetchUserProfile.pending, (state, action) => {
+                state.loading = true
+            })
+            .addCase(fetchUserProfile.rejected, (state, action) => {
+                state.loading = false
+                console.error(action.error)
+            })
+            .addCase(toggleWishList.fulfilled, (state, action) => {
+                state.fields = action.payload
+                state.wishListLoading = false
+            })
+            .addCase(toggleWishList.pending, (state) => {
+                state.wishListLoading = true
+            })
+            .addCase(toggleWishList.rejected, (state, action) => {
+                state.wishListLoading = false
+                console.log(action.error)
+            })
     },
 })
 

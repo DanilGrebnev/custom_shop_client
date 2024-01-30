@@ -30,10 +30,6 @@ export const LoginPage = () => {
         [dispatch]
     )
 
-    useEffect(() => {
-        console.log('onChange')
-    }, [onChange])
-
     const onCheckBoxChange = useCallback(
         (_: any, checked: boolean) => {
             dispatch(loginActions.setRememberMe(checked))

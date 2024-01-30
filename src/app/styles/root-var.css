@@ -18,18 +18,22 @@
     --global-palette5: #0961b3;
     --global-palette6: #999999;
     --global-palette8: #f2f2f2;
+    --global-palette9: #afafaf;
 
     /* Цвета для заднего фона компонентов */
 
     /* Colors for pages background */
     --pages-background-palette: #ffffff;
     --pages-background-palette-not-inverted: #ffffff;
+    --background2: rgba(0, 0, 0, 0.05);
+    --background3: transparent;
 
     /*Colors for cards background*/
     --card-background-1: white;
 
     /*Colors for container backgrounds*/
-    --container-background-1: #f2f2f2;
+    --container-background-1: white;
+    --container-background-2: var(--global-palette8);
 
     /*Border colors*/
     --border-ui-color1: #e5e5e5;
@@ -42,8 +46,12 @@
     --text-color3: #a90000;
     --text-color4: #404040;
 
-    --background2: rgba(0, 0, 0, 0.05);
-    --background3: transparent;
+    /*Icon colors*/
+    --icon-color1: var(--global-palette9);
+
+    /* dark theme color */
+    --dark: black;
+    --white: white;
 
     /* effects */
     --box-shadow-1: 0 0 16px 0 rgba(0, 0, 0, 0.11);
@@ -55,10 +63,6 @@
 
     /* global margin / padding */
     --margin-between-widget: 30px;
-
-    /* dark theme color */
-    --dark: black;
-    --white: white;
 }
 
 .App.dark {
@@ -81,6 +85,7 @@
 
     /*Colors for container backgrounds*/
     --container-background-1: #111111;
+    --container-background-2: #111111;
 
     /*effects*/
     --text-hover1: white;

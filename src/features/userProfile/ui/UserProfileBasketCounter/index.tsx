@@ -6,6 +6,7 @@ export const UserProfileBasketCounter = () => {
         <UserProfileCounterItem
             icon={<CartIcon />}
             count={0}
+            href=""
         />
     )
 }

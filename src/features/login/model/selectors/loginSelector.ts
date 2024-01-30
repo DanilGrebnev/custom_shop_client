@@ -15,6 +15,7 @@ export class LoginSelector {
     static getIsLoading(state: StateSchema) {
         return state.login.loading
     }
+    
     static getIsAuth(state: StateSchema) {
         return state.login.isAuth
     }

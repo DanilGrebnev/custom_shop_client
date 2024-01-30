@@ -11,7 +11,7 @@ export const ShopPage = () => {
     return (
         <>
             <BreadCrumbs
-                current="Магазин"
+                style={{ marginBottom: '2em' }}
                 breadcrumbs={[
                     { href: NavigationRoutes.main(), label: 'Главная' },
                     {
@@ -26,7 +26,6 @@ export const ShopPage = () => {
                 id="Shop-Page"
                 className={clsx('contain', s['shop-page'])}>
                 <ClientErrorBoundary>
-                    {/* <FilterSideBar /> */}
                     <FilterSideBarDynamic />
                 </ClientErrorBoundary>
 

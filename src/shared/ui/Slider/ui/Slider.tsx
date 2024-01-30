@@ -18,6 +18,7 @@ export const Slider: FC<ISliderProps> = (props) => {
         className,
         theme = SliderTheme.theme1,
         breakpoints,
+        buttons = true,
         loop = true,
         ...otherProps
     } = props
@@ -39,18 +40,21 @@ export const Slider: FC<ISliderProps> = (props) => {
                     </SwiperSlide>
                 )
             })}
+            {buttons ? (
+                <>
+                    <SliderButton
+                        className={s['btn-prev']}
+                        prev
+                        theme={theme}
+                    />
 
-            <SliderButton
-                className={s['btn-prev']}
-                prev
-                theme={theme}
-            />
-
-            <SliderButton
-                className={s['btn-next']}
-                next
-                theme={theme}
-            />
+                    <SliderButton
+                        className={s['btn-next']}
+                        next
+                        theme={theme}
+                    />
+                </>
+            ) : null}
         </Swiper>
     )
 }

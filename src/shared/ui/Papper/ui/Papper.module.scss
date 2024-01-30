@@ -1,4 +1,9 @@
 .papper {
     border-radius: var(--global-border-radius);
     background: var(--container-background-1);
+    padding: 20px;
+
+    &.fullWidth {
+        width: 100%;
+    }
 }

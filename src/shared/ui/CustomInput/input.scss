@@ -1,5 +1,16 @@
-.App.dark .MuiInputLabel-root {
-    color: white;
+.App.dark {
+    .MuiInputLabel-root {
+        color: white;
+    }
+
+    .MuiFormControl-root {
+        input {
+            color: var(--text-color1);
+        }
+        fieldset {
+            border-color: var(--border-ui-color1) !important;
+        }
+    }
 }
 
 .MuiInputBase-root {

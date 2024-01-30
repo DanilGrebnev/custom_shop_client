@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, CSSProperties } from 'react'
 import { FullWidthContainer } from '@/shared/ui/Containers/FullWidthContainer'
 import Link from 'next/link'
 
@@ -9,20 +9,24 @@ interface IBreadCrumb {
     label: string
     href: string
     active?: boolean
-    onClick?: (...args:any) => any
+
+    onClick?: (...args: any) => any
 }
 
 interface IBreadCrumbsProps {
     className?: string
     breadcrumbs: IBreadCrumb[]
+    style?: CSSProperties
     current?: string
 }
 
 export const BreadCrumbs: FC<IBreadCrumbsProps> = (props) => {
-    const { className, current, breadcrumbs } = props
+    const { className, current, breadcrumbs, style } = props
 
     return (
-        <FullWidthContainer className={clsx(s.BreadCrumbs, className)}>
+        <FullWidthContainer
+            style={style}
+            className={clsx(s.BreadCrumbs, className)}>
             <nav
                 className="contain"
                 aria-label="Breadcrumb">

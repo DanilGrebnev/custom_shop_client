@@ -7,4 +7,8 @@ export class UserProfileSelectors {
     static getWishList(state: StateSchema) {
         return state.userProfile.fields.favorites
     }
+
+    static getIsLoadingWishList(state: StateSchema) {
+        return state.userProfile.wishListLoading
+    }
 }

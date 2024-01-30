@@ -1,0 +1,10 @@
+.BuyButton {
+    background: var(--global-palette1);
+    color: white;
+    padding: 10px;
+    border-radius: var(--global-border-radius);
+    border: 1px solid transparent;
+    font-weight: 600;
+    max-width: 150px;
+    width: 100%;
+}

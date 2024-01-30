@@ -11,10 +11,12 @@ import { useEffect } from 'react'
 import { fetchProductById } from '../model/services/fetchProductById'
 import { useAppDispatch } from '@/shared/hooks'
 import { getProductPageIsLoading } from '../model/selectors/getProductPageIsLoading'
+import { SettingSelectors } from '@/entities/settings'
+import { BuyButton } from '@/shared/ui/Buttons/ui/BuyButton/BuyButton'
+import { LikeButtonWidget } from '@/widget/LikeButton'
 
 import clsx from 'clsx'
 import s from './ProductPage.module.scss'
-import { SettingSelectors } from '@/entities/settings'
 
 interface IProductPage {
     productId: string
@@ -22,6 +24,7 @@ interface IProductPage {
 
 export const ProductPage = (props: IProductPage) => {
     const { productId } = props
+
     const product = useAppSelector(getProductPageData)
     const isLoading = useAppSelector(getProductPageIsLoading)
     const currency = useAppSelector(SettingSelectors.getCurrency)
@@ -73,7 +76,12 @@ export const ProductPage = (props: IProductPage) => {
 
                     <StandartDropDown title="color" />
                     <StandartDropDown title="storage" />
-                    <p className={s.quantity}>{product.quantity} в наличии</p>
+
+                    <div style={{ display: 'flex' }}>
+                        <LikeButtonWidget productId={productId} />
+                        <BuyButton />
+                    </div>
+                    <p className={s.quantity}>{product.quantity}в наличии</p>
                 </div>
             </section>
         </>

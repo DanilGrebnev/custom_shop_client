@@ -24,6 +24,7 @@ export interface ISliderProps {
     loop?: boolean
     style?: CSSProperties
     theme: TSliderTheme
+    buttons?: boolean
     breakpoints?:
         | TSliderBreakpoints
         | 'default'

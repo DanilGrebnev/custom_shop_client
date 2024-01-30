@@ -23,4 +23,7 @@ export class NavigationRoutes {
     static profileOrders() {
         return '/profile/orders'
     }
+    static wishlist() {
+        return '/profile/wishlist'
+    }
 }

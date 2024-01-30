@@ -1,0 +1,20 @@
+.WishListItem {
+    display: flex;
+    gap: 20px;
+}
+
+.link {
+    display: contents;
+
+    &:hover h3 {
+        transition: 0.3s;
+        color: var(--global-palette1);
+    }
+}
+
+.wishlist-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: var(--text-color2);
+}

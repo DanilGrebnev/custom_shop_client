@@ -18,5 +18,6 @@ export interface IUserProfileFields {
 export interface IUserProfileSchema {
     fields: IUserProfileFields
     loading: boolean
+    wishListLoading: boolean
     error: any
 }

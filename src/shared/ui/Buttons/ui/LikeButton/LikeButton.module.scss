@@ -1,0 +1,28 @@
+$icon-size: 20px;
+
+.LikeButton {
+    padding: 10px;
+    border: 1px solid var(--icon-color1);
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    border-radius: var(--global-border-radius);
+
+    &.disabled {
+        opacity: 0.3;
+    }
+
+    &.active {
+        border-color: var(--global-palette1);
+
+        .icon {
+            fill: var(--global-palette1);
+        }
+    }
+}
+
+.icon {
+    fill: var(--icon-color1);
+    width: $icon-size;
+    height: $icon-size;
+}

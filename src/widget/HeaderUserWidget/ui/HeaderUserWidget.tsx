@@ -14,6 +14,7 @@ export const HeaderUserWidget = () => {
         <div className={s['header-section-user']}>
             <UserProfileBasketCounter />
             <UserProfileWishListCounter />
+
             <Link
                 className={s.icon}
                 href={NavigationRoutes.profileMe()}>
