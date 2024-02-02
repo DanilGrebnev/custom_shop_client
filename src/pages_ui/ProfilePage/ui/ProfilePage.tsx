@@ -3,6 +3,7 @@
 import {
     UserProfileSelectors,
     UserProfileServices,
+    useFetchProfile,
 } from '@/features/userProfile'
 import { ChangeEvent, useCallback, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
@@ -20,11 +21,14 @@ import clsx from 'clsx'
 export const ProfilePage = () => {
     const dispatch = useAppDispatch()
     const user = useAppSelector(UserProfileSelectors.getData)
+    const isAuthLoading = useAppSelector(UserProfileSelectors.getIsAuthLoading)
+    const { fetchProfile, profile, isLoading } = useFetchProfile()
 
     useEffect(() => {
-        dispatch(UserProfileServices.fetchUserProfile())
-    }, [dispatch])
- 
+        if (isAuthLoading) return
+        fetchProfile()
+    }, [isAuthLoading, fetchProfile])
+
     const onChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
             const name = e.target.name as any

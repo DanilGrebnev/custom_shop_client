@@ -3,14 +3,12 @@ import { CategoryMenuWidgetLazy } from '@/entities/categories'
 import { HeaderUserWidget } from '@/widget/HeaderUserWidget'
 import { LinkList } from './LinkList'
 import { LogoDynamic } from '@/entities/settings'
-import { CheckIsAuth } from '@/features/userProfile'
 
 import s from './Header.module.scss'
 
 export const Header = () => {
     return (
         <>
-            <CheckIsAuth />
             <header
                 id="Header"
                 className={s['header']}>

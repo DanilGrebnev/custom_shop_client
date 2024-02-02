@@ -1,9 +1,9 @@
 'use client'
 
 import { ILayout } from '@/app/types/layout'
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { UserProfileSelectors, UserProfileServices } from '../..'
+import { UserProfileSelectors, UserProfileServices, useIsAuth } from '../..'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { useRouter } from 'next/navigation'
 import { PageLoader } from '@/shared/ui/LoadersSpinners'
@@ -13,19 +13,17 @@ import { PageLoader } from '@/shared/ui/LoadersSpinners'
 авторизован пользователь или нет, пропускает на приватные роуты
 */
 const PrivateRouteRender = ({ children }: ILayout) => {
-    const dispatch = useAppDispatch()
     const router = useRouter()
-    const isLoading = useAppSelector(UserProfileSelectors.getIsAuthLoading)
+    const { isAuth, isAuthLoading } = useIsAuth()
 
-    useLayoutEffect(() => {
-        dispatch(UserProfileServices.fetchIsAuth())
-            .unwrap()
-            .catch(() => router.push(NavigationRoutes.login()))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    useEffect(() => {
+        if (!isAuth && !isAuthLoading) {
+            router.push('/login')
+        }
+    }, [isAuth, isAuthLoading, router])
 
-    if (isLoading) {
-        return <h1>Проверка аутентификации</h1>
+    if (isAuthLoading) {
+        return <PageLoader />
     }
 
     return children

@@ -2,19 +2,27 @@
 
 import {
     UserProfileBasketCounter,
+    UserProfileServices,
     UserProfileWishListCounter,
+    useFetchProfile,
+    useIsAuth,
 } from '@/features/userProfile'
 import UserProfileIcon from '@/shared/assets/profile_icon_160.webp'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { useAppSelector } from '@/shared/hooks'
-import { UserProfileSelectors } from '@/features/userProfile'
 
 import s from './HeaderUserWidget.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, memo } from 'react'
 
-export const HeaderUserWidget = () => {
-    const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
+export const HeaderUserWidget = memo(() => {
+    const { isAuth, isAuthLoading } = useIsAuth()
+    const { fetchProfile } = useFetchProfile()
+
+    useEffect(() => {
+        if (!isAuth && isAuthLoading) return
+        fetchProfile()
+    }, [isAuthLoading, fetchProfile, isAuth])
 
     if (!isAuth) {
         return (
@@ -25,7 +33,7 @@ export const HeaderUserWidget = () => {
             </div>
         )
     }
-    
+
     return (
         <div className={s['header-section-user']}>
             <UserProfileBasketCounter />
@@ -44,4 +52,5 @@ export const HeaderUserWidget = () => {
             </Link>
         </div>
     )
-}
+})
+HeaderUserWidget.displayName = 'HeaderUserWidget'

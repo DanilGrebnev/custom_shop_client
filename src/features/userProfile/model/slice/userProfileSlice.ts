@@ -18,7 +18,7 @@ const initialState: IUserProfileSchema = {
     prevFieldsValue: '',
     loading: false,
     wishListLoading: false,
-    isAuthLoading: false,
+    isAuthLoading: true,
     isAuth: false,
     error: {},
 }
@@ -58,11 +58,13 @@ const userProfileSlice = createSlice({
 
         builder
             .addCase(fetchUserProfile.fulfilled, (state, action) => {
+                console.log('Получения профиля успешно')
                 state.fields = action.payload
                 state.loading = false
             })
             .addCase(fetchUserProfile.pending, (state, action) => {
                 state.loading = true
+                console.log('Получения профиля')
             })
             .addCase(fetchUserProfile.rejected, (state, action) => {
                 state.loading = false
@@ -78,22 +80,23 @@ const userProfileSlice = createSlice({
             .addCase(toggleWishList.rejected, (state) => {
                 state.wishListLoading = false
             })
-            .addCase(userProfileLogout.fulfilled, (state) => {
-                state.isAuth = false
-            })
+
             .addCase(fetchIsAuth.fulfilled, (state, action) => {
-                state.fields = action.payload
-                if (!state.isAuth) {
-                    state.isAuth = true
-                }
+                console.log('Авторизация успешна')
+                state.isAuth = true
                 state.isAuthLoading = false
             })
             .addCase(fetchIsAuth.pending, (state) => {
+                console.log('Авторизация')
                 state.isAuthLoading = true
             })
             .addCase(fetchIsAuth.rejected, (state) => {
                 state.isAuth = false
                 state.isAuthLoading = false
+                console.log('Ошибка авторизации')
+            })
+            .addCase(userProfileLogout.fulfilled, (state) => {
+                state.isAuth = false
             })
     },
 })

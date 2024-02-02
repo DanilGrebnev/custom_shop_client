@@ -5,8 +5,8 @@ import { ChangeEvent } from 'react'
 
 const initialState: ILoginSchema = {
     fields: {
-        username: '',
-        password: '',
+        username: 'dnil@mail.ru',
+        password: 'htczte2101',
         remember_me: false,
     },
     loading: false,

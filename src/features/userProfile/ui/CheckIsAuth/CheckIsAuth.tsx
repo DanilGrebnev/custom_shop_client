@@ -1,15 +1,10 @@
 'use client'
 
-import { useAppDispatch } from '@/shared/hooks'
-import { useEffect } from 'react'
-import { UserProfileServices } from '../..'
+import { useIsAuth } from '../../model/hook/useIsAuth'
 
 const CheckIsAuth = () => {
-    const dispatch = useAppDispatch()
+    useIsAuth()
 
-    useEffect(() => {
-        dispatch(UserProfileServices.fetchIsAuth())
-    }, [dispatch])
     return <></>
 }
 
