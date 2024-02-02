@@ -17,7 +17,10 @@ export interface IUserProfileFields {
 
 export interface IUserProfileSchema {
     fields: IUserProfileFields
+    prevFieldsValue: string
     loading: boolean
+    isAuthLoading: boolean
     wishListLoading: boolean
+    isAuth: boolean
     error: any
 }

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IUserProfileSchema } from '../schema/userProfileSchema'
 import { UserProfileServices } from '../services/userProfileServices'
 import { IUserProfileFields } from '../schema/userProfileSchema'
+import { copyObject } from '../lib/copyObject'
 
 const initialState: IUserProfileSchema = {
     fields: {
@@ -14,8 +15,11 @@ const initialState: IUserProfileSchema = {
         email: '',
         favorites: [],
     },
+    prevFieldsValue: '',
     loading: false,
     wishListLoading: false,
+    isAuthLoading: false,
+    isAuth: false,
     error: {},
 }
 
@@ -32,9 +36,25 @@ const userProfileSlice = createSlice({
         ) {
             state.fields[action.payload.name] = action.payload.value
         },
+        setFieldsCopy(state) {
+            const fieldsString = copyObject(state.fields, [
+                'date_joined',
+                'favorites',
+            ])
+
+            state.prevFieldsValue = fieldsString
+        },
+        setIsAuth(state, action: PayloadAction<boolean>) {
+            state.isAuth = action.payload
+        },
     },
     extraReducers(builder) {
-        const { fetchUserProfile, toggleWishList } = UserProfileServices
+        const {
+            fetchUserProfile,
+            toggleWishList,
+            userProfileLogout,
+            fetchIsAuth,
+        } = UserProfileServices
 
         builder
             .addCase(fetchUserProfile.fulfilled, (state, action) => {
@@ -55,9 +75,25 @@ const userProfileSlice = createSlice({
             .addCase(toggleWishList.pending, (state) => {
                 state.wishListLoading = true
             })
-            .addCase(toggleWishList.rejected, (state, action) => {
+            .addCase(toggleWishList.rejected, (state) => {
                 state.wishListLoading = false
-                console.log(action.error)
+            })
+            .addCase(userProfileLogout.fulfilled, (state) => {
+                state.isAuth = false
+            })
+            .addCase(fetchIsAuth.fulfilled, (state, action) => {
+                state.fields = action.payload
+                if (!state.isAuth) {
+                    state.isAuth = true
+                }
+                state.isAuthLoading = false
+            })
+            .addCase(fetchIsAuth.pending, (state) => {
+                state.isAuthLoading = true
+            })
+            .addCase(fetchIsAuth.rejected, (state) => {
+                state.isAuth = false
+                state.isAuthLoading = false
             })
     },
 })

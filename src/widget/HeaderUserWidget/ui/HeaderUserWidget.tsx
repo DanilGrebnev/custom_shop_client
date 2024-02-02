@@ -1,15 +1,31 @@
+'use client'
+
 import {
     UserProfileBasketCounter,
     UserProfileWishListCounter,
 } from '@/features/userProfile'
 import UserProfileIcon from '@/shared/assets/profile_icon_160.webp'
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import { useAppSelector } from '@/shared/hooks'
+import { UserProfileSelectors } from '@/features/userProfile'
 
 import s from './HeaderUserWidget.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 export const HeaderUserWidget = () => {
+    const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
+
+    if (!isAuth) {
+        return (
+            <div>
+                <Link href={NavigationRoutes.login()}>
+                    Войти или зарегестрироваться
+                </Link>
+            </div>
+        )
+    }
+    
     return (
         <div className={s['header-section-user']}>
             <UserProfileBasketCounter />

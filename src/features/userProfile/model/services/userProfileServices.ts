@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IUserProfileSchema } from '../..'
 import { $axios } from '@/app/API'
 import { IUserProfileFields } from '../schema/userProfileSchema'
 
+const thunkName = 'userProfile/'
+
 export class UserProfileServices {
     static fetchUserProfile = createAsyncThunk(
-        'userProfile/fetchUserProfile',
-        async (_, thunkApi) => {
+        thunkName + 'fetchUserProfile',
+        async () => {
             const response = await $axios.get<IUserProfileFields>('user/me', {
                 withCredentials: true,
             })
@@ -15,8 +16,32 @@ export class UserProfileServices {
         }
     )
 
+    static fetchIsAuth = createAsyncThunk(
+        thunkName + 'fetchIsAuth',
+        async () => {
+            const response = await $axios.get<IUserProfileFields>('user/me', {
+                withCredentials: true,
+            })
+
+            return response.data
+        }
+    )
+
+    static userProfileLogout = createAsyncThunk(
+        thunkName + 'logout',
+        async () => {
+            const response = await $axios.post(
+                'auth/token/logout',
+                {},
+                { withCredentials: true }
+            )
+
+            return response.data
+        }
+    )
+
     static toggleWishList = createAsyncThunk(
-        'userProfile/toggleFishList',
+        thunkName + 'toggleWishList',
         async (productId: string) => {
             await $axios.post(
                 'product/favorite/' + productId,

@@ -11,10 +11,20 @@ import { CustomInput } from '@/shared/ui/CustomInput'
 import { ILoginFields } from '@/features/login/model/schema/loginSchema'
 import { loginActions } from '@/features/login/model/slice/loginSlice'
 import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
+import { UserProfileServices } from '@/features/userProfile'
+import { userProfileActions } from '@/features/userProfile'
 
 export const LoginPage = () => {
     const router = useRouter()
     const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(UserProfileServices.fetchIsAuth())
+            .unwrap()
+            .then(() => {
+                router.push(NavigationRoutes.main())
+            })
+    }, [dispatch, router])
 
     const isLoading = useAppSelector(LoginSelector.getIsLoading)
     const username = useAppSelector(LoginSelector.getUsername)

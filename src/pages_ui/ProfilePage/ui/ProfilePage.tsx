@@ -10,12 +10,12 @@ import { CustomInput } from '@/shared/ui/CustomInput'
 import { Papper } from '@/shared/ui/Papper'
 import { userProfileActions } from '@/features/userProfile'
 import { dateParse } from '@/shared/lib/dateParse'
-
+import { NumberInput } from '@/shared/ui/NumberInput'
 import ProfileImage from '@/shared/assets/profile_icon_160.webp'
 import Image from 'next/image'
+
 import s from './ProfilePage.module.scss'
 import clsx from 'clsx'
-import { NumberInput } from '@/shared/ui/NumberInput'
 
 export const ProfilePage = () => {
     const dispatch = useAppDispatch()
@@ -24,7 +24,7 @@ export const ProfilePage = () => {
     useEffect(() => {
         dispatch(UserProfileServices.fetchUserProfile())
     }, [dispatch])
-
+ 
     const onChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
             const name = e.target.name as any
@@ -33,6 +33,13 @@ export const ProfilePage = () => {
         },
         [dispatch]
     )
+
+    const onFocus = () => {
+        dispatch(userProfileActions.setFieldsCopy())
+    }
+    const onBlur = () => {
+        console.clear()
+    }
 
     return (
         <Papper
@@ -50,6 +57,8 @@ export const ProfilePage = () => {
                     />
                     <div className={s.setting}>
                         <CustomInput
+                            onFocus={onFocus}
+                            onBlur={onBlur}
                             label="Имя"
                             variant="standard"
                             name="first_name"
@@ -89,7 +98,7 @@ export const ProfilePage = () => {
                             defaultValue="1998-08-12"
                         />
                         <p className={s['registration-date']}>
-                            Дата регистрации:{' '}
+                            <span>Дата регистрации:</span>{' '}
                             <b>{dateParse(user.date_joined)}</b>
                         </p>
                     </div>

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { PageLoader } from '@/shared/ui/LoadersSpinners'
 
-export const IsAuthDynamic = dynamic(() => import('./IsAuth'), {
+export const PrivatePageRender = dynamic(() => import('./PrivatePageRender'), {
     ssr: false,
     loading: () => <PageLoader />,
 })
