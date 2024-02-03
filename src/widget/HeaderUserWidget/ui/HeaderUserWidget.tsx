@@ -2,6 +2,7 @@
 
 import {
     UserProfileBasketCounter,
+    UserProfileSelectors,
     UserProfileServices,
     UserProfileWishListCounter,
     useFetchProfile,
@@ -13,16 +14,11 @@ import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import s from './HeaderUserWidget.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, memo } from 'react'
+import { memo } from 'react'
+import { useAppSelector } from '@/shared/hooks'
 
 export const HeaderUserWidget = memo(() => {
-    const { isAuth, isAuthLoading } = useIsAuth()
-    const { fetchProfile } = useFetchProfile()
-
-    useEffect(() => {
-        if (!isAuth && isAuthLoading) return
-        fetchProfile()
-    }, [isAuthLoading, fetchProfile, isAuth])
+    const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
 
     if (!isAuth) {
         return (

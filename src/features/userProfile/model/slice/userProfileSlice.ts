@@ -56,24 +56,9 @@ const userProfileSlice = createSlice({
         },
     },
     extraReducers(builder) {
-        const { getProfile, userProfileLogout, fetchIsAuth } =
-            UserProfileServices
+        const { fetchIsAuth } = UserProfileServices
 
         builder
-            //Получение профиля
-            .addCase(getProfile.fulfilled, (state, action) => {
-                console.log('Получения профиля успешно')
-                state.fields = action.payload
-                state.loading = false
-            })
-            .addCase(getProfile.pending, (state, action) => {
-                state.loading = true
-                console.log('Получения профиля')
-            })
-            .addCase(getProfile.rejected, (state, action) => {
-                state.loading = false
-                console.error(action.error)
-            })
             //Проверка аутентификации пользователя
             .addCase(fetchIsAuth.fulfilled, (state) => {
                 console.log('Авторизация успешна')
@@ -88,10 +73,6 @@ const userProfileSlice = createSlice({
                 state.isAuth = false
                 state.isAuthLoading = false
                 console.log('Ошибка авторизации')
-            })
-            //Выход из профиля
-            .addCase(userProfileLogout.fulfilled, (state) => {
-                state.isAuth = false
             })
     },
 })

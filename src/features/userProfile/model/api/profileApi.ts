@@ -21,7 +21,18 @@ export const profileApi = createApi({
             }),
             invalidatesTags: ['Profile'],
         }),
+        logoutFromAccount: build.mutation({
+            query: (arg: void) => ({
+                url: 'api/auth/token/logout',
+                method: 'POST',
+            }),
+        }),
+        // fetchIsAuth
     }),
 })
 
-export const { useGetProfileQuery, useToggleWishListMutation } = profileApi
+export const {
+    useGetProfileQuery,
+    useToggleWishListMutation,
+    useLogoutFromAccountMutation,
+} = profileApi

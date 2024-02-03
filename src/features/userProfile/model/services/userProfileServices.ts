@@ -26,34 +26,4 @@ export class UserProfileServices {
             return response.data
         }
     )
-
-    static userProfileLogout = createAsyncThunk(
-        thunkName + 'logout',
-        async () => {
-            const response = await $axios.post(
-                'auth/token/logout',
-                {},
-                { withCredentials: true }
-            )
-
-            return response.data
-        }
-    )
-
-    // static toggleWishList = createAsyncThunk(
-    //     thunkName + 'toggleWishList',
-    //     async (productId: string) => {
-    //         await $axios.post(
-    //             'product/favorite/' + productId,
-    //             {},
-    //             { withCredentials: true }
-    //         )
-
-    //         const response = await $axios.get<IUserProfileFields>('user/me', {
-    //             withCredentials: true,
-    //         })
-
-    //         return response.data
-    //     }
-    // )
 }

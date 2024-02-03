@@ -19,13 +19,8 @@ import s from './ProfilePage.module.scss'
 import clsx from 'clsx'
 
 export const ProfilePage = () => {
-    const { data } = useGetProfileQuery()
     const dispatch = useAppDispatch()
     const user = useAppSelector(UserProfileSelectors.getData)
-
-    useEffect(() => {
-        dispatch(userProfileActions.setProfileFields(data))
-    }, [data, dispatch])
 
     const onChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +96,7 @@ export const ProfilePage = () => {
                         />
                         <p className={s['registration-date']}>
                             <span>Дата регистрации:</span>{' '}
-                            <b>{dateParse(data?.date_joined)}</b>
+                            <b>{dateParse(user?.date_joined)}</b>
                         </p>
                     </div>
                 </div>
