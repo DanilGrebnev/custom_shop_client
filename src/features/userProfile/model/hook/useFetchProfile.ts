@@ -11,7 +11,7 @@ export const useFetchProfile = () => {
     const profile = useAppSelector(UserProfileSelectors.getData)
 
     const fetchProfile = useCallback(() => {
-        dispatch(UserProfileServices.fetchUserProfile())
+        dispatch(UserProfileServices.getProfile())
     }, [dispatch])
 
     return { isLoading, profile, fetchProfile }

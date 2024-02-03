@@ -6,7 +6,8 @@
  * Необязательная часть 'Z' обозначает часовой пояс в формате +-hh:mm.
  * Если указать просто букву Z, то получим UTC+0.
  */
-export const dateParse = (dateString: string) => {
+export const dateParse = (dateString?: string) => {
+    if (!dateString) return
     const date = new Date(Date.parse(dateString))
     const day = date.getDate()
     const dayWithZero = day < 10 ? '0' + day : day

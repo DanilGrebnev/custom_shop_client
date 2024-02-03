@@ -1,0 +1,21 @@
+.product-widget {
+    display: flex;
+    gap: 20px;
+}
+.product__image {
+    border-radius: var(--global-border-radius);
+}
+
+.content__title {
+    color: var(--text-color2);
+}
+
+.content {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.stock {
+    display: flex;
+    gap: 5px;
+}

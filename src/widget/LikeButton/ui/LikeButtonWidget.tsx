@@ -1,11 +1,10 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { LikeButton } from '@/shared/ui/Buttons'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import {
-    UserProfileServices,
-    UserProfileSelectors,
+    useToggleWishListMutation,
+    useGetProfileQuery,
 } from '@/features/userProfile'
 
 interface LikeButtonWidgetProps {
@@ -13,21 +12,21 @@ interface LikeButtonWidgetProps {
 }
 
 export const LikeButtonWidget: FC<LikeButtonWidgetProps> = ({ productId }) => {
-    const dispatch = useAppDispatch()
-    const wishList = useAppSelector(UserProfileSelectors.getWishList)
-    const isLoading = useAppSelector(UserProfileSelectors.getIsLoadingWishList)
+    const { data } = useGetProfileQuery()
+    const [toggleWishList, { isLoading }] = useToggleWishListMutation()
 
-    const isActive = wishList.some((item) => item.id === +productId)
-
-    const addToWishList = () => {
-        dispatch(UserProfileServices.toggleWishList(productId))
-    }
+    const isActive =
+        useMemo(
+            () =>
+                data?.favorites.some((favorite) => favorite.id === +productId),
+            [data, productId]
+        ) || false
 
     return (
         <LikeButton
             active={isActive}
             loading={isLoading}
-            onClick={addToWishList}
+            onClick={() => toggleWishList(productId)}
         />
     )
 }

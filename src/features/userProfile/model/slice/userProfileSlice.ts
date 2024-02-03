@@ -36,6 +36,13 @@ const userProfileSlice = createSlice({
         ) {
             state.fields[action.payload.name] = action.payload.value
         },
+        setProfileFields(
+            state,
+            action: PayloadAction<IUserProfileFields | undefined>
+        ) {
+            if (!action.payload) return
+            state.fields = action.payload
+        },
         setFieldsCopy(state) {
             const fieldsString = copyObject(state.fields, [
                 'date_joined',
@@ -49,39 +56,26 @@ const userProfileSlice = createSlice({
         },
     },
     extraReducers(builder) {
-        const {
-            fetchUserProfile,
-            toggleWishList,
-            userProfileLogout,
-            fetchIsAuth,
-        } = UserProfileServices
+        const { getProfile, userProfileLogout, fetchIsAuth } =
+            UserProfileServices
 
         builder
-            .addCase(fetchUserProfile.fulfilled, (state, action) => {
+            //Получение профиля
+            .addCase(getProfile.fulfilled, (state, action) => {
                 console.log('Получения профиля успешно')
                 state.fields = action.payload
                 state.loading = false
             })
-            .addCase(fetchUserProfile.pending, (state, action) => {
+            .addCase(getProfile.pending, (state, action) => {
                 state.loading = true
                 console.log('Получения профиля')
             })
-            .addCase(fetchUserProfile.rejected, (state, action) => {
+            .addCase(getProfile.rejected, (state, action) => {
                 state.loading = false
                 console.error(action.error)
             })
-            .addCase(toggleWishList.fulfilled, (state, action) => {
-                state.fields = action.payload
-                state.wishListLoading = false
-            })
-            .addCase(toggleWishList.pending, (state) => {
-                state.wishListLoading = true
-            })
-            .addCase(toggleWishList.rejected, (state) => {
-                state.wishListLoading = false
-            })
-
-            .addCase(fetchIsAuth.fulfilled, (state, action) => {
+            //Проверка аутентификации пользователя
+            .addCase(fetchIsAuth.fulfilled, (state) => {
                 console.log('Авторизация успешна')
                 state.isAuth = true
                 state.isAuthLoading = false
@@ -95,6 +89,7 @@ const userProfileSlice = createSlice({
                 state.isAuthLoading = false
                 console.log('Ошибка авторизации')
             })
+            //Выход из профиля
             .addCase(userProfileLogout.fulfilled, (state) => {
                 state.isAuth = false
             })

@@ -5,7 +5,7 @@ import { IUserProfileFields } from '../schema/userProfileSchema'
 const thunkName = 'userProfile/'
 
 export class UserProfileServices {
-    static fetchUserProfile = createAsyncThunk(
+    static getProfile = createAsyncThunk(
         thunkName + 'fetchUserProfile',
         async () => {
             const response = await $axios.get<IUserProfileFields>('user/me', {
@@ -40,20 +40,20 @@ export class UserProfileServices {
         }
     )
 
-    static toggleWishList = createAsyncThunk(
-        thunkName + 'toggleWishList',
-        async (productId: string) => {
-            await $axios.post(
-                'product/favorite/' + productId,
-                {},
-                { withCredentials: true }
-            )
+    // static toggleWishList = createAsyncThunk(
+    //     thunkName + 'toggleWishList',
+    //     async (productId: string) => {
+    //         await $axios.post(
+    //             'product/favorite/' + productId,
+    //             {},
+    //             { withCredentials: true }
+    //         )
 
-            const response = await $axios.get<IUserProfileFields>('user/me', {
-                withCredentials: true,
-            })
+    //         const response = await $axios.get<IUserProfileFields>('user/me', {
+    //             withCredentials: true,
+    //         })
 
-            return response.data
-        }
-    )
+    //         return response.data
+    //     }
+    // )
 }

@@ -23,6 +23,9 @@ export class NavigationRoutes {
     static profileOrders() {
         return '/profile/orders'
     }
+    static basket() {
+        return '/basket'
+    }
     static wishlist() {
         return '/profile/wishlist'
     }

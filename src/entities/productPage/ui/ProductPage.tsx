@@ -17,6 +17,7 @@ import { LikeButtonWidget } from '@/widget/LikeButton'
 
 import clsx from 'clsx'
 import s from './ProductPage.module.scss'
+import { useToggleWishListMutation } from '@/features/userProfile'
 
 interface IProductPage {
     productId: string

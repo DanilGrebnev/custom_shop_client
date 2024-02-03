@@ -7,8 +7,12 @@
     text-decoration: none;
 }
 
-html {
+html,
+body,
+.App {
     scroll-behavior: smooth;
+    background: var(--pages-background-palette);
+    min-height: 100dvh;
 }
 
 body,
@@ -33,10 +37,6 @@ button,
 select,
 option {
     cursor: pointer;
-}
-
-.App {
-    background: var(--pages-background-palette);
 }
 
 .mr-top {

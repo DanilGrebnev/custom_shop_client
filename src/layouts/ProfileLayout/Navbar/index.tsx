@@ -1,18 +1,14 @@
 import { NavBarItem } from '../NavBarItem'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import { Papper } from '@/shared/ui/Papper'
 import OrderIcon from '@/shared/assets/orders-icon.svg'
 import ProfileIcon from '@/shared/assets/profile-icon.svg'
-import { Papper } from '@/shared/ui/Papper'
 import WishListIcon from '@/shared/assets/wishlist.svg'
+import BasketIcon from '@/shared/assets/basket.svg'
 
 import s from './s.module.scss'
 
 const itemsList = [
-    {
-        href: NavigationRoutes.profileMe(),
-        icon: <ProfileIcon />,
-        text: 'Профиль',
-    },
     {
         href: NavigationRoutes.profileOrders(),
         icon: <OrderIcon />,
@@ -22,6 +18,11 @@ const itemsList = [
         href: NavigationRoutes.wishlist(),
         icon: <WishListIcon />,
         text: 'Избранное',
+    },
+    {
+        href: NavigationRoutes.profileMe(),
+        icon: <ProfileIcon />,
+        text: 'Профиль',
     },
 ]
 

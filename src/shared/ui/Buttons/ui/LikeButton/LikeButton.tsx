@@ -1,13 +1,17 @@
 'use client'
 
-import { type FC } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, type FC } from 'react'
 import { IButton } from '../types'
 
 import WishListIcon from '@/shared/assets/wishlist.svg'
 import clsx from 'clsx'
 import s from './LikeButton.module.scss'
 
-interface ILikeButtonProps extends IButton {
+interface ILikeButtonProps
+    extends DetailedHTMLProps<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+    > {
     active: boolean
     loading: boolean
 }

@@ -2,7 +2,6 @@ import { ILayout } from '@/app/types/layout'
 import { NavBar } from './Navbar'
 import { Footer } from '@/entities/footer'
 import { ProfileLayoutHeader } from './ProfileLayoutHeader'
-import { PrivatePageRender } from '@/features/userProfile'
 
 import clsx from 'clsx'
 import s from './ProfileLayout.module.scss'

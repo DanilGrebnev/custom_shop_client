@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useEffect, useState, memo } from 'react'
+import { ChangeEvent, useEffect, useState, memo, useCallback } from 'react'
 import { TextField } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
@@ -16,16 +16,16 @@ export const CustomInput = memo((props: TCustomInput) => {
     const {
         color = 'var(--global-palette1)',
         onChange,
-        defaultValue,
+        value,
         className,
         ...otherProps
     } = props
 
-    const [input, setValue] = useState<string>('')
+    const [inputValue, setValue] = useState<string>('')
 
     useEffect(() => {
-        setValue(defaultValue as string)
-    }, [defaultValue])
+        setValue(value as string)
+    }, [value])
 
     const theme = createTheme({
         palette: {
@@ -36,10 +36,13 @@ export const CustomInput = memo((props: TCustomInput) => {
         },
     })
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-        onChange?.(e)
-    }
+    const handleChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            setValue(e.target.value)
+            onChange?.(e)
+        },
+        [onChange]
+    )
 
     return (
         <ThemeProvider theme={theme}>
@@ -47,7 +50,7 @@ export const CustomInput = memo((props: TCustomInput) => {
                 //@ts-ignore
                 color="custom"
                 onChange={handleChange}
-                value={input}
+                value={inputValue}
                 className={clsx(s.input, className)}
                 {...otherProps}
             />

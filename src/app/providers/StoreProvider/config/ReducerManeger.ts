@@ -9,7 +9,7 @@ import { searchProductParamsReducer } from '@/entities/searchProductParams'
 import { footerReducer } from '@/entities/footer'
 import { registrationReducer } from '@/features/registration'
 import { loginReducer } from '@/features/login'
-import { userProfileReducer } from '@/features/userProfile'
+import { userProfileReducer, profileApi } from '@/features/userProfile'
 import { settingReducer } from '@/entities/settings'
 
 export const staticReducers = {
@@ -26,4 +26,5 @@ export const staticReducers = {
     registration: registrationReducer,
     userProfile: userProfileReducer,
     setting: settingReducer,
+    [profileApi.reducerPath]: profileApi.reducer,
 }

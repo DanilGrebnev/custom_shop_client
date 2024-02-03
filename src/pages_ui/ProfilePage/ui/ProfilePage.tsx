@@ -2,8 +2,8 @@
 
 import {
     UserProfileSelectors,
-    UserProfileServices,
     useFetchProfile,
+    useGetProfileQuery,
 } from '@/features/userProfile'
 import { ChangeEvent, useCallback, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
@@ -19,15 +19,13 @@ import s from './ProfilePage.module.scss'
 import clsx from 'clsx'
 
 export const ProfilePage = () => {
+    const { data } = useGetProfileQuery()
     const dispatch = useAppDispatch()
     const user = useAppSelector(UserProfileSelectors.getData)
-    const isAuthLoading = useAppSelector(UserProfileSelectors.getIsAuthLoading)
-    const { fetchProfile, profile, isLoading } = useFetchProfile()
 
     useEffect(() => {
-        if (isAuthLoading) return
-        fetchProfile()
-    }, [isAuthLoading, fetchProfile])
+        dispatch(userProfileActions.setProfileFields(data))
+    }, [data, dispatch])
 
     const onChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,20 +59,20 @@ export const ProfilePage = () => {
                     />
                     <div className={s.setting}>
                         <CustomInput
+                            value={user.first_name}
                             onFocus={onFocus}
                             onBlur={onBlur}
                             label="Имя"
                             variant="standard"
                             name="first_name"
-                            defaultValue={user.first_name}
                             onChange={onChange}
                         />
                         <CustomInput
+                            value={user.last_name}
                             onChange={onChange}
                             label="Фамилия"
                             name="last_name"
                             variant="standard"
-                            defaultValue={user.last_name}
                         />
                         <NumberInput defaultValue={'+7-937-697-69-01'} />
                         <CustomInput
@@ -83,7 +81,7 @@ export const ProfilePage = () => {
                             label="Почта"
                             name="email"
                             type="text"
-                            defaultValue={user.email}
+                            value={user.email}
                         />
                         <CustomInput
                             variant="standard"
@@ -91,7 +89,7 @@ export const ProfilePage = () => {
                             label="Никнейм"
                             name="nick"
                             type="text"
-                            defaultValue={user.username}
+                            value={user.username}
                         />
 
                         <CustomInput
@@ -99,11 +97,11 @@ export const ProfilePage = () => {
                             onChange={onChange}
                             label="Дата рождения"
                             type="date"
-                            defaultValue="1998-08-12"
+                            value="1998-08-12"
                         />
                         <p className={s['registration-date']}>
                             <span>Дата регистрации:</span>{' '}
-                            <b>{dateParse(user.date_joined)}</b>
+                            <b>{dateParse(data?.date_joined)}</b>
                         </p>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
     border-radius: var(--global-border-radius);
     background: var(--container-background-1);
     padding: 20px;
+    border: 1px solid var(--border-ui-color1);
 
     &.fullWidth {
         width: 100%;
