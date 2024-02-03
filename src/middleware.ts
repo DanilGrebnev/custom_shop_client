@@ -1,22 +1,17 @@
-import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
-import type { NextFetchEvent, NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+import { isAuthMiddleware } from './middleware/isAuthMiddleware'
 
 export const middleware = async (request: NextRequest) => {
-    const res = await fetch('http://localhost:8000/api/user/me', {
-        method: 'GET',
-        headers: {
-            Cookie: cookies().toString(),
-        },
-    })
-
-    if (res.status > 201) {
-        return NextResponse.redirect(new URL('/login', request.url))
+    if (request.nextUrl.pathname.includes('profile')) {
+        const isAuth = await isAuthMiddleware(request)
+        if (!isAuth) {
+            return NextResponse.redirect(new URL('/login', request.url))
+        }
     }
 
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ['/profile/me'],
+    matcher: ['/profile/:path*'],
 }

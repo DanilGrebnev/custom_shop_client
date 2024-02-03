@@ -21,19 +21,6 @@ export const LoginPage = () => {
     const dispatch = useAppDispatch()
     const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
 
-    // useEffect(() => {
-    //     if (isAuth) {
-    //         router.push(NavigationRoutes.main())
-    //         return
-    //     }
-
-    //     dispatch(UserProfileServices.fetchIsAuth())
-    //         .unwrap()
-    //         .then(() => {
-    //             router.push(NavigationRoutes.main())
-    //         })
-    // }, [dispatch, isAuth, router])
-
     const isLoading = useAppSelector(LoginSelector.getIsLoading)
     const username = useAppSelector(LoginSelector.getUsername)
     const password = useAppSelector(LoginSelector.getPassword)

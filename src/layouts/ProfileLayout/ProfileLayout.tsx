@@ -12,13 +12,11 @@ export const ProfileLayout = ({ children }: ILayout) => {
         <section
             id="Profile-Layout"
             className={s.layout}>
-            {/* <PrivatePageRender> */}
             <div className={clsx('contain', s.wrapper)}>
                 <ProfileLayoutHeader />
                 <NavBar />
                 {children}
             </div>
-            {/* </PrivatePageRender> */}
             <Footer />
         </section>
     )
