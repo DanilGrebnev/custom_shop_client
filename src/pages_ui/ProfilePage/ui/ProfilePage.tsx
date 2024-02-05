@@ -1,10 +1,6 @@
 'use client'
 
-import {
-    UserProfileSelectors,
-    useFetchProfile,
-    useGetProfileQuery,
-} from '@/features/userProfile'
+import { UserProfileSelectors } from '@/features/userProfile'
 import { ChangeEvent, useCallback, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { CustomInput } from '@/shared/ui/CustomInput'

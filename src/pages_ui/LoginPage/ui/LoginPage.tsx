@@ -11,20 +11,16 @@ import { CustomInput } from '@/shared/ui/CustomInput'
 import { ILoginFields } from '@/features/login/model/schema/loginSchema'
 import { loginActions } from '@/features/login/model/slice/loginSlice'
 import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
-import {
-    UserProfileSelectors,
-    UserProfileServices,
-} from '@/features/userProfile'
+import { useLoginInAccountMutation } from '@/features/userProfile'
 
 export const LoginPage = () => {
     const router = useRouter()
+    const [sendLogin, { isLoading }] = useLoginInAccountMutation()
     const dispatch = useAppDispatch()
-    const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
 
-    const isLoading = useAppSelector(LoginSelector.getIsLoading)
     const username = useAppSelector(LoginSelector.getUsername)
     const password = useAppSelector(LoginSelector.getPassword)
-    const rememberMe = useAppSelector(LoginSelector.getIsRememberMe)
+    const remember_me = useAppSelector(LoginSelector.getIsRememberMe)
 
     const onChange = useCallback(
         ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -43,10 +39,14 @@ export const LoginPage = () => {
     )
 
     const onSubmit = useCallback(() => {
-        dispatch(authByLogin())
-            .unwrap()
-            .then(() => router.push(NavigationRoutes.main()))
-    }, [dispatch, router])
+        sendLogin({
+            username,
+            password,
+            remember_me,
+        }).then(() => {
+            router.push(NavigationRoutes.main())
+        })
+    }, [password, remember_me, router, username, sendLogin])
 
     return (
         <>
@@ -67,7 +67,7 @@ export const LoginPage = () => {
                 onChange={onChange}
             />
             <CheckBox
-                checked={rememberMe}
+                checked={remember_me}
                 disabled={isLoading}
                 label="Запомнить меня"
                 name="remember_me"

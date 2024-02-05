@@ -3,19 +3,16 @@
 import {
     UserProfileBasketCounter,
     UserProfileSelectors,
-    UserProfileServices,
     UserProfileWishListCounter,
-    useFetchProfile,
-    useIsAuth,
 } from '@/features/userProfile'
+import { memo } from 'react'
+import { useAppSelector } from '@/shared/hooks'
 import UserProfileIcon from '@/shared/assets/profile_icon_160.webp'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 import s from './HeaderUserWidget.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import { memo } from 'react'
-import { useAppSelector } from '@/shared/hooks'
 
 export const HeaderUserWidget = memo(() => {
     const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)

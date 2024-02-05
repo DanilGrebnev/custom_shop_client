@@ -3,6 +3,11 @@ export interface IUserProfileFavorites {
     name: string
     price: number
 }
+export interface ILoginFields {
+    username: string
+    password: string
+    remember_me: boolean
+}
 
 export interface IUserProfileFields {
     id: number
@@ -18,9 +23,6 @@ export interface IUserProfileFields {
 export interface IUserProfileSchema {
     fields: IUserProfileFields
     prevFieldsValue: string
-    loading: boolean
-    isAuthLoading: boolean
-    wishListLoading: boolean
     isAuth: boolean
     error: any
 }

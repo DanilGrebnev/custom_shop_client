@@ -1,6 +1,6 @@
 'use client'
 
-import { UserProfileSelectors, useFetchProfile } from '@/features/userProfile'
+import { UserProfileSelectors } from '@/features/userProfile'
 import { useAppSelector } from '@/shared/hooks'
 
 import { v4 } from 'uuid'

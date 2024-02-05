@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IUserProfileFields } from '../schema/userProfileSchema'
+import { ILoginFields } from '../schema/userProfileSchema'
 
 export const profileApi = createApi({
     reducerPath: 'api/profile',
@@ -13,11 +14,19 @@ export const profileApi = createApi({
             query: () => 'api/user/me',
             providesTags: ['Profile'],
         }),
-
         toggleWishList: build.mutation<IUserProfileFields, string>({
             query: (productId) => ({
                 url: `api/product/favorite/${productId}`,
                 method: 'POST',
+            }),
+            invalidatesTags: ['Profile'],
+        }),
+        loginInAccount: build.mutation<void, ILoginFields>({
+            query: (body) => ({
+                url: 'api/auth/token/login',
+                method: 'POST',
+                body,
+                invalidatesTags: ['Profile'],
             }),
             invalidatesTags: ['Profile'],
         }),
@@ -26,8 +35,8 @@ export const profileApi = createApi({
                 url: 'api/auth/token/logout',
                 method: 'POST',
             }),
+            invalidatesTags: ['Profile'],
         }),
-        // fetchIsAuth
     }),
 })
 
@@ -35,4 +44,5 @@ export const {
     useGetProfileQuery,
     useToggleWishListMutation,
     useLogoutFromAccountMutation,
+    useLoginInAccountMutation,
 } = profileApi

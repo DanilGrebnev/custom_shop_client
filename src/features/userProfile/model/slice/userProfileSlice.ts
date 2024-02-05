@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IUserProfileSchema } from '../schema/userProfileSchema'
-import { UserProfileServices } from '../services/userProfileServices'
 import { IUserProfileFields } from '../schema/userProfileSchema'
 import { copyObject } from '../lib/copyObject'
+import { profileApi } from '../..'
 
 const initialState: IUserProfileSchema = {
     fields: {
@@ -16,9 +16,6 @@ const initialState: IUserProfileSchema = {
         favorites: [],
     },
     prevFieldsValue: '',
-    loading: false,
-    wishListLoading: false,
-    isAuthLoading: true,
     isAuth: false,
     error: {},
 }
@@ -56,24 +53,20 @@ const userProfileSlice = createSlice({
         },
     },
     extraReducers(builder) {
-        const { fetchIsAuth } = UserProfileServices
-
         builder
-            //Проверка аутентификации пользователя
-            .addCase(fetchIsAuth.fulfilled, (state) => {
-                console.log('Авторизация успешна')
-                state.isAuth = true
-                state.isAuthLoading = false
-            })
-            .addCase(fetchIsAuth.pending, (state) => {
-                console.log('Авторизация')
-                state.isAuthLoading = true
-            })
-            .addCase(fetchIsAuth.rejected, (state) => {
-                state.isAuth = false
-                state.isAuthLoading = false
-                console.log('Ошибка авторизации')
-            })
+            .addMatcher(
+                profileApi.endpoints.getProfile.matchFulfilled,
+                (state, action) => {
+                    state.fields = action.payload
+                    state.isAuth = true
+                }
+            )
+            .addMatcher(
+                profileApi.endpoints.logoutFromAccount.matchFulfilled,
+                (state) => {
+                    state.isAuth = false
+                }
+            )
     },
 })
 
