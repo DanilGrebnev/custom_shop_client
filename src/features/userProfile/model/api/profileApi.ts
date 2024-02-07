@@ -8,7 +8,7 @@ export const profileApi = createApi({
         baseUrl: process.env.NEXT_PUBLIC_URL_BACKEND,
         credentials: 'include',
     }),
-    tagTypes: ['Profile'],
+    tagTypes: ['Profile', 'WishList'],
     endpoints: (build) => ({
         getProfile: build.query<IUserProfileFields, void>({
             query: () => 'api/user/me',
@@ -19,7 +19,7 @@ export const profileApi = createApi({
                 url: `api/product/favorite/${productId}`,
                 method: 'POST',
             }),
-            invalidatesTags: ['Profile'],
+            invalidatesTags: ['Profile', 'WishList'],
         }),
         loginInAccount: build.mutation<void, ILoginFields>({
             query: (body) => ({

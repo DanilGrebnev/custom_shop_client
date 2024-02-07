@@ -5,12 +5,12 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import { ILayout } from '@/app/types/layout'
 import { ThemeProviderDynamic } from '../ThemeProvider'
 import { FetchSettingDynamic } from '@/entities/settings'
-import { GetInitialProfileProvider } from '@/features/userProfile'
+import { InitialProvider } from '../InitialProvider'
 
 export const AppProvider = ({ children }: ILayout) => {
     return (
         <StoreProvider>
-            <GetInitialProfileProvider>
+            <InitialProvider>
                 <FetchSettingDynamic>
                     <ThemeProviderDynamic>
                         <AppRouterCacheProvider>
@@ -18,7 +18,7 @@ export const AppProvider = ({ children }: ILayout) => {
                         </AppRouterCacheProvider>
                     </ThemeProviderDynamic>
                 </FetchSettingDynamic>
-            </GetInitialProfileProvider>
+            </InitialProvider>
         </StoreProvider>
     )
 }

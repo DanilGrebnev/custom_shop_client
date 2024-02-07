@@ -1,8 +1,15 @@
+'use client'
+
 import { Papper } from '@/shared/ui/Papper'
-import { DropDownItem } from '../DropDownItem/DropDownItem'
 import { Button } from '@/shared/ui/Button'
+import { DropDownItem } from '../DropDownItem/DropDownItem'
 
 import s from './s.module.scss'
+import { useGetCartQuery } from '@/features/basket'
+import { IProduct } from '@/app/types/Product'
+import { useEffect, useState } from 'react'
+import { promiseHooks } from 'v8'
+import { $axios } from '@/app/API'
 
 interface IDropDown {
     amount: number
@@ -11,6 +18,27 @@ interface IDropDown {
 
 export const DropDown = (props: IDropDown) => {
     const { openModal, amount } = props
+    const [productsData, setProducts] = useState<IProduct[] | undefined>()
+    const { data } = useGetCartQuery()
+
+    const fetchProducts = async () => {
+        if (!data) return
+        const promises = data?.map((cartItem) =>
+            $axios.get<IProduct>('product/' + cartItem.id)
+        )
+
+        const products = await Promise.all(promises).then((responses) =>
+            responses.map((response) => response.data)
+        )
+
+        setProducts(products)
+    }
+
+    useEffect(() => {
+        fetchProducts()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data])
+
     return (
         <Papper
             className={s['dropdown-widget']}
@@ -21,11 +49,12 @@ export const DropDown = (props: IDropDown) => {
                     <button>Очистить список</button>
                 </header>
                 <div className={s.list}>
-                    <DropDownItem />
-                    <DropDownItem />
-                    <DropDownItem />
-                    <DropDownItem />
-                    <DropDownItem />
+                    {productsData?.map((product) => (
+                        <DropDownItem
+                            product={product}
+                            key={product.id}
+                        />
+                    ))}
                 </div>
             </main>
             <footer>

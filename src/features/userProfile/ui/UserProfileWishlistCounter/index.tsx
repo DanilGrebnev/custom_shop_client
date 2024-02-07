@@ -11,7 +11,7 @@ export const UserProfileWishListCounter = () => {
     return (
         <UserProfileCounterItem
             icon={<WishListIcon />}
-            count={data?.favorites.length}
+            count={data?.favorites?.length}
             label="Избранное"
             href={NavigationRoutes.wishlist()}
         />

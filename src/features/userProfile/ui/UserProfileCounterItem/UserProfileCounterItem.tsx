@@ -11,10 +11,11 @@ interface IUserProfileCounterItemProps {
     href?: string
     label?: string
     data?: any
+    dropDown?: boolean
 }
 
 export const UserProfileCounterItem = (props: IUserProfileCounterItemProps) => {
-    const { count = 0, href, icon, label, data } = props
+    const { count = 0, href, icon, label, dropDown } = props
     const [open, setIsOpen] = useState<boolean>(false)
     const refId = useRef<NodeJS.Timeout>()
 
@@ -41,13 +42,13 @@ export const UserProfileCounterItem = (props: IUserProfileCounterItemProps) => {
                 </div>
                 <p className={s.label}>{label}</p>
             </Link>
-            {data && open && (
+            {dropDown && open && (
                 <DropDown
                     amount={5}
                     openModal={() => setIsOpen(false)}
                 />
             )}
-            {data && open && (
+            {dropDown && open && (
                 <ModalBackgroundFilter onClick={() => setIsOpen(false)} />
             )}
         </div>

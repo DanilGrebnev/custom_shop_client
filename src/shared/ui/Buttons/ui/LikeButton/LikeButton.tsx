@@ -13,7 +13,7 @@ import s from './LikeButton.module.scss'
 
 interface ILikeButtonProps extends ComponentPropsWithoutRef<'button'> {
     active: boolean
-    loading: boolean
+    loading?: boolean
 }
 
 export const LikeButton: FC<ILikeButtonProps> = (props) => {

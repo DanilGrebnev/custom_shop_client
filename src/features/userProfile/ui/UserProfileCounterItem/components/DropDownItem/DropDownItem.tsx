@@ -1,25 +1,31 @@
+'use client'
+
+import { IProduct } from '@/app/types/Product'
 import Image from 'next/image'
-import s from './DropDownItem.module.scss'
 import DeleteBasket from '@/shared/assets/delete-basket.svg'
+import { ICart } from '@/app/types/basket'
+
+import s from './DropDownItem.module.scss'
 
 interface IDropDownItem {
-    id: string
-    src: string
-    title: string
-    price: string
+    product: IProduct
 }
 
-export const DropDownItem = () => {
+export const DropDownItem = (props: IDropDownItem) => {
+    const { id, name, images, price, quantity } = props.product
+    const src = process.env.NEXT_PUBLIC_URL_BACKEND! + images[0].image
+
     return (
         <div className={s.item}>
             <Image
                 width={50}
                 height={50}
-                alt="123"
-                src={'/mock/images/base1.jpg'}
+                alt={name}
+                src={src}
             />
-            <div>7 Планшет DEXP Ursus M170 3G 32 ГБ розовый</div>
-            <span>9 999 р</span>
+            <div>{name}</div>
+            <span>{price} р</span>
+
             <DeleteBasket
                 fill="var(--text-color2)"
                 className={s.icon}

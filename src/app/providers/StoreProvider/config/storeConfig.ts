@@ -1,13 +1,13 @@
 'use client'
 import { configureStore } from '@reduxjs/toolkit'
 import { staticReducers } from './ReducerManeger'
-import { profileApi } from '@/features/userProfile'
+import { RTKQueryMiddlewares } from './RTKQueryMiddlewares'
 
 export const createStore = () => {
     const store = configureStore({
         reducer: staticReducers,
         middleware: (getDefaulMiddleware) =>
-            getDefaulMiddleware().concat(profileApi.middleware),
+            getDefaulMiddleware().concat(...RTKQueryMiddlewares),
     })
 
     return store

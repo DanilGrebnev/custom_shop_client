@@ -11,6 +11,7 @@ import { registrationReducer } from '@/features/registration'
 import { loginReducer } from '@/features/login'
 import { userProfileReducer, profileApi } from '@/features/userProfile'
 import { settingReducer } from '@/entities/settings'
+import { basketApi } from '@/features/basket'
 
 export const staticReducers = {
     categories: categoryReducer,
@@ -27,4 +28,5 @@ export const staticReducers = {
     userProfile: userProfileReducer,
     setting: settingReducer,
     [profileApi.reducerPath]: profileApi.reducer,
+    [basketApi.reducerPath]: basketApi.reducer,
 }
