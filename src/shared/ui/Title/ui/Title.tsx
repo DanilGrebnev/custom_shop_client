@@ -12,18 +12,15 @@ interface TitleProps {
 }
 
 const TitleTag = (props: Omit<TitleProps, 'borderBottom'>) => {
-    const { className, children, size } = props
+    const { className, children, size = 'S' } = props
 
-    switch (size) {
-        case 'L':
-            return <h1 className={className}>{children}</h1>
-        case 'M':
-            return <h2 className={className}>{children}</h2>
-        case 'S':
-            return <h3 className={className}>{children}</h3>
-        default:
-            break
+    const o = {
+        L: <h1 className={className}>{children}</h1>,
+        M: <h2 className={className}>{children}</h2>,
+        S: <h3 className={className}>{children}</h3>,
     }
+
+    return o[size]
 }
 
 export const Title: FC<TitleProps> = (props) => {

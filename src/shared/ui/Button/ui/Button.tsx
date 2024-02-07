@@ -1,26 +1,31 @@
 'use client'
 
-import { FC, ReactNode, CSSProperties, memo, ButtonHTMLAttributes } from 'react'
+import {
+    FC,
+    ReactNode,
+    CSSProperties,
+    memo,
+    ButtonHTMLAttributes,
+    ComponentPropsWithoutRef,
+} from 'react'
 
 import MenuIcon from '/public/static/icons/menu-icon.svg'
 import ArrowIcon from '/public/static/icons/arrow.svg'
 import clsx from 'clsx'
 import s from './Button.module.scss'
 
-interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IButtonProps extends ComponentPropsWithoutRef<'button'> {
     className?: string
     focus?: boolean
-    style?: CSSProperties
     hover?: boolean
     icon?: boolean
     size?: 'M' | 'L'
     borderRadius?: 'right' | 'top'
-    theme?: 'theme-1' | 'theme-2'
     menuIcon?: boolean
     open?: boolean
     children: ReactNode
-    type?: 'button' | 'submit'
     disabled?: boolean
+    variant?: 'standart' | 'outlined'
 }
 
 export const Button: FC<IButtonProps> = memo((props) => {
@@ -32,28 +37,31 @@ export const Button: FC<IButtonProps> = memo((props) => {
         borderRadius,
         open = false,
         menuIcon = false,
-        type = 'button',
         focus,
+        type = 'button',
         size = 'M',
         disabled,
-        ...otherProps
+        variant = 'standart',
+        ...restProps
     } = props
 
     return (
         <button
-            {...otherProps}
+            type={type}
             className={clsx(
                 s.Button,
                 {
                     [s.hover]: hover,
                     [s.focus]: focus,
                     [s.disabled]: disabled,
-                    [s['radius-right']]: borderRadius === 'right',
+                    [s.outlined]: variant === 'outlined',
                     [s['radius-top']]: borderRadius === 'top',
+                    [s['radius-right']]: borderRadius === 'right',
                 },
                 s[size],
                 className
-            )}>
+            )}
+            {...restProps}>
             {menuIcon && (
                 <MenuIcon
                     className={s['menu-icon']}

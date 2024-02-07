@@ -4,11 +4,19 @@
     height: 100vh;
 }
 
+.wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.3);
+}
+
 .page {
     display: grid;
     grid-template-columns: minmax(0px, 600px);
     grid-auto-rows: max-content;
     grid-gap: 20px;
+    margin: auto;
 }
 
 .button {

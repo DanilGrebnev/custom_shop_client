@@ -45,7 +45,7 @@ export const WishListItem: FC<IWishListItemProps> = (props) => {
                     </Link>
 
                     <div>
-                        {/* <LikeButtonWidget productId={String(product?.id)} /> */}
+                        <LikeButtonWidget productId={String(product?.id)} />
                     </div>
                 </div>
             </div>

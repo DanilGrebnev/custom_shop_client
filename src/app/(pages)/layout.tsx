@@ -17,7 +17,11 @@ const RootLayout = ({ children }: ILayout) => {
     return (
         <html lang="ru">
             <body
-                style={{ display: 'flex', flexDirection: 'column' }}
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                }}
                 className={inter.className}>
                 <AppProvider>{children}</AppProvider>
             </body>

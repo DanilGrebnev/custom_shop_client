@@ -13,16 +13,23 @@ body,
     scroll-behavior: smooth;
     background: var(--pages-background-palette);
     min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+body.hidden {
+    overflow: hidden;
 }
 
 body,
 input,
 select,
 a,
+button,
 textarea {
     font-size: var(--font-s);
     font-weight: 500;
     color: var(--global-palette2);
+    font-family: inherit;
 }
 
 a,

@@ -1,23 +1,23 @@
 'use client'
 
-import { ButtonHTMLAttributes, DetailedHTMLProps, type FC } from 'react'
-import { IButton } from '../types'
+import {
+    ButtonHTMLAttributes,
+    ComponentPropsWithoutRef,
+    DetailedHTMLProps,
+    type FC,
+} from 'react'
 
 import WishListIcon from '@/shared/assets/wishlist.svg'
 import clsx from 'clsx'
 import s from './LikeButton.module.scss'
 
-interface ILikeButtonProps
-    extends DetailedHTMLProps<
-        ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-    > {
+interface ILikeButtonProps extends ComponentPropsWithoutRef<'button'> {
     active: boolean
     loading: boolean
 }
 
 export const LikeButton: FC<ILikeButtonProps> = (props) => {
-    const { className, disabled, active, loading } = props
+    const { className, disabled, active, loading, ...other } = props
 
     return (
         <button
@@ -30,7 +30,7 @@ export const LikeButton: FC<ILikeButtonProps> = (props) => {
                 },
                 className
             )}
-            {...props}>
+            {...other}>
             <WishListIcon className={s.icon} />
         </button>
     )

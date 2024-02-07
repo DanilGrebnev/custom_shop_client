@@ -1,0 +1,64 @@
+$padding: 30px;
+
+.dropdown-widget {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 5;
+    display: grid;
+    color: var(--text-color2);
+    width: max-content;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: $padding;
+
+        button {
+            font-size: var(--font-size-5);
+            transition: 0.3s;
+            &:hover {
+                color: red;
+            }
+        }
+    }
+
+    main {
+        max-height: 300px;
+        overflow-y: auto;
+        width: 100%;
+
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid var(--border-ui-color1);
+        padding-top: $padding;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.total {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    b {
+        font-size: var(--font-size-3);
+    }
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}

@@ -1,20 +1,16 @@
 import { ILayout } from '@/app/types/layout'
-import { ModalBackgroundFilter, ModalCard } from '@/shared/ui/Modal'
 
 import s from './AuthLayout.module.scss'
+import { Papper } from '@/shared/ui/Papper'
 
 export const AuthLayout = ({ children }: ILayout) => {
     return (
         <section
             id="Auth_layout"
             className={s.layout}>
-            <ModalBackgroundFilter>
-                <ModalCard
-                    className={s.page}
-                    center>
-                    {children}
-                </ModalCard>
-            </ModalBackgroundFilter>
+            <div className={s.wrapper}>
+                <Papper className={s.page}>{children}</Papper>
+            </div>
         </section>
     )
 }

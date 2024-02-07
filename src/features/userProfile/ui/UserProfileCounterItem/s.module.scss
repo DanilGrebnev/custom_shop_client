@@ -1,10 +1,32 @@
+.counter-container {
+    position: relative;
+    min-width: 106px;
+}
+
+.counter-wrapper {
+    display: flex;
+    border-radius: 12px;
+    padding: 5px 10px;
+    transition: 0.3s;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover,
+    &:focus {
+        background: var(--hover-effect-for-icon);
+    }
+}
+
 .counter {
     width: 55px;
-    height: 48px;
+    height: 40px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     svg {
         width: 25px;
@@ -14,9 +36,9 @@
     span {
         position: absolute;
         background: var(--global-palette1);
-        width: 22px;
-        height: 22px;
+        padding: 2px 4px;
         display: flex;
+        line-height: 1;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
@@ -24,25 +46,10 @@
         right: 0px;
         color: var(--text-color1);
         font-size: 13px;
+        border: 2px solid white;
     }
 }
 
-.wishlist-wrapper {
-    cursor: pointer;
-    position: relative;
-
-    &:hover {
-        .wishlist {
-            display: flex;
-        }
-    }
-}
-
-.wishlist {
-    position: absolute;
-    width: 100%;
-    height: 100px;
-    border: 1px solid black;
-    left: 0px;
-    display: none;
+.label {
+    color: var(--text-color5);
 }
