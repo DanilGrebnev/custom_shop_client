@@ -6,20 +6,18 @@
     text-align: center;
     user-select: none;
     cursor: pointer;
-
-    img {
-        transition: 0.3s;
-    }
+    padding: none;
 
     &:hover {
-        img {
+        .img-wrapper {
             transform: scale(1.1);
         }
     }
 }
 
 .img-wrapper {
-    width: 100%;
+    transition: 0.3s;
+    width: 140px;
     min-height: 140px;
     overflow: hidden;
     position: relative;
