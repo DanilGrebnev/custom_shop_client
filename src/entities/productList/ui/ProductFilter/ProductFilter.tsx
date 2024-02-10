@@ -3,6 +3,7 @@
 import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { useGetProductFiltersQuery } from '../../model/api/productApi'
 import { FilterGroup } from './components/FilterGroupContainer/FilterGroup'
+
 import s from './ProductFilter.module.scss'
 
 export const ProductFilter = () => {

@@ -2,9 +2,10 @@ import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 import { DynamicProductList, ProductFilter } from '@/entities/productList'
+import { PreviewProviderDynamic } from '@/entities/productList'
 
-import s from './ShopPapge.module.scss'
 import clsx from 'clsx'
+import s from './ShopPapge.module.scss'
 
 export const ShopPage = () => {
     return (
@@ -27,9 +28,10 @@ export const ShopPage = () => {
                 <ClientErrorBoundary>
                     <ProductFilter />
                 </ClientErrorBoundary>
-
                 <ClientErrorBoundary>
-                    <DynamicProductList />
+                    <PreviewProviderDynamic>
+                        <DynamicProductList />
+                    </PreviewProviderDynamic>
                 </ClientErrorBoundary>
             </section>
         </>

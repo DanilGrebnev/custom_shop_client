@@ -1,9 +1,9 @@
 .product-list {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     align-content: center;
     flex-grow: 1;
+    gap: 20px;
 }
 
 .top-bar {
@@ -27,4 +27,8 @@
         flex-direction: column;
         gap: 2em;
     }
+}
+
+.pagination {
+    margin-bottom: 20px;
 }
