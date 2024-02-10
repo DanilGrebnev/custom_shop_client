@@ -47,8 +47,12 @@ export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
                         {label}
                     </div>
                 )}
-
-                {children && <Arrow className={s.icon} />}
+                {children && (
+                    <Arrow
+                        onClick={onOpen}
+                        className={s.icon}
+                    />
+                )}
             </div>
 
             {children && (

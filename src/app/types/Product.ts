@@ -27,3 +27,25 @@ export enum ProductListPreviewType {
     CELL = 'cell',
     LIST = 'list',
 }
+
+type IType = 'multiple_choices' | 'number' | 'choices'
+
+export interface IProductFilterChoicesItem {
+    label: string
+    value: string
+    children: IProductFilterChoicesItem[]
+}
+
+export interface IProductFilterList {
+    code: string
+    label: string
+    type: IType
+    choices: IProductFilterChoicesItem[]
+    measure?: string
+    max_: string
+    min_: string
+}
+
+export interface IProductFilterResponse {
+    filters: IProductFilterList[]
+}
