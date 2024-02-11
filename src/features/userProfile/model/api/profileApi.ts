@@ -14,7 +14,7 @@ export const profileApi = createApi({
             query: () => 'api/user/me',
             providesTags: ['Profile'],
         }),
-        toggleWishList: build.mutation<IUserProfileFields, string>({
+        toggleWishList: build.mutation<IUserProfileFields, number>({
             query: (productId) => ({
                 url: `api/product/favorite/${productId}`,
                 method: 'POST',

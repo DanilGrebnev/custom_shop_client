@@ -20,12 +20,12 @@ export const ProductCard: FC<IProductCard> = (props) => {
         rating,
         description,
         productId,
-        type = ProductListPreviewType.CELL,
+        type = 'cell',
     } = props
 
     const hrefToProduct = NavigationRoutes.product(productId + '')
 
-    if (type === ProductListPreviewType.CELL) {
+    if (type === 'cell') {
         return (
             <div className={clsx(s['product-card'], s.cell)}>
                 <Link href={hrefToProduct}>
@@ -48,10 +48,10 @@ export const ProductCard: FC<IProductCard> = (props) => {
         )
     }
 
-    if (type === ProductListPreviewType.LIST) {
+    if (type === 'list') {
         return (
             <div className={clsx(s['product-card'], s.list)}>
-                <div className={s['left-col']}>
+                <div className={s.preview}>
                     <Link href={hrefToProduct}>
                         <CardPreview
                             alt={name}
@@ -61,14 +61,15 @@ export const ProductCard: FC<IProductCard> = (props) => {
                     </Link>
                     <SideMenu className={s.menu} />
                 </div>
-
-                <div className={s['right-col']}>
+                <div className={s.main}>
                     <Link href={hrefToProduct}>
                         <Name name={name} />
                     </Link>
                     <Rating rating={rating} />
 
                     <Price price={price} />
+                </div>
+                <div>
                     {description && (
                         <Description
                             className={s.description}

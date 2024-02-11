@@ -3,7 +3,7 @@ export class NavigationRoutes {
         return '/'
     }
 
-    static product(id: string) {
+    static product(id: number) {
         return '/product/' + id
     }
 

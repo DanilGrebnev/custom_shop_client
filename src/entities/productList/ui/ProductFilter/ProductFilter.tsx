@@ -9,16 +9,12 @@ import s from './ProductFilter.module.scss'
 export const ProductFilter = () => {
     const { data } = useGetProductFiltersQuery()
 
-    data?.filters.forEach((item) => {
-        console.log(item)
-    })
-
     return (
         <div className={s.ProductFilter}>
             <FilterGroup title="Категории">
-                <CheckBox label="акустика">
-                    <CheckBox label="акустика">
-                        <CheckBox label="акустика" />
+                <CheckBox label="Стиральные машинки">
+                    <CheckBox label="Стиральные машинки">
+                        <CheckBox label="Стиральные машинки и холодильники" />
                     </CheckBox>
                 </CheckBox>
                 <CheckBox label="акустика" />

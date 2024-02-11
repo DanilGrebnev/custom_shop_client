@@ -16,8 +16,8 @@
     &.cell {
         display: grid;
         overflow-y: auto;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(2, auto);
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 600px);
         column-gap: 10px;
         row-gap: 10px;
     }
@@ -31,4 +31,8 @@
 
 .pagination {
     margin-bottom: 20px;
+}
+
+.product-list.list{
+    
 }

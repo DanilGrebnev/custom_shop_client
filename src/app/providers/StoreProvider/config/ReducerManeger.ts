@@ -10,7 +10,7 @@ import { footerReducer } from '@/entities/footer'
 import { registrationReducer } from '@/features/registration'
 import { loginReducer } from '@/features/login'
 import { userProfileReducer, profileApi } from '@/features/userProfile'
-import { settingReducer } from '@/entities/settings'
+import { settingApi, settingReducer } from '@/entities/settings'
 import { basketApi } from '@/features/basket'
 import { productApi } from '@/entities/productList'
 
@@ -31,4 +31,5 @@ export const staticReducers = {
     [profileApi.reducerPath]: profileApi.reducer,
     [basketApi.reducerPath]: basketApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
+    [settingApi.reducerPath]: settingApi.reducer,
 }

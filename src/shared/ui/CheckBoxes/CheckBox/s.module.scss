@@ -10,7 +10,7 @@
 
 .CheckBox.active {
     transition: 0.3s;
-    max-height: 200px;
+    max-height: 1000px;
 }
 
 .icon {
@@ -35,6 +35,11 @@
 
 .label {
     color: var(--text-color2);
+    max-width: 200px;
+
+    &:hover {
+        color: var(--global-palette1);
+    }
 }
 
 .disabled {
@@ -42,5 +47,6 @@
 }
 
 .children-wrapper {
-    margin-left: 20px;
+    margin-left: 5px;
+    width: 100%;
 }
