@@ -23,7 +23,7 @@ export const ProductCard: FC<IProductCard> = (props) => {
         type = 'cell',
     } = props
 
-    const hrefToProduct = NavigationRoutes.product(productId + '')
+    const hrefToProduct = NavigationRoutes.product(productId as number)
 
     if (type === 'cell') {
         return (

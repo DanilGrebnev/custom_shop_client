@@ -16,8 +16,8 @@ import './ThumbsGallery.scss'
 import s from './ThumbGallery.module.scss'
 
 interface IThumbsGalleryProps {
-    images: { image: string | StaticImageData }[]
-    alt: string
+    images?: { image: string | StaticImageData }[]
+    alt?: string
 }
 
 export const ThumbsGallery = (props: IThumbsGalleryProps) => {
@@ -33,7 +33,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[Thumbs]}
                 className="main-swiper">
-                {images.map((item, i) => {
+                {images?.map((item, i) => {
                     return (
                         <SwiperSlide
                             className="main-swiper__slide"
@@ -42,7 +42,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                                 className={s.main_image}
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
-                                alt={alt}
+                                alt={alt ?? ''}
                                 width={600}
                                 height={600}
                                 quality={100}
@@ -59,7 +59,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                 slidesPerView={4}
                 freeMode={true}
                 className="navigation-swiper">
-                {images.map((item, i) => {
+                {images?.map((item, i) => {
                     return (
                         <SwiperSlide
                             className="navigation-swiper__slide"
@@ -67,7 +67,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                             <Image
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
-                                alt={alt}
+                                alt={alt ?? ''}
                                 width={102}
                                 height={102}
                                 quality={50}

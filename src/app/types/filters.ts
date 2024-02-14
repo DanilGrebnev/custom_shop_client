@@ -1,8 +1,3 @@
-interface IFilter {
-    label: string
-    value: string
-}
-
 export interface IFilterItemChoices extends IFilter {
     children?: IFilter[]
 }

@@ -24,7 +24,6 @@ export const ProfileLayoutHeader = () => {
 
     const onClick = () => {
         logout().then(() => {
-            dispatch(userProfileActions.setIsAuth(false))
             router.push(NavigationRoutes.login())
         })
     }

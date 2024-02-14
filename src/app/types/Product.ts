@@ -34,6 +34,7 @@ export interface IProductFilterChoicesItem {
     label: string
     value: string
     children: IProductFilterChoicesItem[]
+    code?: string
 }
 
 export interface IProductFilterList {
@@ -48,4 +49,9 @@ export interface IProductFilterList {
 
 export interface IProductFilterResponse {
     filters: IProductFilterList[]
+}
+
+export interface IProductData {
+    totalCount: number
+    products: IProduct[]
 }

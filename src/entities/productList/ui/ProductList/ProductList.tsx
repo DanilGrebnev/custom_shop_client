@@ -10,6 +10,7 @@ import { getSearchProductParams } from '@/entities/searchProductParams'
 import { productSearchInputActions } from '@/entities/productSearchInput'
 import { ProductListHeader } from '../ProductListHeader/ProductListHeader'
 import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
+import { useGetProductsQuery } from '../../model/api/productApi'
 
 import {
     IContextPreviewProvider,
@@ -23,10 +24,9 @@ export const ProductList = () => {
     const { preview } = useContext(PreviewContext) as IContextPreviewProvider
 
     const dispatch = useAppDispatch()
-    const products = useAppSelector(ProductListSelectors.getProducts)
-    const isLoading = useAppSelector(ProductListSelectors.getIsLoading)
-
     const usp = useAppSelector(getSearchProductParams)
+
+    const { data: productResponse, isLoading } = useGetProductsQuery(usp)
 
     useEffect(() => {
         dispatch(productSearchInputActions.isHiddenSearchList(true))
@@ -36,10 +36,6 @@ export const ProductList = () => {
         }
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(fetchProductList({ offset: 0 }))
-    }, [usp, dispatch])
-
     return (
         <div
             id="Product_List"
@@ -48,20 +44,22 @@ export const ProductList = () => {
             <div className={clsx(s['product-list__content'], s[preview])}>
                 {isLoading && <ProductListSkeleton />}
 
-                {products?.map(({ id, price, images, name, description }) => {
-                    return (
-                        <ShopProductCardWidget
-                            key={id}
-                            type={preview}
-                            productId={id}
-                            rating={3}
-                            images={images}
-                            name={name}
-                            price={price}
-                            description={description}
-                        />
-                    )
-                })}
+                {productResponse?.products?.map(
+                    ({ id, price, images, name, description }) => {
+                        return (
+                            <ShopProductCardWidget
+                                key={id}
+                                type={preview}
+                                productId={id}
+                                rating={3}
+                                images={images}
+                                name={name}
+                                price={price}
+                                description={description}
+                            />
+                        )
+                    }
+                )}
             </div>
             <div className={s.pagination}>
                 <ProductListPagination />

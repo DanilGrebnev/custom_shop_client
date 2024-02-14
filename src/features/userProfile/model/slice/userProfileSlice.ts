@@ -33,6 +33,7 @@ const userProfileSlice = createSlice({
         ) {
             state.fields[action.payload.name] = action.payload.value
         },
+
         setProfileFields(
             state,
             action: PayloadAction<IUserProfileFields | undefined>
@@ -40,16 +41,16 @@ const userProfileSlice = createSlice({
             if (!action.payload) return
             state.fields = action.payload
         },
+        createFieldsCopy() {},
+
         setFieldsCopy(state) {
             const fieldsString = copyObject(state.fields, [
                 'date_joined',
                 'favorites',
+                'id',
             ])
 
             state.prevFieldsValue = fieldsString
-        },
-        setIsAuth(state, action: PayloadAction<boolean>) {
-            state.isAuth = action.payload
         },
     },
     extraReducers(builder) {

@@ -39,7 +39,7 @@ export const WishListItem: FC<IWishListItemProps> = (props) => {
                 <div className={s['wishlist-content']}>
                     <Link
                         className={s.link}
-                        href={NavigationRoutes.product(String(product?.id))}>
+                        href={NavigationRoutes.product(product?.id as number)}>
                         <h3>{products?.name}</h3>
                         <p>{products?.description}</p>
                     </Link>

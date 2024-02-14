@@ -1,6 +1,6 @@
 import { getProduct } from './api'
-import { ProductPage as ProductPageClient } from '@/entities/productPage'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+import { ProductDetailPage } from '@/pages_ui/ProductDetailPage'
 
 interface IProductPage {
     params: { id: string }
@@ -9,7 +9,6 @@ interface IProductPage {
 export const generateMetadata = async ({ params }: IProductPage) => {
     try {
         const product = await getProduct(params.id)
-        // const product = await getProductTEST()
 
         return {
             title: product.name,
@@ -26,7 +25,7 @@ export const generateMetadata = async ({ params }: IProductPage) => {
 
 const ProductPage = ({ params }: IProductPage) => (
     <ClientErrorBoundary>
-        <ProductPageClient productId={params.id} />
+        <ProductDetailPage productId={params.id} />
     </ClientErrorBoundary>
 )
 

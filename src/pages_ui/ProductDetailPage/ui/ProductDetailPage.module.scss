@@ -1,0 +1,46 @@
+.ProductPage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.left-col {
+    border-right: 1px solid var(--border-ui-color1);
+}
+
+.right-col {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px;
+}
+
+.category-title {
+    font-size: var(--font-s);
+    color: var(--global-palette6);
+}
+
+.name {
+    font-size: var(--font-l);
+    color: var(--text-color2);
+}
+
+.description {
+    font-size: var(--font-s);
+    color: var(--text-color2);
+}
+
+.price {
+    color: var(--text-color3);
+    font-size: var(--font-m);
+    font-weight: 500;
+}
+
+.quantity {
+    color: var(--text-color3);
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+}

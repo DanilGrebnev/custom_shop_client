@@ -57,9 +57,9 @@ const CheckBoxProvider: FC<CheckBoxItem> = (props) => {
         checked: thisInput?.checked || false,
         name: name,
         label: inputLabel,
-        value: choicesItem.value,
-        labelcolor: choicesItem.value,
-        rating: choicesItem.value,
+        value: choicesItem,
+        labelcolor: choicesItem,
+        rating: choicesItem,
     }
 
     return <Component {...properties} />
@@ -90,9 +90,9 @@ export const FilterCheckBox: FC<IChoiceItem> = (props) => {
         checked: thisInput?.checked || false,
         name: name,
         label: inputLabel,
-        value: choicesItem.value,
-        labelcolor: choicesItem.value,
-        rating: choicesItem.value,
+        value: choicesItem,
+        labelcolor: choicesItem,
+        rating: choicesItem,
     }
 
     return <CheckBox {...properties} />

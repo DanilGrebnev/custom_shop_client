@@ -10,7 +10,7 @@ import clsx from 'clsx'
 import s from './s.module.scss'
 
 type ICheckBoxProps = TCheckBoxArguments & {
-    label?: string
+    label?: ReactNode
     children?: ReactNode
 }
 
@@ -32,10 +32,12 @@ export const CheckBox: FC<ICheckBoxProps> = memo((props) => {
 
     const isOpenClass = isOpen ? s.active : ''
 
+    const title = typeof label !== 'string' ? '' : label
+
     return (
         <div className={clsx(s.CheckBox, isOpenClass, className)}>
             <div
-                title={label}
+                title={title}
                 className={clsx(s.content, isOpenClass)}>
                 <CustomCheckbox
                     disabled={disabled}

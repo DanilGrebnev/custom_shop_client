@@ -26,7 +26,7 @@ export const LikeButtonWidget: FC<LikeButtonWidgetProps> = ({ productId }) => {
         <LikeButton
             active={isActive}
             loading={isLoading}
-            onClick={() => toggleWishList(productId)}
+            onClick={() => toggleWishList(+productId)}
         />
     )
 }

@@ -1,10 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { IImage } from '@/app/types/Product'
 import Image from 'next/image'
 import clsx from 'clsx'
 import s from './ImagePreview.module.scss'
-import { useState } from 'react'
 
 interface Props {
     name: string
@@ -12,14 +12,14 @@ interface Props {
     className?: string
 }
 
-const url = process.env.NEXT_PUBLIC_BACKEND_URL
-
 export const ImagePreview = (props: Props) => {
     const { images, name, className } = props
     const [src, setSrc] = useState(images[0].image)
 
     const onHover = () => {
-        setSrc(images[1].image)
+        const src = images?.[1]?.image
+        if (!src) return
+        setSrc(src)
     }
 
     const onBlur = () => {
