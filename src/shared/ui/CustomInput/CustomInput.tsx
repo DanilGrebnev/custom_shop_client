@@ -1,61 +1,57 @@
 'use client'
 
-import { ChangeEvent, useEffect, useState, memo, useCallback } from 'react'
+import {
+    ChangeEvent,
+    useEffect,
+    useState,
+    memo,
+    useCallback,
+    forwardRef,
+} from 'react'
 import { TextField } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import './input.scss'
 import s from './CustomInput.module.scss'
 import clsx from 'clsx'
+import './input.scss'
 
 export type TCustomInput = Omit<Parameters<typeof TextField>[0], 'color'> & {
     color?: string
 }
 
-export const CustomInput = memo((props: TCustomInput) => {
-    const {
-        color = 'var(--global-palette1)',
-        onChange,
-        value,
-        className,
-        ...otherProps
-    } = props
+export const CustomInput = memo(
+    forwardRef((props: TCustomInput, ref) => {
+        const {
+            color = 'var(--global-palette1)',
+            onChange,
+            value,
+            className,
+            ...otherProps
+        } = props
 
-    const [inputValue, setValue] = useState<string>('')
-
-    useEffect(() => {
-        setValue(value as string)
-    }, [value])
-
-    const theme = createTheme({
-        palette: {
-            //@ts-ignore
-            custom: {
-                main: color,
-            },
-        },
-    })
-
-    const handleChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
-            setValue(e.target.value)
-            onChange?.(e)
-        },
-        [onChange]
-    )
-
-    return (
-        <ThemeProvider theme={theme}>
-            <TextField
+        const theme = createTheme({
+            palette: {
                 //@ts-ignore
-                color="custom"
-                onChange={handleChange}
-                value={inputValue}
-                className={clsx(s.input, className)}
-                {...otherProps}
-            />
-        </ThemeProvider>
-    )
-})
+                custom: {
+                    main: color,
+                },
+            },
+        })
+
+        return (
+            <ThemeProvider theme={theme}>
+                <TextField
+                    inputRef={ref}
+                    //@ts-ignore
+                    color="custom"
+                    onChange={onChange}
+                    value={value}
+                    className={clsx(s.input, className)}
+                    {...otherProps}
+                />
+            </ThemeProvider>
+        )
+    })
+)
 
 CustomInput.displayName = 'CustomInput'

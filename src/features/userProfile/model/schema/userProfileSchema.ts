@@ -10,14 +10,14 @@ export interface ILoginFields {
 }
 
 export interface IUserProfileFields {
-    id: number
-    first_name: string
-    last_name: string
-    email: string
-    phone_number: string
-    username: string
-    date_joined: string
-    favorites: IUserProfileFavorites[] | []
+    readonly id: number
+    readonly first_name: string
+    readonly last_name: string
+    readonly email: string
+    readonly phone_number: string
+    readonly username: string
+    readonly date_joined: string
+    readonly favorites: IUserProfileFavorites[] | []
 }
 
 export interface IUserProfileSchema {

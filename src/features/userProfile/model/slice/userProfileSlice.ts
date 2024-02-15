@@ -41,16 +41,9 @@ const userProfileSlice = createSlice({
             if (!action.payload) return
             state.fields = action.payload
         },
-        createFieldsCopy() {},
-
+        
         setFieldsCopy(state) {
-            const fieldsString = copyObject(state.fields, [
-                'date_joined',
-                'favorites',
-                'id',
-            ])
-
-            state.prevFieldsValue = fieldsString
+            state.prevFieldsValue = JSON.stringify(state.fields)
         },
     },
     extraReducers(builder) {

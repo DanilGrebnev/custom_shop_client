@@ -1,4 +1,4 @@
-import { useState, memo } from 'react'
+import { useState, memo, forwardRef } from 'react'
 import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import { Input, TextField } from '@mui/material'
@@ -7,28 +7,32 @@ import './NumberInput.scss'
 
 type INumberInputProps = Parameters<typeof TextField>[0]
 
-export const NumberInput = memo((props: INumberInputProps) => {
-    const { defaultValue, onChange, name, variant = 'standard' } = props
-    const [values, setValues] = useState(defaultValue || '')
+export const NumberInput = memo(
+    forwardRef((props: INumberInputProps, ref) => {
+        const {
+            defaultValue,
+            name,
+            onChange,
+            variant = 'standard',
+            value,
+        } = props
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues(event.target.value)
-        onChange?.(event)
-    }
-
-    return (
-        <FormControl variant={variant}>
-            <InputLabel htmlFor="formatted-text-mask-input">
-                Номер телефона
-            </InputLabel>
-            <Input
-                value={values}
-                onChange={handleChange}
-                name={name}
-                inputComponent={TextMaskCustom as any}
-            />
-        </FormControl>
-    )
-})
+        return (
+            <FormControl variant={variant}>
+                <InputLabel htmlFor="formatted-text-mask-input">
+                    Номер телефона
+                </InputLabel>
+                <Input
+                    inputRef={ref}
+                    value={value}
+                    onChange={onChange}
+                    name={name}
+                    inputComponent={TextMaskCustom as any}
+                    defaultValue={defaultValue}
+                />
+            </FormControl>
+        )
+    })
+)
 
 NumberInput.displayName = 'NumberInput'
