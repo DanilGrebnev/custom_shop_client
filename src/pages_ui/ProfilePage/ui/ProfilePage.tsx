@@ -1,5 +1,5 @@
 'use client'
-
+import deepEqual from 'deep-equal'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import {
     useGetProfileQuery,
@@ -12,7 +12,6 @@ import { dateParse } from '@/shared/lib/dateParse'
 import { NumberInput } from '@/shared/ui/NumberInput'
 import { Button } from '@/shared/ui/Button'
 import { omitFromObject } from '@/shared/lib/omitFromObject'
-import { notDeepEqual } from '@/shared/lib/notDeepEqual'
 
 import ProfileImage from '@/shared/assets/profile_icon_160.webp'
 import Image from 'next/image'
@@ -46,14 +45,16 @@ export const ProfilePage = () => {
         },
     })
 
-    const { register, handleSubmit, watch } = useForm<IProfileForm>({
-        defaultValues: {
-            first_name: user?.first_name,
-            last_name: user?.last_name,
-            email: user?.email,
-            phone_number: user?.phone_number || '',
-            username: user?.username,
-        },
+    const defaultValues = {
+        first_name: user?.first_name,
+        last_name: user?.last_name,
+        email: user?.email,
+        phone_number: user?.phone_number || '',
+        username: user?.username,
+    }
+    
+    const { register, handleSubmit, watch, reset } = useForm<IProfileForm>({
+        defaultValues,
     })
 
     const watchesValue = watch()
@@ -64,19 +65,11 @@ export const ProfilePage = () => {
     }, [])
 
     const onSubmit: SubmitHandler<IProfileForm> = useCallback(async (data) => {
-        await fetchUpdateProfile({
-            ...data,
-            date_joined: user?.date_joined as string,
+        await fetchUpdateProfile(data).then(() => {
+            document.location.reload()
         })
-            .unwrap()
-            .then((res) => {
-                console.log('resMutation', res)
-            })
-            .catch((err) => console.log('errMutation', err))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const isEqual = notDeepEqual(watchesValue, userValue)
 
     return (
         <Papper
@@ -123,7 +116,17 @@ export const ProfilePage = () => {
                             type="text"
                         />
 
-                        {!isEqual && <Button type="submit">Изменить</Button>}
+                        {!deepEqual(watchesValue, userValue) && (
+                            <>
+                                <Button type="submit">Изменить</Button>
+                                <Button
+                                    type="button"
+                                    variant="outlined"
+                                    onClick={() => reset(defaultValues)}>
+                                    Отмена
+                                </Button>
+                            </>
+                        )}
 
                         <p className={s['registration-date']}>
                             <span>Дата регистрации:</span>{' '}

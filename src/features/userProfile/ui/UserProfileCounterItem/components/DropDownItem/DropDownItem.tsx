@@ -13,7 +13,6 @@ interface IDropDownItem {
 
 export const DropDownItem = (props: IDropDownItem) => {
     const { id, name, images, price, quantity } = props.product
-    const src = process.env.NEXT_PUBLIC_URL_BACKEND! + images[0].image
 
     return (
         <div className={s.item}>
@@ -21,7 +20,7 @@ export const DropDownItem = (props: IDropDownItem) => {
                 width={50}
                 height={50}
                 alt={name}
-                src={src}
+                src={images[0].image}
             />
             <div>{name}</div>
             <span>{price} р</span>

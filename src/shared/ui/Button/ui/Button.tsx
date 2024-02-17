@@ -37,7 +37,7 @@ export const Button: FC<IButtonProps> = memo((props) => {
         borderRadius,
         open = false,
         menuIcon = false,
-        focus,
+        focus = true,
         type = 'button',
         size = 'M',
         disabled,

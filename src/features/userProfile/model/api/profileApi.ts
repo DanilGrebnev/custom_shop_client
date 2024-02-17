@@ -15,7 +15,10 @@ export const profileApi = createApi({
             query: () => 'api/user/me',
             providesTags: ['Profile'],
         }),
-        updateProfile: build.mutation<any, TUpdateUserProfileBody>({
+        updateProfile: build.mutation<
+            any,
+            Omit<TUpdateUserProfileBody, 'date_joined'>
+        >({
             query: (userBody) => ({
                 url: 'api/users/me',
                 method: 'PUT',
