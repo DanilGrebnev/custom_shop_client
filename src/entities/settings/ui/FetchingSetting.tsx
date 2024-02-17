@@ -1,23 +1,13 @@
 'use client'
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import { ILayout } from '@/app/types/layout'
-import { useAppDispatch } from '@/shared/hooks'
-import { useEffect } from 'react'
-import { fetchSetting } from '../model/services/fetchSetting'
-import { SettingSelectors } from '../model/selectors/settingsSelector'
-import { useAppSelector } from '@/shared/hooks'
+import { useGetSettingsQuery } from '../model/api/settingApi'
 
 const FetchingSettingComponent = ({ children }: ILayout) => {
-    const dispatch = useAppDispatch()
-    const setting = useAppSelector(SettingSelectors.getSetting)
-
-    useEffect(() => {
-        dispatch(fetchSetting())
-    }, [])
+    const { data } = useGetSettingsQuery()
 
     const root = document.documentElement
-    root.style.setProperty('--global-palette1', setting.color)
+    root.style.setProperty('--global-palette1', data?.color || null)
 
     return children
 }

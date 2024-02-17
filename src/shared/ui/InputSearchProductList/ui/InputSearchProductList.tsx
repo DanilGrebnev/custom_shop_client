@@ -2,7 +2,7 @@
 
 import { type FC, memo } from 'react'
 import { v4 } from 'uuid'
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 import { InputSearchProductItem } from './components/InputSearchProductItem'
 
 import s from './InputSearchProductList.module.scss'

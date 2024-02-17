@@ -1,5 +1,5 @@
 import { $axios } from '@/app/API'
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 import { IUserProfileFavorites } from '../schema/userProfileSchema'
 
 export const fetchWishList = async (wishList?: IUserProfileFavorites[]) => {

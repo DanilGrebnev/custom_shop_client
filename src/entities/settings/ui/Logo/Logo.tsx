@@ -1,17 +1,14 @@
 'use client'
 
-import { useAppSelector } from '@/shared/hooks'
-import { SettingSelectors } from '../../model/selectors/settingsSelector'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-// import TargetStoreLogo from '/public/static/images/logo.svg'
+import { useGetSettingsQuery } from '../../model/api/settingApi'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import s from './Logo.module.scss'
 
 export const Logo = () => {
-    const logo = useAppSelector(SettingSelectors.getLogo)
-    const isLoading = useAppSelector(SettingSelectors.getIsLoading)
+    const { data, isLoading } = useGetSettingsQuery()
 
     if (isLoading) {
         return <h1>Загрузка</h1>
@@ -25,7 +22,7 @@ export const Logo = () => {
                 width={130}
                 height={100}
                 alt="Логотип"
-                src={process.env.NEXT_PUBLIC_URL_BACKEND + logo}
+                src={process.env.NEXT_PUBLIC_URL_BACKEND! + data?.homeLogo}
             />
         </Link>
     )

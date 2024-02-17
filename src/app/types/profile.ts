@@ -5,7 +5,6 @@ export interface IUserProfileFavorites {
     rating: number
     quantity: number
     image: string
-    description: string
 }
 
 export interface ILoginFields {

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IUserProfileFields } from '../schema/userProfileSchema'
 import { ILoginFields } from '../schema/userProfileSchema'
+import { TUpdateUserProfileBody } from '../schema/userProfileSchema'
 
 export const profileApi = createApi({
     reducerPath: 'api/profile',
@@ -8,18 +9,30 @@ export const profileApi = createApi({
         baseUrl: process.env.NEXT_PUBLIC_URL_BACKEND,
         credentials: 'include',
     }),
-    tagTypes: ['Profile', 'WishList'],
+    tagTypes: ['Profile'],
     endpoints: (build) => ({
         getProfile: build.query<IUserProfileFields, void>({
             query: () => 'api/user/me',
             providesTags: ['Profile'],
+        }),
+        updateProfile: build.mutation<any, TUpdateUserProfileBody>({
+            query: (userBody) => ({
+                url: 'api/users/me',
+                method: 'PUT',
+                body: userBody,
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+            invalidatesTags: ['Profile'],
         }),
         toggleWishList: build.mutation<IUserProfileFields, number>({
             query: (productId) => ({
                 url: `api/product/favorite/${productId}`,
                 method: 'POST',
             }),
-            invalidatesTags: ['Profile', 'WishList'],
+            invalidatesTags: ['Profile'],
         }),
         loginInAccount: build.mutation<void, ILoginFields>({
             query: (body) => ({
@@ -45,4 +58,6 @@ export const {
     useToggleWishListMutation,
     useLogoutFromAccountMutation,
     useLoginInAccountMutation,
+    useLazyGetProfileQuery,
+    useUpdateProfileMutation,
 } = profileApi

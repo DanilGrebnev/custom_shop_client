@@ -5,26 +5,15 @@ import { FeaturedProducts } from '@/widget/FeaturedProducts'
 import { NewProducts } from '@/widget/NewProducts'
 import { FeedBackBlock } from '@/widget/FeedBackBlock'
 import { BestsellerProducts } from '@/widget/BestsellerProducts'
-import { fetchHomePageData } from '@/entities/homePage'
-import { useAppDispatch } from '@/shared/hooks'
-import { useAppSelector } from '@/shared/hooks'
-import { useEffect } from 'react'
-import { HomePageSelectors } from '@/entities/homePage'
+import { useGetHomePageQuery } from '@/entities/homePage'
 import { HomePageSkeleton } from '@/shared/ui/Skeletons'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 import { ShopByFeaturedCategoriesDynamic } from '@/widget/ShopByFeaturedCategories'
-import { v4 } from 'uuid'
 
 export const HomePage = () => {
-    const dispatch = useAppDispatch()
-    const homePageData = useAppSelector(HomePageSelectors.getHomePageData)
-    const isLoading = useAppSelector(HomePageSelectors.getIsLoadingHomePage)
+    const { data: homePageData, isLoading } = useGetHomePageQuery()
 
-    useEffect(() => {
-        dispatch(fetchHomePageData())
-    }, [dispatch])
-
-    if (isLoading) {
+    if (isLoading || !homePageData) {
         return <HomePageSkeleton />
     }
 

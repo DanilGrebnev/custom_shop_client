@@ -6,7 +6,7 @@ import { DropDownItem } from '../DropDownItem/DropDownItem'
 
 import s from './s.module.scss'
 import { useGetCartQuery } from '@/features/basket'
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 import { useEffect, useState } from 'react'
 import { promiseHooks } from 'v8'
 import { $axios } from '@/app/API'

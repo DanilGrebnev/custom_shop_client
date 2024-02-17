@@ -27,3 +27,5 @@ export const ProductListHeader = () => {
         </header>
     )
 }
+
+export default ProductListHeader

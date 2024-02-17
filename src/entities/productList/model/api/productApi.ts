@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ApiRoutes } from '@/shared/routes/apiRoutes'
+import { ApiRoutes } from '@/apiRoutes/apiRoutes'
 import {
     IProduct,
     IProductData,
     type IProductFilterResponse,
-} from '@/app/types/Product'
+} from '@/app/types/product'
 import { addUrlToProductsImages } from '../lib/addUrlToProductsImages'
 
 export const productApi = createApi({
@@ -20,13 +20,6 @@ export const productApi = createApi({
         }),
         getProducts: build.query<IProductData, string>({
             query: (urlParams: string) => '/products?' + urlParams || '',
-            transformResponse: (result: IProductData) => {
-                const updatedProducts = addUrlToProductsImages(result.products)
-                return {
-                    ...result,
-                    products: updatedProducts,
-                } as IProductData
-            },
         }),
         getProductById: build.query<IProduct, string>({
             query: (productId: string) => '/product/' + productId,

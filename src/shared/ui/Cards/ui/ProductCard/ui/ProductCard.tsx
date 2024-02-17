@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import { ProductListPreviewType } from '@/app/types/Product'
+import { ProductListPreviewType } from '@/app/types/product'
 import { CardPreview, Price, SideMenu, Name } from './components'
 import { Rating } from '@/shared/ui/Rating'
 import { IProductCard } from '../model/types/type'

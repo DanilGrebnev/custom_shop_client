@@ -1,5 +1,5 @@
 import { Slider } from '@/shared/ui/Slider'
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 import Image from 'next/image'
 import s from './s.module.scss'
 

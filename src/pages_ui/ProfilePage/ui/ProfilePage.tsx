@@ -1,21 +1,24 @@
 'use client'
 
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useGetProfileQuery } from '@/features/userProfile'
-import { useCallback, useEffect, useState } from 'react'
+import {
+    useGetProfileQuery,
+    useUpdateProfileMutation,
+} from '@/features/userProfile'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CustomInput } from '@/shared/ui/CustomInput'
 import { Papper } from '@/shared/ui/Papper'
 import { dateParse } from '@/shared/lib/dateParse'
 import { NumberInput } from '@/shared/ui/NumberInput'
 import { Button } from '@/shared/ui/Button'
 import { omitFromObject } from '@/shared/lib/omitFromObject'
+import { notDeepEqual } from '@/shared/lib/notDeepEqual'
 
 import ProfileImage from '@/shared/assets/profile_icon_160.webp'
 import Image from 'next/image'
 
 import s from './ProfilePage.module.scss'
 import clsx from 'clsx'
-import { notDeepEqual } from '@/shared/lib/notDeepEqual'
 
 interface IProfileForm {
     first_name: string
@@ -26,11 +29,11 @@ interface IProfileForm {
 }
 
 export const ProfilePage = () => {
+    const [fetchUpdateProfile, result] = useUpdateProfileMutation()
+
     const { user } = useGetProfileQuery(undefined, {
         selectFromResult: (result) => {
-            if (!result?.data) {
-                return { user: undefined }
-            }
+            if (!result?.data) return { user: undefined }
 
             return {
                 user: {
@@ -38,8 +41,6 @@ export const ProfilePage = () => {
                         result.data,
                         ['favorites', 'id']
                     ),
-                    // устанавливаем телефон на пустуую строку, потому что с бэка приходит null
-                    phone_number: '',
                 },
             }
         },
@@ -54,16 +55,28 @@ export const ProfilePage = () => {
             username: user?.username,
         },
     })
+
     const watchesValue = watch()
 
-    const onSubmit: SubmitHandler<IProfileForm> = useCallback((data) => {
-        console.log(data)
+    const userValue = useMemo(() => {
+        return omitFromObject(user!, ['date_joined'])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const isEqual = notDeepEqual(
-        watchesValue,
-        omitFromObject(user!, ['date_joined'])
-    )
+    const onSubmit: SubmitHandler<IProfileForm> = useCallback(async (data) => {
+        await fetchUpdateProfile({
+            ...data,
+            date_joined: user?.date_joined as string,
+        })
+            .unwrap()
+            .then((res) => {
+                console.log('resMutation', res)
+            })
+            .catch((err) => console.log('errMutation', err))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const isEqual = notDeepEqual(watchesValue, userValue)
 
     return (
         <Papper

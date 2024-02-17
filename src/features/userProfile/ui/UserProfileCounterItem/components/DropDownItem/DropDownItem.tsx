@@ -1,6 +1,6 @@
 'use client'
 
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 import Image from 'next/image'
 import DeleteBasket from '@/shared/assets/delete-basket.svg'
 import { ICart } from '@/app/types/basket'

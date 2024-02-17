@@ -1,7 +1,3 @@
-export { type ISettingSchema } from './model/schema/settingSchema'
-export { settingReducer } from './model/slice/settingSlice'
-export { SettingSelectors } from './model/selectors/settingsSelector'
-export { fetchSetting } from './model/services/fetchSetting'
 export { Logo } from './ui/Logo/Logo'
 export { LogoDynamic } from './ui/Logo/LogoDynamic'
 export { FetchSettingDynamic } from './ui/FetchSettingDynamic'

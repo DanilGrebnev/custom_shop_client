@@ -3,7 +3,7 @@ import { Slider } from '@/shared/ui/Slider'
 import { ProductCard } from '@/shared/ui/Cards'
 
 import clsx from 'clsx'
-import { IHomePageProducts } from '@/app/types/HomePage'
+import { IHomePageProducts } from '@/app/types/homePage'
 import mock from '@/mock/mock'
 
 interface IBestsellerProducts {

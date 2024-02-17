@@ -3,7 +3,7 @@
 import { ContainerWithTitle } from '@/shared/ui/Containers/ContainerWithTitle'
 import { Slider } from '@/shared/ui/Slider'
 import { ProductCard } from '@/shared/ui/Cards'
-import { IHomePageProducts } from '@/app/types/HomePage'
+import { IHomePageProducts } from '@/app/types/homePage'
 import mock from '@/mock/mock'
 
 interface IFeaturedProductsProps {

@@ -3,7 +3,7 @@
 import { FC, CSSProperties } from 'react'
 import { Slider } from '@/shared/ui/Slider'
 import { LargeSliderCard } from '@/shared/ui/Cards'
-import { IImage } from '@/app/types/Product'
+import { IImage } from '@/app/types/product'
 // import data from '@/mock/mock'
 
 import clsx from 'clsx'
@@ -28,7 +28,7 @@ export const TopSlider: FC<ITopSliderProps> = (props) => {
                 {sliderImages?.map(({ image }, i) => {
                     return (
                         <LargeSliderCard
-                        className={s.card}
+                            className={s.card}
                             src={image}
                             key={i}
                         />

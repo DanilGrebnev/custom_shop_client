@@ -1,21 +1,20 @@
 'use client'
 
-import { UserProfileSelectors } from '@/features/userProfile'
-import { useAppSelector } from '@/shared/hooks'
+import { useGetProfileQuery } from '@/features/userProfile'
 
 import { v4 } from 'uuid'
 import { WishListItem } from '../WishListItem/WishListItem'
 
 export const WishList = () => {
-    const wishList = useAppSelector(UserProfileSelectors.getWishList)
-
+    const { data } = useGetProfileQuery()
+    console.log(data?.favorites)
     return (
         <>
-            {wishList.map((product) => {
+            {data?.favorites.map((favorite) => {
                 return (
                     <WishListItem
                         key={v4()}
-                        product={product}
+                        favoriteProduct={favorite}
                     />
                 )
             })}

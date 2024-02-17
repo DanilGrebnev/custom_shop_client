@@ -1,3 +1,6 @@
+/**
+ * Функция неглубокого сравнения объектов
+ */
 export const notDeepEqual = (
     o1?: Record<string, any>,
     o2?: Record<string, any>

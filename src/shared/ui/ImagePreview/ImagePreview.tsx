@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { IImage } from '@/app/types/Product'
+import { IImage } from '@/app/types/product'
 import Image from 'next/image'
 import clsx from 'clsx'
 import s from './ImagePreview.module.scss'

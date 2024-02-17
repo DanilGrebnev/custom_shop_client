@@ -1,11 +1,7 @@
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
-import {
-    DynamicProductList,
-    ProductFilter,
-    ProductList,
-} from '@/entities/productList'
+import { DynamicProductList, ProductFilter } from '@/entities/productList'
 import { PreviewProviderDynamic } from '@/entities/productList'
 
 import clsx from 'clsx'

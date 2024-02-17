@@ -1,4 +1,4 @@
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 import { $axios } from '@/app/API'
 // import mock from '@/mock/mock'
 

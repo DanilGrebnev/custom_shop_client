@@ -1,4 +1,4 @@
-import { IProduct } from '@/app/types/Product'
+import { IProduct } from '@/app/types/product'
 
 export const addUrlToProductsImages = (products: IProduct[]) => {
     return products.map((product) => {
