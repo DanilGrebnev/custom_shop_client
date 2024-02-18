@@ -46,7 +46,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                                 width={600}
                                 height={600}
                                 quality={100}
-                                src={urlToBackend + item.image}
+                                src={item.image}
                             />
                         </SwiperSlide>
                     )
@@ -71,7 +71,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                                 width={102}
                                 height={102}
                                 quality={50}
-                                src={urlToBackend + item.image}
+                                src={item.image}
                             />
                         </SwiperSlide>
                     )

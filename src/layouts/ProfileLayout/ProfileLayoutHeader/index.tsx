@@ -2,25 +2,18 @@
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { Papper } from '@/shared/ui/Papper'
-import { useGetProfileQuery, userProfileActions } from '@/features/userProfile'
-import { useAppDispatch } from '@/shared/hooks'
-import { useRouter } from 'next/navigation'
+import { useGetProfileQuery } from '@/features/userProfile'
 import { useLogoutFromAccountMutation } from '@/features/userProfile'
+import { useRouter } from 'next/navigation'
 
-import s from './s.module.scss'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import s from './s.module.scss'
 
 export const ProfileLayoutHeader = () => {
-    const dispatch = useAppDispatch()
-    const { data } = useGetProfileQuery()
-
-    useEffect(() => {
-        dispatch(userProfileActions.setProfileFields(data))
-    }, [data, dispatch])
+    const router = useRouter()
+    useGetProfileQuery()
 
     const [logout] = useLogoutFromAccountMutation()
-    const router = useRouter()
 
     const onClick = () => {
         logout().then(() => {

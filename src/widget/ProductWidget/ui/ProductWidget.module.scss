@@ -19,3 +19,26 @@
     display: flex;
     gap: 5px;
 }
+
+.btn-group {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.delete {
+    padding: 5px;
+    border-radius: var(--global-border-radius);
+    align-self: start;
+
+    &:hover {
+        background: var(--hover-effect-for-icon);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+    path {
+        fill: var(--text-color2);
+    }
+}

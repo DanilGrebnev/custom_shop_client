@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IUserProfileFields } from '../schema/userProfileSchema'
-import { ILoginFields } from '../schema/userProfileSchema'
-import { TUpdateUserProfileBody } from '../schema/userProfileSchema'
+import type {
+    IUserProfileFields,
+    ILoginFields,
+    TUpdateUserProfileBody,
+} from '@/app/types/profile'
 
 export const profileApi = createApi({
     reducerPath: 'api/profile',

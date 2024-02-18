@@ -1,57 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IUserProfileSchema } from '../schema/userProfileSchema'
-import { IUserProfileFields } from '../schema/userProfileSchema'
-import { copyObject } from '../lib/copyObject'
-import { profileApi } from '../..'
+import { profileApi } from '../api/profileApi'
 
 const initialState: IUserProfileSchema = {
-    fields: {
-        id: 0,
-        username: '',
-        first_name: '',
-        last_name: '',
-        phone_number: '',
-        date_joined: '',
-        email: '',
-        favorites: [],
-    },
-    prevFieldsValue: '',
     isAuth: false,
-    error: {},
+    isOpenBasketModal: false,
 }
 
 const userProfileSlice = createSlice({
-    name: 'userProfile',
+    name: 'userProfileSlice',
     initialState,
     reducers: {
-        setUserProfileValue(
-            state,
-            action: PayloadAction<{
-                name: keyof Omit<IUserProfileFields, 'favorites' | 'id'>
-                value: string
-            }>
-        ) {
-            state.fields[action.payload.name] = action.payload.value
-        },
-
-        setProfileFields(
-            state,
-            action: PayloadAction<IUserProfileFields | undefined>
-        ) {
-            if (!action.payload) return
-            state.fields = action.payload
-        },
-        
-        setFieldsCopy(state) {
-            state.prevFieldsValue = JSON.stringify(state.fields)
+        setIsOpenBasketModal(state, action: PayloadAction<boolean>) {
+            state.isOpenBasketModal = action.payload
         },
     },
     extraReducers(builder) {
         builder
             .addMatcher(
                 profileApi.endpoints.getProfile.matchFulfilled,
-                (state, action) => {
-                    state.fields = action.payload
+                (state) => {
                     state.isAuth = true
                 }
             )
@@ -64,5 +32,5 @@ const userProfileSlice = createSlice({
     },
 })
 
+export const { setIsOpenBasketModal } = userProfileSlice.actions
 export const userProfileReducer = userProfileSlice.reducer
-export const userProfileActions = userProfileSlice.actions

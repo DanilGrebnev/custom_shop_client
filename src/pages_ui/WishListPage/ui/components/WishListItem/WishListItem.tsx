@@ -1,7 +1,7 @@
 'use client'
 
 import { type FC } from 'react'
-import { IUserProfileFavorites } from '@/features/userProfile'
+import { IUserProfileFavorites } from '@/app/types/profile'
 import { Papper } from '@/shared/ui/Papper'
 import { LikeButtonWidget } from '@/widget/LikeButton'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'

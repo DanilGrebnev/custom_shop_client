@@ -1,11 +1,11 @@
 'use client'
-import deepEqual from 'deep-equal'
+
+import { useCallback, useMemo } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import {
     useGetProfileQuery,
     useUpdateProfileMutation,
 } from '@/features/userProfile'
-import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CustomInput } from '@/shared/ui/CustomInput'
 import { Papper } from '@/shared/ui/Papper'
 import { dateParse } from '@/shared/lib/dateParse'
@@ -13,6 +13,7 @@ import { NumberInput } from '@/shared/ui/NumberInput'
 import { Button } from '@/shared/ui/Button'
 import { omitFromObject } from '@/shared/lib/omitFromObject'
 
+import deepEqual from 'deep-equal'
 import ProfileImage from '@/shared/assets/profile_icon_160.webp'
 import Image from 'next/image'
 
@@ -28,7 +29,7 @@ interface IProfileForm {
 }
 
 export const ProfilePage = () => {
-    const [fetchUpdateProfile, result] = useUpdateProfileMutation()
+    const [fetchUpdateProfile] = useUpdateProfileMutation()
 
     const { user } = useGetProfileQuery(undefined, {
         selectFromResult: (result) => {
@@ -52,7 +53,7 @@ export const ProfilePage = () => {
         phone_number: user?.phone_number || '',
         username: user?.username,
     }
-    
+
     const { register, handleSubmit, watch, reset } = useForm<IProfileForm>({
         defaultValues,
     })
@@ -65,9 +66,12 @@ export const ProfilePage = () => {
     }, [])
 
     const onSubmit: SubmitHandler<IProfileForm> = useCallback(async (data) => {
-        await fetchUpdateProfile(data).then(() => {
-            document.location.reload()
-        })
+        await fetchUpdateProfile(data)
+            .then((res) => {
+                console.log(res)
+                document.location.reload()
+            })
+            .catch((err) => console.log(err))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

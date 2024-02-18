@@ -1,19 +1,30 @@
 import clsx from 'clsx'
 import s from './CounterButtons.module.scss'
+import PlusIcon from '@/shared/assets/plus-icon.svg'
+import MinusIcon from '@/shared/assets/minus-icon.svg'
 
-export const CounterButtons = () => {
+interface ICounterButtons {
+    productName?: string
+    increment?: () => void
+    decrement?: () => void
+}
+
+export const CounterButtons = (props: ICounterButtons) => {
+    const { increment, decrement } = props
     return (
         <div className={s['counter-wrapper']}>
             <button
-                title="increment button"
+                onClick={increment}
+                title={clsx('Увеличить количество товара', props.productName)}
                 type="button">
-                <i className={clsx(s.btn__icon, s.increment)}>+</i>
+                <PlusIcon className={clsx(s.btn__icon, s.increment)} />
             </button>
             <span className={s.count}>2</span>
             <button
-                title="decrement button"
+                onClick={decrement}
+                title={clsx('Уменьшить количество товара', props.productName)}
                 type="button">
-                <i className={clsx(s.btn__icon, s.decrement)}>-</i>
+                <MinusIcon className={clsx(s.btn__icon, s.decrement)} />
             </button>
         </div>
     )

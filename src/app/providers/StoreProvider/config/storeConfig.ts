@@ -1,4 +1,5 @@
 'use client'
+
 import { configureStore } from '@reduxjs/toolkit'
 import { staticReducers } from './ReducerManeger'
 import { RTKQueryMiddlewares } from './RTKQueryMiddlewares'

@@ -1,9 +1,11 @@
 'use client'
+
 import { Papper } from '@/shared/ui/Papper'
+import { CounterButtons } from '@/shared/ui/Buttons'
+import DeleteBasketIcon from '@/shared/assets/delete-basket.svg'
 import Image from 'next/image'
 
 import s from './ProductWidget.module.scss'
-import { CounterButtons } from '@/shared/ui/Buttons'
 
 export const ProductWidget = () => {
     return (
@@ -23,6 +25,14 @@ export const ProductWidget = () => {
                 <div className={s.stock}>
                     <p>В наличии:</p> <span>5</span>
                 </div>
+            </div>
+            <div className={s['btn-group']}>
+                <button
+                    title="Удалить товар"
+                    type="button"
+                    className={s.delete}>
+                    <DeleteBasketIcon />
+                </button>
             </div>
         </Papper>
     )

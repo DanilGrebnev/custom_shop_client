@@ -1,18 +1,19 @@
 'use client'
 
+import { memo } from 'react'
 import {
-    UserProfileBasketCounter,
     UserProfileSelectors,
     UserProfileWishListCounter,
 } from '@/features/userProfile'
-import { memo } from 'react'
 import { useAppSelector } from '@/shared/hooks'
-import UserProfileIcon from '@/shared/assets/profile_icon_160.webp'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import { UserProfileBasket } from './UserProfileBasket/UserProfileBasket'
 
-import s from './HeaderUserWidget.module.scss'
+import UserProfileIcon from '@/shared/assets/profile_icon_160.webp'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import s from './HeaderUserWidget.module.scss'
 
 export const HeaderUserWidget = memo(() => {
     const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
@@ -29,7 +30,7 @@ export const HeaderUserWidget = memo(() => {
 
     return (
         <div className={s['header-section-user']}>
-            <UserProfileBasketCounter />
+            <UserProfileBasket />
             <UserProfileWishListCounter />
 
             <Link
@@ -46,4 +47,5 @@ export const HeaderUserWidget = memo(() => {
         </div>
     )
 })
+
 HeaderUserWidget.displayName = 'HeaderUserWidget'

@@ -1,16 +1,23 @@
 import { UserProfileCounterItem } from '../UserProfileCounterItem/UserProfileCounterItem'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { useGetCartQuery } from '@/features/basket'
+
 import CartIcon from '/public/static/icons/cart.svg'
 
-export const UserProfileBasketCounter = () => {
-    const { data } = useGetCartQuery()
+interface IUserProfileBasketCounter {
+    count?: number
+    onMouseLeave?: () => void
+    onMouseEnter?: () => void
+}
+
+export const UserProfileBasketCounter = (props: IUserProfileBasketCounter) => {
+    const { count, onMouseEnter, onMouseLeave } = props
 
     return (
         <UserProfileCounterItem
-            dropDown={true}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             icon={<CartIcon />}
-            count={data?.length}
+            count={count}
             label="Корзина"
             href={NavigationRoutes.basket()}
         />

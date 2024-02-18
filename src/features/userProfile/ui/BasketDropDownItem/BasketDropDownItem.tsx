@@ -1,33 +1,32 @@
-'use client'
-
-import { IProduct } from '@/app/types/product'
-import Image from 'next/image'
 import DeleteBasket from '@/shared/assets/delete-basket.svg'
-import { ICart } from '@/app/types/basket'
+import s from './BasketDropDownItem.module.scss'
+import Image from 'next/image'
 
-import s from './DropDownItem.module.scss'
+// ! Это временно, пока не будет поправлен ответ по пути api/cart
+import { IProduct } from '@/app/types/product'
 
 interface IDropDownItem {
     product: IProduct
 }
 
-export const DropDownItem = (props: IDropDownItem) => {
+export const BasketDropDownItem = (props: IDropDownItem) => {
     const { id, name, images, price, quantity } = props.product
 
     return (
-        <div className={s.item}>
+        <div className={s.wrapper}>
             <Image
                 width={50}
                 height={50}
                 alt={name}
                 src={images[0].image}
             />
+            
             <div>{name}</div>
             <span>{price} р</span>
 
             <DeleteBasket
+                className={s['delete-icon']}
                 fill="var(--text-color2)"
-                className={s.icon}
             />
         </div>
     )

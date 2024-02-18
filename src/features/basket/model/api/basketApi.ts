@@ -9,8 +9,13 @@ export const basketApi = createApi({
     }),
 
     endpoints: (builder) => ({
+        // ! В дальнейшем ICart должен быть заменен на ICartResponse со следующими полями:
         getCart: builder.query<ICart[], void>({
             query: () => `/api/cart`,
+        }),
+
+        toggleProductAmount: builder.mutation({
+            query: () => `/api/cart/update`,
         }),
     }),
 })

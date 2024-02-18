@@ -5,6 +5,7 @@ export interface IUserProfileFavorites {
     rating: number
     quantity: number
     image: string
+    description: string
 }
 
 export interface ILoginFields {
@@ -28,10 +29,3 @@ export type TUpdateUserProfileBody = Omit<
     IUserProfileFields,
     'id' | 'favorites'
 >
-
-export interface IUserProfileSchema {
-    fields: IUserProfileFields
-    prevFieldsValue: string
-    isAuth: boolean
-    error: any
-}
