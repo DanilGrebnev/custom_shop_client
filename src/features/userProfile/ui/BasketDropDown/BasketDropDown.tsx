@@ -1,8 +1,7 @@
 import { Papper } from '@/shared/ui/Papper'
 import { Button } from '@/shared/ui/Button'
+import { useMemo, type ReactNode } from 'react'
 import { useGetCartQuery } from '@/features/basket'
-import { ComponentPropsWithRef, ReactNode } from 'react'
-import { BasketDropDownItem } from '../BasketDropDownItem/BasketDropDownItem'
 
 import s from './BasketDropDown.module.scss'
 
@@ -16,21 +15,28 @@ export const BasketDropDown = (props: IBasketDropDown) => {
     const { count, list, onMouseLeave } = props
     const { data } = useGetCartQuery()
 
+    const price = useMemo(() => {
+        return data?.reduce((totalPrice, curr) => {
+            totalPrice += curr.price
+            return totalPrice
+        }, 0)
+    }, [data])
+
     return (
         <Papper
             className={s['dropdown-widget']}
             onMouseLeave={onMouseLeave}>
-            <main>
-                <header>
-                    <b>Основные товары: {count}</b>
-                    <button>Очистить список</button>
-                </header>
-                <div className={s.list}>{list}</div>
-            </main>
-            <footer>
+            <header className={s.header}>
+                <b>Основные товары: {count}</b>
+                <button>Очистить список</button>
+            </header>
+
+            <main className={s.list}>{list}</main>
+
+            <footer className={s.footer}>
                 <div className={s.total}>
                     <p>Итого:</p>
-                    <b>9 999</b>
+                    <b>{price}</b>
                 </div>
                 <div className={s['btn-group']}>
                     <Button

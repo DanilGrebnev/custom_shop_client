@@ -1,11 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ApiRoutes } from '@/apiRoutes/apiRoutes'
+import { ApiRoutes } from '@/app/providers/apiRoutes/apiRoutes'
 import {
     IProduct,
     IProductData,
     type IProductFilterResponse,
 } from '@/app/types/product'
-import { addUrlToProductsImages } from '../lib/addUrlToProductsImages'
 
 export const productApi = createApi({
     reducerPath: 'api/product',

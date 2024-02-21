@@ -4,9 +4,15 @@ import s from './BuyButton.module.scss'
 import { IButton } from '../types'
 
 export const BuyButton: FC<IButton> = (props) => {
-    const { className } = props
+    const { className, ...other } = props
 
-    return <button className={clsx(s.BuyButton, className)}>Купить</button>
+    return (
+        <button
+            {...other}
+            className={clsx(s.BuyButton, className)}>
+            Купить
+        </button>
+    )
 }
 
 BuyButton.displayName = 'BuyButton'

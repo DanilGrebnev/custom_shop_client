@@ -1,25 +1,25 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import clsx from 'clsx'
 import s from './s.module.scss'
-import { usePathname } from 'next/navigation'
 
 interface INavBarItemProps {
     icon: any
-    text: string
+    label: string
     href: string
 }
 
 export const NavBarItem = (props: INavBarItemProps) => {
-    const { icon, text, href } = props
+    const { icon, label, href } = props
     const pathName = usePathname()
 
     return (
         <li className={clsx(s.item, { [s.active]: pathName === href })}>
             <Link href={href}>
                 {icon}
-                <p>{text}</p>
+                <p className={s.label}>{label}</p>
             </Link>
         </li>
     )

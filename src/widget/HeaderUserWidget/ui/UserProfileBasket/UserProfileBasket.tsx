@@ -1,3 +1,5 @@
+'use client'
+
 import {
     UserProfileBasketCounter,
     UserProfileSelectors,
@@ -11,12 +13,14 @@ import { BasketDropDown } from '@/features/userProfile'
 import { BasketList } from '../BasketList/BasketList'
 
 import s from './UserProfileBasket.module.scss'
+import { usePathname } from 'next/navigation'
 
 export const UserProfileBasket = () => {
     const { data } = useGetCartQuery()
+    const pathName = usePathname()
     const refId = useRef<NodeJS.Timeout>()
-    const dispatch = useAppDispatch()
     const isOpen = useAppSelector(UserProfileSelectors.getIsOpenBasketModal)
+    const dispatch = useAppDispatch()
 
     const toggleModal = useCallback(
         (open: boolean) => {
@@ -26,20 +30,26 @@ export const UserProfileBasket = () => {
     )
 
     const onMouseEnter = useCallback(() => {
-        const timeoutId = setTimeout(toggleModal, 500, true)
+        if (pathName === '/basket') return
+        const timeoutId = setTimeout(toggleModal, 800, true)
         refId.current = timeoutId
-    }, [toggleModal])
+    }, [toggleModal, pathName])
 
     const onMouseLeave = useCallback(() => {
         if (isOpen) return
         clearTimeout(refId.current)
     }, [isOpen])
 
+    const onClick = () => {
+        clearTimeout(refId.current)
+    }
+
     return (
         <div className={s.wrapper}>
             <UserProfileBasketCounter
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
+                onClick={onClick}
                 count={data?.length}
             />
             {isOpen && (

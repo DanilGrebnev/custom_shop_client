@@ -1,7 +1,7 @@
 import { IHomePageCategory } from '@/app/types/category'
 import { IComment } from '@/app/types/comments'
 import type { IImage, IProduct } from '@/app/types/product'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 interface IHomePageResponse {
     featureProducts: IProduct[]
@@ -13,6 +13,7 @@ interface IHomePageResponse {
 }
 
 export const homePageApi = createApi({
+    reducerPath: 'api/homePage',
     baseQuery: fetchBaseQuery({
         baseUrl: process.env.NEXT_PUBLIC_URL_BACKEND,
     }),

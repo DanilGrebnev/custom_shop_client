@@ -16,14 +16,11 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: ILayout) => {
     return (
         <html lang="ru">
-            <body
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                }}
-                className={inter.className}>
-                <AppProvider>{children}</AppProvider>
+            <body className={inter.className}>
+                <AppProvider>
+                    <div id="modal-root"></div>
+                    {children}
+                </AppProvider>
             </body>
         </html>
     )

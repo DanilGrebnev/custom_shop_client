@@ -1,4 +1,4 @@
-.WishListItem {
+.wish-list-item {
     display: flex;
     gap: 20px;
 }
@@ -10,6 +10,10 @@
         transition: 0.3s;
         color: var(--global-palette1);
     }
+
+    @media screen and (max-width: 500px) {
+        font-size: var(--font-size-7);
+    }
 }
 
 .wishlist-content {
@@ -17,4 +21,22 @@
     flex-direction: column;
     gap: 20px;
     color: var(--text-color2);
+}
+
+.img-wrapper {
+    min-width: 200px;
+    height: 200px;
+    position: relative;
+    background: white;
+    border-radius: var(--global-border-radius);
+    overflow: hidden;
+}
+.img {
+    object-fit: contain;
+}
+
+@media screen and (max-width: 850px) {
+    .wish-list-item {
+        flex-direction: column;
+    }
 }

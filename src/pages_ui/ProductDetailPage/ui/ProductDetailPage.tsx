@@ -10,6 +10,11 @@ import { BuyButton } from '@/shared/ui/Buttons/ui/BuyButton/BuyButton'
 import { LikeButtonWidget } from '@/widget/LikeButton'
 import { PageLoader } from '@/shared/ui/LoadersSpinners'
 import { useGetProductByIdQuery } from '@/entities/productList'
+import { useEffect, useMemo } from 'react'
+import {
+    useGetCartQuery,
+    useAddProductInBasketByIdMutation,
+} from '@/features/basket'
 
 import clsx from 'clsx'
 import s from './ProductDetailPage.module.scss'
@@ -20,16 +25,27 @@ interface IProductPage {
 
 export const ProductDetailPage = (props: IProductPage) => {
     const { productId } = props
-
     const {
         data: product,
         isLoading,
         isError,
     } = useGetProductByIdQuery(productId)
+    const { data: setting } = useGetSettingsQuery()
+    const { data: basket } = useGetCartQuery()
+    const [fetchAddToBasket] = useAddProductInBasketByIdMutation()
 
-    const { currency } = useGetSettingsQuery(undefined, {
-        selectFromResult: (result) => ({ currency: result?.data?.currency }),
-    })
+    // console.log('basket', basket)
+    // console.log('product', product)
+
+    useEffect(() => {
+        console.clear()
+        console.log('productId from props', productId)
+        console.log('basket', basket)
+    }, [product, productId, basket])
+
+    const inBasket = useMemo(() => {
+        return basket?.some((product) => product.id === +productId)
+    }, [productId, basket])
 
     if (!product || isLoading) {
         return <PageLoader />
@@ -37,6 +53,13 @@ export const ProductDetailPage = (props: IProductPage) => {
 
     if (isError) {
         return <h1>Ошибка получения продукта</h1>
+    }
+
+    const addToBasket = () => {
+        fetchAddToBasket({
+            product: +productId,
+            quantity: 1,
+        })
     }
 
     return (
@@ -74,7 +97,7 @@ export const ProductDetailPage = (props: IProductPage) => {
                     <Rating rating={4} />
 
                     <div className={s.price}>
-                        {currency} {product?.price}
+                        {setting?.currency} {product?.price}
                     </div>
 
                     <p className={s.description}>{product?.description}</p>
@@ -84,7 +107,11 @@ export const ProductDetailPage = (props: IProductPage) => {
 
                     <div className={s['btn-group']}>
                         <LikeButtonWidget productId={productId} />
-                        <BuyButton />
+                        {inBasket ? (
+                            <h2>В корзине</h2>
+                        ) : (
+                            <BuyButton onClick={addToBasket} />
+                        )}
                     </div>
                     <p className={s.quantity}>{product?.quantity} в наличии</p>
                 </div>

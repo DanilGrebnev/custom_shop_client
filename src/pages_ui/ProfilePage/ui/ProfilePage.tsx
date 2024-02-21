@@ -12,6 +12,7 @@ import { dateParse } from '@/shared/lib/dateParse'
 import { NumberInput } from '@/shared/ui/NumberInput'
 import { Button } from '@/shared/ui/Button'
 import { omitFromObject } from '@/shared/lib/omitFromObject'
+import { type IProfileForm } from '@/app/types/profile'
 
 import deepEqual from 'deep-equal'
 import ProfileImage from '@/shared/assets/profile_icon_160.webp'
@@ -19,14 +20,6 @@ import Image from 'next/image'
 
 import s from './ProfilePage.module.scss'
 import clsx from 'clsx'
-
-interface IProfileForm {
-    first_name: string
-    last_name: string
-    email: string
-    username: string
-    phone_number: string
-}
 
 export const ProfilePage = () => {
     const [fetchUpdateProfile] = useUpdateProfileMutation()

@@ -10,7 +10,6 @@ export const BasketList = () => {
     const { data } = useGetCartQuery()
 
     const fetchProducts = async () => {
-        console.clear()
         if (!data) return
 
         const products = await Promise.all(
@@ -21,12 +20,14 @@ export const BasketList = () => {
                 ).then((data) => data.json() as Promise<IProduct>)
             })
         )
+            
         setProducts(products)
     }
 
     useEffect(() => {
         if (!data) return
         fetchProducts()
+        console.log(data)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data])
 
@@ -39,7 +40,6 @@ export const BasketList = () => {
                         product={product}
                     />
                 )
-                // return <div key={i}>Cart item</div>
             })}
         </>
     )

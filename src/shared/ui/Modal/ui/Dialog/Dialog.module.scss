@@ -1,0 +1,31 @@
+$margin: 20px;
+
+.dialog {
+    position: fixed;
+    pointer-events: all;
+    width: fit-content;
+}
+
+.top {
+    left: 50%;
+    top: $margin;
+    transform: translateX(-50%);
+}
+
+.bottom {
+    left: 50%;
+    bottom: $margin;
+    transform: translateX(-50%);
+}
+
+.left {
+    top: 50%;
+    left: $margin;
+    transform: translateY(-50%);
+}
+
+.right {
+    top: 50%;
+    right: $margin;
+    transform: translateY(-50%);
+}

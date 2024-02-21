@@ -7,13 +7,15 @@ interface IUserProfileBasketCounter {
     count?: number
     onMouseLeave?: () => void
     onMouseEnter?: () => void
+    onClick?: () => void
 }
 
 export const UserProfileBasketCounter = (props: IUserProfileBasketCounter) => {
-    const { count, onMouseEnter, onMouseLeave } = props
+    const { count, onMouseEnter, onMouseLeave, onClick } = props
 
     return (
         <UserProfileCounterItem
+            onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             icon={<CartIcon />}

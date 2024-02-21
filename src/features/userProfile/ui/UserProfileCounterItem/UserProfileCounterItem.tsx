@@ -15,13 +15,22 @@ interface IUserProfileCounterItemProps extends ComponentPropsWithRef<'a'> {
 }
 
 export const UserProfileCounterItem = (props: IUserProfileCounterItemProps) => {
-    const { count = 0, href, icon, label, onMouseEnter, onMouseLeave } = props
+    const {
+        count = 0,
+        href,
+        icon,
+        label,
+        onMouseEnter,
+        onMouseLeave,
+        onClick,
+    } = props
 
     return (
         <Link
             className={s['counter-wrapper']}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            onClick={onClick}
             href={href || ''}>
             <div className={s.counter}>
                 {icon}

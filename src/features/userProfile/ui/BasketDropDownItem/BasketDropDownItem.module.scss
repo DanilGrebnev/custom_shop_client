@@ -1,6 +1,8 @@
 .wrapper {
-    width: max-content;
-    display: flex;
+    width: 100%;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: auto 200px 1fr auto;
 }
 
 .delete-icon {

@@ -4,6 +4,7 @@ import { productApi } from '@/entities/productList'
 import { settingApi } from '@/entities/settings'
 import { homePageApi } from '@/entities/homePage'
 import { combineRTKQueryMiddleware } from '../lib/combineRTKMiddleware'
+import { footerApi } from '@/entities/footer'
 
 export const RTKQueryMiddlewares = combineRTKQueryMiddleware([
     profileApi,
@@ -11,4 +12,5 @@ export const RTKQueryMiddlewares = combineRTKQueryMiddleware([
     productApi,
     settingApi,
     homePageApi,
+    footerApi,
 ])

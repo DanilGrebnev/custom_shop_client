@@ -1,6 +1,6 @@
 'use client'
 
-import { memo } from 'react'
+import { ComponentPropsWithoutRef, memo } from 'react'
 import {
     UserProfileSelectors,
     UserProfileWishListCounter,
@@ -14,13 +14,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import s from './HeaderUserWidget.module.scss'
+import clsx from 'clsx'
 
-export const HeaderUserWidget = memo(() => {
+interface IHeaderUserWidget extends ComponentPropsWithoutRef<'div'> {}
+
+export const HeaderUserWidget = memo((props: IHeaderUserWidget) => {
+    const { className, ...otherProps } = props
     const isAuth = useAppSelector(UserProfileSelectors.getIsAuth)
 
     if (!isAuth) {
         return (
-            <div>
+            <div {...props}>
                 <Link href={NavigationRoutes.login()}>
                     Войти или зарегестрироваться
                 </Link>
@@ -29,10 +33,11 @@ export const HeaderUserWidget = memo(() => {
     }
 
     return (
-        <div className={s['header-section-user']}>
+        <div
+            className={clsx(s['header-section-user'], className)}
+            {...otherProps}>
             <UserProfileBasket />
             <UserProfileWishListCounter />
-
             <Link
                 className={s.icon}
                 href={NavigationRoutes.profileMe()}>

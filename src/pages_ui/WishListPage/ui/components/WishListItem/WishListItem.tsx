@@ -21,14 +21,16 @@ export const WishListItem: FC<IWishListItemProps> = (props) => {
 
     return (
         <Papper>
-            <div className={clsx(s.WishListItem, className)}>
+            <div className={clsx(s['wish-list-item'], className)}>
                 {favoriteProduct && (
-                    <Image
-                        src={favoriteProduct.image}
-                        width={200}
-                        height={200}
-                        alt={`icon ${favoriteProduct.name}`}
-                    />
+                    <div className={s['img-wrapper']}>
+                        <Image
+                            className={s.img}
+                            fill={true}
+                            src={favoriteProduct.image}
+                            alt={`icon ${favoriteProduct.name}`}
+                        />
+                    </div>
                 )}
                 <div className={s['wishlist-content']}>
                     <Link

@@ -7,7 +7,7 @@ import { WishListItem } from '../WishListItem/WishListItem'
 
 export const WishList = () => {
     const { data } = useGetProfileQuery()
-    console.log(data?.favorites)
+
     return (
         <>
             {data?.favorites.map((favorite) => {

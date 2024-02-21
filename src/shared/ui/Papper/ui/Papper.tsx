@@ -1,21 +1,18 @@
-import {
-    ComponentPropsWithoutRef,
-    DetailedHTMLProps,
-    HTMLAttributes,
-} from 'react'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 
 import clsx from 'clsx'
 import s from './Papper.module.scss'
 
-interface IPapperProps extends ComponentPropsWithoutRef<'div'> {
+interface IPapperProps extends ComponentPropsWithRef<'div'> {
     fullWidth?: boolean
 }
 
-export const Papper = (props: IPapperProps) => {
+export const Papper = forwardRef<HTMLDivElement, IPapperProps>((props, ref) => {
     const { className, fullWidth, children, ...otherProps } = props
 
     return (
         <div
+            ref={ref}
             className={clsx(
                 className,
                 {
@@ -27,4 +24,6 @@ export const Papper = (props: IPapperProps) => {
             {children}
         </div>
     )
-}
+})
+
+Papper.displayName = 'Papper'

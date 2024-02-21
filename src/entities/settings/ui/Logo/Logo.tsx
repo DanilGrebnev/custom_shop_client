@@ -2,12 +2,18 @@
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { useGetSettingsQuery } from '../../model/api/settingApi'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import clsx from 'clsx'
+
 import s from './Logo.module.scss'
 
-export const Logo = () => {
+interface ILogo extends ComponentPropsWithRef<'a'> {}
+
+export const Logo = forwardRef<HTMLAnchorElement, ILogo>((props, ref) => {
+    const { className, ...otherProps } = props
     const { data, isLoading } = useGetSettingsQuery()
 
     if (isLoading) {
@@ -16,7 +22,9 @@ export const Logo = () => {
 
     return (
         <Link
-            className={s.logo}
+            className={clsx(s.logo, className)}
+            ref={ref}
+            {...otherProps}
             href={NavigationRoutes.main()}>
             <Image
                 width={130}
@@ -26,6 +34,8 @@ export const Logo = () => {
             />
         </Link>
     )
-}
+})
+
+Logo.displayName = 'Logo'
 
 export default Logo
