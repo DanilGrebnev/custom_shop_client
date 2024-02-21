@@ -2,57 +2,114 @@
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { MUIButton } from '@/shared/ui/MUIButton'
-import {
-    RegistrationInput,
-    RegistrationSelectors,
-} from '@/features/registration'
-import { sendRegistrationData } from '@/features/registration'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { redirect } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { CustomInput } from '@/shared/ui/CustomInput'
+import { useState } from 'react'
+import { NumberInput } from '@/shared/ui/NumberInput'
+import { Dialog } from '@/shared/ui/Modal'
+import { AxiosError } from 'axios'
+import { fetchRegistration } from '../services/fetchRegistration'
 
-export const RegistrationPage = () => {
-    const dispatch = useAppDispatch()
-    const isLoading = useAppSelector(RegistrationSelectors.getIsLoading)
+interface FormFields {
+    username: string
+    first_name: string
+    last_name: string
+    email: string
+    password: string
+    phone_number: string
+}
 
-    const onClick = () => {
-        dispatch(sendRegistrationData())
-            .unwrap()
-            .then(() => redirect(NavigationRoutes.login()))
+const fieldName = {
+    username: 'Полное имя',
+    first_name: 'Имя',
+    last_name: 'Фамилия',
+    email: 'Почта',
+    password: 'Пароль',
+    phone_number: 'Номер телефона',
+    detail: 'Ошибка',
+}
+
+function createStringFromErrors(errors: string | string[]) {
+    if (typeof errors === 'string') {
+        return <p>{errors}</p>
+    } else {
+        return errors?.map((str, i) => <p key={i}>{str}</p>)
     }
+}
 
+function RenderError(errors: Record<string, string[] | string>) {
     return (
         <>
+            {Object.entries(errors).map(([name, errorsArray], i) => {
+                console.log(name)
+                return (
+                    <div key={i}>
+                        <h2>{fieldName[name as keyof FormFields]}</h2>
+                        {createStringFromErrors(errorsArray)}
+                    </div>
+                )
+            })}
+        </>
+    )
+}
+
+export const RegistrationPage = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [openModal, setIsOpen] = useState<boolean>(false)
+
+    const [errors, setErrors] = useState<Record<string, string[]> | {}>({})
+
+    const { register, handleSubmit } = useForm<FormFields>()
+
+    const onSubmit = handleSubmit((data) => {
+        fetchRegistration(data)
+            .then((res) => {})
+            .catch((err: AxiosError) => {
+                const errors = err?.response?.data as Record<string, string[]>
+                setErrors(errors)
+                setIsOpen(true)
+                console.log(errors)
+            })
+    })
+
+    return (
+        <form onSubmit={onSubmit}>
             <h1>Регистрация</h1>
-            <RegistrationInput
+            <CustomInput
+                variant="standard"
                 label="Почта"
-                name="email"
-                selector="getEmail"
                 type="email"
                 disabled={isLoading}
+                {...register('email')}
             />
-            <RegistrationInput
+            <CustomInput
+                variant="standard"
                 label="Имя"
-                name="first_name"
-                selector="getFirstName"
                 disabled={isLoading}
+                {...register('first_name')}
             />
-            <RegistrationInput
+            <CustomInput
+                variant="standard"
                 label="Фамилия"
-                name="last_name"
-                selector="getLastName"
                 disabled={isLoading}
+                {...register('last_name')}
             />
-            <RegistrationInput
+            <CustomInput
+                variant="standard"
                 label="Пароль"
-                name="password"
-                selector="getPassword"
                 type="password"
                 disabled={isLoading}
+                {...register('password')}
+            />
+            <NumberInput
+                fullWidth={true}
+                disabled={isLoading}
+                {...register('phone_number')}
             />
             <MUIButton
                 type="submit"
                 color="var(--global-palette1)"
-                onClick={onClick}
                 className="button"
                 disabled={isLoading}>
                 Зарегестрироваться
@@ -67,6 +124,11 @@ export const RegistrationPage = () => {
                     войти
                 </MUIButton>
             </div>
-        </>
+            {openModal && (
+                <Dialog onClose={() => setIsOpen(false)}>
+                    <RenderError {...errors} />
+                </Dialog>
+            )}
+        </form>
     )
 }

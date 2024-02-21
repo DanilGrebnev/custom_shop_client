@@ -1,12 +1,26 @@
-.img-wrapper {
+.wrapper {
     width: 200px;
     height: 200px;
     position: relative;
     border-radius: var(--global-border-radius);
     background: white;
     overflow: hidden;
+
+    &:hover {
+        .img_0 {
+            opacity: 0;
+        }
+        .img_1 {
+            opacity: 1;
+        }
+    }
+}
+
+.img_1 {
+    opacity: 0;
 }
 
 .img {
+    transition: 0.2s;
     object-fit: contain;
 }

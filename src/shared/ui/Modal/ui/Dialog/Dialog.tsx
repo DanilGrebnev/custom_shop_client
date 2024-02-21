@@ -1,7 +1,12 @@
 'use client'
 
 import { Papper } from '@/shared/ui/Papper'
-import { ComponentPropsWithoutRef, useEffect, useCallback } from 'react'
+import {
+    ComponentPropsWithoutRef,
+    useEffect,
+    useCallback,
+    MouseEvent,
+} from 'react'
 import { createPortal } from 'react-dom'
 
 import clsx from 'clsx'
@@ -24,22 +29,29 @@ export const Dialog = (props: IDialog) => {
         ...otherProps
     } = props
 
-    const keydown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.code === 'Escape') {
-                onClose?.()
-            }
-        },
-        [onClose]
-    )
+    const keydown = (e: KeyboardEvent) => {
+        if (e.code === 'Escape') {
+            onClose?.()
+        }
+    }
+
+    const closeIfClickWithoutModal = (e: globalThis.MouseEvent) => {
+        const element = e.target as HTMLElement
+        if (!element.classList.contains(s.modal)) {
+            onClose?.()
+        }
+    }
 
     useEffect(() => {
         document.addEventListener('keydown', keydown)
+        document.addEventListener('click', closeIfClickWithoutModal)
 
         return () => {
             document.removeEventListener('keydown', keydown)
+            document.removeEventListener('click', closeIfClickWithoutModal)
         }
-    }, [keydown])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     useEffect(() => {
         if (!timer || !onClose) return

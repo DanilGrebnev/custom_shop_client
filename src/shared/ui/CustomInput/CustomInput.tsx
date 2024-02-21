@@ -25,6 +25,7 @@ export const CustomInput = memo(
             color = 'var(--global-palette1)',
             onChange,
             value,
+            fullWidth = true,
             className,
             ...otherProps
         } = props
@@ -44,6 +45,7 @@ export const CustomInput = memo(
                     inputRef={ref}
                     //@ts-ignore
                     color="custom"
+                    fullWidth={fullWidth}
                     onChange={onChange}
                     value={value}
                     className={clsx(s.input, className)}

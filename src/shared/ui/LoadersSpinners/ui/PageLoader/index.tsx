@@ -1,7 +1,9 @@
 'use client'
 
 import { PulseLoader } from 'react-spinners'
+
 import s from './s.module.scss'
+import clsx from 'clsx'
 
 interface IPageLoaderProps {
     className?: string
@@ -9,7 +11,7 @@ interface IPageLoaderProps {
 
 export const PageLoader = (props: IPageLoaderProps) => {
     return (
-        <div className={s['pulse-loader']}>
+        <div className={clsx(s['pulse-loader'], props.className)}>
             <PulseLoader
                 size={30}
                 margin={20}

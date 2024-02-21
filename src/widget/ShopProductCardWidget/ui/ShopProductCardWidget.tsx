@@ -1,6 +1,6 @@
 'use client'
 
-import { ImagePreview } from '@/shared/ui/ImagePreview/ImagePreview'
+import { ImagePreview } from '@/shared/ui/ImagePreview'
 import { IImage } from '@/app/types/product'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { LikeButton } from '@/shared/ui/Buttons'

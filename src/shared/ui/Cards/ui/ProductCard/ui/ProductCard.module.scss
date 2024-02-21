@@ -1,8 +1,3 @@
-@mixin active {
-    opacity: 1;
-    pointer-events: all;
-}
-
 .product-card {
     width: 100%;
     height: 100%;
@@ -11,38 +6,6 @@
     overflow-x: hidden;
     background: var(--card-background-1);
     border-radius: var(--global-border-radius);
-
-    img {
-        opacity: 0;
-    }
-
-    & img:nth-child(1) {
-        opacity: 1;
-    }
-
-    & img:nth-child(2) {
-        opacity: 0;
-    }
-
-    &:hover {
-        .menu {
-            @include active;
-            right: 10px;
-        }
-
-        & img:nth-child(1) {
-            opacity: 0;
-        }
-
-        & img:nth-child(2) {
-            opacity: 1;
-        }
-
-        .button {
-            @include active;
-            bottom: 0;
-        }
-    }
 }
 
 .content-wrapper {
@@ -51,47 +14,4 @@
     gap: 12px;
     padding: 0 10px 0;
     border-right: 1px solid var(--border-ui-color1);
-}
-
-.card-preview {
-    width: 200px;
-}
-
-.left-col {
-    position: relative;
-    overflow-x: hidden;
-}
-
-.right-col {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.description {
-    margin-top: 15px;
-}
-
-.button {
-    position: static;
-    opacity: 1;
-    width: fit-content;
-}
-
-.product-card.list {
-    display: grid;
-    grid-template-columns: auto 200px 1fr;
-    grid-template-rows: 300px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border-ui-color1);
-}
-
-.preview {
-    position: relative;
-    overflow-x: hidden;
-}
-
-.main {
-    display: flex;
-    flex-direction: column;
 }

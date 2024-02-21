@@ -6,8 +6,6 @@ import { productListReducer } from '@/entities/productList'
 import { productListPaginationReducer } from '@/entities/productListPagination'
 import { searchProductParamsReducer } from '@/entities/searchProductParams'
 import { footerApi } from '@/entities/footer'
-import { registrationReducer } from '@/features/registration'
-import { loginReducer } from '@/features/login'
 import { userProfileReducer, profileApi } from '@/features/userProfile'
 import { settingApi } from '@/entities/settings'
 import { basketApi } from '@/features/basket'
@@ -20,8 +18,6 @@ export const staticReducers = {
     filterSideBar: filterSidebarReducer,
     productSearchInput: productSearchInputReducer,
     searchProductParams: searchProductParamsReducer,
-    login: loginReducer,
-    registration: registrationReducer,
     userProfile: userProfileReducer,
     [basketApi.reducerPath]: basketApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,

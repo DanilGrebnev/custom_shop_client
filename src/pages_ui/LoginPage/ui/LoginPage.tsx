@@ -2,82 +2,57 @@
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { MUIButton } from '@/shared/ui/MUIButton'
-import { ChangeEvent, useCallback, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { authByLogin } from '@/features/login'
 import { useRouter } from 'next/navigation'
-import { LoginSelector } from '@/features/login/model/selectors/loginSelector'
 import { CustomInput } from '@/shared/ui/CustomInput'
-import { ILoginFields } from '@/features/login/model/schema/loginSchema'
-import { loginActions } from '@/features/login/model/slice/loginSlice'
 import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { useLoginInAccountMutation } from '@/features/userProfile'
+import { useForm } from 'react-hook-form'
+
+interface FormValues {
+    username: string
+    password: string
+    remember_me: boolean
+}
 
 export const LoginPage = () => {
     const router = useRouter()
     const [sendLogin, { isLoading }] = useLoginInAccountMutation()
-    const dispatch = useAppDispatch()
 
-    const username = useAppSelector(LoginSelector.getUsername)
-    const password = useAppSelector(LoginSelector.getPassword)
-    const remember_me = useAppSelector(LoginSelector.getIsRememberMe)
+    const { register, handleSubmit } = useForm<FormValues>()
 
-    const onChange = useCallback(
-        ({ target }: ChangeEvent<HTMLInputElement>) => {
-            const name = target.name as keyof Omit<ILoginFields, 'remember_me'>
-            const value = target.value
-            dispatch(loginActions.setLoginValue({ name, value }))
-        },
-        [dispatch]
-    )
-
-    const onCheckBoxChange = useCallback(
-        (_: any, checked: boolean) => {
-            dispatch(loginActions.setRememberMe(checked))
-        },
-        [dispatch]
-    )
-
-    const onSubmit = useCallback(() => {
-        sendLogin({
-            username,
-            password,
-            remember_me,
-        }).then(() => {
+    const onSubmit = handleSubmit((data) => {
+        sendLogin(data).then(() => {
             router.push(NavigationRoutes.main())
         })
-    }, [password, remember_me, router, username, sendLogin])
+    })
 
     return (
-        <>
+        <form onSubmit={onSubmit}>
             <h1>Вход</h1>
             <CustomInput
+                variant="standard"
+                fullWidth={true}
                 disabled={isLoading}
                 label="Имя пользователя"
-                name="username"
-                value={username}
-                onChange={onChange}
+                {...register('username')}
             />
             <CustomInput
+                variant="standard"
+                fullWidth={true}
                 disabled={isLoading}
                 label="Пароль"
-                name="password"
                 type="password"
-                value={password}
-                onChange={onChange}
+                {...register('password')}
             />
             <CheckBox
-                checked={remember_me}
                 disabled={isLoading}
                 label="Запомнить меня"
-                name="remember_me"
-                onChange={onCheckBoxChange}
+                {...register('remember_me')}
             />
-
             <MUIButton
                 disabled={isLoading}
                 color="var(--global-palette1)"
-                onClick={onSubmit}
+                type="submit"
                 variant="text"
                 className="button">
                 Войти
@@ -93,6 +68,6 @@ export const LoginPage = () => {
                     Зарегистрироваться
                 </MUIButton>
             </div>
-        </>
+        </form>
     )
 }
