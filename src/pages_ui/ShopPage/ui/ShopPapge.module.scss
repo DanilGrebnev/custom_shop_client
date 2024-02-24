@@ -1,4 +1,8 @@
 .shop-page {
     display: flex;
     gap: 2em;
+
+    @media screen and (max-width: 1200px) {
+        flex-direction: column;
+    }
 }

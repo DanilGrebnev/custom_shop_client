@@ -2,23 +2,14 @@
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { MUIButton } from '@/shared/ui/MUIButton'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { CustomInput } from '@/shared/ui/CustomInput'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NumberInput } from '@/shared/ui/NumberInput'
 import { Dialog } from '@/shared/ui/Modal'
-import { AxiosError } from 'axios'
-import { fetchRegistration } from '../services/fetchRegistration'
-
-interface FormFields {
-    username: string
-    first_name: string
-    last_name: string
-    email: string
-    password: string
-    phone_number: string
-}
+import { type FormFields } from '../types'
+import { useFetchData } from '@/shared/hooks/useFetchData'
 
 const fieldName = {
     username: 'Полное имя',
@@ -54,23 +45,29 @@ function RenderError(errors: Record<string, string[] | string>) {
     )
 }
 
-export const RegistrationPage = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [openModal, setIsOpen] = useState<boolean>(false)
+interface TResponse {
+    userId: number
+    id: number
+    title: string
+    completed: boolean
+}
 
-    const [errors, setErrors] = useState<Record<string, string[]> | {}>({})
+const url = process.env.NEXT_PUBLIC_URL_BACKEND + '/api/auth/reg'
+
+export const RegistrationPage = () => {
+    const [openModal, setIsOpen] = useState<boolean>(false)
+    const router = useRouter()
+
+    const { fetchData, data, isLoading, isError } = useFetchData()
 
     const { register, handleSubmit } = useForm<FormFields>()
 
     const onSubmit = handleSubmit((data) => {
-        fetchRegistration(data)
-            .then((res) => {})
-            .catch((err: AxiosError) => {
-                const errors = err?.response?.data as Record<string, string[]>
-                setErrors(errors)
-                setIsOpen(true)
-                console.log(errors)
+        fetchData('https://jsonplaceholder.typicode.com/todos/1')
+            .then((response) => {
+                console.log(response.payload)
             })
+            .catch((err) => console.log('err', err))
     })
 
     return (
@@ -125,8 +122,10 @@ export const RegistrationPage = () => {
                 </MUIButton>
             </div>
             {openModal && (
-                <Dialog onClose={() => setIsOpen(false)}>
-                    <RenderError {...errors} />
+                <Dialog
+                    timer={8000}
+                    onClose={setIsOpen.bind(null, false)}>
+                    {/* <RenderError {...isError} /> */}
                 </Dialog>
             )}
         </form>

@@ -64,7 +64,6 @@ export const Dialog = (props: IDialog) => {
 
     return createPortal(
         <Papper
-            onClick={onClose}
             className={clsx(s.dialog, s[side], className)}
             {...otherProps}>
             <div onClick={(e) => e.stopPropagation()}>{children}</div>

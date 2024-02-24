@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { SliderButton } from '@/shared/ui/SliderButton'
 import { Thumbs } from 'swiper/modules'
-// import mock from '@/mock/mock'
+import clsx from 'clsx'
 
 import blurImg from '@/shared/assets/blur.webp'
 
@@ -18,16 +18,17 @@ import s from './ThumbGallery.module.scss'
 interface IThumbsGalleryProps {
     images?: { image: string | StaticImageData }[]
     alt?: string
+    thumbGalleryClass?: string
+    bigImgClass?: string
+    smallImgClass?: string
 }
 
 export const ThumbsGallery = (props: IThumbsGalleryProps) => {
-    const { images, alt } = props
+    const { images, alt, bigImgClass, smallImgClass, thumbGalleryClass } = props
     const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
 
-    const urlToBackend = process.env.NEXT_PUBLIC_URL_BACKEND as string
-
     return (
-        <div className="thumbs-gallery">
+        <div className={clsx('thumbs-gallery', thumbGalleryClass)}>
             <Swiper
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
@@ -39,7 +40,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                             className="main-swiper__slide"
                             key={i}>
                             <Image
-                                className={s.main_image}
+                                className={clsx(s.main_image, bigImgClass)}
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
                                 alt={alt ?? ''}
@@ -65,6 +66,7 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                             className="navigation-swiper__slide"
                             key={i}>
                             <Image
+                                className={clsx(smallImgClass)}
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
                                 alt={alt ?? ''}
@@ -78,13 +80,13 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                 })}
 
                 <SliderButton
-                    prev
+                    prev={true}
                     className="btn-prev"
                     theme="theme2"
                 />
 
                 <SliderButton
-                    next
+                    next={true}
                     className="btn-next"
                     theme="theme2"
                 />

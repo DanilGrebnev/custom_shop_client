@@ -15,11 +15,26 @@ $border: 1px solid var(--border-ui-color1);
     margin-bottom: 20px;
 }
 
-.header-section-left {
-    // width: 260px;
-}
-
 .header-bottom {
     display: grid;
     grid-template-columns: auto auto 1fr;
+}
+
+@media screen and (max-width: 800px) {
+    .header-top {
+        grid-template-columns: 1fr auto ;
+        grid-auto-rows: auto;
+        grid-template-areas:
+            'logo user-widget'
+            'search-widget search-widget';
+    }
+    .logo {
+        grid-area: logo;
+    }
+    .search-widget {
+        grid-area: search-widget;
+    }
+    .user-widget {
+        grid-area: user-widget;
+    }
 }

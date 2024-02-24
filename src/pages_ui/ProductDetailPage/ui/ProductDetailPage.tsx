@@ -34,14 +34,11 @@ export const ProductDetailPage = (props: IProductPage) => {
     const { data: basket } = useGetCartQuery()
     const [fetchAddToBasket] = useAddProductInBasketByIdMutation()
 
-    // console.log('basket', basket)
-    // console.log('product', product)
-
-    useEffect(() => {
-        console.clear()
-        console.log('productId from props', productId)
-        console.log('basket', basket)
-    }, [product, productId, basket])
+    // useEffect(() => {
+    //     console.clear()
+    //     console.log('productId from props', productId)
+    //     console.log('basket', basket)
+    // }, [product, productId, basket])
 
     const inBasket = useMemo(() => {
         return basket?.some((product) => product.id === +productId)
@@ -85,6 +82,9 @@ export const ProductDetailPage = (props: IProductPage) => {
                     <ThumbsGallery
                         alt={product?.name}
                         images={product?.images}
+                        thumbGalleryClass={s['thumb-gallery']}
+                        bigImgClass={s['big-img']}
+                        smallImgClass={s['small-img']}
                     />
                 </div>
                 <div className={s['right-col']}>

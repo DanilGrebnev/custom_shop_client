@@ -21,9 +21,9 @@ export const LoginPage = () => {
     const { register, handleSubmit } = useForm<FormValues>()
 
     const onSubmit = handleSubmit((data) => {
-        sendLogin(data).then(() => {
-            router.push(NavigationRoutes.main())
-        })
+        sendLogin(data)
+            .unwrap()
+            .then(() => router.push('/'))
     })
 
     return (

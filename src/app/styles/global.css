@@ -72,3 +72,16 @@ option {
     pointer-events: none;
     z-index: 5;
 }
+
+body::-webkit-scrollbar {
+    width: 10px; /* ширина всей полосы прокрутки */
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent; /* цвет зоны отслеживания */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--global-palette1); /* цвет бегунка */
+    border-radius: 20px; /* округлось бегунка */
+}

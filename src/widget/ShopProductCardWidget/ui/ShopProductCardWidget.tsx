@@ -56,29 +56,30 @@ export const ShopProductCardWidget = memo((props: Props) => {
                 images={images}
                 className={s.preview}
             />
-            <div className={s.main}>
-                <Link href={NavigationRoutes.product(productId)}>
-                    <h3 className={s.title}>{name}</h3>
-                </Link>
-                <Link
-                    className={s.description}
-                    href={NavigationRoutes.product(productId)}>
-                    <p className={s.description}>{description}</p>
-                </Link>
+            <Link
+                className={s.title}
+                href={NavigationRoutes.product(productId)}>
+                {name}
+            </Link>
+            <Link
+                className={s.description}
+                href={NavigationRoutes.product(productId)}>
+                {description}
+            </Link>
 
-                <footer className={s.footer}>
-                    <Rating rating={rating} />
-                    <p className={s.price}>
-                        {price} {currency}
-                    </p>
-                    <div className={s['btn-group']}>
-                        <LikeButton
-                            onClick={() => toggleWishList(productId)}
-                            active={isLike()}
-                        />
-                        <Button hover={true}>Купить</Button>
-                    </div>
-                </footer>
+            <Rating
+                className={s.rating}
+                rating={rating}
+            />
+            <p className={s.price}>
+                {price} {currency}
+            </p>
+            <div className={s['btn-group']}>
+                <LikeButton
+                    onClick={() => toggleWishList(productId)}
+                    active={isLike()}
+                />
+                <Button hover={true}>Купить</Button>
             </div>
         </div>
     )

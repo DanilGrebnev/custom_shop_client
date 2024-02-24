@@ -13,9 +13,9 @@ export const Header = () => {
             className={s.header}>
             <div className="contain">
                 <div className={s['header-top']}>
-                    <Logo className={s['header-section-left']} />
-                    <SearchWidget />
-                    <HeaderUserWidget />
+                    <Logo className={s.logo} />
+                    <SearchWidget className={s['search-widget']} />
+                    <HeaderUserWidget className={s['user-widget']} />
                 </div>
                 <div className={s['header-bottom']}>
                     <CategoryMenuWidgetLazy />
