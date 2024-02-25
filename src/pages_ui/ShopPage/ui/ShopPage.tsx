@@ -1,11 +1,14 @@
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
-import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
 import { DynamicProductList, ProductFilter } from '@/entities/productList'
 import { PreviewProviderDynamic } from '@/entities/productList'
 
-import clsx from 'clsx'
+import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
+import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
 import s from './ShopPapge.module.scss'
+
+import clsx from 'clsx'
 
 export const ShopPage = () => {
     return (

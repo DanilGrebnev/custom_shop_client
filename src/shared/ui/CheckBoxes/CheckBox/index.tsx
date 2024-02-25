@@ -1,13 +1,15 @@
 'use client'
 
-import { FC, memo, MouseEvent, ReactNode, useState, forwardRef } from 'react'
-import { styled } from '@mui/material/styles'
-import { Checkbox } from '@mui/material'
-import { TCheckBoxArguments } from '../CheckBoxTypes'
+import { FC, MouseEvent, ReactNode, forwardRef, memo, useState } from 'react'
+
 import Arrow from '@/shared/assets/arrow.svg'
 
-import clsx from 'clsx'
+import { TCheckBoxArguments } from '../CheckBoxTypes'
 import s from './s.module.scss'
+
+import { Checkbox } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import clsx from 'clsx'
 
 type ICheckBoxProps = TCheckBoxArguments & {
     label?: ReactNode
@@ -42,10 +44,10 @@ export const CheckBox: FC<ICheckBoxProps> = memo(
                     title={title}
                     className={clsx(s.content, isOpenClass)}>
                     <CustomCheckbox
+                        {...other}
                         ref={ref}
                         disabled={disabled}
                         onChange={onChange}
-                        {...other}
                     />
                     {label && (
                         <div

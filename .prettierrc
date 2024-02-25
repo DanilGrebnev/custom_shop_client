@@ -9,12 +9,14 @@
     "bracketSpacing": true,
     "singleAttributePerLine": true,
     "importOrder": [
-        "^react/(.*)$",
-        "^next/(.*)$",
+        "^react(.*)$",
+        "^next(.*)$",
         "^@/features/(.*)$",
         "^@/entities/(.*)$",
         "^@/shared/(.*)$",
-        "^[./]"
+        "^@/app",
+        "^[./]",
+        "^"
     ],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true
