@@ -1,19 +1,19 @@
 'use client'
 
-import Image, { StaticImageData } from 'next/image'
-import React, { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { SliderButton } from '@/shared/ui/SliderButton'
-import { Thumbs } from 'swiper/modules'
 import clsx from 'clsx'
-
-import blurImg from '@/shared/assets/blur.webp'
-
+import React, { useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/thumbs'
+import { Thumbs } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import Image, { StaticImageData } from 'next/image'
+
+import blurImg from '@/shared/assets/blur.webp'
+import { SliderButton } from '@/shared/ui/SliderButton'
+
 import './ThumbsGallery.scss'
-import s from './ThumbGallery.module.scss'
 
 interface IThumbsGalleryProps {
     images?: { image: string | StaticImageData }[]
@@ -40,7 +40,10 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                             className="main-swiper__slide"
                             key={i}>
                             <Image
-                                className={clsx(s.main_image, bigImgClass)}
+                                className={clsx(
+                                    'main-swiper__img',
+                                    bigImgClass
+                                )}
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
                                 alt={alt ?? ''}
@@ -63,10 +66,13 @@ export const ThumbsGallery = (props: IThumbsGalleryProps) => {
                 {images?.map((item, i) => {
                     return (
                         <SwiperSlide
-                            className="navigation-swiper__slide"
+                            className={clsx(
+                                'navigation-swiper__slide',
+                                smallImgClass
+                            )}
                             key={i}>
                             <Image
-                                className={clsx(smallImgClass)}
+                                className="navigation-swiper__img"
                                 placeholder="blur"
                                 blurDataURL={blurImg.blurDataURL}
                                 alt={alt ?? ''}

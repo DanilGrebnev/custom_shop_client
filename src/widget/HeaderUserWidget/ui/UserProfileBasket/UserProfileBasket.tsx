@@ -1,19 +1,22 @@
 'use client'
 
+import { useCallback, useRef } from 'react'
+
+import { usePathname } from 'next/navigation'
+
+import { useGetCartQuery } from '@/features/basket'
 import {
     UserProfileBasketCounter,
     UserProfileSelectors,
     setIsOpenBasketModal,
 } from '@/features/userProfile'
-import { useCallback, useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { useGetCartQuery } from '@/features/basket'
-import { ModalBackgroundFilter } from '@/shared/ui/Modal'
 import { BasketDropDown } from '@/features/userProfile'
-import { BasketList } from '../BasketList/BasketList'
 
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { ModalBackgroundFilter } from '@/shared/ui/Modal'
+
+import { BasketList } from '../BasketList/BasketList'
 import s from './UserProfileBasket.module.scss'
-import { usePathname } from 'next/navigation'
 
 export const UserProfileBasket = () => {
     const { data } = useGetCartQuery()
@@ -52,15 +55,19 @@ export const UserProfileBasket = () => {
                 onClick={onClick}
                 count={data?.length}
             />
+
             {isOpen && (
                 <BasketDropDown
                     count={data?.length}
                     list={<BasketList />}
-                    onMouseLeave={() => toggleModal(false)}
+                    onMouseLeave={toggleModal.bind(null, false)}
                 />
             )}
+
             {isOpen && (
-                <ModalBackgroundFilter onClick={() => toggleModal(false)} />
+                <ModalBackgroundFilter
+                    onClick={toggleModal.bind(null, false)}
+                />
             )}
         </div>
     )

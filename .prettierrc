@@ -7,5 +7,15 @@
     "jsxSingleQuote": false,
     "singleQuote": true,
     "bracketSpacing": true,
-    "singleAttributePerLine": true
+    "singleAttributePerLine": true,
+    "importOrder": [
+        "^react/(.*)$",
+        "^next/(.*)$",
+        "^@/features/(.*)$",
+        "^@/entities/(.*)$",
+        "^@/shared/(.*)$",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
 }

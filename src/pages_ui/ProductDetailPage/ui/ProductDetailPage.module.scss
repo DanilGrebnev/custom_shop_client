@@ -1,7 +1,10 @@
+@import '@/app/styles/variables';
+
 .ProductPage {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
+    @include styled-scroll;
 }
 
 .left-col {
@@ -66,7 +69,22 @@
     }
 }
 
-.small-img {
-    // width: 50px;
-    // height: 50px;
+@media screen and (max-width: 500px) {
+    .big-img {
+        width: 300px;
+        height: 300px;
+        margin: auto;
+    }
+
+    .small-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .description {
+        max-height: 400px;
+        overflow-y: auto;
+
+        @include styled-scroll();
+    }
 }

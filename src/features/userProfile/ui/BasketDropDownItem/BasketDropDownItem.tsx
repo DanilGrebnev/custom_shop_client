@@ -1,11 +1,16 @@
-import DeleteBasket from '@/shared/assets/delete-basket.svg'
-import s from './BasketDropDownItem.module.scss'
-import Image from 'next/image'
-
 // ! Это временно, пока не будет поправлен ответ по пути api/cart
 import { IProduct } from '@/app/types/product'
-import { useGetSettingsQuery } from '@/entities/settings'
+import { useEffect } from 'react'
+
+import Image from 'next/image'
+
 import { useDeleteProductFromBasketByIdMutation } from '@/features/basket'
+
+import { useGetSettingsQuery } from '@/entities/settings'
+
+import DeleteBasket from '@/shared/assets/delete-basket.svg'
+
+import s from './BasketDropDownItem.module.scss'
 
 interface IDropDownItem {
     product: IProduct
@@ -14,7 +19,12 @@ interface IDropDownItem {
 export const BasketDropDownItem = (props: IDropDownItem) => {
     const { id, name, images, price, quantity } = props.product
     const { data } = useGetSettingsQuery()
-    const [deleteProduct] = useDeleteProductFromBasketByIdMutation()
+    const [deleteProduct, { data: deleteResult }] =
+        useDeleteProductFromBasketByIdMutation()
+
+    useEffect(() => {
+        console.log(deleteResult)
+    }, [deleteResult])
 
     return (
         <div className={s.wrapper}>

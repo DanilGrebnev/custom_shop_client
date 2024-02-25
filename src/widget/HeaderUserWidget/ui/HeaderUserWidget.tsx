@@ -1,20 +1,21 @@
 'use client'
 
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import clsx from 'clsx'
 import { ComponentPropsWithoutRef, memo } from 'react'
+
+import Link from 'next/link'
+
 import {
     UserProfileSelectors,
     UserProfileWishListCounter,
 } from '@/features/userProfile'
-import { useAppSelector } from '@/shared/hooks'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { UserProfileBasket } from './UserProfileBasket/UserProfileBasket'
 
-import UserProfileIcon from '@/shared/assets/profile_icon_160.webp'
-import Image from 'next/image'
-import Link from 'next/link'
+import { useAppSelector } from '@/shared/hooks'
 
 import s from './HeaderUserWidget.module.scss'
-import clsx from 'clsx'
+import { Profile } from './Profile/Profile'
+import { UserProfileBasket } from './UserProfileBasket/UserProfileBasket'
 
 interface IHeaderUserWidget extends ComponentPropsWithoutRef<'div'> {}
 
@@ -38,17 +39,7 @@ export const HeaderUserWidget = memo((props: IHeaderUserWidget) => {
             {...otherProps}>
             <UserProfileBasket />
             <UserProfileWishListCounter />
-            <Link
-                className={s.icon}
-                href={NavigationRoutes.profileMe()}>
-                <Image
-                    width={40}
-                    height={40}
-                    alt="profile"
-                    placeholder="blur"
-                    src={UserProfileIcon}
-                />
-            </Link>
+            <Profile />
         </div>
     )
 })
