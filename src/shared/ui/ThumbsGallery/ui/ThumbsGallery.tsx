@@ -1,12 +1,6 @@
 'use client'
 
-import clsx from 'clsx'
 import React, { useState } from 'react'
-import 'swiper/css'
-import 'swiper/css/free-mode'
-import 'swiper/css/thumbs'
-import { Thumbs } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Image, { StaticImageData } from 'next/image'
 
@@ -14,6 +8,13 @@ import blurImg from '@/shared/assets/blur.webp'
 import { SliderButton } from '@/shared/ui/SliderButton'
 
 import './ThumbsGallery.scss'
+
+import clsx from 'clsx'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/thumbs'
+import { Thumbs } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 interface IThumbsGalleryProps {
     images?: { image: string | StaticImageData }[]

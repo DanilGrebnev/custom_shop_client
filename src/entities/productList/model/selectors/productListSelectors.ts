@@ -1,19 +1,13 @@
 import { StateSchema } from '@/app/providers/StoreProvider'
 
-export class ProductListSelectors {
-    static getProducts(state: StateSchema) {
-        return state.productList.products
-    }
-
+export class ProductSelectors {
     static getTotalCount(state: StateSchema) {
         return state.productList.totalCount
     }
 
-    static getIsLoading(state: StateSchema) {
-        return state.productList.loading
-    }
-
-    static getError(state: StateSchema) {
-        return state.productList.error
+    static getFilterById(state: StateSchema) {
+        return (id: string | undefined) => {
+            return state.productList.filters.find((item) => item.id === id)
+        }
     }
 }

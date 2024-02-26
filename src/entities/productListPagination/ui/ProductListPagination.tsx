@@ -1,14 +1,15 @@
 'use client'
 
-import { type FC, useMemo, ChangeEvent } from 'react'
-import { Pagination } from '@/shared/ui/Pagination'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { ProductListSelectors } from '@/entities/productList'
-import { fetchProductList } from '@/entities/productList'
-import { calculatePagesAmount } from '../model/lib/calculatePagesAmount'
-import { calculateOffset } from '../model/lib/calculateOffset'
-import { ProductListPaginationSelectors } from '../model/selectors/productListPaginationSelectors'
+import { ChangeEvent, type FC, useMemo } from 'react'
 
+import { ProductSelectors } from '@/entities/productList'
+
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { Pagination } from '@/shared/ui/Pagination'
+
+import { calculateOffset } from '../model/lib/calculateOffset'
+import { calculatePagesAmount } from '../model/lib/calculatePagesAmount'
+import { ProductListPaginationSelectors } from '../model/selectors/productListPaginationSelectors'
 import './paginations.scss'
 
 interface IProductListPaginationProps {
@@ -21,7 +22,7 @@ export const ProductListPagination: FC<IProductListPaginationProps> = ({
     const dispatch = useAppDispatch()
 
     // productsAmount - Количество товаров, находящееся в productList
-    const productsAmount = useAppSelector(ProductListSelectors.getTotalCount)
+    const productsAmount = useAppSelector(ProductSelectors.getTotalCount)
 
     // Количество товаров, которое будет отображаться на странице
     const previewItemsOnPage = useAppSelector(
@@ -31,7 +32,7 @@ export const ProductListPagination: FC<IProductListPaginationProps> = ({
     const onChange = (event: ChangeEvent<unknown>, pageNumber: number) => {
         const offset = calculateOffset({ pageNumber, previewItemsOnPage })
 
-        dispatch(fetchProductList({ offset }))
+        // dispatch(fetchProductList({ offset }))
     }
 
     const pagesAmount = useMemo(() => {

@@ -2,6 +2,7 @@
 
 import {
     FC,
+    ForwardedRef,
     MouseEvent,
     ReactNode,
     forwardRef,
@@ -41,13 +42,8 @@ export const CheckBox: FC<ICheckBoxProps> = memo(
 
         const onOpen = (e: MouseEvent<any>) => {
             if (!children) return
-            e.stopPropagation()
             setIsOpen(!isOpen)
         }
-
-        // useEffect(() => {
-        //     console.log(isOpen)
-        // }, [isOpen])
 
         const isOpenClass = clsx({ [s.active]: isOpen })
 

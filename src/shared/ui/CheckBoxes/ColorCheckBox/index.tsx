@@ -1,6 +1,15 @@
 'use client'
 
-import { FC, memo, useState } from 'react'
+import {
+    ChangeEvent,
+    FC,
+    RefObject,
+    memo,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from 'react'
 
 import { CheckBox } from '../CheckBox'
 import { IColorCheckBox } from '../CheckBoxTypes'
@@ -10,24 +19,46 @@ import CheckMarkIcon from '/public/static/icons/check-mark.svg'
 import clsx from 'clsx'
 
 export const ColorCheckBox: FC<IColorCheckBox> = memo((props) => {
-    const { onChange, checked, id, labelcolor, value, name } = props
+    const {
+        onChange: onChangeFromProps,
+        checked,
+        id,
+        labelcolor,
+        value,
+        name,
+        ...otherProps
+    } = props
 
-    const [isChecked, setIsCheck] = useState<boolean>(checked || false)
+    const [isChecked, setIsChecked] = useState<boolean | undefined>(checked)
+
+    useEffect(() => {
+        setIsChecked(checked)
+    }, [checked])
+
+    const onChangeChecked = (e: any, checked: boolean) => {
+        setIsChecked(checked)
+    }
+
+    const onChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {
+            onChangeChecked(e, isChecked)
+            onChangeFromProps?.(e, isChecked)
+        },
+        []
+    )
 
     return (
         <label
             className={s.ColorCheckBox}
             style={{ background: labelcolor }}>
             <CheckBox
+                {...otherProps}
                 id={id}
                 className={s.checkbox}
                 value={value as string}
                 name={name}
-                checked={checked}
-                onChange={(e, ch) => {
-                    setIsCheck(ch)
-                    onChange?.(e, isChecked)
-                }}
+                checked={checked || false}
+                onChange={onChange}
             />
 
             <div className={s.circle} />

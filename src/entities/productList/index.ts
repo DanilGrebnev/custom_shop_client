@@ -1,7 +1,6 @@
 export { type IProductListSchema } from './model/types/productListTypes'
 export { productListReducer } from './model/slice/productListSlice'
-export { ProductListSelectors } from './model/selectors/productListSelectors'
-export { fetchProductList } from './model/services/productListServices'
+export { ProductSelectors } from './model/selectors/productListSelectors'
 export { ProductFilter } from './ui/ProductFilter/ProductFilter'
 export { PreviewProviderDynamic } from './model/provider/PreviewProviderDynamic'
 export { ProductList } from './ui/ProductList/ProductList'
