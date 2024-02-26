@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, memo, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { ColorCheckBox } from '@/shared/ui/CheckBoxes/ColorCheckBox'
@@ -17,10 +17,10 @@ import { v4 } from 'uuid'
 export const ProductFilter = memo(() => {
     const { data } = useGetProductFiltersQuery()
 
-    useEffect(() => {
-        console.clear()
-        console.log(data)
-    }, [data])
+    // useEffect(() => {
+    //     console.clear()
+    //     console.log(data)
+    // }, [data])
 
     return (
         <div className={s.ProductFilter}>
@@ -31,20 +31,19 @@ export const ProductFilter = memo(() => {
                             title={filter.label}
                             key={v4()}>
                             {filter.choices.map((categoryItem) => {
-                                if (categoryItem.children.length) {
-                                    return (
-                                        <CheckBox
-                                            label={categoryItem.label}
-                                            key={v4()}>
-                                            {renderCategoryChildren(
-                                                categoryItem.children
-                                            )}
-                                        </CheckBox>
-                                    )
-                                }
-                                return (
+                                return categoryItem.children.length ? (
+                                    <CheckBox
+                                        id={categoryItem.label}
+                                        label={categoryItem.label}
+                                        key={v4()}>
+                                        {renderCategoryChildren(
+                                            categoryItem.children
+                                        )}
+                                    </CheckBox>
+                                ) : (
                                     <CheckBox
                                         key={v4()}
+                                        id={categoryItem.label}
                                         label={categoryItem.label}
                                     />
                                 )
@@ -52,10 +51,8 @@ export const ProductFilter = memo(() => {
                         </FilterGroup>
                     )
                 }
-                if (
-                    filter.type === 'choices' ||
-                    filter.type === 'multiple_choices'
-                ) {
+
+                if (filter.code === 'color' || filter.code === 'rating') {
                     return (
                         <FilterGroup
                             type={filter.code as 'color'}
@@ -73,37 +70,30 @@ export const ProductFilter = memo(() => {
     )
 })
 
-ProductFilter.displayName = 'ProductFilter'
-
 function choicesRender(
     choices: IProductFilterChoicesItem[],
     code: 'color' | 'rating'
 ) {
     if (code === 'color') {
-        return choices.map((choice) => {
-            return (
-                <ColorCheckBox
-                    labelcolor={choice.label}
-                    key={v4()}
-                />
-            )
-        })
+        return choices.map((choice) => (
+            <ColorCheckBox
+                key={v4()}
+                id={choice.label}
+                labelcolor={choice.label}
+            />
+        ))
     }
-    if (code === 'rating') {
-        return choices.map((choice) => {
-            return (
-                <RatingCheckBox
-                    rating={choice.value}
-                    key={v4()}
-                />
-            )
-        })
-    }
+
+    return choices.map((choice) => (
+        <RatingCheckBox
+            key={v4()}
+            id={choice.label}
+            rating={choice.value}
+        />
+    ))
 }
 
-function renderCategoryChildren(
-    filters: IProductFilterChoicesItem[]
-): ReactNode {
+function renderCategoryChildren(filters: IProductFilterChoicesItem[]) {
     return filters.map((filter) => {
         const { children, label } = filter
 
@@ -111,19 +101,21 @@ function renderCategoryChildren(
             return (
                 <CheckBox
                     key={v4()}
+                    id={label}
                     label={label}>
                     {renderCategoryChildren(children)}
                 </CheckBox>
             )
         }
 
-        if (!children.length) {
-            return (
-                <CheckBox
-                    key={v4()}
-                    label={label}
-                />
-            )
-        }
+        return (
+            <CheckBox
+                key={v4()}
+                id={label}
+                label={label}
+            />
+        )
     })
 }
+
+ProductFilter.displayName = 'ProductFilter'

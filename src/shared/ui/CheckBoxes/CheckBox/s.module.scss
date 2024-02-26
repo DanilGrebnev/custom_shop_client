@@ -14,11 +14,16 @@
 }
 
 .icon {
+    display: none;
     top: 50%;
     width: 12px;
     height: 12px;
     margin-left: 15px;
     fill: var(--global-palette1);
+
+    &.active {
+        display: block;
+    }
 }
 
 .content {
@@ -32,13 +37,24 @@
         }
     }
 }
-
+.label-wrapper {
+    display: flex;
+}
 .label {
     color: var(--text-color2);
     max-width: 200px;
+    display: none;
 
-    &:hover {
+    &.open {
         color: var(--global-palette1);
+    }
+
+    &.children:hover {
+        color: var(--global-palette1);
+    }
+
+    &.active {
+        display: block;
     }
 }
 
@@ -49,4 +65,8 @@
 .children-wrapper {
     margin-left: 5px;
     width: 100%;
+    display: none;
+    &.active {
+        display: block;
+    }
 }
