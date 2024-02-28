@@ -1,10 +1,12 @@
 'use client'
 
-import { SearchButton } from './SearchButton/SearchButton'
+import { ComponentPropsWithoutRef } from 'react'
+
 import { ProductSearchInput } from '@/entities/productSearchInput'
 
+import { SearchButton } from './SearchButton/SearchButton'
 import s from './SearchWidget.module.scss'
-import { ComponentPropsWithoutRef } from 'react'
+
 import clsx from 'clsx'
 
 interface ISearchWidget extends ComponentPropsWithoutRef<'div'> {}

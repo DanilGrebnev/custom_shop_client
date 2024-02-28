@@ -1,21 +1,20 @@
-import { productSearchInputReducer } from '@/entities/productSearchInput'
-import { categoryReducer } from '@/entities/categories'
-import { filterSidebarReducer } from '@/entities/filterSideBar'
-import { homePageApi } from '@/entities/homePage'
-import { productListReducer } from '@/entities/productList'
-import { productListPaginationReducer } from '@/entities/productListPagination'
-import { searchProductParamsReducer } from '@/entities/searchProductParams'
-import { footerApi } from '@/entities/footer'
-import { userProfileReducer, profileApi } from '@/features/userProfile'
-import { settingApi } from '@/entities/settings'
 import { basketApi } from '@/features/basket'
+import { profileApi, userProfileReducer } from '@/features/userProfile'
+
+import { categoryReducer } from '@/entities/categories'
+import { footerApi } from '@/entities/footer'
+import { homePageApi } from '@/entities/homePage'
+import { productReducer } from '@/entities/productList'
 import { productApi } from '@/entities/productList'
+import { productListPaginationReducer } from '@/entities/productListPagination'
+import { productSearchInputReducer } from '@/entities/productSearchInput'
+import { searchProductParamsReducer } from '@/entities/searchProductParams'
+import { settingApi } from '@/entities/settings'
 
 export const staticReducers = {
     categories: categoryReducer,
-    productList: productListReducer,
+    product: productReducer,
     productListPagination: productListPaginationReducer,
-    filterSideBar: filterSidebarReducer,
     productSearchInput: productSearchInputReducer,
     searchProductParams: searchProductParamsReducer,
     userProfile: userProfileReducer,

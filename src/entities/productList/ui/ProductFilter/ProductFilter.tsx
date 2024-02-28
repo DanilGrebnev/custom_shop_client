@@ -1,6 +1,6 @@
 'use client'
 
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 
 import { IProductFilterChoicesItem } from '@/app/types/product'
 
@@ -18,6 +18,10 @@ import { v4 } from 'uuid'
 export const ProductFilter = memo(() => {
     const { data } = useGetProductFiltersQuery()
 
+    useEffect(() => {
+        // console.log(data)
+    }, [data])
+
     return (
         <div className={s.ProductFilter}>
             {data?.filters.map((filter) => {
@@ -26,21 +30,23 @@ export const ProductFilter = memo(() => {
                         <FilterGroup
                             title={filter.label}
                             key={v4()}>
-                            {filter.choices.map((categoryItem) => {
-                                return categoryItem.children.length ? (
+                            {filter.choices.map((choice) => {
+                                return choice.children.length ? (
                                     <CustomCheckBox
-                                        id={categoryItem.label}
-                                        label={categoryItem.label}
+                                        choice={choice}
+                                        id={choice.label}
+                                        label={choice.label}
                                         key={v4()}>
                                         {renderCategoryChildren(
-                                            categoryItem.children
+                                            choice.children
                                         )}
                                     </CustomCheckBox>
                                 ) : (
                                     <CustomCheckBox
                                         key={v4()}
-                                        id={categoryItem.label}
-                                        label={categoryItem.label}
+                                        choice={choice}
+                                        id={choice.label}
+                                        label={choice.label}
                                     />
                                 )
                             })}
@@ -48,16 +54,47 @@ export const ProductFilter = memo(() => {
                     )
                 }
 
-                if (filter.code === 'color' || filter.code === 'rating') {
+                if (filter.code === 'color') {
                     return (
                         <FilterGroup
                             type={filter.code as 'color'}
                             title={filter.label}
                             key={v4()}>
-                            {choicesRender(
-                                filter.choices,
-                                filter.code as 'color' | 'rating'
-                            )}
+                            {filter.choices.map((choice) => {
+                                return (
+                                    <CustomColorCheckBox
+                                        urlparams={{
+                                            value: choice.value,
+                                            key: filter.code,
+                                        }}
+                                        key={v4()}
+                                        id={choice.label}
+                                        labelcolor={choice.label}
+                                    />
+                                )
+                            })}
+                        </FilterGroup>
+                    )
+                }
+
+                if (filter.code === 'rating') {
+                    return (
+                        <FilterGroup
+                            title={filter.label}
+                            key={v4()}>
+                            {filter.choices.map((choice) => {
+                                return (
+                                    <CustomRatingCheckBox
+                                        urlparams={{
+                                            value: choice.value,
+                                            key: filter.code,
+                                        }}
+                                        key={v4()}
+                                        id={choice.label}
+                                        rating={choice.value}
+                                    />
+                                )
+                            })}
                         </FilterGroup>
                     )
                 }
@@ -70,48 +107,23 @@ function renderCategoryChildren(filters: IProductFilterChoicesItem[]) {
     return filters.map((filter) => {
         const { children, label } = filter
 
-        if (children.length) {
-            return (
-                <CustomCheckBox
-                    key={v4()}
-                    id={label}
-                    label={label}>
-                    {renderCategoryChildren(children)}
-                </CustomCheckBox>
-            )
-        }
-
-        return (
+        return children.length ? (
             <CustomCheckBox
                 key={v4()}
+                choice={filter}
+                id={label}
+                label={label}>
+                {renderCategoryChildren(children)}
+            </CustomCheckBox>
+        ) : (
+            <CustomCheckBox
+                key={v4()}
+                choice={filter}
                 id={label}
                 label={label}
             />
         )
     })
-}
-
-function choicesRender(
-    choices: IProductFilterChoicesItem[],
-    code: 'color' | 'rating'
-) {
-    if (code === 'color') {
-        return choices.map((choice) => (
-            <CustomColorCheckBox
-                key={v4()}
-                id={choice.label}
-                labelcolor={choice.label}
-            />
-        ))
-    }
-
-    return choices.map((choice) => (
-        <CustomRatingCheckBox
-            key={v4()}
-            id={choice.label}
-            rating={choice.value}
-        />
-    ))
 }
 
 ProductFilter.displayName = 'ProductFilter'

@@ -1,12 +1,13 @@
 'use client'
 
 import { FC } from 'react'
-import { Slider } from '@/shared/ui/Slider'
-import { FullWidthContainer } from '@/shared/ui/Containers/FullWidthContainer'
-import { ContainerWithTitle } from '@/shared/ui/Containers/ContainerWithTitle'
+
 import { CardByFutureCategories } from '@/shared/ui/Cards'
+import { ContainerWithTitle } from '@/shared/ui/Containers/ContainerWithTitle'
+import { FullWidthContainer } from '@/shared/ui/Containers/FullWidthContainer'
+import { Slider } from '@/shared/ui/Slider'
+
 import { IHomePageCategory } from '@/app/types/category'
-import { useSelectCategoryAndSetUSP } from '@/shared/hooks'
 
 interface IShopByFeaturedCategoriesProps {
     className?: string
@@ -17,7 +18,6 @@ export const ShopByFeaturedCategories: FC<IShopByFeaturedCategoriesProps> = (
     props
 ) => {
     const { categories } = props
-    const onClick = useSelectCategoryAndSetUSP()
 
     return (
         <div className={'mr-top'}>
@@ -30,7 +30,6 @@ export const ShopByFeaturedCategories: FC<IShopByFeaturedCategoriesProps> = (
                         {categories.map((category, i) => {
                             return (
                                 <CardByFutureCategories
-                                    onClick={() => onClick(category)}
                                     key={i}
                                     image={category?.image}
                                     name={category?.name}

@@ -1,12 +1,13 @@
 'use client'
 
 import { type FC } from 'react'
+
 import { useRouter } from 'next/navigation'
-import { useAppSelector, useAppDispatch } from '@/shared/hooks'
-import {
-    ProductSearchInputState,
-    toggleVisibleSearchList,
-} from '@/entities/productSearchInput'
+
+import { ProductSearchInputState } from '@/entities/productSearchInput'
+
+import { useAppSelector } from '@/shared/hooks'
+
 import s from './s.module.scss'
 
 interface ISearchButtonProps {

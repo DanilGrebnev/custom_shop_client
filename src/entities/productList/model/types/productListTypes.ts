@@ -1,8 +1,11 @@
-import { IProduct, IProductFilterList } from '@/app/types/product'
+export type ProductFilterList = {
+    id?: string
+    checked: boolean
+    key: string
+    value: string
+}
 
-export interface IProductListSchema {
-    totalCount: number
-    filters: { id: string; checked: boolean }[]
-    loading: boolean
-    error: any
+export interface IProductSchema {
+    filters: ProductFilterList[]
+    usp: string
 }

@@ -2,12 +2,25 @@ import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { ColorCheckBox } from '@/shared/ui/CheckBoxes/ColorCheckBox'
 import { RatingCheckBox } from '@/shared/ui/CheckBoxes/RatingCheckBox'
 
+import { IProductFilterChoicesItem } from '@/app/types/product'
+
 import { useChecked } from '../../../../model/hooks/useChecked'
 
-export const CustomCheckBox = (props: Parameters<typeof CheckBox>[0]) => {
-    const { id } = props
-    const { currentFilter, onChange } = useChecked({ id })
+type TUrlParams = { urlparams: { key: string; value: string } }
 
+export const CustomCheckBox = (
+    props: Parameters<typeof CheckBox>[0] & {
+        choice: IProductFilterChoicesItem
+    }
+) => {
+    const { id, choice } = props
+
+    const { currentFilter, onChange } = useChecked({
+        id,
+        key: choice.code,
+        value: choice.value,
+    })
+    
     return (
         <CheckBox
             {...props}
@@ -18,10 +31,10 @@ export const CustomCheckBox = (props: Parameters<typeof CheckBox>[0]) => {
 }
 
 export const CustomColorCheckBox = (
-    props: Parameters<typeof ColorCheckBox>[0]
+    props: Parameters<typeof ColorCheckBox>[0] & TUrlParams
 ) => {
-    const { id } = props
-    const { currentFilter, onChange } = useChecked({ id })
+    const { id, urlparams } = props
+    const { currentFilter, onChange } = useChecked({ id, ...urlparams })
 
     return (
         <ColorCheckBox
@@ -33,10 +46,10 @@ export const CustomColorCheckBox = (
 }
 
 export const CustomRatingCheckBox = (
-    props: Parameters<typeof RatingCheckBox>[0]
+    props: Parameters<typeof RatingCheckBox>[0] & TUrlParams
 ) => {
-    const { id } = props
-    const { currentFilter, onChange } = useChecked({ id })
+    const { id, urlparams } = props
+    const { currentFilter, onChange } = useChecked({ id, ...urlparams })
 
     return (
         <RatingCheckBox

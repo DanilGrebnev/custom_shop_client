@@ -1,29 +1,38 @@
 'use client'
 
-import { useContext } from 'react'
-import { useAppSelector } from '@/shared/hooks'
-import { ProductListPagination } from '@/entities/productListPagination'
-import { ProductListSkeleton } from '@/shared/ui/Skeletons'
-import { getSearchProductParams } from '@/entities/searchProductParams'
-import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
-import { useGetProductsQuery } from '../../model/api/productApi'
+import { useContext, useEffect } from 'react'
 
+import { ProductListPagination } from '@/entities/productListPagination'
+
+import { useAppSelector } from '@/shared/hooks'
+import { ProductListSkeleton } from '@/shared/ui/Skeletons'
+
+import { ProductSelectors } from '../..'
+import { useGetProductsQuery } from '../../model/api/productApi'
+import { useCreateUrlSearchParams } from '../../model/hooks/useCreateUrlSearchParams'
 import {
     IContextPreviewProvider,
     PreviewContext,
 } from '../../model/provider/PreviewProvider'
-
-import clsx from 'clsx'
-import s from './ProductList.module.scss'
-import { DynamicProductList } from './DynamicProductList'
 import { DynamicProductListHeader } from '../ProductListHeader/DynamicProductListHeader'
+import s from './ProductList.module.scss'
+
+import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
+import clsx from 'clsx'
+import { v4 } from 'uuid'
 
 export const ProductList = () => {
     const { preview } = useContext(PreviewContext) as IContextPreviewProvider
 
-    const usp = useAppSelector(getSearchProductParams)
+    const usp = useAppSelector(ProductSelectors.getUsp)
 
     const { data: productResponse, isLoading } = useGetProductsQuery(usp)
+
+    useEffect(() => {
+        // console.clear()
+        // console.log('search params:', usp)
+        // console.log(productResponse?.products)
+    }, [productResponse, usp])
 
     return (
         <div
@@ -37,7 +46,7 @@ export const ProductList = () => {
                     ({ id, price, images, name, description }) => {
                         return (
                             <ShopProductCardWidget
-                                key={id}
+                                key={v4()}
                                 type={preview}
                                 productId={id}
                                 rating={3}

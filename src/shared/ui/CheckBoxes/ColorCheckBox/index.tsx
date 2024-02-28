@@ -44,7 +44,7 @@ export const ColorCheckBox: FC<IColorCheckBox> = memo((props) => {
             onChangeChecked(e, isChecked)
             onChangeFromProps?.(e, isChecked)
         },
-        []
+        [onChangeFromProps]
     )
 
     return (

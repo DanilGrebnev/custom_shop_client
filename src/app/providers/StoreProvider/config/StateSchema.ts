@@ -1,17 +1,15 @@
 import { type AxiosInstance } from 'axios'
 import { type ICategorySchema } from '@/entities/categories'
-import { type IProductListSchema } from '@/entities/productList'
+import { type IProductSchema } from '@/entities/productList'
 import { type IProductListPaginationSchema } from '@/entities/productListPagination'
-import { type IFilterSideBarSchema } from '@/entities/filterSideBar'
 import { type IProductSearchInputSchema } from '@/entities/productSearchInput'
 import { type ISearchProductParamsSchema } from '@/entities/searchProductParams'
 import { type IUserProfileSchema } from '@/features/userProfile'
 
 export interface StateSchema {
     categories: ICategorySchema
-    productList: IProductListSchema
+    product: IProductSchema
     productListPagination: IProductListPaginationSchema
-    filterSideBar: IFilterSideBarSchema
     productSearchInput: IProductSearchInputSchema
     searchProductParams: ISearchProductParamsSchema
     userProfile: IUserProfileSchema

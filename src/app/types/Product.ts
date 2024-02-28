@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image'
+
 import { ICategory } from '@/app/types/category'
 
 export interface IImage {
@@ -34,7 +35,7 @@ export interface IProductFilterChoicesItem {
     label: string
     value: string
     children: IProductFilterChoicesItem[]
-    code?: string
+    code: string
 }
 
 export interface IProductFilterList {

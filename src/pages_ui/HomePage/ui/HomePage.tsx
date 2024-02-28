@@ -1,14 +1,17 @@
 'use client'
 
-import { TopSlider } from '@/widget/TopSlider'
-import { FeaturedProducts } from '@/widget/FeaturedProducts'
-import { NewProducts } from '@/widget/NewProducts'
-import { FeedBackBlock } from '@/widget/FeedBackBlock'
-import { BestsellerProducts } from '@/widget/BestsellerProducts'
 import { useGetHomePageQuery } from '@/entities/homePage'
-import { HomePageSkeleton } from '@/shared/ui/Skeletons'
+
+import { useAppDispatch } from '@/shared/hooks'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+import { HomePageSkeleton } from '@/shared/ui/Skeletons'
+
+import { BestsellerProducts } from '@/widget/BestsellerProducts'
+import { FeaturedProducts } from '@/widget/FeaturedProducts'
+import { FeedBackBlock } from '@/widget/FeedBackBlock'
+import { NewProducts } from '@/widget/NewProducts'
 import { ShopByFeaturedCategoriesDynamic } from '@/widget/ShopByFeaturedCategories'
+import { TopSlider } from '@/widget/TopSlider'
 
 export const HomePage = () => {
     const { data: homePageData, isLoading } = useGetHomePageQuery()

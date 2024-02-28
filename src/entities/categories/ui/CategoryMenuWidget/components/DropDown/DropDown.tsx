@@ -1,11 +1,14 @@
 'use client'
 
 import { memo } from 'react'
-import { Title } from '@/shared/ui/Title'
-import { ICategory } from '@/app/types/category'
-import { useAppDispatch } from '@/shared/hooks'
-import { useSelectCategoryAndSetUSP } from '@/shared/hooks'
+
 import Link from 'next/link'
+
+import { useAppDispatch } from '@/shared/hooks'
+import { Title } from '@/shared/ui/Title'
+
+import { ICategory } from '@/app/types/category'
+
 import s from './DropDown.module.scss'
 
 interface IDropDown {
@@ -13,7 +16,6 @@ interface IDropDown {
 }
 
 export const DropDown = memo((props: IDropDown) => {
-    const onClick = useSelectCategoryAndSetUSP()
     const { categories } = props
 
     return (
@@ -25,8 +27,7 @@ export const DropDown = memo((props: IDropDown) => {
                     return (
                         <li
                             className={s.link}
-                            key={id}
-                            onClick={() => onClick(category)}>
+                            key={id}>
                             <Link href="/shop">{name}</Link>
                         </li>
                     )

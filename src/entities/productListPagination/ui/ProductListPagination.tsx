@@ -21,9 +21,6 @@ export const ProductListPagination: FC<IProductListPaginationProps> = ({
 }) => {
     const dispatch = useAppDispatch()
 
-    // productsAmount - Количество товаров, находящееся в productList
-    const productsAmount = useAppSelector(ProductSelectors.getTotalCount)
-
     // Количество товаров, которое будет отображаться на странице
     const previewItemsOnPage = useAppSelector(
         ProductListPaginationSelectors.getPreviewItemsOnPage
@@ -31,21 +28,12 @@ export const ProductListPagination: FC<IProductListPaginationProps> = ({
 
     const onChange = (event: ChangeEvent<unknown>, pageNumber: number) => {
         const offset = calculateOffset({ pageNumber, previewItemsOnPage })
-
-        // dispatch(fetchProductList({ offset }))
     }
-
-    const pagesAmount = useMemo(() => {
-        return calculatePagesAmount({
-            previewItemsOnPage,
-            productsAmount,
-        })
-    }, [productsAmount, previewItemsOnPage])
 
     return (
         <Pagination
             className={className}
-            count={pagesAmount}
+            count={1}
             onChange={onChange}
         />
     )
