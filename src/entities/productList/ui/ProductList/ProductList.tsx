@@ -9,7 +9,6 @@ import { ProductListSkeleton } from '@/shared/ui/Skeletons'
 
 import { ProductSelectors } from '../..'
 import { useGetProductsQuery } from '../../model/api/productApi'
-import { useCreateUrlSearchParams } from '../../model/hooks/useCreateUrlSearchParams'
 import {
     IContextPreviewProvider,
     PreviewContext,
@@ -27,12 +26,6 @@ export const ProductList = () => {
     const usp = useAppSelector(ProductSelectors.getUsp)
 
     const { data: productResponse, isLoading } = useGetProductsQuery(usp)
-
-    useEffect(() => {
-        // console.clear()
-        // console.log('search params:', usp)
-        // console.log(productResponse?.products)
-    }, [productResponse, usp])
 
     return (
         <div

@@ -1,3 +1,6 @@
+import { addUrlParams } from '@/shared/lib/addUrlParams'
+import { deleteUrlParams } from '@/shared/lib/deleteUrlParams'
+
 import type {
     IProductSchema,
     ProductFilterList,
@@ -27,6 +30,28 @@ export const productSlice = createSlice({
             state.filters.forEach(
                 (filter) => filter.id === id && (filter.checked = checked)
             )
+
+            const currentFilter = state.filters.find(
+                (filter) => filter.id === id
+            ) as ProductFilterList
+
+            if (currentFilter.checked) {
+                const updatedUsp = addUrlParams({
+                    key: currentFilter.key,
+                    value: currentFilter.value,
+                    usp: state.usp,
+                })
+                state.usp = updatedUsp
+            }
+
+            if (!checked) {
+                const updatedUsp = deleteUrlParams({
+                    filter: currentFilter.key + '=' + currentFilter.value,
+                    usp: state.usp,
+                })
+
+                state.usp = updatedUsp
+            }
         },
 
         resetAllFilters(state) {

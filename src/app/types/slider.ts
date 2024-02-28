@@ -1,4 +1,6 @@
-import { type ReactNode, type CSSProperties } from 'react'
+import { type CSSProperties, type ReactNode } from 'react'
+
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export enum SliderTheme {
     theme1 = 'theme1',
@@ -23,7 +25,7 @@ export interface ISliderProps {
     autoplay?: boolean
     loop?: boolean
     style?: CSSProperties
-    theme: TSliderTheme
+    theme?: TSliderTheme
     buttons?: boolean
     breakpoints?:
         | TSliderBreakpoints

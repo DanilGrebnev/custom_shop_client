@@ -1,10 +1,12 @@
 import { useContext } from 'react'
+
 import { ToggleViewButton } from '@/shared/ui/ToggleViewButton'
+
 import {
     IContextPreviewProvider,
     PreviewContext,
 } from '../../model/provider/PreviewProvider'
-
+import { ActiveFilterList } from '../ActiveFilterList/ActiveFilterList'
 import s from './ProductListHeader.module.scss'
 
 export const ProductListHeader = () => {
@@ -14,16 +16,19 @@ export const ProductListHeader = () => {
 
     return (
         <header className={s.header}>
-            <ToggleViewButton
-                active={preview === 'cell'}
-                theme="cell"
-                onClick={() => togglePreview('cell')}
-            />
-            <ToggleViewButton
-                active={preview === 'list'}
-                theme="list"
-                onClick={() => togglePreview('list')}
-            />
+            <ActiveFilterList />
+            <div className={s['toggle-preview-wrapper']}>
+                <ToggleViewButton
+                    active={preview === 'cell'}
+                    theme="cell"
+                    onClick={togglePreview.bind(null, 'cell')}
+                />
+                <ToggleViewButton
+                    active={preview === 'list'}
+                    theme="list"
+                    onClick={togglePreview.bind(null, 'list')}
+                />
+            </div>
         </header>
     )
 }

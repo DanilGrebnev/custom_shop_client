@@ -1,5 +1,10 @@
 .header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
     gap: 10px;
-    justify-content: flex-end;
+}
+
+.toggle-preview-wrapper {
+    gap: 10px;
+    display: flex;
 }

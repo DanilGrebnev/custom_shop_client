@@ -19,7 +19,7 @@ export const ProductFilter = memo(() => {
     const { data } = useGetProductFiltersQuery()
 
     useEffect(() => {
-        // console.log(data)
+        console.log(data)
     }, [data])
 
     return (
@@ -33,7 +33,7 @@ export const ProductFilter = memo(() => {
                             {filter.choices.map((choice) => {
                                 return choice.children.length ? (
                                     <CustomCheckBox
-                                        choice={choice}
+                                        filter={choice}
                                         id={choice.label}
                                         label={choice.label}
                                         key={v4()}>
@@ -44,7 +44,7 @@ export const ProductFilter = memo(() => {
                                 ) : (
                                     <CustomCheckBox
                                         key={v4()}
-                                        choice={choice}
+                                        filter={choice}
                                         id={choice.label}
                                         label={choice.label}
                                     />
@@ -67,6 +67,7 @@ export const ProductFilter = memo(() => {
                                             value: choice.value,
                                             key: filter.code,
                                         }}
+                                        filter={choice}
                                         key={v4()}
                                         id={choice.label}
                                         labelcolor={choice.label}
@@ -85,6 +86,7 @@ export const ProductFilter = memo(() => {
                             {filter.choices.map((choice) => {
                                 return (
                                     <CustomRatingCheckBox
+                                        filter={choice}
                                         urlparams={{
                                             value: choice.value,
                                             key: filter.code,
@@ -110,7 +112,7 @@ function renderCategoryChildren(filters: IProductFilterChoicesItem[]) {
         return children.length ? (
             <CustomCheckBox
                 key={v4()}
-                choice={filter}
+                filter={filter}
                 id={label}
                 label={label}>
                 {renderCategoryChildren(children)}
@@ -118,7 +120,7 @@ function renderCategoryChildren(filters: IProductFilterChoicesItem[]) {
         ) : (
             <CustomCheckBox
                 key={v4()}
-                choice={filter}
+                filter={filter}
                 id={label}
                 label={label}
             />

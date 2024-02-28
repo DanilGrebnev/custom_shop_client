@@ -1,15 +1,17 @@
 'use client'
 
 import { FC } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { SliderButton } from '@/shared/ui/SliderButton'
-import { SliderTheme, ISliderProps } from '@/app/types/slider'
-import { changeBreakPoints } from '../lib'
 
-import clsx from 'clsx'
+import { SliderButton } from '@/shared/ui/SliderButton'
+
+import { ISliderProps, SliderTheme } from '@/app/types/slider'
+
+import { changeBreakPoints } from '../lib'
 import s from './Slider.module.scss'
 
+import clsx from 'clsx'
 import 'swiper/css'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Slider: FC<ISliderProps> = (props) => {
     const {

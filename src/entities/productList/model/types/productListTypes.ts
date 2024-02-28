@@ -3,6 +3,7 @@ export type ProductFilterList = {
     checked: boolean
     key: string
     value: string
+    label: string
 }
 
 export interface IProductSchema {

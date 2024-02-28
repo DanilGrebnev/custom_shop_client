@@ -12,12 +12,13 @@ interface IUseChecked {
     id: string | undefined
     key: string
     value: string
+    label: string
 }
 /**
  * Хук дублирует состояние чекбокса для сохранения состояние между переходами по страницам
  */
 export const useChecked = (props: IUseChecked) => {
-    const { id, key, value } = props
+    const { id, key, value, label } = props
     const actions = useActionCreators(productActions)
 
     const storeUsp = useAppSelector(ProductSelectors.getUsp)
@@ -27,7 +28,8 @@ export const useChecked = (props: IUseChecked) => {
     )
 
     useEffect(() => {
-        actions.initialCreateFilter({ id, checked: false, key, value })
+        actions.initialCreateFilter({ id, checked: false, key, value, label })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const onChange = useCallback(
@@ -37,23 +39,9 @@ export const useChecked = (props: IUseChecked) => {
             const checked = e.target.checked
             const filter = { id, checked }
 
-            if (checked) {
-                const updatedUsp = addUrlParams({ key, value, usp: storeUsp })
-                actions.setUrlSearchParams(updatedUsp)
-            }
-
-            if (!checked) {
-                const updatedUsp = deleteUrlParams({
-                    filter: key + '=' + value,
-                    usp: storeUsp,
-                })
-
-                actions.setUrlSearchParams(updatedUsp)
-            }
-
             actions.changeCheckedValue(filter)
         },
-        [storeUsp]
+        [id, actions]
     )
 
     return { currentFilter, onChange }
