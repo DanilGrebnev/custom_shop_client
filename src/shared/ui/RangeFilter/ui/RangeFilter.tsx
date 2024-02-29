@@ -1,20 +1,22 @@
 'use client'
 
-import { type FC, useState, ChangeEvent } from 'react'
-import { TextField } from '@mui/material'
-import { IFilterItem } from '@/app/types/filters'
-import { isNumber } from '@/shared/lib/isNumber'
+import { ChangeEvent, type FC } from 'react'
+
 import { useSessionStorage } from '@/shared/hooks'
+import { isNumber } from '@/shared/lib/isNumber'
+
+import { IProductRangeFilter } from '@/app/types/product'
+
 import { CustomInput } from '../../CustomInput'
+import s from './RangeFilter.module.scss'
 
 import clsx from 'clsx'
-import s from './RangeFilter.module.scss'
 
 type Event = ChangeEvent<HTMLInputElement>
 
 interface IRangeFilterProps {
     className?: string
-    filterItem: IFilterItem
+    filter: IProductRangeFilter
     onChange?: (e: Event) => void
 }
 
@@ -22,10 +24,10 @@ interface IRangeFilterProps {
  * Компонент фильтра диапазона
  */
 export const RangeFilter: FC<IRangeFilterProps> = (props) => {
-    const { className, filterItem, onChange } = props
+    const { className, filter, onChange } = props
 
-    const key1 = filterItem.code + '_min'
-    const key2 = filterItem.code + '_max'
+    const key1 = filter.code + '_min'
+    const key2 = filter.code + '_max'
 
     const [input1, setInput1] = useSessionStorage({
         key: key1,
@@ -58,7 +60,7 @@ export const RangeFilter: FC<IRangeFilterProps> = (props) => {
                 name={key1}
                 value={input1}
                 onChange={onChangeValue1}
-                label={`от ${filterItem.min_value}`}
+                label={`от ${filter.min_value}`}
                 variant="outlined"
             />
             <CustomInput
@@ -66,7 +68,7 @@ export const RangeFilter: FC<IRangeFilterProps> = (props) => {
                 value={input2}
                 onChange={onChangeValue2}
                 size="small"
-                label={`до ${filterItem.max_value}`}
+                label={`до ${filter.max_value}`}
                 variant="outlined"
             />
         </div>

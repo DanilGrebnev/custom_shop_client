@@ -3,9 +3,11 @@ type Args = {
     filter: string
 }
 /**
- * Удаляет из urlSearchParams ключ и значение, если ключ повторяется более 1 раза
+ * Удаляет из urlSearchParams ключ и значение,
+ * @example
+ * const str = `offset=05&limit=5&category=videokarty&category=akustika`
+ * deleteUrlParams('category=videokarty', str) // offset=0&limit=5&category=akustika
  */
 export const deleteUrlParams = ({ filter, usp }: Args) => {
-    const updatedUsp = new URLSearchParams(usp.toString().replace(filter, ''))
-    return updatedUsp.toString()
+    return new URLSearchParams(usp.toString().replace(filter, '')).toString()
 }

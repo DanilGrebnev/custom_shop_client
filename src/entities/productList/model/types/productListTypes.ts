@@ -1,5 +1,5 @@
 export type ProductFilterList = {
-    id?: string
+    id: string
     checked: boolean
     key: string
     value: string

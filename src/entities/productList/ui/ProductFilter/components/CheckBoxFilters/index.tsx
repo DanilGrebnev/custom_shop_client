@@ -2,7 +2,7 @@ import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { ColorCheckBox } from '@/shared/ui/CheckBoxes/ColorCheckBox'
 import { RatingCheckBox } from '@/shared/ui/CheckBoxes/RatingCheckBox'
 
-import { IProductFilterChoicesItem } from '@/app/types/product'
+import { IProductChoiceFilter } from '@/app/types/product'
 
 import { useChecked } from '../../../../model/hooks/useChecked'
 
@@ -10,7 +10,7 @@ type TUrlParams = { urlparams: { key: string; value: string } }
 
 export const CustomCheckBox = (
     props: Parameters<typeof CheckBox>[0] & {
-        filter: IProductFilterChoicesItem
+        filter: IProductChoiceFilter
     }
 ) => {
     const { id, filter } = props
@@ -34,7 +34,7 @@ export const CustomCheckBox = (
 export const CustomColorCheckBox = (
     props: Parameters<typeof ColorCheckBox>[0] &
         TUrlParams & {
-            filter: IProductFilterChoicesItem
+            filter: IProductChoiceFilter
         }
 ) => {
     const { id, urlparams, filter } = props
@@ -56,7 +56,7 @@ export const CustomColorCheckBox = (
 export const CustomRatingCheckBox = (
     props: Parameters<typeof RatingCheckBox>[0] &
         TUrlParams & {
-            filter: IProductFilterChoicesItem
+            filter: IProductChoiceFilter
         }
 ) => {
     const { id, urlparams, filter } = props

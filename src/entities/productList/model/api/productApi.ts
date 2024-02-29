@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ApiRoutes } from '@/app/providers/apiRoutes/apiRoutes'
 import {
     IProduct,
     IProductData,
     type IProductFilterResponse,
 } from '@/app/types/product'
+
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const productApi = createApi({
     reducerPath: 'api/product',
@@ -17,7 +18,7 @@ export const productApi = createApi({
         getProductFilters: build.query<IProductFilterResponse, void>({
             query: () => ApiRoutes.product.filters,
         }),
-        
+
         getProducts: build.query<IProductData, string>({
             query: (urlParams: string) => '/products?' + urlParams || '',
         }),

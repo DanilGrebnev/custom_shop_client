@@ -43,7 +43,7 @@ export const ActiveFilterList = memo(() => {
                     <button
                         key={v4()}
                         title={filter.label}
-                        onClick={deleteFilter.bind(null, filter.id!)}
+                        onClick={deleteFilter.bind(null, filter.id)}
                         className={clsx(s.filter, s[theme])}>
                         <span className={s.description}>{filter.label}</span>
 

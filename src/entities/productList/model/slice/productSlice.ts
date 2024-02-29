@@ -27,13 +27,12 @@ export const productSlice = createSlice({
         ) {
             const { id, checked } = action.payload
 
-            state.filters.forEach(
-                (filter) => filter.id === id && (filter.checked = checked)
-            )
-
-            const currentFilter = state.filters.find(
-                (filter) => filter.id === id
-            ) as ProductFilterList
+            const currentFilter = state.filters.find((filter) => {
+                if (filter.id === id) {
+                    filter.checked = checked
+                    return filter
+                }
+            }) as ProductFilterList
 
             if (currentFilter.checked) {
                 const updatedUsp = addUrlParams({

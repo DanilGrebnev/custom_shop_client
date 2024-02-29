@@ -23,36 +23,53 @@ export interface IProduct {
     averageRating: number
     numberOfRatings: number
 }
+export interface IProductData {
+    totalCount: number
+    products: IProduct[]
+}
 
 export enum ProductListPreviewType {
     CELL = 'cell',
     LIST = 'list',
 }
 
-type IType = 'multiple_choices' | 'number' | 'choices'
-
-export interface IProductFilterChoicesItem {
-    label: string
-    value: string
-    children: IProductFilterChoicesItem[]
+// Типы фильтров продуктов
+interface BaseFilterInfo {
     code: string
+    label: string
+    type: 'choices' | 'multiple_choices' | 'number'
 }
 
-export interface IProductFilterList {
+export interface IProductChoiceFilter {
     code: string
     label: string
-    type: IType
-    choices: IProductFilterChoicesItem[]
-    measure?: string
-    max_: string
-    min_: string
+    value: string
+    children: IProductChoiceFilter[] | []
+}
+
+export interface IProductCheckBoxFilter extends BaseFilterInfo {
+    choices: IProductChoiceFilter[]
+    value: string
+}
+
+export interface IProductRangeFilter extends BaseFilterInfo {
+    max_value: string
+    measure: string
+    min_value: string
 }
 
 export interface IProductFilterResponse {
-    filters: IProductFilterList[]
+    filters: Array<IProductCheckBoxFilter | IProductRangeFilter>
 }
 
-export interface IProductData {
-    totalCount: number
-    products: IProduct[]
+export const isChoiceFilter = (
+    filter: IProductCheckBoxFilter | IProductRangeFilter
+): filter is IProductCheckBoxFilter => {
+    return 'choices' in filter
+}
+
+export const isRangeFilter = (
+    filter: IProductCheckBoxFilter | IProductRangeFilter
+): filter is IProductRangeFilter => {
+    return 'measure' in filter
 }

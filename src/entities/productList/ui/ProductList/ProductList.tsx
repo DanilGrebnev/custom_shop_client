@@ -1,13 +1,13 @@
 'use client'
 
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 
 import { ProductListPagination } from '@/entities/productListPagination'
 
 import { useAppSelector } from '@/shared/hooks'
 import { ProductListSkeleton } from '@/shared/ui/Skeletons'
 
-import { ProductSelectors } from '../..'
+import { ProductSelectors } from '../../model/selectors/productSelectors'
 import { useGetProductsQuery } from '../../model/api/productApi'
 import {
     IContextPreviewProvider,
