@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, type FC } from 'react'
+import { ChangeEvent, type FC, useRef } from 'react'
 
 import { useSessionStorage } from '@/shared/hooks'
 import { isNumber } from '@/shared/lib/isNumber'
@@ -17,57 +17,55 @@ type Event = ChangeEvent<HTMLInputElement>
 interface IRangeFilterProps {
     className?: string
     filter: IProductRangeFilter
-    onChange?: (e: Event) => void
+    value1?: string
+    value2?: string
+    onChange1: (key: string, value: string) => void
+    onChange2: (key: string, value: string) => void
 }
 
 /**
  * Компонент фильтра диапазона
  */
 export const RangeFilter: FC<IRangeFilterProps> = (props) => {
-    const { className, filter, onChange } = props
+    const { className, filter, onChange1, onChange2, value1, value2 } = props
+
+    const ref1 = useRef<HTMLInputElement>(null)
+    const ref2 = useRef<HTMLInputElement>(null)
 
     const key1 = filter.code + '_min'
     const key2 = filter.code + '_max'
 
-    const [input1, setInput1] = useSessionStorage({
-        key: key1,
-        defaultValue: '',
-    })
-
-    const [input2, setInput2] = useSessionStorage({
-        key: key2,
-        defaultValue: '',
-    })
-
     const onChangeValue1 = (e: Event) => {
         const { value } = e.target
         if (!isNumber(value)) return
-        setInput1(value.trim())
-        onChange?.(e)
+        onChange1(key1, value)
     }
 
     const onChangeValue2 = (e: Event) => {
         const { value } = e.target
         if (!isNumber(value)) return
-        setInput2(value.trim())
-        onChange?.(e)
+        onChange2(key2, value)
     }
 
     return (
         <div className={clsx(s.RangeFilter, className)}>
             <CustomInput
+                ref={ref1}
                 size="small"
                 name={key1}
-                value={input1}
+                value={value1 || ref1.current?.value}
                 onChange={onChangeValue1}
+                autoComplete="off"
                 label={`от ${filter.min_value}`}
                 variant="outlined"
             />
             <CustomInput
+                ref={ref2}
                 name={key2}
-                value={input2}
+                value={value2 || ref2.current?.value}
                 onChange={onChangeValue2}
                 size="small"
+                autoComplete="off"
                 label={`до ${filter.max_value}`}
                 variant="outlined"
             />

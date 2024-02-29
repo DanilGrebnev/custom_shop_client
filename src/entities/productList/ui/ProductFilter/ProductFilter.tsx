@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, memo, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { RangeFilter } from '@/shared/ui/RangeFilter'
 
@@ -19,6 +19,7 @@ import {
     CustomRatingCheckBox,
 } from './components/CheckBoxFilters'
 import { FilterGroup } from './components/FilterGroupContainer/FilterGroup'
+import { CustomRangeFilter } from './components/FilterRangeItem/CustomRangeFilter'
 
 import { v4 } from 'uuid'
 
@@ -62,60 +63,60 @@ export const ProductFilter = memo(() => {
                         )
                     }
 
-                    if (filter.code === 'color') {
-                        return (
-                            <FilterGroup
-                                type={filter.code}
-                                title={filter.label}
-                                key={v4()}>
-                                {filter.choices.map((choice) => {
-                                    return (
-                                        <CustomColorCheckBox
-                                            key={v4()}
-                                            urlparams={{
-                                                key: filter.code,
-                                                value: choice.value,
-                                            }}
-                                            filter={choice}
-                                            id={choice.label}
-                                            labelcolor={choice.label}
-                                        />
-                                    )
-                                })}
-                            </FilterGroup>
-                        )
-                    }
+                    return (
+                        <FilterGroup
+                            key={v4()}
+                            type={filter.code}
+                            title={filter.label}>
+                            {filter.choices.map((choice) => {
+                                const props = {
+                                    urlparams: {
+                                        key: filter.code,
+                                        value: choice.value,
+                                    },
+                                    filter: choice,
+                                    id: choice.label,
+                                }
 
-                    if (filter.code === 'rating') {
-                        return (
-                            <FilterGroup
-                                title={filter.label}
-                                key={v4()}>
-                                {filter.choices.map((choice) => {
+                                if (filter.code === 'rating') {
                                     return (
                                         <CustomRatingCheckBox
-                                            filter={choice}
-                                            urlparams={{
-                                                value: choice.value,
-                                                key: filter.code,
-                                            }}
                                             key={v4()}
-                                            id={choice.label}
+                                            {...props}
                                             rating={choice.value}
                                         />
                                     )
-                                })}
-                            </FilterGroup>
-                        )
-                    }
+                                }
+
+                                if (filter.code === 'color') {
+                                    return (
+                                        <CustomColorCheckBox
+                                            key={v4()}
+                                            {...props}
+                                            labelcolor={choice.label}
+                                        />
+                                    )
+                                }
+                            })}
+                        </FilterGroup>
+                    )
                 }
 
-                if (filter.type === 'number' && isRangeFilter(filter)) {
+                if (isRangeFilter(filter)) {
                     return (
                         <FilterGroup
                             key={v4()}
                             title={filter.label}>
-                            <RangeFilter filter={filter} />
+                            <CustomRangeFilter
+                                value1=""
+                                onChange1={(key, value) => {
+                                    console.log(key, value)
+                                }}
+                                onChange2={(key, value) => {
+                                    console.log(key, value)
+                                }}
+                                filter={filter}
+                            />
                         </FilterGroup>
                     )
                 }

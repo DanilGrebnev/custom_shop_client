@@ -7,7 +7,7 @@ import clsx from 'clsx'
 interface IFilterGroupProps {
     title: string
     children: ReactNode
-    type?: 'color'
+    type?: 'color' | string
 }
 
 export const FilterGroup = (props: IFilterGroupProps) => {

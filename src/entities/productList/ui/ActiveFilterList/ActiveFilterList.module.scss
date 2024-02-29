@@ -4,9 +4,7 @@
 }
 
 .swiper-slide {
-    width: max-content;
     display: flex;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: auto;
     width: auto;
@@ -29,16 +27,16 @@
     transition: 0.3s;
 
     &:hover {
-        background: rgba(0, 0, 0, 0.1);
-    }
-
-    &:hover.dark {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgb(0 0 0 / 10%);
     }
 
     &.dark {
         border: 1px solid var(--border-ui-color1);
         background: transparent;
+    }
+
+    &:hover.dark {
+        background: rgb(255 255 255 / 10%);
     }
 }
 

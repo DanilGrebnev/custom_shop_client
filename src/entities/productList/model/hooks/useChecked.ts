@@ -21,8 +21,6 @@ export const useChecked = (props: IUseChecked) => {
     const { id, key, value, label } = props
     const actions = useActionCreators(productActions)
 
-    const storeUsp = useAppSelector(ProductSelectors.getUsp)
-
     const currentFilter = useAppSelector((state) =>
         ProductSelectors.getFilterById(state)(id)
     )
@@ -36,8 +34,7 @@ export const useChecked = (props: IUseChecked) => {
         (e: ChangeEvent<HTMLInputElement>) => {
             if (!id) return
 
-            const checked = e.target.checked
-            const filter = { id, checked }
+            const filter = { id, checked: e.target.checked }
 
             actions.changeCheckedValue(filter)
         },

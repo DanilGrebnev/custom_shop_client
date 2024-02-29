@@ -1,3 +1,4 @@
+// const StylelintPlugin = require('stylelint-webpack-plugin')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
@@ -16,6 +17,7 @@ const nextConfig = {
             test: /\.svg$/i,
             use: ['@svgr/webpack'],
         })
+        // config.plugins.push(new StylelintPlugin())
         return config
     },
 }
