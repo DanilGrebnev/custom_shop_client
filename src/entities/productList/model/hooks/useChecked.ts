@@ -1,15 +1,14 @@
 import { ChangeEvent, useCallback, useEffect } from 'react'
 
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { useAppSelector } from '@/shared/hooks'
 import { useActionCreators } from '@/shared/hooks/useActionCreators'
-import { addUrlParams } from '@/shared/lib/addUrlParams'
-import { deleteUrlParams } from '@/shared/lib/deleteUrlParams'
 
 import { ProductSelectors } from '../selectors/productSelectors'
 import { productActions } from '../slice/productSlice'
+import { ICheckedFilters } from '../types/productListTypes'
 
 interface IUseChecked {
-    id: string | undefined
+    id: string
     key: string
     value: string
     label: string
@@ -23,7 +22,7 @@ export const useChecked = (props: IUseChecked) => {
 
     const currentFilter = useAppSelector((state) =>
         ProductSelectors.getFilterById(state)(id)
-    )
+    ) as ICheckedFilters
 
     useEffect(() => {
         actions.initialCreateFilter({ id, checked: false, key, value, label })

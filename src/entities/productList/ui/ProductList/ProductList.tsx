@@ -2,21 +2,21 @@
 
 import { useContext } from 'react'
 
-import { ProductListPagination } from '@/entities/productListPagination'
-
 import { useAppSelector } from '@/shared/hooks'
 import { ProductListSkeleton } from '@/shared/ui/Skeletons'
 
-import { ProductSelectors } from '../../model/selectors/productSelectors'
 import { useGetProductsQuery } from '../../model/api/productApi'
 import {
     IContextPreviewProvider,
     PreviewContext,
 } from '../../model/provider/PreviewProvider'
+import { ProductSelectors } from '../../model/selectors/productSelectors'
 import { DynamicProductListHeader } from '../ProductListHeader/DynamicProductListHeader'
+import { ProductListPagination } from '../ProductListPagination/ProductListPagination'
 import s from './ProductList.module.scss'
 
 import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
+import { Button } from '@mui/material'
 import clsx from 'clsx'
 import { v4 } from 'uuid'
 
@@ -32,6 +32,7 @@ export const ProductList = () => {
             id="Product_List"
             className={clsx(s['product-list'])}>
             <DynamicProductListHeader />
+
             <div className={clsx(s['product-list__content'], s[preview])}>
                 {isLoading && <ProductListSkeleton />}
 

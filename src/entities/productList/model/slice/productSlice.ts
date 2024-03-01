@@ -1,9 +1,15 @@
 import { addUrlParams } from '@/shared/lib/addUrlParams'
 import { deleteUrlParams } from '@/shared/lib/deleteUrlParams'
 
-import type {
-    IProductSchema,
-    ProductFilterList,
+import { isChoiceFilter } from '@/app/types/product'
+
+import { isTypeCheckedFilter } from '../lib/isTypeCheckedFilter'
+import { isTypeRangeFilter } from '../lib/isTypeRangeFilter'
+import { updateUsp } from '../lib/updateUsp'
+import {
+    type ICheckedFilters,
+    type IProductSchema,
+    type IRangeFilters,
 } from '../types/productListTypes'
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
@@ -17,7 +23,10 @@ export const productSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        initialCreateFilter(state, action: PayloadAction<ProductFilterList>) {
+        initialCreateFilter(
+            state,
+            action: PayloadAction<ICheckedFilters | IRangeFilters>
+        ) {
             state.filters.push(action.payload)
         },
 
@@ -27,34 +36,65 @@ export const productSlice = createSlice({
         ) {
             const { id, checked } = action.payload
 
-            const currentFilter = state.filters.find((filter) => {
-                if (filter.id === id) {
-                    filter.checked = checked
-                    return filter
+            for (let filter of state.filters) {
+                if (!isTypeCheckedFilter(filter) || filter.id !== id) continue
+
+                filter.checked = checked
+
+                if (filter.checked) {
+                    state.usp = addUrlParams({
+                        key: filter.key,
+                        value: filter.value,
+                        usp: state.usp,
+                    })
+                    break
                 }
-            }) as ProductFilterList
 
-            if (currentFilter.checked) {
-                const updatedUsp = addUrlParams({
-                    key: currentFilter.key,
-                    value: currentFilter.value,
+                state.usp = deleteUrlParams({
+                    filter: filter.key + '=' + filter.value,
                     usp: state.usp,
                 })
-                state.usp = updatedUsp
+                break
             }
+        },
 
-            if (!checked) {
-                const updatedUsp = deleteUrlParams({
-                    filter: currentFilter.key + '=' + currentFilter.value,
-                    usp: state.usp,
-                })
+        changeRangeValue(
+            state,
+            action: PayloadAction<{
+                id: string
+                name: string
+                value: string
+            }>
+        ) {
+            const { id, name, value } = action.payload
 
-                state.usp = updatedUsp
+            for (let filter of state.filters) {
+                if (id !== filter.id || !isTypeRangeFilter(filter)) continue
+
+                if (name === filter.key1) {
+                    filter.value1 = value
+                    state.usp = updateUsp(name, filter.value1, state.usp)
+                    break
+                }
+
+                filter.value2 = value
+                state.usp = updateUsp(name, filter.value2, state.usp)
+                break
             }
         },
 
         resetAllFilters(state) {
-            state.filters.forEach((filter) => (filter.checked = false))
+            for (let filter of state.filters) {
+                if (isTypeCheckedFilter(filter)) {
+                    filter.checked = false
+                    continue
+                }
+
+                filter.value1 = ''
+                filter.value2 = ''
+            }
+
+            state.usp = 'offset=0&limit=8'
         },
 
         setUrlSearchParams(state, action: PayloadAction<string>) {
@@ -63,6 +103,4 @@ export const productSlice = createSlice({
     },
 })
 
-export const productActions = productSlice.actions
-
-export const productReducer = productSlice.reducer
+export const { actions: productActions, reducer: productReducer } = productSlice

@@ -6,7 +6,6 @@ import { footerApi } from '@/entities/footer'
 import { homePageApi } from '@/entities/homePage'
 import { productReducer } from '@/entities/productList'
 import { productApi } from '@/entities/productList'
-import { productListPaginationReducer } from '@/entities/productListPagination'
 import { productSearchInputReducer } from '@/entities/productSearchInput'
 import { searchProductParamsReducer } from '@/entities/searchProductParams'
 import { settingApi } from '@/entities/settings'
@@ -14,7 +13,6 @@ import { settingApi } from '@/entities/settings'
 export const staticReducers = {
     categories: categoryReducer,
     product: productReducer,
-    productListPagination: productListPaginationReducer,
     productSearchInput: productSearchInputReducer,
     searchProductParams: searchProductParamsReducer,
     userProfile: userProfileReducer,

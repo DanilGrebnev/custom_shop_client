@@ -13,7 +13,7 @@ export const CustomCheckBox = (
         filter: IProductChoiceFilter
     }
 ) => {
-    const { id, filter } = props
+    const { id = '', filter } = props
 
     const { currentFilter, onChange } = useChecked({
         id,
@@ -37,7 +37,7 @@ export const CustomColorCheckBox = (
             filter: IProductChoiceFilter
         }
 ) => {
-    const { id, urlparams, filter } = props
+    const { id = '', urlparams, filter } = props
     const { currentFilter, onChange } = useChecked({
         id,
         label: filter.label,
@@ -59,7 +59,7 @@ export const CustomRatingCheckBox = (
             filter: IProductChoiceFilter
         }
 ) => {
-    const { id, urlparams, filter } = props
+    const { id = '', urlparams, filter } = props
     const { currentFilter, onChange } = useChecked({
         id,
         label: filter.label,

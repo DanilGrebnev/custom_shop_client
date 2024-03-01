@@ -107,16 +107,7 @@ export const ProductFilter = memo(() => {
                         <FilterGroup
                             key={v4()}
                             title={filter.label}>
-                            <CustomRangeFilter
-                                value1=""
-                                onChange1={(key, value) => {
-                                    console.log(key, value)
-                                }}
-                                onChange2={(key, value) => {
-                                    console.log(key, value)
-                                }}
-                                filter={filter}
-                            />
+                            <CustomRangeFilter filter={filter} />
                         </FilterGroup>
                     )
                 }

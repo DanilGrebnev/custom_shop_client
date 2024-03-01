@@ -1,20 +1,26 @@
 'use client'
 
-import { ImagePreview } from '@/shared/ui/ImagePreview'
-import { IImage } from '@/app/types/product'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { LikeButton } from '@/shared/ui/Buttons'
-import { Button } from '@/shared/ui/Button'
-import { Rating } from '@/shared/ui/Rating'
-import { useGetSettingsQuery } from '@/entities/settings'
-import { useCallback, memo } from 'react'
+import { memo, useCallback } from 'react'
+
+import Link from 'next/link'
+
 import {
     useGetProfileQuery,
     useToggleWishListMutation,
 } from '@/features/userProfile'
 
-import Link from 'next/link'
+import { useGetSettingsQuery } from '@/entities/settings'
+
+import { Button } from '@/shared/ui/Button'
+import { LikeButton } from '@/shared/ui/Buttons'
+import { ImagePreview } from '@/shared/ui/ImagePreview'
+import { Rating } from '@/shared/ui/Rating'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import { IImage } from '@/app/types/product'
+
 import s from './ShopProductCardWidget.module.scss'
+
 import clsx from 'clsx'
 
 interface Props {

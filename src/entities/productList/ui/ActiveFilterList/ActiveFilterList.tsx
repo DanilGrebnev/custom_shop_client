@@ -5,8 +5,10 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 
 import { useToggleTheme } from '@/app/providers/ThemeProvider'
 
+import { isTypeCheckedFilter } from '../../model/lib/isTypeCheckedFilter'
 import { ProductSelectors } from '../../model/selectors/productSelectors'
 import { productActions } from '../../model/slice/productSlice'
+import { ICheckedFilters } from '../../model/types/productListTypes'
 import s from './ActiveFilterList.module.scss'
 
 import clsx from 'clsx'
@@ -22,7 +24,10 @@ export const ActiveFilterList = memo(() => {
     const dispatch = useAppDispatch()
 
     const activeFilters = useMemo(
-        () => filters.filter((filter) => Boolean(filter.checked)),
+        () =>
+            filters.filter((filter) => {
+                return isTypeCheckedFilter(filter) && Boolean(filter.checked)
+            }),
         [filters]
     )
 
@@ -36,23 +41,28 @@ export const ActiveFilterList = memo(() => {
             slidesPerView="auto"
             spaceBetween={20}
             mousewheel={true}>
-            {activeFilters.map((filter) => (
-                <SwiperSlide
-                    key={v4()}
-                    className={s['swiper-slide']}>
-                    <button
+            {activeFilters.map((filter) => {
+                if (!isTypeCheckedFilter(filter)) return
+                return (
+                    <SwiperSlide
                         key={v4()}
-                        title={filter.label}
-                        onClick={deleteFilter.bind(null, filter.id)}
-                        className={clsx(s.filter, s[theme])}>
-                        <span className={s.description}>{filter.label}</span>
+                        className={s['swiper-slide']}>
+                        <button
+                            key={v4()}
+                            title={filter.label}
+                            onClick={deleteFilter.bind(null, filter.id)}
+                            className={clsx(s.filter, s[theme])}>
+                            <span className={s.description}>
+                                {filter.label}
+                            </span>
 
-                        <div className={s['cross-wrapper']}>
-                            <CrossIcon className={s['cross-icon']} />
-                        </div>
-                    </button>
-                </SwiperSlide>
-            ))}
+                            <div className={s['cross-wrapper']}>
+                                <CrossIcon className={s['cross-icon']} />
+                            </div>
+                        </button>
+                    </SwiperSlide>
+                )
+            })}
         </Swiper>
     )
 })

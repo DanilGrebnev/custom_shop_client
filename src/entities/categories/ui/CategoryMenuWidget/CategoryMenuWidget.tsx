@@ -1,14 +1,15 @@
 'use client'
 
-import { FC, useState, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
+
+import { fetchCategories, getCategoryData } from '@/entities/categories'
+
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/Button'
 import { DropDownMenu } from '@/shared/ui/DropDownMenu'
-import { DropDown } from './components/DropDown/DropDown'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { fetchCategories, getCategoryData } from '@/entities/categories'
-import { filterSideBarActions } from '@/entities/filterSideBar/model/slice/filterSideBarSlice'
 
 import s from './CategoryMenuWidget.module.scss'
+import { DropDown } from './components/DropDown/DropDown'
 
 interface ICategoryMenuWidgetProps {
     className?: string

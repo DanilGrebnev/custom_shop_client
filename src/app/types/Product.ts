@@ -62,6 +62,7 @@ export interface IProductFilterResponse {
     filters: Array<IProductCheckBoxFilter | IProductRangeFilter>
 }
 
+// Type guards function
 export const isChoiceFilter = (
     filter: IProductCheckBoxFilter | IProductRangeFilter
 ): filter is IProductCheckBoxFilter => {
