@@ -66,7 +66,7 @@ export interface IProductFilterResponse {
 export const isChoiceFilter = (
     filter: IProductCheckBoxFilter | IProductRangeFilter
 ): filter is IProductCheckBoxFilter => {
-    return 'choices' in filter
+    return filter.type === 'choices' || filter.type === 'multiple_choices'
 }
 
 export const isRangeFilter = (

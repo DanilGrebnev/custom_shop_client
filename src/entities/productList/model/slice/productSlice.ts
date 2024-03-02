@@ -1,8 +1,14 @@
 import { addUrlParams } from '@/shared/lib/addUrlParams'
 import { deleteUrlParams } from '@/shared/lib/deleteUrlParams'
 
-import { isChoiceFilter } from '@/app/types/product'
+import {
+    IProductCheckBoxFilter,
+    IProductChoiceFilter,
+    IProductRangeFilter,
+    isChoiceFilter,
+} from '@/app/types/product'
 
+import { productApi } from '../..'
 import { isTypeCheckedFilter } from '../lib/isTypeCheckedFilter'
 import { isTypeRangeFilter } from '../lib/isTypeRangeFilter'
 import { updateUsp } from '../lib/updateUsp'
@@ -97,10 +103,112 @@ export const productSlice = createSlice({
             state.usp = 'offset=0&limit=8'
         },
 
+        setOffset(state, action: PayloadAction<number>) {
+            const usp = new URLSearchParams(state.usp)
+            usp.set('offset', action.payload + '')
+            state.usp = usp.toString()
+        },
+
         setUrlSearchParams(state, action: PayloadAction<string>) {
             state.usp = action.payload
         },
     },
+    extraReducers(builder) {
+        builder.addMatcher(
+            productApi.endpoints.getProductFilters.matchFulfilled,
+
+            (state, action) => {
+                const { filters } = action.payload
+
+                let checkedFilters = [] as ICheckedFilters[]
+
+                filters.forEach((filter) => {
+                    if (isChoiceFilter(filter)) {
+                        if (filter.code === 'category') {
+                            checkedFilters = checkedFilters.concat(
+                                createCheckedFilters(filter.choices)
+                            )
+                        }
+
+                        if (filter.code === 'rating') {
+                            checkedFilters = checkedFilters.concat(
+                                returnCheckedObject(filter.choices, 'rating')
+                            )
+                        }
+
+                        if (filter.code === 'color') {
+                            checkedFilters = checkedFilters.concat(
+                                returnCheckedObject(filter.choices, 'color')
+                            )
+                        }
+                    }
+                })
+
+                state.filters = checkedFilters
+            }
+        )
+    },
 })
+
+function createCheckedFilters(choices: IProductChoiceFilter[]) {
+    let filtersResult = [] as ICheckedFilters[]
+
+    choices.forEach((choice) => {
+        const o = {} as ICheckedFilters
+
+        o.checked = false
+        o.id = choice.label
+        o.key = choice.code
+        o.value = choice.value
+        o.label = choice.label
+
+        filtersResult.push(o)
+
+        if (choice.children) {
+            filtersResult = filtersResult.concat(
+                createCheckedFilters(choice.children)
+            )
+        }
+    })
+
+    return filtersResult
+}
+
+function returnCheckedObject(
+    choices: IProductChoiceFilter[],
+    key: string
+): ICheckedFilters[] {
+    return choices.map((choice) => {
+        const o = {} as ICheckedFilters
+
+        o.checked = false
+        o.id = choice.label
+        o.key = key
+        o.value = choice.value
+        o.label = choice.label
+
+        return o
+    })
+}
+
+// function createCheckedFilters(
+//     checkedFilters: ICheckedFilters[],
+//     choices: IProductChoiceFilter[]
+// ) {
+//     choices.forEach((choice) => {
+//         const o = {} as ICheckedFilters
+
+//         o.checked = false
+//         o.id = choice.label
+//         o.key = choice.code
+//         o.value = choice.value
+
+//         checkedFilters.push(o)
+
+//         if (choice.children) {
+//             createCheckedFilters(checkedFilters, choice.children)
+//         }
+//     })
+// }
 
 export const { actions: productActions, reducer: productReducer } = productSlice

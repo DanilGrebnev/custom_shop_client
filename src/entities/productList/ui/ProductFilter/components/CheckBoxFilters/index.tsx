@@ -2,51 +2,36 @@ import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { ColorCheckBox } from '@/shared/ui/CheckBoxes/ColorCheckBox'
 import { RatingCheckBox } from '@/shared/ui/CheckBoxes/RatingCheckBox'
 
-import { IProductChoiceFilter } from '@/app/types/product'
-
 import { useChecked } from '../../../../model/hooks/useChecked'
 
-type TUrlParams = { urlparams: { key: string; value: string } }
+type ICheckBoxProps = Parameters<typeof CheckBox>[0] & {
+    id: string
+}
 
-export const CustomCheckBox = (
-    props: Parameters<typeof CheckBox>[0] & {
-        filter: IProductChoiceFilter
-    }
-) => {
-    const { id = '', filter } = props
+export const CustomCheckBox = (props: ICheckBoxProps) => {
+    const { id = '' } = props
 
-    const { currentFilter, onChange } = useChecked({
-        id,
-        key: filter.code,
-        value: filter.value,
-        label: filter.label,
-    })
+    const { currentFilter, onChange } = useChecked(id)
 
     return (
         <CheckBox
-            {...props}
+            label={currentFilter.label}
             checked={currentFilter?.checked || false}
-            onChange={onChange}
-        />
+            onChange={onChange}>
+            {props.children}
+        </CheckBox>
     )
 }
 
 export const CustomColorCheckBox = (
-    props: Parameters<typeof ColorCheckBox>[0] &
-        TUrlParams & {
-            filter: IProductChoiceFilter
-        }
+    props: ICheckBoxProps & { labelcolor: string }
 ) => {
-    const { id = '', urlparams, filter } = props
-    const { currentFilter, onChange } = useChecked({
-        id,
-        label: filter.label,
-        ...urlparams,
-    })
+    const { id = '' } = props
+    const { currentFilter, onChange } = useChecked(id)
 
     return (
         <ColorCheckBox
-            {...props}
+            labelcolor={currentFilter.label}
             checked={currentFilter?.checked || false}
             onChange={onChange}
         />
@@ -54,21 +39,15 @@ export const CustomColorCheckBox = (
 }
 
 export const CustomRatingCheckBox = (
-    props: Parameters<typeof RatingCheckBox>[0] &
-        TUrlParams & {
-            filter: IProductChoiceFilter
-        }
+    props: ICheckBoxProps & { rating: string }
 ) => {
-    const { id = '', urlparams, filter } = props
-    const { currentFilter, onChange } = useChecked({
-        id,
-        label: filter.label,
-        ...urlparams,
-    })
+    const { id = '' } = props
+
+    const { currentFilter, onChange } = useChecked(id)
 
     return (
         <RatingCheckBox
-            {...props}
+            rating={currentFilter.label}
             checked={currentFilter?.checked || false}
             onChange={onChange}
         />

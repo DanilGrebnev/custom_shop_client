@@ -1,10 +1,14 @@
 'use client'
 
-import { ILayout } from '@/app/types/layout'
-import { useGetSettingsQuery } from '@/entities/settings'
+import { memo } from 'react'
+
 import { useGetCartQuery } from '@/features/basket'
 import { useGetProfileQuery } from '@/features/userProfile'
-import { memo } from 'react'
+
+import { useGetProductFiltersQuery } from '@/entities/productList'
+import { useGetSettingsQuery } from '@/entities/settings'
+
+import { ILayout } from '@/app/types/layout'
 
 export const InitialProvider = memo(({ children }: ILayout) => {
     // Получение профиля и изначальная авторизация
@@ -13,7 +17,9 @@ export const InitialProvider = memo(({ children }: ILayout) => {
     useGetCartQuery()
     // Получение настроек магазина
     useGetSettingsQuery()
-
+    
+    // Получение фильтров продуктов
+    useGetProductFiltersQuery()
     return children
 })
 

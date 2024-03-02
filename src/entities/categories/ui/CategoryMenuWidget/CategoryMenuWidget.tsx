@@ -2,7 +2,12 @@
 
 import { FC, useEffect, useState } from 'react'
 
-import { fetchCategories, getCategoryData } from '@/entities/categories'
+import {
+    categoryReducer,
+    fetchCategories,
+    getCategoryData,
+} from '@/entities/categories'
+import { ProductSelectors } from '@/entities/productList'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/Button'
@@ -18,8 +23,8 @@ interface ICategoryMenuWidgetProps {
 
 export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
     const [open, setOpen] = useState(false)
-    const dispatch = useAppDispatch()
 
+    const dispatch = useAppDispatch()
     const categories = useAppSelector(getCategoryData)
 
     useEffect(() => {
@@ -30,6 +35,11 @@ export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
                 console.error(err)
             })
     }, [dispatch])
+
+    const updatedCategoris = categories.map((cetegory) => ({
+        id: cetegory.name,
+        label: cetegory.name,
+    }))
 
     return (
         <DropDownMenu
@@ -45,7 +55,7 @@ export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
                     Категории
                 </Button>
             }>
-            <DropDown categories={categories} />
+            <DropDown categories={updatedCategoris} />
         </DropDownMenu>
     )
 }

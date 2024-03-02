@@ -12,23 +12,24 @@ import { ICategory } from '@/app/types/category'
 import s from './DropDown.module.scss'
 
 interface IDropDown {
-    categories: ICategory[]
+    categories: { label: string; id: string }[]
 }
 
 export const DropDown = memo((props: IDropDown) => {
     const { categories } = props
-
+    console.log(categories)
     return (
         <nav>
             <Title hidden={true}>Category menu</Title>
             <ul className={s['category-widget-content']}>
                 {categories.map((category) => {
-                    const { id, name } = category
+                    const { id, label } = category
+
                     return (
                         <li
                             className={s.link}
                             key={id}>
-                            <Link href="/shop">{name}</Link>
+                            <Link href="/shop">{label}</Link>
                         </li>
                     )
                 })}

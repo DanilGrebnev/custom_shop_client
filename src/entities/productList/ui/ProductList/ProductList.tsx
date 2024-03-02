@@ -16,7 +16,6 @@ import { ProductListPagination } from '../ProductListPagination/ProductListPagin
 import s from './ProductList.module.scss'
 
 import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
-import { Button } from '@mui/material'
 import clsx from 'clsx'
 import { v4 } from 'uuid'
 
@@ -25,7 +24,7 @@ export const ProductList = () => {
 
     const usp = useAppSelector(ProductSelectors.getUsp)
 
-    const { data: productResponse, isLoading } = useGetProductsQuery(usp)
+    const { data, isLoading } = useGetProductsQuery(usp)
 
     return (
         <div
@@ -36,7 +35,7 @@ export const ProductList = () => {
             <div className={clsx(s['product-list__content'], s[preview])}>
                 {isLoading && <ProductListSkeleton />}
 
-                {productResponse?.products?.map(
+                {data?.products?.map(
                     ({ id, price, images, name, description }) => {
                         return (
                             <ShopProductCardWidget
@@ -53,8 +52,9 @@ export const ProductList = () => {
                     }
                 )}
             </div>
+
             <div className={s.pagination}>
-                <ProductListPagination />
+                <ProductListPagination totalCount={data?.totalCount} />
             </div>
         </div>
     )

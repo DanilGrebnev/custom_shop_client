@@ -15,14 +15,12 @@ export const productApi = createApi({
     tagTypes: ['Product'],
 
     endpoints: (build) => ({
-        getProductFilters: build.query<IProductFilterResponse, void>({
-            query: () => ApiRoutes.product.filters,
-        }),
-
         getProducts: build.query<IProductData, string>({
             query: (urlParams: string) => '/products?' + urlParams || '',
         }),
-
+        getProductFilters: build.query<IProductFilterResponse, void>({
+            query: () => ApiRoutes.product.filters,
+        }),
         getProductById: build.query<IProduct, string>({
             query: (productId: string) => '/product/' + productId,
             providesTags: ['Product'],

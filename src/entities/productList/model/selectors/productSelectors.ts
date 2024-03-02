@@ -6,7 +6,7 @@ export class ProductSelectors {
             return state.product.filters.find((item) => item.id === id)
         }
     }
-    
+
     static getAllFilters = (state: StateSchema) => {
         return state.product.filters
     }

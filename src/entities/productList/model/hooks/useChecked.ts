@@ -7,27 +7,15 @@ import { ProductSelectors } from '../selectors/productSelectors'
 import { productActions } from '../slice/productSlice'
 import { ICheckedFilters } from '../types/productListTypes'
 
-interface IUseChecked {
-    id: string
-    key: string
-    value: string
-    label: string
-}
 /**
  * Хук дублирует состояние чекбокса для сохранения состояние между переходами по страницам
  */
-export const useChecked = (props: IUseChecked) => {
-    const { id, key, value, label } = props
+export const useChecked = (id: string) => {
     const actions = useActionCreators(productActions)
 
     const currentFilter = useAppSelector((state) =>
         ProductSelectors.getFilterById(state)(id)
     ) as ICheckedFilters
-
-    useEffect(() => {
-        actions.initialCreateFilter({ id, checked: false, key, value, label })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     const onChange = useCallback(
         (e: ChangeEvent<HTMLInputElement>) => {

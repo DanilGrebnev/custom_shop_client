@@ -42,10 +42,8 @@ export const ProductFilter = memo(() => {
                                 {filter.choices.map((choice) => {
                                     return choice.children.length ? (
                                         <CustomCheckBox
-                                            filter={choice}
-                                            id={choice.label}
-                                            label={choice.label}
-                                            key={v4()}>
+                                            key={v4()}
+                                            id={choice.label}>
                                             {renderCategoryChildren(
                                                 choice.children
                                             )}
@@ -53,9 +51,7 @@ export const ProductFilter = memo(() => {
                                     ) : (
                                         <CustomCheckBox
                                             key={v4()}
-                                            filter={choice}
                                             id={choice.label}
-                                            label={choice.label}
                                         />
                                     )
                                 })}
@@ -69,20 +65,11 @@ export const ProductFilter = memo(() => {
                             type={filter.code}
                             title={filter.label}>
                             {filter.choices.map((choice) => {
-                                const props = {
-                                    urlparams: {
-                                        key: filter.code,
-                                        value: choice.value,
-                                    },
-                                    filter: choice,
-                                    id: choice.label,
-                                }
-
                                 if (filter.code === 'rating') {
                                     return (
                                         <CustomRatingCheckBox
                                             key={v4()}
-                                            {...props}
+                                            id={choice.label}
                                             rating={choice.value}
                                         />
                                     )
@@ -92,7 +79,7 @@ export const ProductFilter = memo(() => {
                                     return (
                                         <CustomColorCheckBox
                                             key={v4()}
-                                            {...props}
+                                            id={choice.label}
                                             labelcolor={choice.label}
                                         />
                                     )
@@ -123,17 +110,13 @@ function renderCategoryChildren(filters: IProductChoiceFilter[]) {
         return children.length ? (
             <CustomCheckBox
                 key={v4()}
-                filter={filter}
-                id={label}
-                label={label}>
+                id={label}>
                 {renderCategoryChildren(children)}
             </CustomCheckBox>
         ) : (
             <CustomCheckBox
                 key={v4()}
-                filter={filter}
                 id={label}
-                label={label}
             />
         )
     })
