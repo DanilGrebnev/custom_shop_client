@@ -4,6 +4,8 @@ import { memo } from 'react'
 
 import Link from 'next/link'
 
+import { productActions } from '@/entities/productList/model/slice/productSlice'
+
 import { useAppDispatch } from '@/shared/hooks'
 import { Title } from '@/shared/ui/Title'
 
@@ -17,7 +19,12 @@ interface IDropDown {
 
 export const DropDown = memo((props: IDropDown) => {
     const { categories } = props
-    console.log(categories)
+    const dispatch = useAppDispatch()
+
+    const onClick = (id: string) => {
+        dispatch(productActions.changeCheckedValue({ id, checked: true }))
+    }
+
     return (
         <nav>
             <Title hidden={true}>Category menu</Title>
@@ -27,6 +34,7 @@ export const DropDown = memo((props: IDropDown) => {
 
                     return (
                         <li
+                            onClick={onClick.bind(null, id)}
                             className={s.link}
                             key={id}>
                             <Link href="/shop">{label}</Link>
