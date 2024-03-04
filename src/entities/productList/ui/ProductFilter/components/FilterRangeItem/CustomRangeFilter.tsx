@@ -7,44 +7,26 @@ import { useRange } from '../../../../model/hooks/useRange'
 import { ProductSelectors } from '../../../../model/selectors/productSelectors'
 import { IRangeFilters } from '../../../../model/types/productListTypes'
 
-type RangeFilterProps = Parameters<typeof RangeFilter>[0]
-type Props = Omit<RangeFilterProps, 'onChange1' | 'onChange2'>
+type Props = {
+    id: string
+}
 
-export const CustomRangeFilter = (props: Props) => {
-    const { filter } = props
-    const id = filter.label
-
-    const key1 = filter.code + '_min'
-    const key2 = filter.code + '_max'
-
-    const { onChange1, onChange2 } = useRange({
-        id,
-        key1,
-        key2,
-        value1: '',
-        value2: '',
-        label: filter.label,
-    })
-
-    const currentFilter = useAppSelector((state) =>
-        ProductSelectors.getFilterById(state)(id)
-    ) as IRangeFilters | undefined
+export const CustomRangeFilter = ({ id }: Props) => {
+    const { onChange1, onChange2, value1, value2 } = useRange({ id })
 
     const onChange =
-        (e: ChangeEvent<HTMLInputElement>, value: string) =>
-        (callback: (name: string, value: string) => void) => {
-            callback(e.target.name, value)
+        (e: ChangeEvent<HTMLInputElement>) =>
+        (callback: (value: string) => void) => {
+            callback(e.target.value)
         }
 
     return (
         <RangeFilter
-            {...props}
-            name1={key1}
-            name2={key2}
-            value1={currentFilter?.value1 || ''}
-            value2={currentFilter?.value2 || ''}
-            onChange1={(...arg) => onChange(...arg)(onChange1)}
-            onChange2={(...arg) => onChange(...arg)(onChange2)}
+            value1={value1 || ''}
+            value2={value2 || ''}
+            
+            onChange1={(e) => onChange(e)(onChange1)}
+            onChange2={(e) => onChange(e)(onChange2)}
         />
     )
 }

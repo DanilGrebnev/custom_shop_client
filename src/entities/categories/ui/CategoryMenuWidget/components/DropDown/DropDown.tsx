@@ -9,8 +9,6 @@ import { productActions } from '@/entities/productList/model/slice/productSlice'
 import { useAppDispatch } from '@/shared/hooks'
 import { Title } from '@/shared/ui/Title'
 
-import { ICategory } from '@/app/types/category'
-
 import s from './DropDown.module.scss'
 
 interface IDropDown {

@@ -94,7 +94,7 @@ export const ProductFilter = memo(() => {
                         <FilterGroup
                             key={v4()}
                             title={filter.label}>
-                            <CustomRangeFilter filter={filter} />
+                            <CustomRangeFilter id={filter.label} />
                         </FilterGroup>
                     )
                 }

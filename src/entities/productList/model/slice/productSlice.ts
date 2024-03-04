@@ -6,6 +6,7 @@ import {
     IProductChoiceFilter,
     IProductRangeFilter,
     isChoiceFilter,
+    isRangeFilter,
 } from '@/app/types/product'
 
 import { productApi } from '../..'
@@ -120,7 +121,7 @@ export const productSlice = createSlice({
             (state, action) => {
                 const { filters } = action.payload
 
-                let checkedFilters = [] as ICheckedFilters[]
+                let checkedFilters = [] as (ICheckedFilters | IRangeFilters)[]
 
                 filters.forEach((filter) => {
                     if (isChoiceFilter(filter)) {
@@ -141,6 +142,18 @@ export const productSlice = createSlice({
                                 returnCheckedObject(filter.choices, 'color')
                             )
                         }
+                    }
+
+                    if (isRangeFilter(filter)) {
+                        const o = {
+                            id: filter.label,
+                            value1: '',
+                            value2: '',
+                            key1: filter.code + '_min',
+                            key2: filter.code + '_max',
+                        }
+
+                        checkedFilters.push(o)
                     }
                 })
 
@@ -164,16 +177,20 @@ function createCheckedFilters(choices: IProductChoiceFilter[]) {
 
         filtersResult.push(o)
 
-        if (choice.children) {
-            filtersResult = filtersResult.concat(
-                createCheckedFilters(choice.children)
-            )
-        }
+        if (!choice.children) return
+
+        filtersResult = filtersResult.concat(
+            createCheckedFilters(choice.children)
+        )
     })
 
     return filtersResult
 }
 
+/**
+ * Функция для создания объекта фильтра с возможностью указания
+ * ключа key
+ */
 function returnCheckedObject(
     choices: IProductChoiceFilter[],
     key: string

@@ -24,9 +24,10 @@ interface IRangeFilterProps {
     className?: string
     name1?: string
     name2?: string
-    filter: IProductRangeFilter
     value1?: string
     value2?: string
+    label1?: string
+    label2?: string
     onChange1: TOnChange
     onChange2: TOnChange
 }
@@ -37,13 +38,14 @@ interface IRangeFilterProps {
 export const RangeFilter: FC<IRangeFilterProps> = (props) => {
     const {
         className,
-        filter,
         onChange1,
         onChange2,
         value1,
         value2,
         name1,
         name2,
+        label1,
+        label2,
     } = props
 
     const ref1 = useRef<HTMLInputElement>(null)
@@ -70,7 +72,7 @@ export const RangeFilter: FC<IRangeFilterProps> = (props) => {
                 value={value1 ?? ref1.current?.value}
                 onChange={onChangeValue1}
                 autoComplete="off"
-                label={`от ${filter.min_value}`}
+                label={label1 ? `от ${label1}` : ''}
                 variant="outlined"
             />
             <CustomInput
@@ -80,7 +82,7 @@ export const RangeFilter: FC<IRangeFilterProps> = (props) => {
                 onChange={onChangeValue2}
                 size="small"
                 autoComplete="off"
-                label={`до ${filter.max_value}`}
+                label={label2 ? `до ${label2}` : ''}
                 variant="outlined"
             />
         </div>
