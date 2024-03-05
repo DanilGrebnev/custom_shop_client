@@ -1,0 +1,17 @@
+.modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.title {
+    font-size: var(--font-size-3);
+    color: var(--text-color5);
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+}

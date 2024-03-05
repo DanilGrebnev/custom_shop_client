@@ -2,6 +2,7 @@
     display: flex;
     gap: 20px;
 }
+
 .product__image {
     border-radius: var(--global-border-radius);
 }
@@ -15,6 +16,7 @@
     gap: 10px;
     flex-direction: column;
 }
+
 .stock {
     display: flex;
     gap: 5px;
@@ -24,20 +26,31 @@
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
+    height: fit-content;
+    position: relative;
 }
-.delete {
-    padding: 5px;
+
+.delete-modal {
+    top: 100%;
+}
+
+.btn {
     border-radius: var(--global-border-radius);
-    align-self: start;
+    padding: 5px;
 
     &:hover {
         background: var(--hover-effect-for-icon);
     }
+}
+
+.delete {
+    align-self: start;
 
     svg {
         width: 20px;
         height: 20px;
     }
+
     path {
         fill: var(--text-color2);
     }

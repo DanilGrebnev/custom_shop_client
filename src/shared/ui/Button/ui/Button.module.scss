@@ -30,17 +30,29 @@
     &:hover {
         background: var(--global-palette3);
     }
-}
 
-.disabled {
-    opacity: 0.5;
-    pointer-events: none;
+    &.dark {
+        &:hover {
+            background: rgb(255 255 255 / 20%);
+        }
+    }
 }
 
 .focus {
     &:focus {
         background: var(--global-palette3);
     }
+
+    &.dark {
+        &:focus {
+            background: rgb(255 255 255 / 20%);
+        }
+    }
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .M {

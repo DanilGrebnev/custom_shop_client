@@ -2,6 +2,8 @@
 
 import { ComponentPropsWithoutRef, FC, ReactNode, memo } from 'react'
 
+import { useToggleTheme } from '@/app/providers/ThemeProvider'
+
 import s from './Button.module.scss'
 import ArrowIcon from '/public/static/icons/arrow.svg'
 import MenuIcon from '/public/static/icons/menu-icon.svg'
@@ -39,6 +41,8 @@ export const Button: FC<IButtonProps> = memo((props) => {
         ...restProps
     } = props
 
+    const { theme } = useToggleTheme()
+
     return (
         <button
             type={type}
@@ -52,6 +56,7 @@ export const Button: FC<IButtonProps> = memo((props) => {
                     [s['radius-top']]: borderRadius === 'top',
                     [s['radius-right']]: borderRadius === 'right',
                 },
+                s[theme],
                 s[size],
                 className
             )}

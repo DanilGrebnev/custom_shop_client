@@ -1,12 +1,15 @@
 $icon-size: 20px;
 
 .LikeButton {
-    padding: 10px;
-    border: 1px solid var(--icon-color1);
     width: fit-content;
     height: fit-content;
     display: flex;
     border-radius: var(--global-border-radius);
+
+    &.outline {
+        border: 1px solid var(--icon-color1);
+        padding: 10px;
+    }
 
     &.disabled {
         opacity: 0.3;

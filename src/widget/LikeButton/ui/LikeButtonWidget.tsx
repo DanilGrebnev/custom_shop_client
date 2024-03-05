@@ -1,17 +1,24 @@
 'use client'
 
 import { FC, useMemo } from 'react'
-import { LikeButton } from '@/shared/ui/Buttons'
+
 import {
-    useToggleWishListMutation,
     useGetProfileQuery,
+    useToggleWishListMutation,
 } from '@/features/userProfile'
 
-interface LikeButtonWidgetProps {
+import { LikeButton } from '@/shared/ui/Buttons'
+
+type TLikeButton = Parameters<typeof LikeButton>[0]
+
+interface LikeButtonWidgetProps
+    extends Pick<TLikeButton, 'variant' | 'className'> {
     productId: string
 }
 
-export const LikeButtonWidget: FC<LikeButtonWidgetProps> = ({ productId }) => {
+export const LikeButtonWidget: FC<LikeButtonWidgetProps> = (props) => {
+    const { productId, ...other } = props
+
     const { data } = useGetProfileQuery()
     const [toggleWishList, { isLoading }] = useToggleWishListMutation()
 
@@ -24,9 +31,10 @@ export const LikeButtonWidget: FC<LikeButtonWidgetProps> = ({ productId }) => {
 
     return (
         <LikeButton
+            {...other}
             active={isActive}
             loading={isLoading}
-            onClick={() => toggleWishList(+productId)}
+            onClick={toggleWishList.bind(null, +productId)}
         />
     )
 }

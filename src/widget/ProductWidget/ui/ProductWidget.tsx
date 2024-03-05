@@ -1,13 +1,17 @@
 'use client'
 
+import { useCallback, useState } from 'react'
+
 import Image from 'next/image'
 
 import DeleteBasketIcon from '@/shared/assets/delete-basket.svg'
 import { CounterButtons } from '@/shared/ui/Buttons'
 import { Papper } from '@/shared/ui/Papper'
 
+import { DeleteModal } from './DeleteModal/DeleteModal'
 import s from './ProductWidget.module.scss'
 
+import { LikeButtonWidget } from '@/widget/LikeButton'
 import clsx from 'clsx'
 
 interface IProps {
@@ -15,6 +19,12 @@ interface IProps {
 }
 
 export const ProductWidget = ({ className }: IProps) => {
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+
+    const onClose = useCallback(() => {
+        setIsOpen(false)
+    }, [])
+
     return (
         <Papper className={clsx(s['product-widget'], className)}>
             <Image
@@ -34,12 +44,24 @@ export const ProductWidget = ({ className }: IProps) => {
                 </div>
             </div>
             <div className={s['btn-group']}>
+                <LikeButtonWidget
+                    className={clsx(s.btn)}
+                    variant="standart"
+                    productId="#"
+                />
                 <button
                     title="Удалить товар"
                     type="button"
-                    className={s.delete}>
+                    className={clsx(s.delete, s.btn)}
+                    onClick={() => setIsOpen(true)}>
                     <DeleteBasketIcon />
                 </button>
+                {isOpen && (
+                    <DeleteModal
+                        onClose={onClose}
+                        className={s['delete-modal']}
+                    />
+                )}
             </div>
         </Papper>
     )
