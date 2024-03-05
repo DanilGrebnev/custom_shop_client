@@ -1,11 +1,12 @@
 'use client'
 
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
+import { useGetProfileQuery } from '../../model/api/profileApi'
 import { UserProfileCounterItem } from '../UserProfileCounterItem/UserProfileCounterItem'
 import WishListIcon from '/public/static/icons/wishlist.svg'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { useGetProfileQuery } from '../../model/api/profileApi'
 
-export const UserProfileWishListCounter = () => {
+export const UserProfileWishList = () => {
     const { data } = useGetProfileQuery()
 
     return (
@@ -13,7 +14,7 @@ export const UserProfileWishListCounter = () => {
             icon={<WishListIcon />}
             count={data?.favorites?.length}
             label="Избранное"
-            href={NavigationRoutes.wishlist()}
+            href={NavigationRoutes.wishlist}
         />
     )
 }

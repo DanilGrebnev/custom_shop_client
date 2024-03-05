@@ -1,9 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type {
-    IUserProfileFields,
     ILoginFields,
+    IUserProfileFields,
     TUpdateUserProfileBody,
 } from '@/app/types/profile'
+
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const profileApi = createApi({
     reducerPath: 'api/profile',
@@ -32,7 +33,12 @@ export const profileApi = createApi({
             }),
             invalidatesTags: ['Profile'],
         }),
-        toggleWishList: build.mutation<IUserProfileFields, number>({
+        toggleWishList: build.mutation<
+            {
+                [key in 'Succes' | 'Fail']?: string
+            },
+            number
+        >({
             query: (productId) => ({
                 url: `api/product/favorite/${productId}`,
                 method: 'POST',

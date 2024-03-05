@@ -17,29 +17,29 @@
     --global-palette3: #1a202c;
     --global-palette4: #a90000;
     --global-palette5: #0961b3;
-    --global-palette6: #999999;
+    --global-palette6: #999;
     --global-palette8: #f2f2f2;
     --global-palette9: #afafaf;
 
     /* Цвета для заднего фона компонентов */
 
     /* Colors for pages background */
-    --pages-background-palette: #ffffff;
-    --pages-background-palette-not-inverted: #ffffff;
-    --background2: rgba(0, 0, 0, 0.05);
+    --pages-background-palette: #fff;
+    --pages-background-palette-not-inverted: #fff;
+    --background2: rgb(0 0 0 / 5%);
     --background3: transparent;
 
-    /*Colors for cards background*/
+    /* Colors for cards background */
     --card-background-1: white;
 
-    /*Colors for container backgrounds*/
+    /* Colors for container backgrounds */
     --container-background-1: white;
     --container-background-2: var(--global-palette8);
 
-    /*Border colors*/
+    /* Border colors */
     --border-ui-color1: #e5e5e5;
 
-    /*text-color*/
+    /* text-color */
     --text-color1: white;
     --text-color1-not-inverted: white;
     --text-color2: #404040;
@@ -48,7 +48,7 @@
     --text-color4: #404040;
     --text-color5: #404040;
 
-    /*Icon colors*/
+    /* Icon colors */
     --icon-color1: var(--global-palette9);
 
     /* dark theme color */
@@ -56,14 +56,13 @@
     --white: white;
 
     /* effects */
-    --box-shadow-1: 0 0 16px 0 rgba(0, 0, 0, 0.11);
+    --box-shadow-1: 0 0 16px 0 rgb(0 0 0 / 11%);
     --box-shadow-2: 0 0 10px 0 rgb(0 0 0 / 8%);
-    --box-shadow-3: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+    --box-shadow-3: 0 1px 2px 0 rgb(0 0 0 / 16%);
     --global-border-radius: 5px;
     --transition1: 0.3s;
     --text-hover1: var(--global-palette1);
-
-    --hover-effect-for-icon: rgba(247, 247, 247);
+    --hover-effect-for-icon: rgb(247 247 247);
 
     /* global margin / padding */
     --margin-between-widget: 30px;
@@ -76,23 +75,23 @@
     --global-palette6: var(--white);
     --global-palette8: var(--dark);
 
-    /*Components backgrounds*/
-    --border-ui-color1: hsla(0, 0%, 16%);
-    --background2: rgba(255, 255, 255, 0.3);
+    /* Components backgrounds */
+    --border-ui-color1: hsl(0deg 0% 16%);
+    --background2: rgb(255 255 255 / 30%);
     --pages-background-palette: var(--dark);
     --text-color-with-cmp-background1: #8f8f8f;
 
     /* text color */
-    --text-color2: #888888;
-    --text-color3: #888888;
-    --text-color4: #888888;
+    --text-color2: #888;
+    --text-color3: #888;
+    --text-color4: #888;
     --text-color5: white;
 
-    /*Colors for container backgrounds*/
-    --container-background-1: #111111;
-    --container-background-2: #111111;
+    /* Colors for container backgrounds */
+    --container-background-1: #111;
+    --container-background-2: #111;
 
-    /*effects*/
+    /* effects */
     --text-hover1: white;
-    --hover-effect-for-icon: rgba(255, 255, 255, 0.1);
+    --hover-effect-for-icon: rgb(255 255 255 / 10%);
 }

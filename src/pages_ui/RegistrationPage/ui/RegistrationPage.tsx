@@ -1,15 +1,19 @@
 'use client'
 
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { MUIButton } from '@/shared/ui/MUIButton'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { CustomInput } from '@/shared/ui/CustomInput'
-import { useEffect, useState } from 'react'
-import { NumberInput } from '@/shared/ui/NumberInput'
-import { Dialog } from '@/shared/ui/Modal'
-import { type FormFields } from '../types'
+
+import { useRouter } from 'next/navigation'
+
 import { useFetchData } from '@/shared/hooks/useFetchData'
+import { CustomInput } from '@/shared/ui/CustomInput'
+import { MUIButton } from '@/shared/ui/MUIButton'
+import { Dialog } from '@/shared/ui/Modal'
+import { NumberInput } from '@/shared/ui/NumberInput'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
+import { type FormFields } from '../types'
 
 const fieldName = {
     username: 'Полное имя',
@@ -115,7 +119,7 @@ export const RegistrationPage = () => {
                 <span>Есть аккаунт?</span>
                 <MUIButton
                     size="small"
-                    href={NavigationRoutes.login()}
+                    href={NavigationRoutes.login}
                     className="button"
                     disabled={isLoading}>
                     войти
@@ -123,7 +127,7 @@ export const RegistrationPage = () => {
             </div>
             {openModal && (
                 <Dialog
-                    timer={8000}
+                    closeTimer={8000}
                     onClose={setIsOpen.bind(null, false)}>
                     {/* <RenderError {...isError} /> */}
                 </Dialog>

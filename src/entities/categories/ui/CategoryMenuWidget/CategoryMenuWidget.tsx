@@ -2,12 +2,7 @@
 
 import { FC, useEffect, useState } from 'react'
 
-import {
-    categoryReducer,
-    fetchCategories,
-    getCategoryData,
-} from '@/entities/categories'
-import { ProductSelectors } from '@/entities/productList'
+import { fetchCategories, getCategoryData } from '@/entities/categories'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/Button'

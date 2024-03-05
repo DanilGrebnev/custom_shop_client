@@ -14,11 +14,10 @@ export const ShopPage = () => {
     return (
         <>
             <BreadCrumbs
-                style={{ marginBottom: '2em' }}
                 breadcrumbs={[
-                    { href: NavigationRoutes.main(), label: 'Главная' },
+                    { href: NavigationRoutes.main, label: 'Главная' },
                     {
-                        href: NavigationRoutes.shop(),
+                        href: NavigationRoutes.shop,
                         label: 'Магазин',
                         active: true,
                     },

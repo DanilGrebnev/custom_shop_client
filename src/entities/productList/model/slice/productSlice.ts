@@ -114,16 +114,16 @@ export const productSlice = createSlice({
             state.usp = action.payload
         },
     },
+
     extraReducers(builder) {
         builder.addMatcher(
             productApi.endpoints.getProductFilters.matchFulfilled,
 
             (state, action) => {
-                const { filters } = action.payload
-
                 let checkedFilters = [] as (ICheckedFilters | IRangeFilters)[]
 
-                filters.forEach((filter) => {
+                action.payload.filters.forEach((filter) => {
+                    // Работы с фильтрами типа checked
                     if (isChoiceFilter(filter)) {
                         if (filter.code === 'category') {
                             checkedFilters = checkedFilters.concat(
@@ -143,14 +143,17 @@ export const productSlice = createSlice({
                             )
                         }
                     }
-
+                    
+                    // Если фильтр типа Range
                     if (isRangeFilter(filter)) {
-                        const o = {
+                        const o: IRangeFilters = {
                             id: filter.label,
                             value1: '',
                             value2: '',
                             key1: filter.code + '_min',
                             key2: filter.code + '_max',
+                            label_max: filter.max_value,
+                            label_min: filter.min_value,
                         }
 
                         checkedFilters.push(o)

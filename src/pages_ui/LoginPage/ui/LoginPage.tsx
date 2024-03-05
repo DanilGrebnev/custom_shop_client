@@ -1,12 +1,16 @@
 'use client'
 
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { MUIButton } from '@/shared/ui/MUIButton'
-import { useRouter } from 'next/navigation'
-import { CustomInput } from '@/shared/ui/CustomInput'
-import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
-import { useLoginInAccountMutation } from '@/features/userProfile'
 import { useForm } from 'react-hook-form'
+
+import { useRouter } from 'next/navigation'
+
+import { useLoginInAccountMutation } from '@/features/userProfile'
+
+import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
+import { CustomInput } from '@/shared/ui/CustomInput'
+import { MUIButton } from '@/shared/ui/MUIButton'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 interface FormValues {
     username: string
@@ -63,7 +67,7 @@ export const LoginPage = () => {
                     disabled={isLoading}
                     size="small"
                     variant="text"
-                    href={NavigationRoutes.registration()}
+                    href={NavigationRoutes.registration}
                     className="button">
                     Зарегистрироваться
                 </MUIButton>

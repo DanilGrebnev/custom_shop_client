@@ -1,6 +1,10 @@
+$margin: 20px;
+
 .shop-page {
     display: flex;
     gap: 2em;
+    margin-top: $margin;
+    margin-bottom: $margin;
 
     @media screen and (width <= 1200px) {
         flex-direction: column;

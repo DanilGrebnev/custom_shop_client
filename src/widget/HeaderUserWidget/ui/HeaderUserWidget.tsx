@@ -1,21 +1,23 @@
 'use client'
 
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import clsx from 'clsx'
 import { ComponentPropsWithoutRef, memo } from 'react'
 
 import Link from 'next/link'
 
 import {
     UserProfileSelectors,
-    UserProfileWishListCounter,
+    UserProfileWishList,
 } from '@/features/userProfile'
 
 import { useAppSelector } from '@/shared/hooks'
 
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
 import s from './HeaderUserWidget.module.scss'
 import { Profile } from './Profile/Profile'
 import { UserProfileBasket } from './UserProfileBasket/UserProfileBasket'
+
+import clsx from 'clsx'
 
 interface IHeaderUserWidget extends ComponentPropsWithoutRef<'div'> {}
 
@@ -26,7 +28,7 @@ export const HeaderUserWidget = memo((props: IHeaderUserWidget) => {
     if (!isAuth) {
         return (
             <div {...props}>
-                <Link href={NavigationRoutes.login()}>
+                <Link href={NavigationRoutes.login}>
                     Войти или зарегестрироваться
                 </Link>
             </div>
@@ -38,7 +40,7 @@ export const HeaderUserWidget = memo((props: IHeaderUserWidget) => {
             className={clsx(s['header-section-user'], className)}
             {...otherProps}>
             <UserProfileBasket />
-            <UserProfileWishListCounter />
+            <UserProfileWishList />
             <Profile />
         </div>
     )

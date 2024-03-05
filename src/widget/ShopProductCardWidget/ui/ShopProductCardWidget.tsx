@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useCallback } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
@@ -12,14 +12,15 @@ import {
 import { useGetSettingsQuery } from '@/entities/settings'
 
 import { Button } from '@/shared/ui/Button'
-import { LikeButton } from '@/shared/ui/Buttons'
 import { ImagePreview } from '@/shared/ui/ImagePreview'
+import { Dialog } from '@/shared/ui/Modal'
 import { Rating } from '@/shared/ui/Rating'
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { IImage } from '@/app/types/product'
 
 import s from './ShopProductCardWidget.module.scss'
+import { CustomLikeButton } from './components/CustomLikeButton/CustomLikeButton'
 
 import clsx from 'clsx'
 
@@ -42,18 +43,6 @@ export const ShopProductCardWidget = memo((props: Props) => {
             currency: result.data?.currency,
         }),
     })
-
-    const { wishList } = useGetProfileQuery(undefined, {
-        selectFromResult: (result) => ({
-            wishList: result?.data?.favorites,
-        }),
-    })
-
-    const [toggleWishList] = useToggleWishListMutation()
-
-    const isLike = useCallback(() => {
-        return Boolean(wishList?.find((el) => el.id === productId))
-    }, [wishList, productId])
 
     return (
         <div className={clsx(s.card, s[type])}>
@@ -81,10 +70,7 @@ export const ShopProductCardWidget = memo((props: Props) => {
                 {price} {currency}
             </p>
             <div className={s['btn-group']}>
-                <LikeButton
-                    onClick={() => toggleWishList(productId)}
-                    active={isLike()}
-                />
+                <CustomLikeButton productId={productId} />
                 <Button hover={true}>Купить</Button>
             </div>
         </div>

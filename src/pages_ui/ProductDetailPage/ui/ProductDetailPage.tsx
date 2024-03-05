@@ -1,23 +1,28 @@
 'use client'
 
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
-import { ThumbsGallery } from '@/shared/ui/ThumbsGallery'
-import { Rating } from '@/shared/ui/Rating'
-import { StandartDropDown } from '@/shared/ui/StandartDropDown'
-import { useGetSettingsQuery } from '@/entities/settings'
-import { BuyButton } from '@/shared/ui/Buttons/ui/BuyButton/BuyButton'
-import { LikeButtonWidget } from '@/widget/LikeButton'
-import { PageLoader } from '@/shared/ui/LoadersSpinners'
-import { useGetProductByIdQuery } from '@/entities/productList'
 import { useEffect, useMemo } from 'react'
+
 import {
-    useGetCartQuery,
     useAddProductInBasketByIdMutation,
+    useGetCartQuery,
 } from '@/features/basket'
 
-import clsx from 'clsx'
+import { useGetProductByIdQuery } from '@/entities/productList'
+import { useGetSettingsQuery } from '@/entities/settings'
+
+import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
+import { BuyButton } from '@/shared/ui/Buttons/ui/BuyButton/BuyButton'
+import { PageLoader } from '@/shared/ui/LoadersSpinners'
+import { Rating } from '@/shared/ui/Rating'
+import { StandartDropDown } from '@/shared/ui/StandartDropDown'
+import { ThumbsGallery } from '@/shared/ui/ThumbsGallery'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
 import s from './ProductDetailPage.module.scss'
+
+import { LikeButtonWidget } from '@/widget/LikeButton'
+import clsx from 'clsx'
 
 interface IProductPage {
     productId: string
@@ -63,8 +68,8 @@ export const ProductDetailPage = (props: IProductPage) => {
         <>
             <BreadCrumbs
                 breadcrumbs={[
-                    { href: NavigationRoutes.main(), label: 'Главная' },
-                    { href: NavigationRoutes.shop(), label: 'Магазин' },
+                    { href: NavigationRoutes.main, label: 'Главная' },
+                    { href: NavigationRoutes.shop, label: 'Магазин' },
                     {
                         href: '/shop?=' + product?.category?.[0]?.name,
                         label: product?.category?.[0]?.name as string,

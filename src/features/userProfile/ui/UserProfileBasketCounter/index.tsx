@@ -1,6 +1,6 @@
-import { UserProfileCounterItem } from '../UserProfileCounterItem/UserProfileCounterItem'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
+import { UserProfileCounterItem } from '../UserProfileCounterItem/UserProfileCounterItem'
 import CartIcon from '/public/static/icons/cart.svg'
 
 interface IUserProfileBasketCounter {
@@ -21,7 +21,7 @@ export const UserProfileBasketCounter = (props: IUserProfileBasketCounter) => {
             icon={<CartIcon />}
             count={count}
             label="Корзина"
-            href={NavigationRoutes.basket()}
+            href={NavigationRoutes.basket}
         />
     )
 }

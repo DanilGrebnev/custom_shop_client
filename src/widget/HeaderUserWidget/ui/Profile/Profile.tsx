@@ -12,7 +12,7 @@ export const Profile = () => {
     return (
         <Link
             className={s.wrapper}
-            href={NavigationRoutes.profileMe()}>
+            href={NavigationRoutes.profileMe}>
             <Image
                 width={40}
                 height={40}

@@ -32,9 +32,9 @@ export const DropDown = memo((props: IDropDown) => {
 
                     return (
                         <li
+                            key={id}
                             onClick={onClick.bind(null, id)}
-                            className={s.link}
-                            key={id}>
+                            className={s.link}>
                             <Link href="/shop">{label}</Link>
                         </li>
                     )

@@ -1,18 +1,12 @@
 'use client'
 
-import {
-    FC,
-    ReactNode,
-    CSSProperties,
-    memo,
-    ButtonHTMLAttributes,
-    ComponentPropsWithoutRef,
-} from 'react'
+import { ComponentPropsWithoutRef, FC, ReactNode, memo } from 'react'
 
-import MenuIcon from '/public/static/icons/menu-icon.svg'
-import ArrowIcon from '/public/static/icons/arrow.svg'
-import clsx from 'clsx'
 import s from './Button.module.scss'
+import ArrowIcon from '/public/static/icons/arrow.svg'
+import MenuIcon from '/public/static/icons/menu-icon.svg'
+
+import clsx from 'clsx'
 
 interface IButtonProps extends ComponentPropsWithoutRef<'button'> {
     className?: string

@@ -25,7 +25,7 @@ export const Logo = forwardRef<HTMLAnchorElement, ILogo>((props, ref) => {
             className={clsx(s.logo, className)}
             ref={ref}
             {...otherProps}
-            href={NavigationRoutes.main()}>
+            href={NavigationRoutes.main}>
             <Image
                 width={130}
                 height={100}

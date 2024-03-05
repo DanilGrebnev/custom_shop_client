@@ -1,6 +1,8 @@
 import { FC, ReactNode } from 'react'
-import clsx from 'clsx'
+
 import s from './Title.module.scss'
+
+import clsx from 'clsx'
 
 interface TitleProps {
     size?: 'L' | 'M' | 'S'

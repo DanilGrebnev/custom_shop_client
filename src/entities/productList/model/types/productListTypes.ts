@@ -12,6 +12,8 @@ export type IRangeFilters = {
     value2: string
     key1: string
     key2: string
+    label_min?: string
+    label_max?: string
 }
 
 export type IProductFilterList = Array<ICheckedFilters | IRangeFilters>

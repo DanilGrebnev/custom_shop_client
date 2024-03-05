@@ -93,7 +93,7 @@ export const ProductFilter = memo(() => {
                     return (
                         <FilterGroup
                             key={v4()}
-                            title={filter.label}>
+                            title={`${filter.label}, ${filter.measure}`}>
                             <CustomRangeFilter id={filter.label} />
                         </FilterGroup>
                     )

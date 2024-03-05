@@ -1,32 +1,14 @@
 export class NavigationRoutes {
-    static main() {
-        return '/'
-    }
-
+    static main = '/'
+    static shop = '/shop'
+    static login = '/login'
+    static registration = '/registration'
+    static profileMe = '/profile/me'
+    static profileOrders = '/profile/orders'
+    static basket = '/basket'
+    static wishlist = '/profile/wishlist'
+    
     static product(id: number) {
         return '/product/' + id
-    }
-
-    static shop() {
-        return '/shop'
-    }
-    static login() {
-        return '/login'
-    }
-
-    static registration() {
-        return '/registration'
-    }
-    static profileMe() {
-        return '/profile/me'
-    }
-    static profileOrders() {
-        return '/profile/orders'
-    }
-    static basket() {
-        return '/basket'
-    }
-    static wishlist() {
-        return '/profile/wishlist'
     }
 }

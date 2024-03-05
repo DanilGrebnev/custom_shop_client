@@ -1,7 +1,7 @@
 export { type IUserProfileSchema } from './model/schema/userProfileSchema'
 export { UserProfileSelectors } from './model/selectors/userProfileSelectors'
 export { UserProfileBasketCounter } from './ui/UserProfileBasketCounter'
-export { UserProfileWishListCounter } from './ui/UserProfileWishlistCounter'
+export { UserProfileWishList } from './ui/UserProfileWishlist'
 export { BasketDropDownItem } from './ui/BasketDropDownItem/BasketDropDownItem'
 export { BasketDropDown } from './ui/BasketDropDown/BasketDropDown'
 export * from './model/slice/userProfileSlice'

@@ -1,10 +1,10 @@
 import { type Metadata } from 'next'
-import { type ILayout } from '../types/layout'
 import { Inter } from 'next/font/google'
-import { AppProvider } from '../providers/AppProvider'
 
-import '../styles/root-var.css'
+import { AppProvider } from '../providers/AppProvider'
 import '../styles/global.css'
+import '../styles/root-var.css'
+import { type ILayout } from '../types/layout'
 
 const inter = Inter({ subsets: ['latin'] })
 

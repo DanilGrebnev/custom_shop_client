@@ -1,7 +1,13 @@
-import { Papper } from '@/shared/ui/Papper'
-import { Button } from '@/shared/ui/Button'
-import { useMemo, type ReactNode } from 'react'
+import { type ReactNode, useMemo } from 'react'
+
+import Link from 'next/link'
+
 import { useGetCartQuery } from '@/features/basket'
+
+import { Button } from '@/shared/ui/Button'
+import { Papper } from '@/shared/ui/Papper'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 import s from './BasketDropDown.module.scss'
 
@@ -44,7 +50,9 @@ export const BasketDropDown = (props: IBasketDropDown) => {
                         variant="outlined">
                         Оформить заказ
                     </Button>
-                    <Button hover={true}>В корзину</Button>
+                    <Link href={NavigationRoutes.basket}>
+                        <Button hover={true}>В корзину</Button>
+                    </Link>
                 </div>
             </footer>
         </Papper>

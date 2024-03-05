@@ -31,6 +31,7 @@ export const useRange = ({ id }: InitialProps) => {
                 value,
             })
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [actions, id]
     )
 
@@ -42,6 +43,7 @@ export const useRange = ({ id }: InitialProps) => {
                 value,
             })
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [actions, id]
     )
 
@@ -50,5 +52,6 @@ export const useRange = ({ id }: InitialProps) => {
         onChange2,
         value1,
         value2,
+        filter,
     }
 }

@@ -1,15 +1,22 @@
 'use client'
 
-import { Papper } from '@/shared/ui/Papper'
-import { CounterButtons } from '@/shared/ui/Buttons'
-import DeleteBasketIcon from '@/shared/assets/delete-basket.svg'
 import Image from 'next/image'
+
+import DeleteBasketIcon from '@/shared/assets/delete-basket.svg'
+import { CounterButtons } from '@/shared/ui/Buttons'
+import { Papper } from '@/shared/ui/Papper'
 
 import s from './ProductWidget.module.scss'
 
-export const ProductWidget = () => {
+import clsx from 'clsx'
+
+interface IProps {
+    className?: string
+}
+
+export const ProductWidget = ({ className }: IProps) => {
     return (
-        <Papper className={s['product-widget']}>
+        <Papper className={clsx(s['product-widget'], className)}>
             <Image
                 alt={'asd'}
                 width={100}

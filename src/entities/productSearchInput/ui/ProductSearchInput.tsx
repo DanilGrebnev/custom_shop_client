@@ -1,24 +1,29 @@
 'use client'
 
 import { ChangeEvent, FC, useCallback, useRef } from 'react'
-import { fetchSearchInputProducts } from '../model/services/fetchSearchInputProducts'
+
+import { usePathname } from 'next/navigation'
+
+import { searchProductParamsActions } from '@/entities/searchProductParams'
+
 import { useAppDispatch } from '@/shared/hooks'
+import { useAppSelector } from '@/shared/hooks'
+import { debounce } from '@/shared/lib/debounce'
+import { InputSearchProductList } from '@/shared/ui/InputSearchProductList'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
+import { useOnChangeForShopPage } from '../model/hooks/useOnChangeForShopPage'
+import { useToggleVisibleSearchList } from '../model/hooks/useToggleVisibleSearchList'
+import { ProductSearchInputState } from '../model/selectors/ProductSearchInputState'
+import { fetchSearchInputProducts } from '../model/services/fetchSearchInputProducts'
 import {
     resetState,
     toggleVisibleSearchList,
 } from '../model/slice/productSearchInputSlice'
-import { useAppSelector } from '@/shared/hooks'
-import { ProductSearchInputState } from '../model/selectors/ProductSearchInputState'
-import { InputSearchProductList } from '@/shared/ui/InputSearchProductList'
-import { debounce } from '@/shared/lib/debounce'
-import { usePathname } from 'next/navigation'
-import { useOnChangeForShopPage } from '../model/hooks/useOnChangeForShopPage'
 import { Input } from './Input/Input'
-import { searchProductParamsActions } from '@/entities/searchProductParams'
-import { useToggleVisibleSearchList } from '../model/hooks/useToggleVisibleSearchList'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-
 import s from './ProductSearchInput.module.scss'
+
 import clsx from 'clsx'
 
 interface ProductSearchInputProps {
@@ -42,8 +47,8 @@ export const ProductSearchInput: FC<ProductSearchInputProps> = (props) => {
 
     const onChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.trim()
-        
-        if (pathname === NavigationRoutes.shop()) {
+
+        if (pathname === NavigationRoutes.shop) {
             onChangeForShopPage(value)
             return
         }
