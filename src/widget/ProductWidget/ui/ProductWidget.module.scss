@@ -13,8 +13,8 @@
 
 .content {
     display: flex;
-    gap: 10px;
     flex-direction: column;
+    gap: 10px;
 }
 
 .stock {
@@ -23,11 +23,11 @@
 }
 
 .btn-group {
-    flex-grow: 1;
+    position: relative;
     display: flex;
+    flex-grow: 1;
     justify-content: flex-end;
     height: fit-content;
-    position: relative;
 }
 
 .delete-modal {
@@ -35,8 +35,8 @@
 }
 
 .btn {
-    border-radius: var(--global-border-radius);
     padding: 5px;
+    border-radius: var(--global-border-radius);
 
     &:hover {
         background: var(--hover-effect-for-icon);

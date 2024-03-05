@@ -1,18 +1,18 @@
 .AmountAdded {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     min-width: 120px;
     max-width: max-content;
     height: 42px;
-    border-radius: 3px;
     background: var(--border-ui-color1);
-    justify-content: space-between;
-    align-items: center;
+    border-radius: 3px;
 
     button {
+        display: flex;
+        padding: 0 20px;
         font-size: var(--font-s);
         color: var(--global-palette6);
-        padding: 0 20px;
-        display: flex;
 
         &:hover {
             color: black;

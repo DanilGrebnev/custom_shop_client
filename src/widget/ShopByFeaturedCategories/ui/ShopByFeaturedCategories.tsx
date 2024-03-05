@@ -39,7 +39,6 @@ export const ShopByFeaturedCategories: FC<IShopByFeaturedCategoriesProps> = (
                         breakpoints="category-slider"
                         theme="theme2">
                         {categories.map((category, i) => {
-                            console.log(category)
                             return (
                                 <Link
                                     href={NavigationRoutes.shop}

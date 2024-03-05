@@ -1,5 +1,6 @@
 {
-    "extends": ["stylelint-config-standard-scss"],
+    "extends": ["stylelint-config-standard", "stylelint-config-recess-order"],
+    "ignoreFiles": [".next", "node_modules"],
     "rules": {
         "selector-class-pattern": null,
         "media-feature-range-notation": null,
