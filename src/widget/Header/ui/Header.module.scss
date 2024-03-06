@@ -1,9 +1,9 @@
 $border: 1px solid var(--border-ui-color1);
 
 .header {
-    border-bottom: $border;
     display: flex;
     justify-content: center;
+    border-bottom: $border;
 }
 
 .header-top {
@@ -21,11 +21,11 @@ $border: 1px solid var(--border-ui-color1);
 
 @media screen and (max-width: 800px) {
     .header-top {
-        grid-template-columns: 1fr auto;
-        grid-auto-rows: auto;
         grid-template-areas:
             'logo user-widget'
             'search-widget search-widget';
+        grid-template-columns: 1fr auto;
+        grid-auto-rows: auto;
     }
     
     .logo {

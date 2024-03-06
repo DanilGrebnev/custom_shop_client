@@ -3,10 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    user-select: none;
-    cursor: pointer;
     padding: none;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
 
     &:hover {
         .img-wrapper {
@@ -16,17 +16,17 @@
 }
 
 .img-wrapper {
-    transition: 0.3s;
+    position: relative;
     width: 140px;
     min-height: 140px;
     overflow: hidden;
-    position: relative;
+    transition: 0.3s;
 
     img {
-        width: 100%;
         position: absolute;
         top: 0;
         left: 0;
+        width: 100%;
         object-fit: contain;
     }
 }

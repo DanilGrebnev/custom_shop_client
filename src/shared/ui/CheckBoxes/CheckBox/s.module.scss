@@ -1,21 +1,21 @@
 .CheckBox {
-    cursor: pointer;
     width: max-content;
-    font-size: var(--font-s);
-    user-select: none;
     max-height: 42px;
-    transition: 0.3s;
     overflow: hidden;
+    font-size: var(--font-s);
+    cursor: pointer;
+    user-select: none;
+    transition: 0.3s;
 }
 
 .CheckBox.active {
-    transition: 0.3s;
     max-height: 1000px;
+    transition: 0.3s;
 }
 
 .icon {
-    display: none;
     top: 50%;
+    display: none;
     width: 12px;
     height: 12px;
     margin-left: 15px;
@@ -37,13 +37,15 @@
         }
     }
 }
+
 .label-wrapper {
     display: flex;
 }
+
 .label {
-    color: var(--text-color2);
-    max-width: 200px;
     display: none;
+    max-width: 200px;
+    color: var(--text-color2);
 
     &.open {
         color: var(--global-palette1);
@@ -63,9 +65,10 @@
 }
 
 .children-wrapper {
-    margin-left: 5px;
-    width: 100%;
     display: none;
+    width: 100%;
+    margin-left: 5px;
+
     &.active {
         display: block;
     }

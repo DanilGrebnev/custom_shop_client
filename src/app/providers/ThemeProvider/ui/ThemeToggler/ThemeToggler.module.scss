@@ -7,19 +7,19 @@ $transition: 0.3s;
 
 .wrapper {
     position: relative;
-    height: $wrapper-height;
-    width: $wrapper-width;
-    border-radius: $wrapper-border-radius;
     display: flex;
     align-items: center;
-    border: $wrapper-border solid var(--border-ui-color1);
-    background: white;
+    width: $wrapper-width;
+    height: $wrapper-height;
     cursor: pointer;
+    background: white;
+    border: $wrapper-border solid var(--border-ui-color1);
+    border-radius: $wrapper-border-radius;
 
     &.dark {
-        transition: $transition;
         background: black;
         border-color: white;
+        transition: $transition;
 
         .toggler {
             background: white;
@@ -30,12 +30,12 @@ $transition: 0.3s;
 
 .toggler {
     position: absolute;
-    transition: $transition;
+    top: 50%;
     width: $toggler-size;
     height: $toggler-size;
-    border-radius: 50%;
     background: var(--global-palette1);
-    top: 50%;
+    border-radius: 50%;
+    transition: $transition;
     transform: translate(0%, -50%);
 }
 

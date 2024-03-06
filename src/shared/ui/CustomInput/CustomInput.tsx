@@ -2,18 +2,19 @@
 
 import {
     ChangeEvent,
-    useEffect,
-    useState,
+    forwardRef,
     memo,
     useCallback,
-    forwardRef,
+    useEffect,
+    useState,
 } from 'react'
-import { TextField } from '@mui/material'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import s from './CustomInput.module.scss'
-import clsx from 'clsx'
 import './input.scss'
+
+import { TextField } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+// import s from './CustomInput.module.scss'
+import clsx from 'clsx'
 
 export type TCustomInput = Omit<Parameters<typeof TextField>[0], 'color'> & {
     color?: string
@@ -48,7 +49,7 @@ export const CustomInput = memo(
                     fullWidth={fullWidth}
                     onChange={onChange}
                     value={value}
-                    className={clsx(s.input, className)}
+                    className={clsx(className)}
                     {...otherProps}
                 />
             </ThemeProvider>

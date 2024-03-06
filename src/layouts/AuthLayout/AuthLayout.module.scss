@@ -1,24 +1,24 @@
 .layout {
     position: fixed;
-    max-width: 100vw;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
     display: flex;
+    width: 100%;
+    max-width: 100vw;
+    height: 100vh;
     padding: 10px;
     overflow: auto;
+    background: rgb(0 0 0 / 30%);
 
     form {
         display: flex;
-        gap: 20px;
         flex-direction: column;
+        gap: 20px;
         align-items: flex-start;
         justify-content: center;
     }
 }
 
 .wrapper {
-    margin: auto;
     width: 100%;
     max-width: 600px;
+    margin: auto;
 }

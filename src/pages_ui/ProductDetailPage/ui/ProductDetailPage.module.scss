@@ -2,8 +2,9 @@
 
 .ProductPage {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+
     @include styled-scroll;
 }
 
@@ -34,9 +35,9 @@
 }
 
 .price {
-    color: var(--text-color3);
     font-size: var(--font-m);
     font-weight: 500;
+    color: var(--text-color3);
 }
 
 .quantity {
@@ -85,6 +86,6 @@
         max-height: 400px;
         overflow-y: auto;
 
-        @include styled-scroll();
+        @include styled-scroll;
     }
 }

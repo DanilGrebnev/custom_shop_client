@@ -4,26 +4,26 @@
 }
 
 .swiper-slide {
-    display: flex;
     box-sizing: border-box;
-    height: auto;
+    display: flex;
     width: auto;
+    height: auto;
 }
 
 .filter {
     display: flex;
     gap: 10px;
-    cursor: pointer;
-    width: min-content;
-    height: 100%;
-    text-wrap: nowrap;
-    word-wrap: normal;
-    color: var(--text-color2);
-    background: var(--background2);
-    padding: 10px;
-    border-radius: var(--global-border-radius);
     align-items: center;
     justify-content: center;
+    width: min-content;
+    height: 100%;
+    padding: 10px;
+    color: var(--text-color2);
+    text-wrap: nowrap;
+    word-wrap: normal;
+    cursor: pointer;
+    background: var(--background2);
+    border-radius: var(--global-border-radius);
     transition: 0.3s;
 
     &:hover {
@@ -31,8 +31,8 @@
     }
 
     &.dark {
-        border: 1px solid var(--border-ui-color1);
         background: transparent;
+        border: 1px solid var(--border-ui-color1);
     }
 
     &:hover.dark {

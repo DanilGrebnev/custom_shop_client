@@ -7,12 +7,14 @@
             display: none;
         }
     }
+
     &-4,
     &-5 {
         @media screen and (max-width: 980px) {
             display: none;
         }
     }
+
     &-3 {
         @media screen and (max-width: 639px) {
             display: none;

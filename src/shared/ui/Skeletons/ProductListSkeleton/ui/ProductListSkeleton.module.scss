@@ -4,9 +4,9 @@
 
 .wrapper {
     display: grid;
+    flex-grow: 1;
     grid-template-columns: repeat(auto-fit, minmax(150px, 210px));
     grid-auto-rows: max-content;
-    flex-grow: 1;
-    overflow-y: auto;
     row-gap: 20px;
+    overflow-y: auto;
 }

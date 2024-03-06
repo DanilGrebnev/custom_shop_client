@@ -1,5 +1,5 @@
 @mixin button-outline {
-    outline: 5px solid rgba(var(--global-palette1), 0.5);
+    outline: 5px solid rgb(var(--global-palette1) 0.5);
 }
 
 @mixin styled-scroll($width: 5px) {

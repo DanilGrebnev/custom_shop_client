@@ -1,18 +1,18 @@
 .ToggleViewButton {
-    cursor: pointer;
-    width: fit-content;
     display: grid;
-    grid-template-columns: repeat(3, 6px);
     grid-template-rows: repeat(3, 4px);
-    justify-content: center;
-    align-content: center;
+    grid-template-columns: repeat(3, 6px);
     gap: 2px;
+    place-content: center center;
+    width: fit-content;
     padding: 10px;
+    cursor: pointer;
     border: 1px solid var(--global-palette6);
     border-radius: 3px;
 
     &.active {
         border: 1px solid var(--global-palette1);
+
         div {
             background: var(--global-palette1);
         }
@@ -23,7 +23,7 @@
         column-gap: 0;
 
         div {
-            border-radius: 0px;
+            border-radius: 0;
         }
     }
 

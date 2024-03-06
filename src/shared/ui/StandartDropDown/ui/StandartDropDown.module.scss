@@ -10,18 +10,15 @@
 }
 
 .select {
-    color: var(--text-color2);
-    width: 240px;
     display: inline-block;
-    border-radius: 3px;
-    padding: 8px 10px;
+    width: 240px;
     min-width: 24px;
+    padding: 8px 10px;
     line-height: 1.6;
-    border: 1px solid var(--border-ui-color1);
     color: var(--text-color2-not-inverted);
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
+    border: 1px solid var(--border-ui-color1);
+    border-radius: 3px;
 
     &::-ms-expand {
         display: none;
@@ -34,17 +31,17 @@
 
 .title {
     font-size: var(--font-s);
-    color: var(--text-color2);
     font-weight: 500;
+    color: var(--text-color2);
 }
 
 .icon {
     position: absolute;
-    right: 10px;
     top: 50%;
-    transform: translateY(-50%) rotate(180deg);
+    right: 10px;
     width: 12px;
-    cursor: pointer;
     pointer-events: none;
+    cursor: pointer;
     fill: var(--global-palette1);
+    transform: translateY(-50%) rotate(180deg);
 }

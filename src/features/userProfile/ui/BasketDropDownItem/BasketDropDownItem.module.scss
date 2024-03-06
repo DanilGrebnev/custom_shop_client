@@ -1,8 +1,8 @@
 .wrapper {
-    width: 100%;
     display: grid;
-    gap: 15px;
     grid-template-columns: auto 200px 1fr auto;
+    gap: 15px;
+    width: 100%;
 }
 
 .delete-icon {

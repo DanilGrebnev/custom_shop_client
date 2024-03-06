@@ -1,14 +1,15 @@
 'use client'
 
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
-import { useGetSettingsQuery } from '../../model/api/settingApi'
 import { ComponentPropsWithRef, forwardRef } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 
-import s from './Logo.module.scss'
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
+import { useGetSettingsQuery } from '../../model/api/settingApi'
+
+import clsx from 'clsx'
 
 interface ILogo extends ComponentPropsWithRef<'a'> {}
 
@@ -22,7 +23,7 @@ export const Logo = forwardRef<HTMLAnchorElement, ILogo>((props, ref) => {
 
     return (
         <Link
-            className={clsx(s.logo, className)}
+            className={clsx(className)}
             ref={ref}
             {...otherProps}
             href={NavigationRoutes.main}>

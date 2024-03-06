@@ -7,8 +7,8 @@
     display: contents;
 
     &:hover h3 {
-        transition: 0.3s;
         color: var(--global-palette1);
+        transition: 0.3s;
     }
 
     @media screen and (max-width: 500px) {
@@ -24,13 +24,14 @@
 }
 
 .img-wrapper {
+    position: relative;
     min-width: 200px;
     height: 200px;
-    position: relative;
+    overflow: hidden;
     background: white;
     border-radius: var(--global-border-radius);
-    overflow: hidden;
 }
+
 .img {
     object-fit: contain;
 }

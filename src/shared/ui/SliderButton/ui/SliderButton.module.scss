@@ -2,19 +2,19 @@ $btn-size: 40px;
 
 .btn {
     position: absolute;
-    display: flex;
     top: 50%;
     z-index: 4;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    height: $btn-size;
+    display: flex;
     width: $btn-size;
-    border: none;
-    outline: none;
-    transition: 0.2s;
+    height: $btn-size;
     pointer-events: none;
+    cursor: pointer;
+    background: rgb(0 0 0 / 20%);
+    border: none;
+    border-radius: 50%;
+    outline: none;
     opacity: 0;
+    transition: 0.2s;
 
     &:hover,
     &:focus {
@@ -32,6 +32,6 @@ $btn-size: 40px;
 }
 
 .icon {
-    margin: auto;
     width: 20px;
+    margin: auto;
 }

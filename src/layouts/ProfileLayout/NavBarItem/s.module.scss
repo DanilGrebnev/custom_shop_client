@@ -21,13 +21,13 @@ $icon-size: 25px;
     &.active {
         position: relative;
 
-        &:before {
+        &::before {
             position: absolute;
-            content: '';
-            width: 2px;
-            background: var(--global-palette1);
-            height: 100%;
             top: 50%;
+            width: 2px;
+            height: 100%;
+            content: '';
+            background: var(--global-palette1);
             transform: translateY(-50%);
         }
 

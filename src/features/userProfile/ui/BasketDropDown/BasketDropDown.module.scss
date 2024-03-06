@@ -6,9 +6,10 @@ $padding: 20px;
     right: 0;
     z-index: 5;
     display: grid;
-    color: var(--text-color2);
     width: max-content;
+    color: var(--text-color2);
 }
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -17,17 +18,19 @@ $padding: 20px;
     button {
         font-size: var(--font-size-5);
         transition: 0.3s;
+
         &:hover {
             color: red;
         }
     }
 }
+
 .footer {
     display: flex;
-    justify-content: space-between;
-    border-top: 1px solid var(--border-ui-color1);
-    padding-top: $padding;
     gap: 20px;
+    justify-content: space-between;
+    padding-top: $padding;
+    border-top: 1px solid var(--border-ui-color1);
 }
 
 .list {

@@ -1,12 +1,12 @@
-@import '@/app/styles/variables.scss';
+@import '@/app/styles/variables';
 
 .button {
-    background: var(--global-palette1);
     height: 42px;
     padding: 0 40px;
-    color: var(--text-color1);
     font-size: var(--font-size-6);
-    border-radius: 0px var(--global-border-radius) var(--global-border-radius)
-        0px;
+    color: var(--text-color1);
+    background: var(--global-palette1);
+    border-radius: 0 var(--global-border-radius) var(--global-border-radius)
+        0;
     transition: 0.1s;
 }

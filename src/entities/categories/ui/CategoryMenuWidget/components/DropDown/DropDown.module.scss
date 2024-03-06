@@ -1,29 +1,29 @@
 $border: 1px solid var(--border-ui-color1);
 
 .category-widget-content {
+    z-index: 2;
     width: 100%;
+    max-height: 600px;
+    padding: 0 15px;
+    overflow: auto;
+    background: var(--pages-background-palette);
     border: $border;
     border-top: none;
     border-radius: 0 0 var(--global-border-radius) var(--global-border-radius);
-    padding: 0 15px;
-    z-index: 2;
-    background: var(--pages-background-palette);
-    max-height: 600px;
-    overflow: auto;
 
     & li {
-        padding: 15px 0;
-        font-size: var(--font-s);
         display: flex;
         align-items: center;
+        padding: 15px 0;
+        font-size: var(--font-s);
 
         &:not(:last-child) {
             border-bottom: 1px solid var(--border-ui-color1);
         }
 
         &:hover a {
-            transition: var(--transition1);
             color: var(--global-palette1);
+            transition: var(--transition1);
         }
     }
 }

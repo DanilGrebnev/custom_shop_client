@@ -1,23 +1,23 @@
 .profile-page {
     display: flex;
-    overflow-x: hidden;
     flex-grow: 1;
-    border: 1px solid var(--border-ui-color1);
     height: fit-content;
+    overflow-x: hidden;
+    border: 1px solid var(--border-ui-color1);
 }
 
 .setting {
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 300px;
+    margin-top: 40px;
 }
 
 .registration-date {
     padding: 20px;
-    border-radius: var(--global-border-radius);
     color: var(--text-color2);
-    border: 1px solid var(--border-ui-color1);
     background: var(--container-background-2);
+    border: 1px solid var(--border-ui-color1);
+    border-radius: var(--global-border-radius);
 }

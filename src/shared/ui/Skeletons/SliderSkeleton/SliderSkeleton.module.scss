@@ -1,7 +1,7 @@
 .slider {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    width: 100%;
     overflow-x: hidden;
 }
 

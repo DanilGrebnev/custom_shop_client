@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
-    max-width: 280px;
     width: 100%;
+    max-width: 280px;
+    padding: 15px;
     border: 1px solid var(--border-ui-color1);
     border-radius: var(--global-border-radius);
-    padding: 15px;
 
     h2 {
+        margin-bottom: 1em;
         font-size: var(--font-size-4);
         color: var(--text-color2);
-        margin-bottom: 1em;
     }
 }
 
