@@ -1,0 +1,32 @@
+$scale: 0.9;
+
+@mixin animate($scale, $opacity) {
+    opacity: $opacity;
+    transform: translateX(-50%) scale($scale);
+}
+
+.dialog {
+    &-enter {
+        @include animate(0.9, 0);
+
+        &-active {
+            transition: 300ms;
+
+            @include animate(1, 1);
+        }
+
+        &-done {
+            @include animate(1, 1);
+        }
+    }
+
+    &-exit {
+        @include animate(1, 1);
+
+        &-active {
+            transition: 300ms;
+
+            @include animate(0.9, 0);
+        }
+    }
+}

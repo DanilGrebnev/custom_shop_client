@@ -1,5 +1,8 @@
-import { DynamicProductList, ProductFilter } from '@/entities/productList'
-import { PreviewProviderDynamic } from '@/entities/productList'
+import {
+    DynamicProductList,
+    PreviewProviderDynamic,
+    ProductFilter,
+} from '@/entities/product'
 
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
@@ -27,9 +30,9 @@ export const ShopPage = () => {
             <section
                 id="Shop-Page"
                 className={clsx('contain', s['shop-page'])}>
-                <ClientErrorBoundary>
-                    <ProductFilter />
-                </ClientErrorBoundary>
+                {/* <ClientErrorBoundary> */}
+                <ProductFilter />
+                {/* </ClientErrorBoundary> */}
                 <ClientErrorBoundary>
                     <PreviewProviderDynamic>
                         <DynamicProductList />

@@ -1,15 +1,19 @@
 'use client'
 
 import { type FC } from 'react'
-import { IUserProfileFavorites } from '@/app/types/profile'
-import { Papper } from '@/shared/ui/Papper'
-import { LikeButtonWidget } from '@/widget/LikeButton'
-import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+
+import Image from 'next/image'
 import Link from 'next/link'
 
-import clsx from 'clsx'
+import { Papper } from '@/shared/ui/Papper'
+
+import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
+import { IUserProfileFavorites } from '@/app/types/profile'
+
 import s from './s.module.scss'
-import Image from 'next/image'
+
+import { LikeButtonWidget } from '@/widget/LikeButton'
+import clsx from 'clsx'
 
 interface IWishListItemProps {
     className?: string
@@ -44,7 +48,7 @@ export const WishListItem: FC<IWishListItemProps> = (props) => {
 
                     <div>
                         <LikeButtonWidget
-                            productId={String(favoriteProduct?.id)}
+                            productId={favoriteProduct?.id ?? 0}
                         />
                     </div>
                 </div>

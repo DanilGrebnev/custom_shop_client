@@ -30,6 +30,10 @@ export type TUpdateUserProfileBody = Omit<
     'id' | 'favorites'
 >
 
+export type TToggleWishListResponse = {
+    [key in 'Succes' | 'Fail']?: string
+}
+
 export interface IProfileForm {
     first_name: string
     last_name: string

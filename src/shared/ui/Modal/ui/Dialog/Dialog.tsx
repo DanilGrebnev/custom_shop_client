@@ -2,17 +2,19 @@
 
 import {
     ComponentPropsWithoutRef,
-    MouseEvent,
     useCallback,
     useEffect,
     useLayoutEffect,
+    useRef,
     useState,
 } from 'react'
 import { createPortal } from 'react-dom'
+import { CSSTransition } from 'react-transition-group'
 
 import { Papper } from '@/shared/ui/Papper'
 
 import s from './Dialog.module.scss'
+import './animate.scss'
 
 import clsx from 'clsx'
 
@@ -21,11 +23,10 @@ interface IDialog
     onClose?: () => void
     side?: 'left' | 'top' | 'right' | 'bottom'
     closeTimer?: number
+    isOpen?: boolean
 }
 
 export const Dialog = (props: IDialog) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-
     const {
         className,
         onClose,
@@ -35,9 +36,10 @@ export const Dialog = (props: IDialog) => {
         ...otherProps
     } = props
 
+    const nodeRef = useRef(null)
+
     const closeModal = useCallback(() => {
         onClose?.()
-        setIsOpen(false)
     }, [onClose])
 
     const keydown = (e: KeyboardEvent) => {
@@ -56,7 +58,7 @@ export const Dialog = (props: IDialog) => {
     useEffect(() => {
         document.addEventListener('keydown', keydown)
         document.addEventListener('click', closeIfClickWithoutModal)
-        setIsOpen(true)
+        // setIsOpen(true)
 
         return () => {
             document.removeEventListener('keydown', keydown)
@@ -74,15 +76,18 @@ export const Dialog = (props: IDialog) => {
         }
     }, [closeModal, closeTimer])
 
-    return (
-        isOpen &&
-        createPortal(
+    return createPortal(
+        <CSSTransition
+            timeout={300}
+            in={props.isOpen}
+            unmountOnExit={true}
+            classNames={'dialog'}>
             <Papper
                 className={clsx(s.dialog, s[side], className)}
                 {...otherProps}>
                 <div onClick={(e) => e.stopPropagation()}>{children}</div>
-            </Papper>,
-            document.getElementById('modal-root')!
-        )
+            </Papper>
+        </CSSTransition>,
+        document.getElementById('modal-root')!
     )
 }

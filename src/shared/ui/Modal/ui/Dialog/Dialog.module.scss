@@ -2,31 +2,9 @@ $margin: 20px;
 
 .dialog {
     position: fixed;
-    width: fit-content;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
     color: var(--text-color5);
     pointer-events: all;
-}
-
-.top {
-    top: $margin;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.bottom {
-    bottom: $margin;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.left {
-    top: 50%;
-    left: $margin;
-    transform: translateY(-50%);
-}
-
-.right {
-    top: 50%;
-    right: $margin;
-    transform: translateY(-50%);
 }

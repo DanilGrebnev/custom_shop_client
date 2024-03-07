@@ -2,8 +2,6 @@
 
 import { memo, useEffect } from 'react'
 
-import { RangeFilter } from '@/shared/ui/RangeFilter'
-
 import {
     IProductCheckBoxFilter,
     IProductChoiceFilter,
@@ -25,10 +23,6 @@ import { v4 } from 'uuid'
 
 export const ProductFilter = memo(() => {
     const { data } = useGetProductFiltersQuery()
-
-    useEffect(() => {
-        // console.log(data)
-    }, [data])
 
     return (
         <div className={s.ProductFilter}>

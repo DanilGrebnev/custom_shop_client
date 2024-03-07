@@ -1,10 +1,10 @@
+import { ProductCard } from '@/shared/ui/Cards'
 import { ContainerWithTitle } from '@/shared/ui/Containers/ContainerWithTitle'
 import { Slider } from '@/shared/ui/Slider'
-import { ProductCard } from '@/shared/ui/Cards'
+
+import { IHomePageProducts } from '@/app/types/homePage'
 
 import clsx from 'clsx'
-import { IHomePageProducts } from '@/app/types/homePage'
-import mock from '@/mock/mock'
 
 interface IBestsellerProducts {
     products: IHomePageProducts[]

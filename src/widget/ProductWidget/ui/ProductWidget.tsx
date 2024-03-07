@@ -47,7 +47,7 @@ export const ProductWidget = ({ className }: IProps) => {
                 <LikeButtonWidget
                     className={clsx(s.btn)}
                     variant="standart"
-                    productId="#"
+                    productId={0}
                 />
                 <button
                     title="Удалить товар"

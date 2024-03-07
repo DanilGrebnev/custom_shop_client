@@ -1,6 +1,7 @@
 import type {
     ILoginFields,
     IUserProfileFields,
+    TToggleWishListResponse,
     TUpdateUserProfileBody,
 } from '@/app/types/profile'
 
@@ -12,12 +13,13 @@ export const profileApi = createApi({
         baseUrl: process.env.NEXT_PUBLIC_URL_BACKEND,
         credentials: 'include',
     }),
-    tagTypes: ['Profile'],
+    tagTypes: ['Profile', 'Unathorized'],
     endpoints: (build) => ({
         getProfile: build.query<IUserProfileFields, void>({
             query: () => 'api/user/me',
             providesTags: ['Profile'],
         }),
+
         updateProfile: build.mutation<
             any,
             Omit<TUpdateUserProfileBody, 'date_joined'>
@@ -31,20 +33,20 @@ export const profileApi = createApi({
                     'Content-Type': 'application/json',
                 },
             }),
+
             invalidatesTags: ['Profile'],
         }),
-        toggleWishList: build.mutation<
-            {
-                [key in 'Succes' | 'Fail']?: string
-            },
-            number
-        >({
+
+        toggleWishList: build.mutation<TToggleWishListResponse, number>({
             query: (productId) => ({
                 url: `api/product/favorite/${productId}`,
                 method: 'POST',
             }),
-            invalidatesTags: ['Profile'],
+
+            invalidatesTags: (result, error) =>
+                error ? ['Unathorized'] : ['Profile'],
         }),
+
         loginInAccount: build.mutation<void, ILoginFields>({
             query: (body) => ({
                 url: 'api/auth/token/login',
@@ -52,13 +54,16 @@ export const profileApi = createApi({
                 body,
                 invalidatesTags: ['Profile'],
             }),
-            invalidatesTags: ['Profile'],
+            invalidatesTags: (result, error) =>
+                error ? ['Unathorized'] : ['Profile'],
         }),
+
         logoutFromAccount: build.mutation({
             query: (arg: void) => ({
                 url: 'api/auth/token/logout',
                 method: 'POST',
             }),
+            
             invalidatesTags: ['Profile'],
         }),
     }),

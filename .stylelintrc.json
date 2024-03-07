@@ -3,11 +3,12 @@
         "stylelint-config-standard-scss",
         "stylelint-config-recess-order"
     ],
-    "ignoreFiles": [".next", "node_modules"],
     "rules": {
         "selector-class-pattern": null,
         "media-feature-range-notation": null,
         "no-descending-specificity": null,
-        "no-duplicate-selectors": null
+        "no-duplicate-selectors": null,
+        "scss/at-function-pattern": null,
+        "scss/at-mixin-pattern": null
     }
 }

@@ -8,15 +8,15 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/Button'
 import { DropDownMenu } from '@/shared/ui/DropDownMenu'
 
-import s from './CategoryMenuWidget.module.scss'
-import { DropDown } from './components/DropDown/DropDown'
+import { DropDown } from './DropDown/DropDown'
+import s from './HeaderCategoryDropDown.module.scss'
 
 interface ICategoryMenuWidgetProps {
     className?: string
     active?: boolean
 }
 
-export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
+export const HeaderCategoryDropDown: FC<ICategoryMenuWidgetProps> = () => {
     const [open, setOpen] = useState(false)
 
     const dispatch = useAppDispatch()
@@ -55,4 +55,6 @@ export const CategoryMenuWidget: FC<ICategoryMenuWidgetProps> = () => {
     )
 }
 
-export default CategoryMenuWidget
+HeaderCategoryDropDown.displayName = 'HeaderCategoryDropDown'
+
+export default HeaderCategoryDropDown

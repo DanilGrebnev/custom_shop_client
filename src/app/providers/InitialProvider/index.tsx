@@ -5,7 +5,7 @@ import { memo } from 'react'
 import { useGetCartQuery } from '@/features/basket'
 import { useGetProfileQuery } from '@/features/userProfile'
 
-import { useGetProductFiltersQuery } from '@/entities/productList'
+import { useGetProductFiltersQuery } from '@/entities/product'
 import { useGetSettingsQuery } from '@/entities/settings'
 
 import { ILayout } from '@/app/types/layout'
@@ -17,7 +17,7 @@ export const InitialProvider = memo(({ children }: ILayout) => {
     useGetCartQuery()
     // Получение настроек магазина
     useGetSettingsQuery()
-    
+
     // Получение фильтров продуктов
     useGetProductFiltersQuery()
     return children

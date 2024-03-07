@@ -1,8 +1,12 @@
 import { FC, MouseEventHandler } from 'react'
-import { CardWrapper } from '@/shared/ui/Cards'
-import clsx from 'clsx'
-import s from './CardByFutureCategories.module.scss'
+
 import Image from 'next/image'
+
+import { CardWrapper } from '@/shared/ui/Cards'
+
+import s from './CardByFutureCategories.module.scss'
+
+import clsx from 'clsx'
 
 interface ICardByFutureCategoriesProps {
     className?: string

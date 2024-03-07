@@ -49,7 +49,7 @@ export const ActiveFilterList = memo(() => {
                         className={s['swiper-slide']}>
                         <button
                             key={v4()}
-                            title={filter.label}
+                            title={`Удалить фильтр ${filter.label}`}
                             onClick={deleteFilter.bind(null, filter.id)}
                             className={clsx(s.filter, s[theme])}>
                             <span className={s.description}>

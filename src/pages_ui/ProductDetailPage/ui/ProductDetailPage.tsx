@@ -7,7 +7,7 @@ import {
     useGetCartQuery,
 } from '@/features/basket'
 
-import { useGetProductByIdQuery } from '@/entities/productList'
+import { useGetProductByIdQuery } from '@/entities/product'
 import { useGetSettingsQuery } from '@/entities/settings'
 
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
@@ -37,7 +37,8 @@ export const ProductDetailPage = (props: IProductPage) => {
     } = useGetProductByIdQuery(productId)
     const { data: setting } = useGetSettingsQuery()
     const { data: basket } = useGetCartQuery()
-    const [fetchAddToBasket] = useAddProductInBasketByIdMutation()
+    const [fetchAddToBasket, { isLoading: addToBasketIsLoading }] =
+        useAddProductInBasketByIdMutation()
 
     // useEffect(() => {
     //     console.clear()
@@ -73,9 +74,6 @@ export const ProductDetailPage = (props: IProductPage) => {
                     {
                         href: '/shop?=' + product?.category?.[0]?.name,
                         label: product?.category?.[0]?.name as string,
-                        onClick: () => {
-                            console.log('Hello')
-                        },
                     },
                     { href: '/', label: product?.name as string, active: true },
                 ]}
@@ -111,7 +109,7 @@ export const ProductDetailPage = (props: IProductPage) => {
                     <StandartDropDown title="storage" />
 
                     <div className={s['btn-group']}>
-                        <LikeButtonWidget productId={productId} />
+                        <LikeButtonWidget productId={+productId} />
                         {inBasket ? (
                             <h2>В корзине</h2>
                         ) : (

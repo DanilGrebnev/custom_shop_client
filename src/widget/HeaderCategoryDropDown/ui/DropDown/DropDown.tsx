@@ -4,7 +4,7 @@ import { memo } from 'react'
 
 import Link from 'next/link'
 
-import { productActions } from '@/entities/productList/model/slice/productSlice'
+import { productActions } from '@/entities/product'
 
 import { useAppDispatch } from '@/shared/hooks'
 import { Title } from '@/shared/ui/Title'
@@ -25,7 +25,7 @@ export const DropDown = memo((props: IDropDown) => {
 
     return (
         <nav>
-            <Title hidden={true}>Category menu</Title>
+            <Title hidden={true}>Меню категорий</Title>
             <ul className={s['category-widget-content']}>
                 {categories.map((category) => {
                     const { id, label } = category

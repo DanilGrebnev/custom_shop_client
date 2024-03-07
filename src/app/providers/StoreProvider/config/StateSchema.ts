@@ -1,7 +1,7 @@
 import { type IUserProfileSchema } from '@/features/userProfile'
 
 import { type ICategorySchema } from '@/entities/categories'
-import { type IProductSchema } from '@/entities/productList'
+import { type IProductSchema } from '@/entities/product'
 import { type IProductSearchInputSchema } from '@/entities/productSearchInput'
 import { type ISearchProductParamsSchema } from '@/entities/searchProductParams'
 

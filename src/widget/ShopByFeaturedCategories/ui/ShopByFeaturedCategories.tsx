@@ -4,7 +4,7 @@ import { FC } from 'react'
 
 import Link from 'next/link'
 
-import { productActions } from '@/entities/productList/model/slice/productSlice'
+import { productActions } from '@/entities/product'
 
 import { useAppDispatch } from '@/shared/hooks'
 import { CardByFutureCategories } from '@/shared/ui/Cards'

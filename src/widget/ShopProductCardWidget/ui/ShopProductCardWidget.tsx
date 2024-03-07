@@ -20,8 +20,8 @@ import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 import { IImage } from '@/app/types/product'
 
 import s from './ShopProductCardWidget.module.scss'
-import { CustomLikeButton } from './components/CustomLikeButton/CustomLikeButton'
 
+import { LikeButtonWidget } from '@/widget/LikeButton'
 import clsx from 'clsx'
 
 interface Props {
@@ -70,7 +70,7 @@ export const ShopProductCardWidget = memo((props: Props) => {
                 {price} {currency}
             </p>
             <div className={s['btn-group']}>
-                <CustomLikeButton productId={productId} />
+                <LikeButtonWidget productId={productId} />
                 <Button hover={true}>Купить</Button>
             </div>
         </div>
