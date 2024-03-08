@@ -20,5 +20,6 @@ export type IProductFilterList = Array<ICheckedFilters | IRangeFilters>
 
 export interface IProductSchema {
     filters: IProductFilterList
+    openFilter: boolean
     usp: string
 }

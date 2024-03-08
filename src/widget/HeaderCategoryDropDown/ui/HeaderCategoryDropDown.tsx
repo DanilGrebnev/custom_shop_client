@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 import { fetchCategories, getCategoryData } from '@/entities/categories'
 
@@ -11,12 +11,15 @@ import { DropDownMenu } from '@/shared/ui/DropDownMenu'
 import { DropDown } from './DropDown/DropDown'
 import s from './HeaderCategoryDropDown.module.scss'
 
+import clsx from 'clsx'
+
 interface ICategoryMenuWidgetProps {
     className?: string
     active?: boolean
 }
 
-export const HeaderCategoryDropDown: FC<ICategoryMenuWidgetProps> = () => {
+export const HeaderCategoryDropDown: FC<ICategoryMenuWidgetProps> = (props) => {
+    const { className } = props
     const [open, setOpen] = useState(false)
 
     const dispatch = useAppDispatch()
@@ -31,13 +34,18 @@ export const HeaderCategoryDropDown: FC<ICategoryMenuWidgetProps> = () => {
             })
     }, [dispatch])
 
-    const updatedCategoris = categories.map((cetegory) => ({
-        id: cetegory.name,
-        label: cetegory.name,
-    }))
+    const updatedCategoris = useMemo(
+        () =>
+            categories.map((cetegory) => ({
+                id: cetegory.name,
+                label: cetegory.name,
+            })),
+        [categories]
+    )
 
     return (
         <DropDownMenu
+            className={clsx(className)}
             setIsOpenState={setOpen}
             buttonElement={
                 <Button

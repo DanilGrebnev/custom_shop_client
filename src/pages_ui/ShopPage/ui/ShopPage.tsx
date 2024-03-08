@@ -30,9 +30,9 @@ export const ShopPage = () => {
             <section
                 id="Shop-Page"
                 className={clsx('contain', s['shop-page'])}>
-                {/* <ClientErrorBoundary> */}
-                <ProductFilter />
-                {/* </ClientErrorBoundary> */}
+                <ClientErrorBoundary>
+                    <ProductFilter className={s.productFilter} />
+                </ClientErrorBoundary>
                 <ClientErrorBoundary>
                     <PreviewProviderDynamic>
                         <DynamicProductList />

@@ -13,6 +13,7 @@ import {
 import { ProductSelectors } from '../../model/selectors/productSelectors'
 import { DynamicProductListHeader } from '../ProductListHeader/DynamicProductListHeader'
 import { ProductListPagination } from '../ProductListPagination/ProductListPagination'
+import { SettingBtn } from '../SettingBtn'
 import s from './ProductList.module.scss'
 
 import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
@@ -31,7 +32,7 @@ export const ProductList = () => {
             id="Product_List"
             className={clsx(s['product-list'])}>
             <DynamicProductListHeader />
-
+            <SettingBtn />
             <div className={clsx(s['product-list__content'], s[preview])}>
                 {isLoading && <ProductListSkeleton />}
 

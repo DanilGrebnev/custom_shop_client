@@ -21,11 +21,15 @@ const a = [
     },
 ]
 
-export const LinkList = () => {
+interface ILinkList {
+    className?: string
+}
+
+export const LinkList = ({ className }: ILinkList) => {
     const pathname = usePathname()
 
     return (
-        <ul className={s['page-list']}>
+        <ul className={clsx(s['page-list'], className)}>
             {a.map(({ link, text }) => {
                 return (
                     <li

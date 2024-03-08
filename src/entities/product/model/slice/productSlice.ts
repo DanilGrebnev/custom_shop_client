@@ -23,6 +23,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IProductSchema = {
     filters: [],
+    openFilter: false,
     usp: 'offset=0&limit=8',
 }
 
@@ -65,6 +66,24 @@ export const productSlice = createSlice({
             }
         },
 
+        // Выбирает 1 значение, убирая все остальные
+        changeOneCheckedValue(state, action: PayloadAction<{ id: string }>) {
+            state.filters.forEach((filter) => {
+                if (isTypeRangeFilter(filter)) {
+                    filter.value1 = ''
+                    filter.value2 = ''
+                    return
+                }
+
+                if (filter.id === action.payload.id) {
+                    filter.checked = true
+                    state.usp = `offset=0&limit=8&${filter.key}=${filter.value}`
+                    return
+                }
+
+                filter.checked = false
+            })
+        },
         changeRangeValue(
             state,
             action: PayloadAction<{
@@ -113,6 +132,10 @@ export const productSlice = createSlice({
         setUrlSearchParams(state, action: PayloadAction<string>) {
             state.usp = action.payload
         },
+
+        toggleOpenFilter(state, action: PayloadAction<boolean>) {
+            state.openFilter = action.payload ?? !state.openFilter
+        },
     },
 
     extraReducers(builder) {
@@ -143,7 +166,7 @@ export const productSlice = createSlice({
                             )
                         }
                     }
-                    
+
                     // Если фильтр типа Range
                     if (isRangeFilter(filter)) {
                         const o: IRangeFilters = {

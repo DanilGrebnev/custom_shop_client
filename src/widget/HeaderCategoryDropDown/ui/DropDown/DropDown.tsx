@@ -20,7 +20,7 @@ export const DropDown = memo((props: IDropDown) => {
     const dispatch = useAppDispatch()
 
     const onClick = (id: string) => {
-        dispatch(productActions.changeCheckedValue({ id, checked: true }))
+        dispatch(productActions.changeOneCheckedValue({ id }))
     }
 
     return (

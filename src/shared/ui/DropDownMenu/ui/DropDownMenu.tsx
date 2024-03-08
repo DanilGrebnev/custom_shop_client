@@ -7,8 +7,9 @@ import {
     useState,
 } from 'react'
 
-import clsx from 'clsx'
 import s from './DropDownMenu.module.scss'
+
+import clsx from 'clsx'
 
 interface IDropDownMenuProps {
     className?: string
@@ -52,7 +53,6 @@ export const DropDownMenu: FC<IDropDownMenuProps> = (props) => {
         document.addEventListener('click', onClose)
 
         return () => document.removeEventListener('click', onClose)
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

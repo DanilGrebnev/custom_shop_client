@@ -1,14 +1,17 @@
 'use client'
 
-import { memo, useEffect } from 'react'
+import { memo, useState } from 'react'
+
+import SettingIcon from '@/shared/assets/setting.svg'
+import { useAppSelector } from '@/shared/hooks'
 
 import {
-    IProductCheckBoxFilter,
     IProductChoiceFilter,
     isChoiceFilter,
     isRangeFilter,
 } from '@/app/types/product'
 
+import { ProductSelectors } from '../..'
 import { useGetProductFiltersQuery } from '../../model/api/productApi'
 import s from './ProductFilter.module.scss'
 import {
@@ -19,13 +22,25 @@ import {
 import { FilterGroup } from './components/FilterGroupContainer/FilterGroup'
 import { CustomRangeFilter } from './components/FilterRangeItem/CustomRangeFilter'
 
+import clsx from 'clsx'
 import { v4 } from 'uuid'
 
-export const ProductFilter = memo(() => {
+interface IProductFilter {
+    className?: string
+}
+
+export const ProductFilter = memo(({ className }: IProductFilter) => {
     const { data } = useGetProductFiltersQuery()
 
+    const isOpen = useAppSelector(ProductSelectors.getIsOpenFilter)
+
     return (
-        <div className={s.ProductFilter}>
+        <div
+            className={clsx(
+                s.ProductFilter,
+                { [s.isOpen]: isOpen },
+                className
+            )}>
             {data?.filters.map((filter) => {
                 if (isChoiceFilter(filter)) {
                     if (filter.code === 'category') {
@@ -96,6 +111,7 @@ export const ProductFilter = memo(() => {
         </div>
     )
 })
+ProductFilter.displayName = 'ProductFilter'
 
 function renderCategoryChildren(filters: IProductChoiceFilter[]) {
     return filters.map((filter) => {

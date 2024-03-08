@@ -6,7 +6,13 @@ $margin: 20px;
     margin-top: $margin;
     margin-bottom: $margin;
 
-    @media screen and (width <= 1200px) {
+    @media screen and (max-width: 1000px) {
         flex-direction: column;
+    }
+}
+
+.productFilter {
+    @media screen and (max-width: 1000px) {
+        display: none;
     }
 }

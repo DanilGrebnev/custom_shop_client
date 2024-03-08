@@ -30,6 +30,10 @@
         background: rgb(0 0 0 / 10%);
     }
 
+    &:focus {
+        outline: 1px solid white;
+    }
+
     &.dark {
         background: transparent;
         border: 1px solid var(--border-ui-color1);

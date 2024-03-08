@@ -1,24 +1,24 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
     list-style: none;
     outline: none;
-    text-decoration: none;
 }
 
 html,
 body,
 .App {
-    scroll-behavior: smooth;
-    background: var(--pages-background-palette);
     min-height: 100dvh;
+    background: var(--pages-background-palette);
+    scroll-behavior: smooth;
 }
 
 body {
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
 body.hidden {
@@ -31,17 +31,17 @@ select,
 a,
 button,
 textarea {
+    font-family: inherit;
     font-size: var(--font-s);
     font-weight: 500;
     color: var(--global-palette2);
-    font-family: inherit;
 }
 
 a,
 button {
+    background: transparent;
     border: none;
     outline: none;
-    background: transparent;
 }
 
 a,
@@ -56,19 +56,19 @@ option {
 }
 
 .contain {
-    max-width: var(--container-max-width);
     width: 100%;
-    margin-left: auto;
+    max-width: var(--container-max-width);
     margin-right: auto;
+    margin-left: auto;
 }
 
 #modal-root {
     position: absolute;
-    max-width: 100vw;
+    z-index: 5;
     width: 100%;
+    max-width: 100vw;
     height: 100dvh;
     pointer-events: none;
-    z-index: 5;
 }
 
 body::-webkit-scrollbar {

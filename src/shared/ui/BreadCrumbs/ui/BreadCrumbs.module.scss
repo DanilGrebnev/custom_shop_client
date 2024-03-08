@@ -3,13 +3,16 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    height: 120px;
-    padding: 0;
+    padding: 40px;
     background: var(--container-background-2);
 
     h1 {
         font-size: var(--font-l);
         color: var(--text-color2);
+    }
+
+    @media screen and (max-width: 650px) {
+        padding: 30px;
     }
 }
 

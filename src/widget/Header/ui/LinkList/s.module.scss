@@ -18,6 +18,11 @@
         &.active {
             color: var(--global-palette1);
         }
+
+        @media screen and (max-width: 650px) {
+            padding: 0 12px;
+            color: var(--font-size-8);
+        }
     }
 
     &:not(:last-child) a {

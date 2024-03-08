@@ -19,7 +19,9 @@ export const Header = () => {
                     <HeaderUserWidget className={s['user-widget']} />
                 </div>
                 <div className={s['header-bottom']}>
-                    <HeaderCategoryDropDown />
+                    <HeaderCategoryDropDown
+                        className={s['category-dropdown']}
+                    />
                     <LinkList />
                 </div>
             </div>
