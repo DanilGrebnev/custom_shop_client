@@ -24,6 +24,10 @@
         overflow: auto;
         background: var(--pages-background-palette);
     }
+
+    @media screen and (max-width: 1000px) {
+        display: none;
+    }
 }
 
 .filter-group {

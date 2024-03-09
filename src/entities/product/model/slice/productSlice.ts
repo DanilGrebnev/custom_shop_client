@@ -133,7 +133,7 @@ export const productSlice = createSlice({
             state.usp = action.payload
         },
 
-        toggleOpenFilter(state, action: PayloadAction<boolean>) {
+        toggleOpenSetting(state, action: PayloadAction<boolean>) {
             state.openFilter = action.payload ?? !state.openFilter
         },
     },

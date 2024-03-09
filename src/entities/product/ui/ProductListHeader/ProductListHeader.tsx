@@ -9,25 +9,15 @@ import {
 import { ActiveFilterList } from '../ActiveFilterList/ActiveFilterList'
 import s from './ProductListHeader.module.scss'
 
-export const ProductListHeader = () => {
-    const { preview, togglePreview } = useContext(
-        PreviewContext
-    ) as IContextPreviewProvider
+import { CellButton, ListButton } from '@/widget/ThemeButtons'
 
+export const ProductListHeader = () => {
     return (
         <header className={s.header}>
             <ActiveFilterList />
             <div className={s['toggle-preview-wrapper']}>
-                <ToggleViewButton
-                    active={preview === 'cell'}
-                    theme="cell"
-                    onClick={togglePreview.bind(null, 'cell')}
-                />
-                <ToggleViewButton
-                    active={preview === 'list'}
-                    theme="list"
-                    onClick={togglePreview.bind(null, 'list')}
-                />
+                <CellButton />
+                <ListButton />
             </div>
         </header>
     )

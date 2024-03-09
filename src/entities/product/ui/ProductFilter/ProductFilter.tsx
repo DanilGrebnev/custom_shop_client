@@ -1,9 +1,9 @@
 'use client'
 
-import { memo, useState } from 'react'
+import { MouseEvent, memo, useEffect, useState } from 'react'
 
-import SettingIcon from '@/shared/assets/setting.svg'
-import { useAppSelector } from '@/shared/hooks'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { useActionCreators } from '@/shared/hooks/useActionCreators'
 
 import {
     IProductChoiceFilter,
@@ -11,8 +11,9 @@ import {
     isRangeFilter,
 } from '@/app/types/product'
 
-import { ProductSelectors } from '../..'
+import { ProductSelectors, productActions } from '../..'
 import { useGetProductFiltersQuery } from '../../model/api/productApi'
+import { ActiveFilterListMobile } from '../ActiveFilterListMobile'
 import s from './ProductFilter.module.scss'
 import {
     CustomCheckBox,
@@ -31,8 +32,18 @@ interface IProductFilter {
 
 export const ProductFilter = memo(({ className }: IProductFilter) => {
     const { data } = useGetProductFiltersQuery()
+    const actions = useActionCreators(productActions)
 
     const isOpen = useAppSelector(ProductSelectors.getIsOpenFilter)
+
+    const closeIfEscapeClick = (e: any) => {
+        e.code === 'Escape' && actions.toggleOpenSetting(false)
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', closeIfEscapeClick)
+        return () => document.removeEventListener('keydown', closeIfEscapeClick)
+    }, [])
 
     return (
         <div
@@ -41,15 +52,20 @@ export const ProductFilter = memo(({ className }: IProductFilter) => {
                 { [s.isOpen]: isOpen },
                 className
             )}>
+            <div>
+                <p>Выбранные фильтры</p>
+                <ActiveFilterListMobile />
+            </div>
+
             {data?.filters.map((filter) => {
                 if (isChoiceFilter(filter)) {
-                    if (filter.code === 'category') {
+                    if (filter.choices[0]?.children) {
                         return (
                             <FilterGroup
                                 title={filter.label}
                                 key={v4()}>
                                 {filter.choices.map((choice) => {
-                                    return choice.children.length ? (
+                                    return choice.children?.length ? (
                                         <CustomCheckBox
                                             key={v4()}
                                             id={choice.label}>
@@ -98,6 +114,7 @@ export const ProductFilter = memo(({ className }: IProductFilter) => {
                     )
                 }
 
+                // Если фильтр типа range
                 if (isRangeFilter(filter)) {
                     return (
                         <FilterGroup
@@ -111,7 +128,6 @@ export const ProductFilter = memo(({ className }: IProductFilter) => {
         </div>
     )
 })
-ProductFilter.displayName = 'ProductFilter'
 
 function renderCategoryChildren(filters: IProductChoiceFilter[]) {
     return filters.map((filter) => {

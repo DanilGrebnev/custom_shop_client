@@ -9,3 +9,5 @@ export { ProductList } from './ui/ProductList/ProductList'
 export { DynamicProductList } from './ui/ProductList/DynamicProductList'
 
 export * from './model/api/productApi'
+export { type IContextPreviewProvider } from './model/provider/PreviewProvider'
+export { PreviewContext } from './model/provider/PreviewProvider'

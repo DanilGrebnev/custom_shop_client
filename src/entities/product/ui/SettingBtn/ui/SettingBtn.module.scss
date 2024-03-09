@@ -1,6 +1,15 @@
-$size: 30px;
+@import '@/app/styles/variables';
+
+$size: 40px;
 
 .icon {
+    align-self: flex-end;
     width: $size;
     height: $size;
+    cursor: pointer;
+    stroke: var(--global-palette1);
+
+    @media screen and (min-width: 1000px) {
+        display: none;
+    }
 }

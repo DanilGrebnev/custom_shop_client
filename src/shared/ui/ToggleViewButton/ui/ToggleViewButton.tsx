@@ -1,7 +1,8 @@
 import { FC } from 'react'
 
-import clsx from 'clsx'
 import s from './ToggleViewButton.module.scss'
+
+import clsx from 'clsx'
 
 interface IToggleViewButtonProps {
     className?: string

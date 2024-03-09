@@ -1,0 +1,13 @@
+.filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.filter {
+    @media screen and (max-width: 420px) {
+        & * {
+            font-size: var(--font-size-8);
+        }
+    }
+}

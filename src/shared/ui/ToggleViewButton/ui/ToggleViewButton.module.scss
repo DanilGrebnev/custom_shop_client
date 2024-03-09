@@ -11,7 +11,7 @@
     border-radius: 3px;
 
     &.active {
-        border: 1px solid var(--global-palette1);
+        border-color: var(--global-palette1);
 
         div {
             background: var(--global-palette1);
