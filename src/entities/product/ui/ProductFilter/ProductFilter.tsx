@@ -43,6 +43,7 @@ export const ProductFilter = memo(({ className }: IProductFilter) => {
     useEffect(() => {
         document.addEventListener('keydown', closeIfEscapeClick)
         return () => document.removeEventListener('keydown', closeIfEscapeClick)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -52,10 +53,7 @@ export const ProductFilter = memo(({ className }: IProductFilter) => {
                 { [s.isOpen]: isOpen },
                 className
             )}>
-            <div>
-                <p>Выбранные фильтры</p>
-                <ActiveFilterListMobile />
-            </div>
+            <ActiveFilterListMobile />
 
             {data?.filters.map((filter) => {
                 if (isChoiceFilter(filter)) {

@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-import Banner1 from '/public/mock/images/main-banner-1.png'
 import Image from 'next/image'
-import clsx from 'clsx'
 
 import s from './LargeSliderCard.module.scss'
+
+import clsx from 'clsx'
 
 interface ILargeSliderCardProps {
     className?: string
@@ -21,6 +21,7 @@ export const LargeSliderCard: FC<ILargeSliderCardProps> = (props) => {
                 width={1600}
                 height={480}
                 src={src}
+                priority={true}
             />
         </div>
     )

@@ -1,5 +1,7 @@
 'use client'
 
+import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
+
 import { useCheckedActiveFilters } from '../../model/hooks/useCheckedActiveFilters'
 import s from './ActiveFilterListMobile.module.scss'
 
@@ -13,19 +15,41 @@ interface IProps {
 
 export const ActiveFilterListMobile = ({ className }: IProps) => {
     const activeFilters = useCheckedActiveFilters()
-
+    
     return (
-        <div className={clsx(s['filter-list'], className)}>
-            {activeFilters.map((filter) => {
-                return (
-                    <ActiveFilterButton
-                        key={v4()}
-                        className={s.filter}
-                        id={filter?.id}
-                        label={filter?.label}
-                    />
-                )
-            })}
+        <div
+            className={clsx(
+                s.container,
+                { [s.hidden]: !activeFilters.length },
+                className
+            )}>
+            <header className={s['header-filter-list']}>
+                <h3 className={s.title}>Выбранные фильтры</h3>
+                <FilterButton
+                    withIcon={false}
+                    className={s['reset-filters-btn']}
+                    label="Очистить фильтры">
+                    Очистить фильтры
+                </FilterButton>
+            </header>
+
+            <ul className={s['filter-list']}>
+                {activeFilters.length
+                    ? activeFilters.map((filter) => {
+                          return (
+                              <li
+                                  key={v4()}
+                                  className={s.filter}>
+                                  <ActiveFilterButton
+                                      id={filter?.id}
+                                      label={filter?.label}
+                                      className={s['filter-item']}
+                                  />
+                              </li>
+                          )
+                      })
+                    : null}
+            </ul>
         </div>
     )
 }

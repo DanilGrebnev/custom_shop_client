@@ -13,7 +13,7 @@ import { MUIButton } from '@/shared/ui/MUIButton'
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 interface FormValues {
-    username: string
+    email: string
     password: string
     remember_me: boolean
 }
@@ -27,7 +27,9 @@ export const LoginPage = () => {
     const onSubmit = handleSubmit((data) => {
         sendLogin(data)
             .unwrap()
-            .then(() => router.push('/'))
+            .then(() => {
+                router.push('/')
+            })
     })
 
     return (
@@ -37,8 +39,8 @@ export const LoginPage = () => {
                 variant="standard"
                 fullWidth={true}
                 disabled={isLoading}
-                label="Имя пользователя"
-                {...register('username')}
+                label="Почта"
+                {...register('email')}
             />
             <CustomInput
                 variant="standard"

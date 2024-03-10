@@ -1,26 +1,24 @@
-// interface ICartProduct {
-//     id: number
-//     name: string
-//     quantity: number
-//     images: { image: string }[]
-// }
-
-// export interface ICartItem {
-//     id: number
-//     quantity: number
-//     product: ICartProduct
-// }
-
-// export interface ICartResponse {
-//     id: number
-//     user: number
-//     cart_item: ICartItem[]
-// }
+export interface ICartItem {
+    cartItemId: number
+    quantity: number
+    product: {
+        productId: number
+        image: string
+        quantity: string
+        name: string
+    }
+}
 
 export interface ICart {
-    id: number
-    price: number
+    totalAmount: number
+    totalPrice: number
+    cartId: number
+    cartItem: ICartItem[]
+}
+
+export type IDeleteProductFromBasket = number
+
+export interface IProductInBasket {
+    productId: number
     quantity: number
-    cart: string
-    product: number
 }

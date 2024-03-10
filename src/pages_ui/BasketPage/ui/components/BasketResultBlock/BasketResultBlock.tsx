@@ -1,5 +1,7 @@
 'use client'
 
+import { useGetCartQuery } from '@/features/basket'
+
 import { useGetSettingsQuery } from '@/entities/settings'
 
 import { Button } from '@/shared/ui/Button'
@@ -9,6 +11,7 @@ import s from './BasketResultBlock.module.scss'
 
 export const BasketResultBlock = () => {
     const { data } = useGetSettingsQuery()
+    const { data: basketResponse } = useGetCartQuery()
 
     return (
         <Papper className={s.total}>

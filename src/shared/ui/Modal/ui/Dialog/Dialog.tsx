@@ -5,8 +5,6 @@ import {
     useCallback,
     useEffect,
     useLayoutEffect,
-    useRef,
-    useState,
 } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
@@ -23,7 +21,7 @@ interface IDialog
     onClose?: () => void
     side?: 'left' | 'top' | 'right' | 'bottom'
     closeTimer?: number
-    isOpen?: boolean
+    isopen?: boolean
 }
 
 export const Dialog = (props: IDialog) => {
@@ -33,10 +31,9 @@ export const Dialog = (props: IDialog) => {
         closeTimer,
         side = 'bottom',
         children,
+        isopen,
         ...otherProps
     } = props
-
-    const nodeRef = useRef(null)
 
     const closeModal = useCallback(() => {
         onClose?.()
@@ -58,7 +55,6 @@ export const Dialog = (props: IDialog) => {
     useEffect(() => {
         document.addEventListener('keydown', keydown)
         document.addEventListener('click', closeIfClickWithoutModal)
-        // setIsOpen(true)
 
         return () => {
             document.removeEventListener('keydown', keydown)
@@ -76,18 +72,15 @@ export const Dialog = (props: IDialog) => {
         }
     }, [closeModal, closeTimer])
 
-    return createPortal(
-        <CSSTransition
-            timeout={300}
-            in={props.isOpen}
-            unmountOnExit={true}
-            classNames={'dialog'}>
+    return (
+        isopen &&
+        createPortal(
             <Papper
                 className={clsx(s.dialog, s[side], className)}
                 {...otherProps}>
                 <div onClick={(e) => e.stopPropagation()}>{children}</div>
-            </Papper>
-        </CSSTransition>,
-        document.getElementById('modal-root')!
+            </Papper>,
+            document.getElementById('modal-root')!
+        )
     )
 }

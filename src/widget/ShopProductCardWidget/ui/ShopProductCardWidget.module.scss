@@ -1,3 +1,5 @@
+@import '@/app/styles/variables';
+
 .card {
     display: flex;
     flex-direction: column;
@@ -12,12 +14,13 @@
 .title {
     height: 100%;
     overflow: hidden;
-    font-size: var(--font-size-3);
+    font-size: var(--font-size-5);
     color: var(--text-color3);
 }
 
 .preview {
     justify-self: center;
+    min-height: 200px;
 }
 
 .description {
@@ -29,18 +32,19 @@
     cursor: pointer;
     transition: 0.3s;
 
-    &::-webkit-scrollbar {
-        width: 5px; /* ширина всей полосы прокрутки */
-    }
+    // &::-webkit-scrollbar {
+    //     width: 5px; /* ширина всей полосы прокрутки */
+    // }
 
-    &::-webkit-scrollbar-track {
-        background: transparent; /* цвет зоны отслеживания */
-    }
+    // &::-webkit-scrollbar-track {
+    //     background: transparent; /* цвет зоны отслеживания */
+    // }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--global-palette1); /* цвет бегунка */
-        border-radius: 20px; /* округлось бегунка */
-    }
+    // &::-webkit-scrollbar-thumb {
+    //     background-color: var(--global-palette1); /* цвет бегунка */
+    //     border-radius: 20px; /* округлось бегунка */
+    // }
+    @include styled-scroll(5px);
 
     &:hover {
         color: var(--global-palette1);
@@ -69,11 +73,6 @@
 .card.cell {
     display: flex;
     flex-direction: column;
-
-    .preview {
-        width: 100%;
-        min-height: 200px;
-    }
 
     .description {
         display: none;
@@ -141,13 +140,19 @@
 }
 
 @media screen and (width <= 1000px) {
-    .card * {
-        font-size: var(--font-size-6);
-    }
+    // .card * {
+    //     font-size: var(--font-size-6);
+    // }
 }
 
-@media screen and (width <= 450px) {
-    .card * {
-        font-size: var(--font-size-7);
+@media screen and (max-width: 550px) {
+    .preview {
+        max-width: 100px;
+        height: 100px !important;
+    }
+
+    .title,
+    .description {
+        font-size: var(--font-size-5);
     }
 }

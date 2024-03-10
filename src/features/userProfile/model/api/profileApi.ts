@@ -63,7 +63,7 @@ export const profileApi = createApi({
                 url: 'api/auth/token/logout',
                 method: 'POST',
             }),
-            
+
             invalidatesTags: ['Profile'],
         }),
     }),

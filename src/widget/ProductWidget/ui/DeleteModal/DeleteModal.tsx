@@ -1,11 +1,9 @@
 'use client'
 
 import {
-    ComponentPropsWithoutRef,
-    MouseEvent,
-    useCallback,
-    useEffect,
-} from 'react'
+    useAddProductInBasketByIdMutation,
+    useDeleteProductFromBasketByIdMutation,
+} from '@/features/basket'
 
 import { useAddGlobalEventListener } from '@/shared/hooks/useAddGlobalEventListener'
 import { Button } from '@/shared/ui/Button'
@@ -19,18 +17,20 @@ interface TProps {
     className?: string
     onClose?: () => void
     onApply?: () => void
+    cartItemId: number
 }
 
 export const DeleteModal = (props: TProps) => {
-    const { className, onClose, ...other } = props
+    const { className, cartItemId, onClose, ...other } = props
+    const [deleteProduct] = useDeleteProductFromBasketByIdMutation()
 
     useAddGlobalEventListener({
-        parentSelector: '.' + s.modal,
+        parentSelector: `.${s.modal}`,
         onClose,
     })
 
     const onApply = (e: any) => {
-        console.log(e.target.classList)
+        deleteProduct(cartItemId)
         onClose?.()
     }
 

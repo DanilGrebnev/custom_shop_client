@@ -4,6 +4,7 @@ export { UserProfileBasketCounter } from './ui/UserProfileBasketCounter'
 export { UserProfileWishList } from './ui/UserProfileWishlist'
 export { BasketDropDownItem } from './ui/BasketDropDownItem/BasketDropDownItem'
 export { BasketDropDown } from './ui/BasketDropDown/BasketDropDown'
+
 export * from './model/slice/userProfileSlice'
 export * from './model/schema/userProfileSchema'
 export * from './model/api/profileApi'

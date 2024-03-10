@@ -9,7 +9,7 @@ export interface IUserProfileFavorites {
 }
 
 export interface ILoginFields {
-    username: string
+    email: string
     password: string
     remember_me: boolean
 }

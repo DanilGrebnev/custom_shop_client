@@ -1,8 +1,9 @@
-import { IProduct } from '@/app/types/product'
 import { $axios } from '@/app/API'
+import { IProduct } from '@/app/types/product'
+
 // import mock from '@/mock/mock'
 
-export const getProduct = async (productId: string) => {
+export const getProduct = async (productId: number) => {
     const res = await $axios.get<IProduct>(`product/${productId}`)
     return res.data
 }

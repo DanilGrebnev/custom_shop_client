@@ -31,6 +31,8 @@ export const CardByFutureCategories: FC<ICardByFutureCategoriesProps> = (
                     alt={name}
                     src={image}
                     fill={true}
+                    priority={true}
+                    sizes="(max-width: 1920px 100vw)"
                 />
             </div>
             <p>{name}</p>

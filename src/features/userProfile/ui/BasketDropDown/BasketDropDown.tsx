@@ -21,13 +21,6 @@ export const BasketDropDown = (props: IBasketDropDown) => {
     const { count, list, onMouseLeave } = props
     const { data } = useGetCartQuery()
 
-    const price = useMemo(() => {
-        return data?.reduce((totalPrice, curr) => {
-            totalPrice += curr.price
-            return totalPrice
-        }, 0)
-    }, [data])
-
     return (
         <Papper
             className={s['dropdown-widget']}
@@ -42,7 +35,7 @@ export const BasketDropDown = (props: IBasketDropDown) => {
             <footer className={s.footer}>
                 <div className={s.total}>
                     <p>Итого:</p>
-                    <b>{price}</b>
+                    <b>{data?.totalPrice}</b>
                 </div>
                 <div className={s['btn-group']}>
                     <Button

@@ -32,6 +32,7 @@ export const Logo = forwardRef<HTMLAnchorElement, ILogo>((props, ref) => {
                 height={100}
                 alt="Логотип"
                 src={process.env.NEXT_PUBLIC_URL_BACKEND! + data?.homeLogo}
+                priority={true}
             />
         </Link>
     )

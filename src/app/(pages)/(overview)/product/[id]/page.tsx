@@ -1,9 +1,11 @@
-import { getProduct } from './api'
 import { ClientErrorBoundary } from '@/shared/ui/ClientErrorBoundary'
+
+import { getProduct } from './api'
+
 import { ProductDetailPage } from '@/pages_ui/ProductDetailPage'
 
 interface IProductPage {
-    params: { id: string }
+    params: { id: number }
 }
 
 export const generateMetadata = async ({ params }: IProductPage) => {

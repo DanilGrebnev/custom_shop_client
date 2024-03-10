@@ -21,8 +21,8 @@ export const productApi = createApi({
         getProductFilters: build.query<IProductFilterResponse, void>({
             query: () => ApiRoutes.product.filters,
         }),
-        getProductById: build.query<IProduct, string>({
-            query: (productId: string) => '/product/' + productId,
+        getProductById: build.query<IProduct, number>({
+            query: (productId: number) => '/product/' + productId,
             providesTags: ['Product'],
         }),
     }),

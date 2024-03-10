@@ -6,6 +6,7 @@ import { productActions } from '@/entities/product'
 
 import CrossIcon from '@/shared/assets/cross.svg'
 import { useAppDispatch } from '@/shared/hooks'
+import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
 
 import { useToggleTheme } from '@/app/providers/ThemeProvider'
 
@@ -21,7 +22,6 @@ interface IProps {
 
 export const ActiveFilterButton = memo((props: IProps) => {
     const { id, label, className } = props
-    const { theme } = useToggleTheme()
 
     const dispatch = useAppDispatch()
 
@@ -30,15 +30,13 @@ export const ActiveFilterButton = memo((props: IProps) => {
     }
 
     return (
-        <button
+        <FilterButton
+            className={className}
             title={`Удалить фильтр ${label}`}
             onClick={deleteFilter.bind(null, id)}
-            className={clsx(s.filter, s[theme], className)}>
-            <span className={s.description}>{label}</span>
-            <div className={s['cross-wrapper']}>
-                <CrossIcon className={s['cross-icon']} />
-            </div>
-        </button>
+            label={label}>
+            {label}
+        </FilterButton>
     )
 })
 

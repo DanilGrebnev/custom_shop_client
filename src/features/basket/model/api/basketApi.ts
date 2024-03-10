@@ -1,10 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ICart } from '@/app/types/basket'
+import { ICart, IDeleteProductFromBasket } from '@/app/types/basket'
+import { IProductInBasket } from '@/app/types/basket'
 
-interface IProductUpdate {
-    quantity: number
-    product: number
-}
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const basketApi = createApi({
     reducerPath: 'api/basket',
@@ -15,8 +12,7 @@ export const basketApi = createApi({
     tagTypes: ['Basket'],
 
     endpoints: (builder) => ({
-        // ! В дальнейшем ICart должен быть заменен на ICartResponse со следующими полями:
-        getCart: builder.query<ICart[], void>({
+        getCart: builder.query<ICart, void>({
             query: () => `/api/cart`,
             providesTags: ['Basket'],
         }),
@@ -24,21 +20,23 @@ export const basketApi = createApi({
         toggleProductAmount: builder.mutation({
             query: () => `/api/cart/update`,
         }),
-        addProductInBasketById: builder.mutation<void, IProductUpdate>({
+
+        addProductInBasketById: builder.mutation<void, IProductInBasket>({
             query: (body) => ({
                 url: '/api/cart/create',
                 method: 'POST',
-                body: {
-                    cart_item: body,
-                },
+                body,
             }),
             invalidatesTags: ['Basket'],
         }),
-        deleteProductFromBasketById: builder.mutation<void, IProductUpdate>({
-            query: (body) => ({
-                url: '/api/cart/update',
-                method: 'PUT',
-                body,
+
+        deleteProductFromBasketById: builder.mutation<
+            void,
+            IDeleteProductFromBasket
+        >({
+            query: (id: number) => ({
+                url: `/api/cart/delete?id=${id}`,
+                method: 'DELETE',
             }),
             invalidatesTags: ['Basket'],
         }),

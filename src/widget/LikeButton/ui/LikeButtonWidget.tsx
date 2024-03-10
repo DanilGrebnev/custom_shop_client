@@ -1,6 +1,7 @@
 'use client'
 
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import {
     useGetProfileQuery,
@@ -12,14 +13,13 @@ import { Dialog } from '@/shared/ui/Modal'
 
 type TLikeButton = Parameters<typeof LikeButton>[0]
 
-interface LikeButtonWidgetProps
-    extends Pick<TLikeButton, 'variant' | 'className'> {
+interface IProps extends Pick<TLikeButton, 'variant' | 'className'> {
     productId: number
 }
 
-export const LikeButtonWidget: FC<LikeButtonWidgetProps> = (props) => {
+export const LikeButtonWidget: FC<IProps> = (props) => {
     const { productId, ...other } = props
-    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isopen, setIsOpen] = useState<boolean>(false)
 
     const { data } = useGetProfileQuery()
     const [toggleWishList, { isLoading }] = useToggleWishListMutation()
@@ -47,14 +47,12 @@ export const LikeButtonWidget: FC<LikeButtonWidgetProps> = (props) => {
                 loading={isLoading}
                 onClick={onToggleWishList.bind(null, productId)}
             />
-            {
-                <Dialog
-                    isOpen={isOpen}
-                    closeTimer={3000}
-                    onClose={setIsOpen.bind(null, false)}>
-                    Добавлено в избранное
-                </Dialog>
-            }
+            <Dialog
+                isopen={isopen}
+                closeTimer={3000}
+                onClose={() => setIsOpen(false)}>
+                Добавлено в избранное
+            </Dialog>
         </>
     )
 }

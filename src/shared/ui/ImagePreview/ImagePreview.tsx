@@ -1,11 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { IImage } from '@/app/types/product'
-import { v4 } from 'uuid'
 import Image from 'next/image'
-import clsx from 'clsx'
+
+import { IImage } from '@/app/types/product'
+
 import s from './ImagePreview.module.scss'
+
+import clsx from 'clsx'
+import { v4 } from 'uuid'
 
 interface IImagePreview {
     name: string
@@ -15,7 +17,7 @@ interface IImagePreview {
 }
 
 export const ImagePreview = (props: IImagePreview) => {
-    const { images, name, sizes, className } = props
+    const { images, name, className } = props
 
     const renderImage = ({ image }: IImage, i: number) => {
         if (i < 2) {
@@ -29,6 +31,7 @@ export const ImagePreview = (props: IImagePreview) => {
                         [s['img_' + i]]: images.length !== 1,
                     })}
                     sizes="(max-width: 1920px 100vw)"
+                    priority={true}
                 />
             )
         }

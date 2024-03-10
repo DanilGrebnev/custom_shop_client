@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUserProfileSchema } from '../schema/userProfileSchema'
 import { profileApi } from '../api/profileApi'
+import { IUserProfileSchema } from '../schema/userProfileSchema'
+
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: IUserProfileSchema = {
     isAuth: false,
@@ -32,5 +33,5 @@ const userProfileSlice = createSlice({
     },
 })
 
-export const { setIsOpenBasketModal } = userProfileSlice.actions
+export const userProfileActions = userProfileSlice.actions
 export const userProfileReducer = userProfileSlice.reducer

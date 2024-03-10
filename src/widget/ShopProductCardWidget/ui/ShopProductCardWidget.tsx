@@ -4,6 +4,7 @@ import { memo, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
+import { useAddProductInBasketByIdMutation } from '@/features/basket'
 import {
     useGetProfileQuery,
     useToggleWishListMutation,
@@ -37,6 +38,8 @@ interface Props {
 
 export const ShopProductCardWidget = memo((props: Props) => {
     const { description, images, name, price, productId, rating, type } = props
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [addProductInBasket] = useAddProductInBasketByIdMutation()
 
     const { currency } = useGetSettingsQuery(undefined, {
         selectFromResult: (result) => ({
@@ -44,36 +47,57 @@ export const ShopProductCardWidget = memo((props: Props) => {
         }),
     })
 
-    return (
-        <div className={clsx(s.card, s[type])}>
-            <ImagePreview
-                name={name}
-                images={images}
-                className={s.preview}
-            />
-            <Link
-                className={s.title}
-                href={NavigationRoutes.product(productId)}>
-                {name}
-            </Link>
-            <Link
-                className={s.description}
-                href={NavigationRoutes.product(productId)}>
-                {description}
-            </Link>
+    const addToBasket = (productId: number) => {
+        addProductInBasket({ productId, quantity: 1 })
+            .unwrap()
+            .then(setIsOpen.bind(null, true))
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
-            <Rating
-                className={s.rating}
-                rating={rating}
-            />
-            <p className={s.price}>
-                {price} {currency}
-            </p>
-            <div className={s['btn-group']}>
-                <LikeButtonWidget productId={productId} />
-                <Button hover={true}>Купить</Button>
+    return (
+        <>
+            <div className={clsx(s.card, s[type])}>
+                <ImagePreview
+                    name={name}
+                    images={images}
+                    className={s.preview}
+                />
+                <Link
+                    className={s.title}
+                    href={NavigationRoutes.product(productId)}>
+                    {name}
+                </Link>
+                <Link
+                    className={s.description}
+                    href={NavigationRoutes.product(productId)}>
+                    {description}
+                </Link>
+
+                <Rating
+                    className={s.rating}
+                    rating={rating}
+                />
+                <p className={s.price}>
+                    {price} {currency}
+                </p>
+                <div className={s['btn-group']}>
+                    <LikeButtonWidget productId={productId} />
+                    <Button
+                        onClick={addToBasket.bind(null, productId)}
+                        hover={true}>
+                        В корзину
+                    </Button>
+                </div>
             </div>
-        </div>
+            <Dialog
+                isopen={isOpen}
+                closeTimer={3000}
+                onClose={setIsOpen.bind(null, false)}>
+                Товар добавлен в корзину
+            </Dialog>
+        </>
     )
 })
 

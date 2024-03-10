@@ -25,7 +25,7 @@ import { LikeButtonWidget } from '@/widget/LikeButton'
 import clsx from 'clsx'
 
 interface IProductPage {
-    productId: string
+    productId: number
 }
 
 export const ProductDetailPage = (props: IProductPage) => {
@@ -40,15 +40,9 @@ export const ProductDetailPage = (props: IProductPage) => {
     const [fetchAddToBasket, { isLoading: addToBasketIsLoading }] =
         useAddProductInBasketByIdMutation()
 
-    // useEffect(() => {
-    //     console.clear()
-    //     console.log('productId from props', productId)
-    //     console.log('basket', basket)
-    // }, [product, productId, basket])
-
-    const inBasket = useMemo(() => {
-        return basket?.some((product) => product.id === +productId)
-    }, [productId, basket])
+    useEffect(() => {
+        console.log(product)
+    }, [product])
 
     if (!product || isLoading) {
         return <PageLoader />
@@ -59,9 +53,12 @@ export const ProductDetailPage = (props: IProductPage) => {
     }
 
     const addToBasket = () => {
+        console.log('productId', productId)
         fetchAddToBasket({
-            product: +productId,
+            productId: +productId,
             quantity: 1,
+        }).then((response) => {
+            console.log('response', response)
         })
     }
 
@@ -110,11 +107,11 @@ export const ProductDetailPage = (props: IProductPage) => {
 
                     <div className={s['btn-group']}>
                         <LikeButtonWidget productId={+productId} />
-                        {inBasket ? (
+                        {/* {inBasket ? (
                             <h2>В корзине</h2>
-                        ) : (
-                            <BuyButton onClick={addToBasket} />
-                        )}
+                        ) : ( */}
+                        <BuyButton onClick={addToBasket} />
+                        {/* )} */}
                     </div>
                     <p className={s.quantity}>{product?.quantity} в наличии</p>
                 </div>

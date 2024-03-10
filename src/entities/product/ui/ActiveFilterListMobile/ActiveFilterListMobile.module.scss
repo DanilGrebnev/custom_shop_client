@@ -1,13 +1,42 @@
+@import '@/app/styles/variables';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @media screen and (min-width: 1000px) {
+        display: none;
+    }
+}
+
+.title {
+    color: var(--text-color2);
+}
+
+.header-filter-list {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-7);
+}
+
+.reset-filters-btn {
+    padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
 .filter-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 5px;
 }
 
-.filter {
-    @media screen and (max-width: 420px) {
-        & * {
-            font-size: var(--font-size-8);
-        }
+.filter-item {
+    @media screen and (max-width: 600px) {
+        padding: 5px;
+        font-size: var(--font-size-7);
     }
 }
