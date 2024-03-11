@@ -1,4 +1,8 @@
-import { ICart, IDeleteProductFromBasket } from '@/app/types/basket'
+import {
+    ICart,
+    IDeleteProductFromBasket,
+    IItemAmountInBasket,
+} from '@/app/types/basket'
 import { IProductInBasket } from '@/app/types/basket'
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
@@ -9,7 +13,7 @@ export const basketApi = createApi({
         baseUrl: process.env.NEXT_PUBLIC_URL_BACKEND,
         credentials: 'include',
     }),
-    tagTypes: ['Basket'],
+    tagTypes: ['Basket', 'Error'],
 
     endpoints: (builder) => ({
         getCart: builder.query<ICart, void>({
@@ -17,8 +21,13 @@ export const basketApi = createApi({
             providesTags: ['Basket'],
         }),
 
-        toggleProductAmount: builder.mutation({
-            query: () => `/api/cart/update`,
+        toggleItemAmountInBasket: builder.mutation<void, IItemAmountInBasket>({
+            query: (body) => ({
+                url: `/api/cart/update`,
+                method: 'PUT',
+                body,
+            }),
+            invalidatesTags: (result) => (result ? ['Basket'] : ['Error']),
         }),
 
         addProductInBasketById: builder.mutation<void, IProductInBasket>({
@@ -47,4 +56,5 @@ export const {
     useGetCartQuery,
     useDeleteProductFromBasketByIdMutation,
     useAddProductInBasketByIdMutation,
+    useToggleItemAmountInBasketMutation,
 } = basketApi

@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react'
 
 import Image from 'next/image'
 
+import { ToggleAmountItemInBasket } from '@/features/basket'
+
 import DeleteBasketIcon from '@/shared/assets/delete-basket.svg'
 import { CounterButtons } from '@/shared/ui/Buttons'
 import { Papper } from '@/shared/ui/Papper'
@@ -40,7 +42,11 @@ export const ProductWidget = (props: IProps) => {
             />
             <div className={s.content}>
                 <h4 className={s['content__title']}>{cartItem.product.name}</h4>
-                <CounterButtons />
+                <ToggleAmountItemInBasket
+                    itemAmountInBasket={cartItem.quantity}
+                    currentItemAmount={cartItem.product.quantity}
+                    cartItemId={cartItem.cartItemId}
+                />
                 <div className={s.stock}>
                     <p>В наличии:</p> <span>{cartItem.product.quantity}</span>
                 </div>

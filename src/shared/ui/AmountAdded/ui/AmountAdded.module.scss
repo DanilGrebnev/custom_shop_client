@@ -5,17 +5,39 @@
     min-width: 120px;
     max-width: max-content;
     height: 42px;
+    overflow: hidden;
     background: var(--border-ui-color1);
     border-radius: 3px;
 
     button {
         display: flex;
+        align-items: center;
+        height: 100%;
         padding: 0 20px;
-        font-size: var(--font-s);
-        color: var(--global-palette6);
+        font-size: var(--font-size-3);
+        color: var(--text-color5);
+        transition: 0.3s;
+
+        &:disabled {
+            opacity: 0.3;
+            
+            &:hover {
+                background: none;
+            }
+        }
 
         &:hover {
-            color: black;
+            background: rgb(0 0 0 / 10%);
         }
     }
+
+    &.dark {
+        button:hover {
+            background: rgb(255 255 255 / 20%);
+        }
+    }
+}
+
+.value {
+    color: var(--text-color5);
 }

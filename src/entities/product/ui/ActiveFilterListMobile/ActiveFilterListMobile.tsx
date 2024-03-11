@@ -1,8 +1,10 @@
 'use client'
 
+import { useActionCreators } from '@/shared/hooks/useActionCreators'
 import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
 
 import { useCheckedActiveFilters } from '../../model/hooks/useCheckedActiveFilters'
+import { productActions } from '../../model/slice/productSlice'
 import s from './ActiveFilterListMobile.module.scss'
 
 import { ActiveFilterButton } from '@/widget/ActiveFilterButton'
@@ -15,7 +17,8 @@ interface IProps {
 
 export const ActiveFilterListMobile = ({ className }: IProps) => {
     const activeFilters = useCheckedActiveFilters()
-    
+    const actions = useActionCreators(productActions)
+
     return (
         <div
             className={clsx(
@@ -27,6 +30,7 @@ export const ActiveFilterListMobile = ({ className }: IProps) => {
                 <h3 className={s.title}>Выбранные фильтры</h3>
                 <FilterButton
                     withIcon={false}
+                    onClick={() => actions.resetAllFilters()}
                     className={s['reset-filters-btn']}
                     label="Очистить фильтры">
                     Очистить фильтры

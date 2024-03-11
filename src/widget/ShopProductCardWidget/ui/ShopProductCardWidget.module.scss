@@ -32,18 +32,6 @@
     cursor: pointer;
     transition: 0.3s;
 
-    // &::-webkit-scrollbar {
-    //     width: 5px; /* ширина всей полосы прокрутки */
-    // }
-
-    // &::-webkit-scrollbar-track {
-    //     background: transparent; /* цвет зоны отслеживания */
-    // }
-
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: var(--global-palette1); /* цвет бегунка */
-    //     border-radius: 20px; /* округлось бегунка */
-    // }
     @include styled-scroll(5px);
 
     &:hover {
@@ -147,8 +135,8 @@
 
 @media screen and (max-width: 550px) {
     .preview {
-        max-width: 100px;
-        height: 100px !important;
+        max-width: 150px;
+        height: 150px !important;
     }
 
     .title,

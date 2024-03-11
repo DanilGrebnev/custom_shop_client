@@ -4,7 +4,7 @@ export interface ICartItem {
     product: {
         productId: number
         image: string
-        quantity: string
+        quantity: number
         name: string
     }
 }
@@ -21,4 +21,12 @@ export type IDeleteProductFromBasket = number
 export interface IProductInBasket {
     productId: number
     quantity: number
+}
+
+/**
+ * Интерфейс изменения количества товара в корзине
+ */
+export interface IItemAmountInBasket {
+    quantity: number
+    id: number
 }

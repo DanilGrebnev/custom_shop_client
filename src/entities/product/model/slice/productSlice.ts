@@ -66,7 +66,7 @@ export const productSlice = createSlice({
             }
         },
 
-        // Выбирает 1 значение, убирая все остальные
+        /**Выбирает 1 значение, убирая все остальные */
         changeOneCheckedValue(state, action: PayloadAction<{ id: string }>) {
             state.filters.forEach((filter) => {
                 if (isTypeRangeFilter(filter)) {
