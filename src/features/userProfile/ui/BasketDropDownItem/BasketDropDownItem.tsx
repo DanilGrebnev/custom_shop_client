@@ -29,11 +29,12 @@ export const BasketDropDownItem = (props: IDropDownItem) => {
                 alt={'icon ' + product.name}
                 src={product.image}
                 priority={true}
+                className={s.img}
             />
 
             <div>{product.name}</div>
             <span>
-                {12990} {data?.currency}
+                {product.price} {data?.currency}
             </span>
 
             <DeleteBasket

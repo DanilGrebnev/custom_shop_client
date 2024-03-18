@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { AmountAdded } from '@/shared/ui/AmountAdded'
 
 import {
@@ -7,14 +5,14 @@ import {
     useToggleItemAmountInBasketMutation,
 } from '../../model/api/basketApi'
 
-interface IProps {
-    cartItemId: number
-    currentItemAmount: number
-    itemAmountInBasket: number
+interface Props {
+    cartItemId?: number
+    currentItemAmount?: number
+    itemAmountInBasket?: number
 }
 
-export const ToggleAmountItemInBasket = (props: IProps) => {
-    const { cartItemId, currentItemAmount, itemAmountInBasket } = props
+export const ToggleAmountItemInBasket = (props: Props) => {
+    const { cartItemId = 0, currentItemAmount, itemAmountInBasket = 0 } = props
 
     const { isFetching } = useGetCartQuery()
 
@@ -22,7 +20,7 @@ export const ToggleAmountItemInBasket = (props: IProps) => {
         useToggleItemAmountInBasketMutation()
 
     const loading = isFetching || isLoading
-    
+
     const disabled1 = currentItemAmount === itemAmountInBasket
     const disabled2 = itemAmountInBasket === 1
 

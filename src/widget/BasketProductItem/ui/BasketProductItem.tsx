@@ -7,13 +7,12 @@ import Image from 'next/image'
 import { ToggleAmountItemInBasket } from '@/features/basket'
 
 import DeleteBasketIcon from '@/shared/assets/delete-basket.svg'
-import { CounterButtons } from '@/shared/ui/Buttons'
 import { Papper } from '@/shared/ui/Papper'
 
 import { ICartItem } from '@/app/types/basket'
 
+import s from './BasketProductItem.module.scss'
 import { DeleteModal } from './DeleteModal/DeleteModal'
-import s from './ProductWidget.module.scss'
 
 import { LikeButtonWidget } from '@/widget/LikeButton'
 import clsx from 'clsx'
@@ -23,7 +22,7 @@ interface IProps {
     cartItem: ICartItem
 }
 
-export const ProductWidget = (props: IProps) => {
+export const BasketProductItem = (props: IProps) => {
     const { cartItem, className } = props
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -52,16 +51,15 @@ export const ProductWidget = (props: IProps) => {
                 </div>
             </div>
             <div className={s['btn-group']}>
-                {/*Данный компонент вызывает ошибку!*/}
                 <LikeButtonWidget
-                    className={clsx(s.btn)}
+                    className={clsx(s['like-button'], s.button, s.svg)}
                     variant="standart"
-                    productId={0}
+                    productId={cartItem.product.productId}
                 />
                 <button
                     title="Удалить товар"
                     type="button"
-                    className={clsx(s.delete, s.btn)}
+                    className={clsx(s['delete-button'], s.button, s.svg)}
                     onClick={() => setIsOpen(true)}>
                     <DeleteBasketIcon />
                 </button>

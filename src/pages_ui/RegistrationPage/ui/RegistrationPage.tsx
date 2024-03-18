@@ -33,31 +33,6 @@ function createStringFromErrors(errors: string | string[]) {
     }
 }
 
-function RenderError(errors: Record<string, string[] | string>) {
-    return (
-        <>
-            {Object.entries(errors).map(([name, errorsArray], i) => {
-                console.log(name)
-                return (
-                    <div key={i}>
-                        <h2>{fieldName[name as keyof FormFields]}</h2>
-                        {createStringFromErrors(errorsArray)}
-                    </div>
-                )
-            })}
-        </>
-    )
-}
-
-interface TResponse {
-    userId: number
-    id: number
-    title: string
-    completed: boolean
-}
-
-const url = process.env.NEXT_PUBLIC_URL_BACKEND + '/api/auth/reg'
-
 export const RegistrationPage = () => {
     const [openModal, setIsOpen] = useState<boolean>(false)
     const router = useRouter()

@@ -10,3 +10,11 @@ export interface ICategory {
 export interface IHomePageCategory extends Omit<ICategory, 'children'> {
     productCount: number
 }
+
+export interface Categories {
+    categoryId: string
+    categoryName: string
+    image: string
+    parentId: string | 'null'
+    filters?: boolean
+}

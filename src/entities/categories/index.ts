@@ -1,3 +1,5 @@
+export * from './model/api/categoryApi'
+
 export { categoryReducer } from './model/slice/categoriesSlice'
 export { type ICategorySchema } from './model/types'
 export {

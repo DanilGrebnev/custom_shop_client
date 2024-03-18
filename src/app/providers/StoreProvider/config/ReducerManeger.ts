@@ -1,7 +1,7 @@
 import { basketApi } from '@/features/basket'
 import { profileApi, userProfileReducer } from '@/features/userProfile'
 
-import { categoryReducer } from '@/entities/categories'
+import { categoryApi, categoryReducer } from '@/entities/categories'
 import { footerApi } from '@/entities/footer'
 import { homePageApi } from '@/entities/homePage'
 import { productApi, productReducer } from '@/entities/product'
@@ -21,4 +21,5 @@ export const staticReducers = {
     [settingApi.reducerPath]: settingApi.reducer,
     [homePageApi.reducerPath]: homePageApi.reducer,
     [footerApi.reducerPath]: footerApi.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer,
 }

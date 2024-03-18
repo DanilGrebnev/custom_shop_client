@@ -6,6 +6,7 @@ export interface ICartItem {
         image: string
         quantity: number
         name: string
+        price: number
     }
 }
 
@@ -19,14 +20,14 @@ export interface ICart {
 export type IDeleteProductFromBasket = number
 
 export interface IProductInBasket {
-    productId: number
+    productId: number | string
     quantity: number
 }
 
 /**
  * Интерфейс изменения количества товара в корзине
  */
-export interface IItemAmountInBasket {
+export interface ItemAmountInBasket {
     quantity: number
     id: number
 }

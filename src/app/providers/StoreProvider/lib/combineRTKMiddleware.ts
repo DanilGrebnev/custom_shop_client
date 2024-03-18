@@ -3,7 +3,7 @@ export const combineRTKQueryMiddleware = <
         middleware: T['middleware']
     }
 >(
-    apis: Array<T>
+    rtkApi: T[]
 ) => {
-    return apis.map((api) => api.middleware)
+    return rtkApi.map((api) => api.middleware)
 }

@@ -10,10 +10,28 @@
     color: var(--text-color5);
 }
 
-.total-title {
-    font-size: var(--font-size-2);
+.product-amount {
+    display: flex;
+    gap: 10px;
+    color: var(--text-color4);
 }
 
-.price {
-    font-size: var(--font-size-3);
+.product-amount-value {
+    font-size: var(--font-size-5);
+    color: var(--text-color5);
+}
+
+.total-price {
+    display: flex;
+    gap: 10px;
+    color: var(--text-color4);
+}
+
+.total-price-value {
+    font-size: var(--font-size-5);
+    color: var(--text-color5);
+}
+
+.total-title {
+    font-size: var(--font-size-2);
 }

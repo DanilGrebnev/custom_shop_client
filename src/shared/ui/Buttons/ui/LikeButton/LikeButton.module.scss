@@ -1,9 +1,12 @@
 $icon-size: 20px;
 
 .LikeButton {
+    box-sizing: border-box;
     display: flex;
-    width: fit-content;
-    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: max-content;
     border-radius: var(--global-border-radius);
 
     &.outline {
@@ -25,7 +28,5 @@ $icon-size: 20px;
 }
 
 .icon {
-    width: $icon-size;
-    height: $icon-size;
     fill: var(--icon-color1);
 }

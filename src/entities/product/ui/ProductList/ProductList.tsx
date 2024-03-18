@@ -27,6 +27,8 @@ export const ProductList = () => {
 
     const { data, isLoading } = useGetProductsQuery(usp)
 
+    // console.log(data)
+
     return (
         <div
             id="Product_List"
@@ -37,7 +39,7 @@ export const ProductList = () => {
                 {isLoading && <ProductListSkeleton />}
 
                 {data?.products?.map(
-                    ({ id, price, images, name, description }) => {
+                    ({ id, price, images, name, description, quantity }) => {
                         return (
                             <ShopProductCardWidget
                                 key={v4()}
@@ -48,6 +50,7 @@ export const ProductList = () => {
                                 name={name}
                                 price={price}
                                 description={description}
+                                quantity={quantity}
                             />
                         )
                     }

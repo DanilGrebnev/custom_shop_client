@@ -1,7 +1,7 @@
 import {
     ICart,
     IDeleteProductFromBasket,
-    IItemAmountInBasket,
+    ItemAmountInBasket,
 } from '@/app/types/basket'
 import { IProductInBasket } from '@/app/types/basket'
 
@@ -21,7 +21,7 @@ export const basketApi = createApi({
             providesTags: ['Basket'],
         }),
 
-        toggleItemAmountInBasket: builder.mutation<void, IItemAmountInBasket>({
+        toggleItemAmountInBasket: builder.mutation<void, ItemAmountInBasket>({
             query: (body) => ({
                 url: `/api/cart/update`,
                 method: 'PUT',

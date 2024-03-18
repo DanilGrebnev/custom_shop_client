@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useEffect, useState } from 'react'
+import { ReactNode, memo, useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
@@ -12,9 +12,7 @@ import {
 
 import { useGetSettingsQuery } from '@/entities/settings'
 
-import { Button } from '@/shared/ui/Button'
 import { ImagePreview } from '@/shared/ui/ImagePreview'
-import { Dialog } from '@/shared/ui/Modal'
 import { Rating } from '@/shared/ui/Rating'
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
@@ -22,6 +20,7 @@ import { IImage } from '@/app/types/product'
 
 import s from './ShopProductCardWidget.module.scss'
 
+import { BuyButton } from '@/widget/BuyButton'
 import { LikeButtonWidget } from '@/widget/LikeButton'
 import clsx from 'clsx'
 
@@ -34,27 +33,26 @@ interface Props {
     price: number
     description: string
     isActiveLikeButton?: boolean
+    quantity: number
 }
 
 export const ShopProductCardWidget = memo((props: Props) => {
-    const { description, images, name, price, productId, rating, type } = props
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [addProductInBasket] = useAddProductInBasketByIdMutation()
+    const {
+        description,
+        images,
+        name,
+        price,
+        productId,
+        rating,
+        quantity,
+        type,
+    } = props
 
     const { currency } = useGetSettingsQuery(undefined, {
         selectFromResult: (result) => ({
             currency: result.data?.currency,
         }),
     })
-
-    const addToBasket = (productId: number) => {
-        addProductInBasket({ productId, quantity: 1 })
-            .unwrap()
-            .then(setIsOpen.bind(null, true))
-            .catch((err) => {
-                console.log(err)
-            })
-    }
 
     return (
         <>
@@ -74,7 +72,6 @@ export const ShopProductCardWidget = memo((props: Props) => {
                     href={NavigationRoutes.product(productId)}>
                     {description}
                 </Link>
-
                 <Rating
                     className={s.rating}
                     rating={rating}
@@ -82,21 +79,15 @@ export const ShopProductCardWidget = memo((props: Props) => {
                 <p className={s.price}>
                     {price} {currency}
                 </p>
+                <p className={s.quantity}>{quantity} в наличии</p>
                 <div className={s['btn-group']}>
                     <LikeButtonWidget productId={productId} />
-                    <Button
-                        onClick={addToBasket.bind(null, productId)}
-                        hover={true}>
-                        В корзину
-                    </Button>
+                    <BuyButton
+                        quantity={quantity}
+                        productId={productId}
+                    />
                 </div>
             </div>
-            <Dialog
-                isopen={isOpen}
-                closeTimer={3000}
-                onClose={setIsOpen.bind(null, false)}>
-                Товар добавлен в корзину
-            </Dialog>
         </>
     )
 })

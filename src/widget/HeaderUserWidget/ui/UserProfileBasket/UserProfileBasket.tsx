@@ -59,12 +59,12 @@ export const UserProfileBasket = () => {
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 onClick={onClick}
-                count={data?.cartItem.length}
+                count={data?.totalAmount}
             />
 
             {isOpen && (
                 <BasketDropDown
-                    count={data?.cartItem.length}
+                    count={data?.totalAmount}
                     list={<BasketList />}
                     onMouseLeave={toggleModal.bind(null, false)}
                 />

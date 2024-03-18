@@ -3,6 +3,7 @@ $border: 1px solid var(--border-ui-color1);
 .header {
     display: flex;
     justify-content: center;
+    background: var(--container-background-1);
     border-bottom: $border;
 }
 

@@ -128,11 +128,16 @@ export const productSlice = createSlice({
             usp.set('offset', action.payload + '')
             state.usp = usp.toString()
         },
-
+        /**
+         * заменяет предыдущее usp на строку, которая будет
+         * передана в качестве аргумента
+         */
         setUrlSearchParams(state, action: PayloadAction<string>) {
             state.usp = action.payload
         },
-
+        /**
+         * Открывает или закрывает окно настроек для телефона
+         */
         toggleOpenSetting(state, action: PayloadAction<boolean>) {
             state.openFilter = action.payload ?? !state.openFilter
         },
@@ -145,10 +150,16 @@ export const productSlice = createSlice({
             (state, action) => {
                 let checkedFilters = [] as (ICheckedFilters | IRangeFilters)[]
 
+                // console.log(action.payload)
+
                 action.payload.filters.forEach((filter) => {
-                    // Работы с фильтрами типа checked
+                    // Работа с фильтрами типа checked
                     if (isChoiceFilter(filter)) {
-                        if (filter.code === 'category') {
+                        /**
+                         *  Если у фильтра в choices присутствуют children,
+                         *  значит это фильтр древовидного типа
+                         */
+                        if (filter.choices[0].children) {
                             checkedFilters = checkedFilters.concat(
                                 createCheckedFilters(filter.choices)
                             )

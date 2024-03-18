@@ -1,6 +1,7 @@
 import { basketApi } from '@/features/basket'
 import { profileApi } from '@/features/userProfile'
 
+import { categoryApi } from '@/entities/categories'
 import { footerApi } from '@/entities/footer'
 import { homePageApi } from '@/entities/homePage'
 import { productApi } from '@/entities/product'
@@ -15,4 +16,5 @@ export const RTKQueryMiddlewares = combineRTKQueryMiddleware([
     settingApi,
     homePageApi,
     footerApi,
+    categoryApi,
 ])

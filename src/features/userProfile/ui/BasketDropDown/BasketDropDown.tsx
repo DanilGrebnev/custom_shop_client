@@ -4,6 +4,8 @@ import Link from 'next/link'
 
 import { useGetCartQuery } from '@/features/basket'
 
+import { useGetSettingsQuery } from '@/entities/settings'
+
 import { Button } from '@/shared/ui/Button'
 import { Papper } from '@/shared/ui/Papper'
 
@@ -20,13 +22,14 @@ interface IBasketDropDown {
 export const BasketDropDown = (props: IBasketDropDown) => {
     const { count, list, onMouseLeave } = props
     const { data } = useGetCartQuery()
+    const { data: settingData } = useGetSettingsQuery()
 
     return (
         <Papper
             className={s['dropdown-widget']}
             onMouseLeave={onMouseLeave}>
             <header className={s.header}>
-                <b>Основные товары: {count}</b>
+                <b>Товаров в корзине: {count}</b>
                 <button>Очистить список</button>
             </header>
 
@@ -35,7 +38,9 @@ export const BasketDropDown = (props: IBasketDropDown) => {
             <footer className={s.footer}>
                 <div className={s.total}>
                     <p>Итого:</p>
-                    <b>{data?.totalPrice}</b>
+                    <b>
+                        {data?.totalPrice} {settingData?.currency}
+                    </b>
                 </div>
                 <div className={s['btn-group']}>
                     <Button

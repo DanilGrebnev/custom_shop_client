@@ -1,7 +1,8 @@
 $margin: 20px;
 
 .shop-page {
-    display: flex;
+    display: grid;
+    grid-template-columns: 300px 1fr;
     gap: 2em;
     margin-top: $margin;
     margin-bottom: $margin;

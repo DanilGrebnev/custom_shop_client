@@ -1,17 +1,11 @@
 'use client'
 
-import { useEffect, useMemo } from 'react'
-
-import {
-    useAddProductInBasketByIdMutation,
-    useGetCartQuery,
-} from '@/features/basket'
+import { useEffect } from 'react'
 
 import { useGetProductByIdQuery } from '@/entities/product'
 import { useGetSettingsQuery } from '@/entities/settings'
 
 import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
-import { BuyButton } from '@/shared/ui/Buttons/ui/BuyButton/BuyButton'
 import { PageLoader } from '@/shared/ui/LoadersSpinners'
 import { Rating } from '@/shared/ui/Rating'
 import { StandartDropDown } from '@/shared/ui/StandartDropDown'
@@ -21,6 +15,7 @@ import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
 import s from './ProductDetailPage.module.scss'
 
+import { BuyButton } from '@/widget/BuyButton'
 import { LikeButtonWidget } from '@/widget/LikeButton'
 import clsx from 'clsx'
 
@@ -30,36 +25,20 @@ interface IProductPage {
 
 export const ProductDetailPage = (props: IProductPage) => {
     const { productId } = props
+    const { data: setting } = useGetSettingsQuery()
+
     const {
         data: product,
         isLoading,
         isError,
     } = useGetProductByIdQuery(productId)
-    const { data: setting } = useGetSettingsQuery()
-    const { data: basket } = useGetCartQuery()
-    const [fetchAddToBasket, { isLoading: addToBasketIsLoading }] =
-        useAddProductInBasketByIdMutation()
 
-    useEffect(() => {
-        console.log(product)
-    }, [product])
-
-    if (!product || isLoading) {
+    if (isLoading) {
         return <PageLoader />
     }
 
     if (isError) {
         return <h1>Ошибка получения продукта</h1>
-    }
-
-    const addToBasket = () => {
-        console.log('productId', productId)
-        fetchAddToBasket({
-            productId: +productId,
-            quantity: 1,
-        }).then((response) => {
-            console.log('response', response)
-        })
     }
 
     return (
@@ -106,12 +85,11 @@ export const ProductDetailPage = (props: IProductPage) => {
                     <StandartDropDown title="storage" />
 
                     <div className={s['btn-group']}>
-                        <LikeButtonWidget productId={+productId} />
-                        {/* {inBasket ? (
-                            <h2>В корзине</h2>
-                        ) : ( */}
-                        <BuyButton onClick={addToBasket} />
-                        {/* )} */}
+                        <LikeButtonWidget productId={productId} />
+                        <BuyButton
+                            quantity={product?.quantity}
+                            productId={productId}
+                        />
                     </div>
                     <p className={s.quantity}>{product?.quantity} в наличии</p>
                 </div>

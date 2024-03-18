@@ -4,6 +4,7 @@
 }
 
 .product__image {
+    object-fit: contain;
     border-radius: var(--global-border-radius);
 }
 
@@ -34,8 +35,14 @@
     top: 100%;
 }
 
-.btn {
-    padding: 5px;
+.delete-button {
+    path {
+        fill: var(--icon-color1);
+    }
+}
+
+.button {
+    padding: 10px;
     border-radius: var(--global-border-radius);
 
     &:hover {
@@ -43,15 +50,9 @@
     }
 }
 
-.delete {
-    align-self: start;
-
+.svg {
     svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    path {
-        fill: var(--text-color2);
+        width: 25px;
+        height: 25px;
     }
 }
