@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 
 import Image from 'next/image'
 
@@ -22,13 +22,9 @@ interface IProps {
     cartItem: ICartItem
 }
 
-export const BasketProductItem = (props: IProps) => {
+export const BasketProductItem = memo((props: IProps) => {
     const { cartItem, className } = props
     const [isOpen, setIsOpen] = useState<boolean>(false)
-
-    const onClose = useCallback(() => {
-        setIsOpen(false)
-    }, [])
 
     return (
         <Papper className={clsx(s['product-widget'], className)}>
@@ -66,11 +62,13 @@ export const BasketProductItem = (props: IProps) => {
                 {isOpen && (
                     <DeleteModal
                         cartItemId={cartItem.cartItemId}
-                        onClose={onClose}
+                        onClose={() => setIsOpen(false)}
                         className={s['delete-modal']}
                     />
                 )}
             </div>
         </Papper>
     )
-}
+})
+
+BasketProductItem.displayName = 'BasketProductItem'

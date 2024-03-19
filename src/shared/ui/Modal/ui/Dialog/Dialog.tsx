@@ -7,7 +7,6 @@ import {
     useLayoutEffect,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { CSSTransition } from 'react-transition-group'
 
 import { Papper } from '@/shared/ui/Papper'
 

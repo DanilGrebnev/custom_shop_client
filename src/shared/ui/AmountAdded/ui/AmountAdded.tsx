@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { useToggleTheme } from '@/app/providers/ThemeProvider'
 
@@ -15,9 +15,10 @@ interface IAmountAddedProps {
     value: string | number
     disabled1?: boolean
     disabled2?: boolean
+    disabled?: boolean
 }
 
-export const AmountAdded: FC<IAmountAddedProps> = (props) => {
+export const AmountAdded: FC<IAmountAddedProps> = memo((props) => {
     const {
         decrement,
         increment,
@@ -25,6 +26,7 @@ export const AmountAdded: FC<IAmountAddedProps> = (props) => {
         disabled2,
         value = 1,
         className,
+        disabled,
     } = props
     const { theme } = useToggleTheme()
 
@@ -32,19 +34,19 @@ export const AmountAdded: FC<IAmountAddedProps> = (props) => {
         <div className={clsx(s.AmountAdded, s[theme], className)}>
             <button
                 onClick={decrement}
-                disabled={disabled2}
+                disabled={disabled2 || disabled}
                 type="button">
                 -
             </button>
             <span className={s.value}>{value}</span>
             <button
-                disabled={disabled1}
+                disabled={disabled1 || disabled}
                 onClick={increment}
                 type="button">
                 +
             </button>
         </div>
     )
-}
+})
 
 AmountAdded.displayName = 'AmountAdded'

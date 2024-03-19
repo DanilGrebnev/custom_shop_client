@@ -5,7 +5,6 @@ import { useGetCartQuery } from '@/features/basket'
 import s from './BasketProductItemList.module.scss'
 
 import { BasketProductItem } from '@/widget/BasketProductItem'
-import { v4 } from 'uuid'
 
 export const BasketProductItemList = () => {
     const { data } = useGetCartQuery()
@@ -15,7 +14,7 @@ export const BasketProductItemList = () => {
             {data?.cartItem.map((cartItem) => {
                 return (
                     <BasketProductItem
-                        key={v4()}
+                        key={cartItem.cartItemId}
                         cartItem={cartItem}
                     />
                 )
