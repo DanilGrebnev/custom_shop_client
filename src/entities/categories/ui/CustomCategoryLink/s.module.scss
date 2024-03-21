@@ -1,0 +1,7 @@
+.link {
+    transition: 0.3s;
+
+    &:hover {
+        color: var(--global-palette1);
+    }
+}

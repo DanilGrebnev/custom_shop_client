@@ -3,12 +3,16 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 30px;
+    padding: 20px;
     background: white;
     border-radius: var(--global-border-radius);
 }
 
 .title {
-    font-size: var(--font-size-4);
+    font-size: var(--font-size-6);
     text-align: center;
+}
+
+.img {
+    object-fit: contain;
 }

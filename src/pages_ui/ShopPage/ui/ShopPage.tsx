@@ -13,7 +13,9 @@ import s from './ShopPapge.module.scss'
 
 import clsx from 'clsx'
 
-export const ShopPage = () => {
+export const ShopPage = ({ categoryId }: { categoryId: string }) => {
+    console.log(categoryId)
+
     return (
         <>
             <BreadCrumbs

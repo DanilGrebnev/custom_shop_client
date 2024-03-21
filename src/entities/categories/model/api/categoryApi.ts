@@ -1,29 +1,30 @@
-import { type Categories } from '@/app/types/category'
+import type {
+    Categories,
+    CategoryWithChildren,
+    ChildrenCategory,
+} from '@/app/types/category'
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const categoryApi = createApi({
     reducerPath: 'categoryApi',
 
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8090/' }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: process.env.NEXT_PUBLIC_URL_BACKEND!,
+    }),
 
     endpoints: (builder) => ({
-        getCategoryById: builder.query<Categories[], string | undefined>({
-            query: (categoryId) => {
-                if (!categoryId) {
-                    /**
-                     * Изначально будут загружены категории
-                     * в самой верхней иерархии
-                     */
-                    return `categories?parentId=null`
-                }
-                return `categories?parentId=${categoryId}`
-            },
+        getCategoryByParentId: builder.query<
+            ChildrenCategory[],
+            string | undefined
+        >({
+            query: (categoryId) => `api/children_categories/${categoryId}`,
         }),
-        getCategoryByPaerntId: builder.query<Categories[], string>({
-            query: (categoryId) => `categories?categoryId=${categoryId}`,
+        getAllCategories: builder.query<CategoryWithChildren[], void>({
+            query: () => 'api/categories',
         }),
     }),
 })
 
-export const { useGetCategoryByIdQuery } = categoryApi
+export const { useGetCategoryByParentIdQuery, useGetAllCategoriesQuery } =
+    categoryApi

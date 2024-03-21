@@ -1,10 +1,7 @@
 'use client'
 
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, useState } from 'react'
 
-import { fetchCategories, getCategoryData } from '@/entities/categories'
-
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/Button'
 import { DropDownMenu } from '@/shared/ui/DropDownMenu'
 
@@ -22,27 +19,6 @@ export const HeaderCategoryDropDown: FC<ICategoryMenuWidgetProps> = (props) => {
     const { className } = props
     const [open, setOpen] = useState(false)
 
-    const dispatch = useAppDispatch()
-    const categories = useAppSelector(getCategoryData)
-
-    useEffect(() => {
-        dispatch(fetchCategories())
-            .unwrap()
-            .catch((err) => {
-                console.error('Ошиба получения категорий')
-                console.error(err)
-            })
-    }, [dispatch])
-
-    const updatedCategoris = useMemo(
-        () =>
-            categories.map((cetegory) => ({
-                id: cetegory.name,
-                label: cetegory.name,
-            })),
-        [categories]
-    )
-
     return (
         <DropDownMenu
             className={clsx(className)}
@@ -58,7 +34,7 @@ export const HeaderCategoryDropDown: FC<ICategoryMenuWidgetProps> = (props) => {
                     Категории
                 </Button>
             }>
-            <DropDown categories={updatedCategoris} />
+            <DropDown />
         </DropDownMenu>
     )
 }

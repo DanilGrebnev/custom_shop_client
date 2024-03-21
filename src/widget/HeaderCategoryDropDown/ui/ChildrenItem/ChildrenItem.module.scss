@@ -1,0 +1,19 @@
+.container {
+    position: relative;
+    width: max-content;
+    height: 100%;
+    padding: 15px 20px;
+
+    &:hover {
+        .children-dropdown {
+            display: block;
+        }
+    }
+}
+
+.children-dropdown {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+}

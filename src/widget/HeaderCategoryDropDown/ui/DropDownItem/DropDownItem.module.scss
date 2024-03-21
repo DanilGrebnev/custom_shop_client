@@ -1,0 +1,37 @@
+.drop-down-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: var(--font-s);
+    cursor: pointer;
+
+    &:hover {
+        .children-drop-down {
+            display: block;
+        }
+    }
+}
+
+.item__content {
+    width: 80%;
+    padding: 15px 0;
+    text-align: start;
+    border-bottom: 1px solid var(--border-ui-color1);
+}
+
+.papper-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+}
+
+.children-drop-down {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+    background: transparent;
+}

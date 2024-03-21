@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useGetCategoryByParentIdQuery } from '@/entities/categories'
 
-import { useGetCategoryByIdQuery } from '@/entities/categories'
-
+import { BreadCrumbs } from '@/shared/ui/BreadCrumbs'
 import { CategoryCard } from '@/shared/ui/Cards'
 
 import s from './CategoryPage.module.scss'
@@ -16,19 +15,23 @@ interface CategoryPage {
 
 export const CategoryPage = ({ categoryId }: CategoryPage) => {
     const categoryID = categoryId?.[0]
-    const { data } = useGetCategoryByIdQuery(categoryID)
+    const { data } = useGetCategoryByParentIdQuery(categoryID)
 
     return (
-        <div className={clsx(s.page, 'contain')}>
-            <h1>Страница категорий {categoryId}</h1>
-            <div className={s['category-list']}>
-                {data?.map((category, i) => (
-                    <CategoryCard
-                        key={i}
-                        category={category}
-                    />
-                ))}
+        <>
+            <BreadCrumbs breadcrumbs={[{ label: 'Категории', href: '123' }]} />
+
+            <div className={clsx(s.page, 'contain')}>
+                <h1>Страница категорий {categoryId}</h1>
+                <div className={s['category-list']}>
+                    {data?.map((category, i) => (
+                        <CategoryCard
+                            key={i}
+                            category={category}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     )
 }

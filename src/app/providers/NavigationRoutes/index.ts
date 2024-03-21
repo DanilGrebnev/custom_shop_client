@@ -2,12 +2,16 @@ export class NavigationRoutes {
     static main = '/'
     static shop = '/shop'
     static login = '/login'
-    static registration = '/registration'
-    static profileMe = '/profile/me'
-    static profileOrders = '/profile/orders'
     static basket = '/basket'
+    static profileMe = '/profile/me'
     static wishlist = '/profile/wishlist'
-    
+    static registration = '/registration'
+    static profileOrders = '/profile/orders'
+
+    static category(categoryId: string) {
+        return `/category/${categoryId}`
+    }
+
     static product(id: number) {
         return '/product/' + id
     }

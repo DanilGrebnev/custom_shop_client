@@ -88,8 +88,9 @@ export const ProductDetailPage = (props: IProductPage) => {
                         <LikeButtonWidget productId={productId} />
                         <BuyButton
                             quantity={product?.quantity}
-                            productId={productId}
-                        />
+                            productId={productId}>
+                            {product?.quantity === 0 && 'Товара нет в наличии'}
+                        </BuyButton>
                     </div>
                     <p className={s.quantity}>{product?.quantity} в наличии</p>
                 </div>

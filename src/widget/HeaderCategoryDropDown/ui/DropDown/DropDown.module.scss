@@ -2,32 +2,12 @@
 
 $border: 1px solid var(--border-ui-color1);
 
-.category-widget-content {
+.list {
     z-index: 2;
-    width: 100%;
-    max-height: 600px;
-    padding: 0 15px;
-    overflow: auto;
-    background: var(--pages-background-palette);
+    background: var(--card-background-2);
     border: $border;
     border-top: none;
     border-radius: 0 0 var(--global-border-radius) var(--global-border-radius);
 
     @include styled-scroll(5px);
-
-    & li {
-        display: flex;
-        align-items: center;
-        padding: 15px 0;
-        font-size: var(--font-s);
-
-        &:not(:last-child) {
-            border-bottom: 1px solid var(--border-ui-color1);
-        }
-
-        &:hover a {
-            color: var(--global-palette1);
-            transition: var(--transition1);
-        }
-    }
 }

@@ -1,3 +1,5 @@
+export { CustomCategoryLink } from './ui/CustomCategoryLink'
+
 export * from './model/api/categoryApi'
 
 export { categoryReducer } from './model/slice/categoriesSlice'

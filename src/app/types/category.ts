@@ -18,3 +18,26 @@ export interface Categories {
     parentId: string | 'null'
     filters?: boolean
 }
+
+export interface CategoryWithChildren {
+    categoryId: string
+    name: string
+    parent: null | string
+    image: string
+    children: [] | CategoryWithChildren[]
+    last?: boolean
+}
+
+export interface ChildrenCategory {
+    categoryId: string
+    name: string
+    slug: string
+    image: string
+    parent: number
+    upperCategories: UpperCategories[]
+}
+
+interface UpperCategories {
+    name: string
+    categoryId: number
+}
