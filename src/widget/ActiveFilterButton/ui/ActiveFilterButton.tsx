@@ -26,7 +26,7 @@ export const ActiveFilterButton = memo((props: IProps) => {
     const dispatch = useAppDispatch()
 
     const deleteFilter = (id: string) => {
-        dispatch(productActions.changeCheckedValue({ id, checked: false }))
+        // dispatch(productActions.changeCheckedValue({ id, checked: false }))
     }
 
     return (

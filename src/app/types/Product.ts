@@ -33,44 +33,16 @@ export enum ProductListPreviewType {
     LIST = 'list',
 }
 
-// Типы фильтров продуктов
-interface BaseFilterInfo {
-    code: string
-    label: string
-    type: 'choices' | 'multiple_choices' | 'number'
+export interface ProductChoiceFilter {
+    categoryId: string
+    id: string
+    choices: Choice[]
+    name: string
+    slug: string
+    type: FilterType
 }
 
-export interface IProductChoiceFilter {
-    code: string
-    label: string
-    value: string
-    children: IProductChoiceFilter[] | []
-}
+type Choice = { label: string; value: string }
+type FilterType = 'choice' | 'multiple_choices'
 
-export interface IProductCheckBoxFilter extends BaseFilterInfo {
-    choices: IProductChoiceFilter[]
-    value: string
-}
-
-export interface IProductRangeFilter extends BaseFilterInfo {
-    max_value: string
-    measure: string
-    min_value: string
-}
-
-export interface IProductFilterResponse {
-    filters: Array<IProductCheckBoxFilter | IProductRangeFilter>
-}
-
-// Type guards function
-export const isChoiceFilter = (
-    filter: IProductCheckBoxFilter | IProductRangeFilter
-): filter is IProductCheckBoxFilter => {
-    return filter.type === 'choices' || filter.type === 'multiple_choices'
-}
-
-export const isRangeFilter = (
-    filter: IProductCheckBoxFilter | IProductRangeFilter
-): filter is IProductRangeFilter => {
-    return 'measure' in filter
-}
+export type IProductFilterResponse = ProductChoiceFilter[]

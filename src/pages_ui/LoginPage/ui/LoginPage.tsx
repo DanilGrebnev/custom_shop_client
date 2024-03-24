@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 
 import { useLoginInAccountMutation } from '@/features/userProfile'
 
-import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
+// import { CheckBox } from '@/shared/ui/CheckBoxes/CheckBox'
 import { CustomInput } from '@/shared/ui/CustomInput'
 import { MUIButton } from '@/shared/ui/MUIButton'
 
@@ -50,11 +50,15 @@ export const LoginPage = () => {
                 type="password"
                 {...register('password')}
             />
-            <CheckBox
-                disabled={isLoading}
-                label="Запомнить меня"
-                {...register('remember_me')}
-            />
+            <div>
+                <input
+                    {...register('remember_me')}
+                    disabled={isLoading}
+                    type="checkbox"
+                />
+                <p>Запомнить меня</p>
+            </div>
+
             <MUIButton
                 disabled={isLoading}
                 color="var(--global-palette1)"

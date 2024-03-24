@@ -19,6 +19,11 @@
 .link {
     color: var(--global-palette6);
     border-bottom: 1px solid var(--global-palette6);
+
+    &:hover {
+        color: var(--global-palette1);
+        border-color: var(--global-palette1);
+    }
 }
 
 .active {

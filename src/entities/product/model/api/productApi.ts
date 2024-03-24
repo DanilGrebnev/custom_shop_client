@@ -1,4 +1,3 @@
-import { ApiRoutes } from '@/app/providers/apiRoutes/apiRoutes'
 import {
     IProduct,
     IProductData,
@@ -18,8 +17,11 @@ export const productApi = createApi({
         getProducts: build.query<IProductData, string>({
             query: (urlParams: string) => '/products?' + urlParams || '',
         }),
-        getProductFilters: build.query<IProductFilterResponse, void>({
-            query: () => ApiRoutes.product.filters,
+        getProductFiltersByCategoryId: build.query<
+            IProductFilterResponse,
+            string
+        >({
+            query: (categoryId) => `filters?category_id=${categoryId}`,
         }),
         getProductById: build.query<IProduct, number>({
             query: (productId: number) => '/product/' + productId,
@@ -29,7 +31,7 @@ export const productApi = createApi({
 })
 
 export const {
-    useGetProductFiltersQuery,
+    useGetProductFiltersByCategoryIdQuery,
     useGetProductsQuery,
     useGetProductByIdQuery,
 } = productApi

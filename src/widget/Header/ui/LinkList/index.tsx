@@ -12,8 +12,8 @@ import clsx from 'clsx'
 const a = [
     { link: NavigationRoutes.main, text: 'Главная' },
     {
-        link: NavigationRoutes.shop,
-        text: 'Магазин',
+        link: NavigationRoutes.category(''),
+        text: 'Каталог',
     },
     {
         link: NavigationRoutes.profileMe,

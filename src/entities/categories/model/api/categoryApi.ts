@@ -1,5 +1,4 @@
 import type {
-    Categories,
     CategoryWithChildren,
     ChildrenCategory,
 } from '@/app/types/category'
@@ -18,7 +17,13 @@ export const categoryApi = createApi({
             ChildrenCategory[],
             string | undefined
         >({
-            query: (categoryId) => `api/children_categories/${categoryId}`,
+            query: (categoryId) => {
+                if (!categoryId) {
+                    return 'api/main_categories/'
+                }
+
+                return `api/children_categories/${categoryId}`
+            },
         }),
         getAllCategories: builder.query<CategoryWithChildren[], void>({
             query: () => 'api/categories',

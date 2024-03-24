@@ -11,14 +11,6 @@ export interface IHomePageCategory extends Omit<ICategory, 'children'> {
     productCount: number
 }
 
-export interface Categories {
-    categoryId: string
-    categoryName: string
-    image: string
-    parentId: string | 'null'
-    filters?: boolean
-}
-
 export interface CategoryWithChildren {
     categoryId: string
     name: string
@@ -34,10 +26,11 @@ export interface ChildrenCategory {
     slug: string
     image: string
     parent: number
+    last?: boolean
     upperCategories: UpperCategories[]
 }
 
 interface UpperCategories {
     name: string
-    categoryId: number
+    categoryId: string
 }

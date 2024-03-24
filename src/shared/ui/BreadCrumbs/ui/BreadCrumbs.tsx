@@ -1,9 +1,12 @@
-import { FC, CSSProperties } from 'react'
-import { FullWidthContainer } from '@/shared/ui/Containers/FullWidthContainer'
+import { CSSProperties, FC } from 'react'
+
 import Link from 'next/link'
 
-import clsx from 'clsx'
+import { FullWidthContainer } from '@/shared/ui/Containers/FullWidthContainer'
+
 import s from './BreadCrumbs.module.scss'
+
+import clsx from 'clsx'
 
 interface IBreadCrumb {
     label: string

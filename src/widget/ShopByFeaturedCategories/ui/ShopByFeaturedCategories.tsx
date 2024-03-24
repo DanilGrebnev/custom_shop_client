@@ -24,11 +24,6 @@ export const ShopByFeaturedCategories: FC<IShopByFeaturedCategoriesProps> = (
     props
 ) => {
     const { categories } = props
-    const dispatch = useAppDispatch()
-
-    const onClick = (id: string) => {
-        dispatch(productActions.changeOneCheckedValue({ id }))
-    }
 
     return (
         <div className={'mr-top'}>
@@ -42,12 +37,8 @@ export const ShopByFeaturedCategories: FC<IShopByFeaturedCategoriesProps> = (
                             return (
                                 <Link
                                     href={NavigationRoutes.shop}
-                                    key={i}>
+                                    key={category.id}>
                                     <CardByFutureCategories
-                                        onClick={onClick.bind(
-                                            null,
-                                            category.name
-                                        )}
                                         image={category?.image}
                                         name={category?.name}
                                         amount={

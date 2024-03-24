@@ -1,5 +1,6 @@
 import {
-    DynamicProductList,
+    CategoryIdContextProvider,
+    DynamicProductBlock,
     PreviewProviderDynamic,
     ProductFilter,
 } from '@/entities/product'
@@ -14,8 +15,6 @@ import s from './ShopPapge.module.scss'
 import clsx from 'clsx'
 
 export const ShopPage = ({ categoryId }: { categoryId: string }) => {
-    console.log(categoryId)
-
     return (
         <>
             <BreadCrumbs
@@ -33,12 +32,17 @@ export const ShopPage = ({ categoryId }: { categoryId: string }) => {
                 id="Shop-Page"
                 className={clsx('contain', s['shop-page'])}>
                 <ClientErrorBoundary>
-                    <ProductFilter className={s.productFilter} />
+                    <ProductFilter
+                        categoryId={categoryId}
+                        className={s.productFilter}
+                    />
                 </ClientErrorBoundary>
                 <ClientErrorBoundary>
-                    <PreviewProviderDynamic>
-                        <DynamicProductList />
-                    </PreviewProviderDynamic>
+                    <CategoryIdContextProvider categoryId={categoryId}>
+                        <PreviewProviderDynamic>
+                            <DynamicProductBlock />
+                        </PreviewProviderDynamic>
+                    </CategoryIdContextProvider>
                 </ClientErrorBoundary>
             </section>
         </>

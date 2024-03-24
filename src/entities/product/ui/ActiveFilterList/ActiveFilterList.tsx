@@ -2,7 +2,6 @@ import { memo, useMemo } from 'react'
 
 import { useAppSelector } from '@/shared/hooks'
 
-import { isTypeCheckedFilter } from '../../model/lib/isTypeCheckedFilter'
 import { ProductSelectors } from '../../model/selectors/productSelectors'
 import s from './ActiveFilterList.module.scss'
 
@@ -17,7 +16,7 @@ export const ActiveFilterList = memo(() => {
     const activeFilters = useMemo(
         () =>
             filters.filter((filter) => {
-                return isTypeCheckedFilter(filter) && Boolean(filter.checked)
+                // return isTypeCheckedFilter(filter) && Boolean(filter.checked)
             }),
         [filters]
     )
@@ -28,7 +27,7 @@ export const ActiveFilterList = memo(() => {
             slidesPerView="auto"
             spaceBetween={20}
             mousewheel={true}>
-            {activeFilters.map((filter) => {
+            {/* {activeFilters.map((filter) => {
                 if (!isTypeCheckedFilter(filter)) return
                 return (
                     <SwiperSlide
@@ -41,7 +40,7 @@ export const ActiveFilterList = memo(() => {
                         />
                     </SwiperSlide>
                 )
-            })}
+            })} */}
         </Swiper>
     )
 })

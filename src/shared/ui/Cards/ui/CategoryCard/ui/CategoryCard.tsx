@@ -2,27 +2,31 @@ import Image from 'next/image'
 
 import { CustomCategoryLink } from '@/entities/categories'
 
-import { type ChildrenCategory } from '@/app/types/category'
+import {
+    CategoryWithChildren,
+    type ChildrenCategory,
+} from '@/app/types/category'
 
 import s from './CategoryCard.module.scss'
 
 interface Props {
-    category: ChildrenCategory
+    category: ChildrenCategory | CategoryWithChildren
 }
 
 export const CategoryCard = (props: Props) => {
-    const { categoryId, image, name, upperCategories } = props.category
+    const { categoryId, image, name, last } = props.category
 
     return (
         <CustomCategoryLink
             categoryId={categoryId}
+            last={last}
             className={s.container}>
             <Image
                 alt={`Изображение ${name}`}
                 width={100}
                 height={100}
                 className={s.img}
-                src={process.env.NEXT_PUBLIC_URL_BACKEND! + image}
+                src={image}
             />
             <h2 className={s.title}>{name}</h2>
         </CustomCategoryLink>

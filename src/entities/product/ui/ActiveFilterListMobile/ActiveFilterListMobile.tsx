@@ -3,7 +3,6 @@
 import { useActionCreators } from '@/shared/hooks/useActionCreators'
 import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
 
-import { useCheckedActiveFilters } from '../../model/hooks/useCheckedActiveFilters'
 import { productActions } from '../../model/slice/productSlice'
 import s from './ActiveFilterListMobile.module.scss'
 
@@ -16,21 +15,20 @@ interface IProps {
 }
 
 export const ActiveFilterListMobile = ({ className }: IProps) => {
-    const activeFilters = useCheckedActiveFilters()
     const actions = useActionCreators(productActions)
 
     return (
         <div
             className={clsx(
                 s.container,
-                { [s.hidden]: !activeFilters.length },
+                // { [s.hidden]: !activeFilters.length },
                 className
             )}>
             <header className={s['header-filter-list']}>
                 <h3 className={s.title}>Выбранные фильтры</h3>
                 <FilterButton
                     withIcon={false}
-                    onClick={() => actions.resetAllFilters()}
+                    // onClick={() => actions.resetAllFilters()}
                     className={s['reset-filters-btn']}
                     label="Очистить фильтры">
                     Очистить фильтры
@@ -38,7 +36,7 @@ export const ActiveFilterListMobile = ({ className }: IProps) => {
             </header>
 
             <ul className={s['filter-list']}>
-                {activeFilters.length
+                {/* {activeFilters.length
                     ? activeFilters.map((filter) => {
                           return (
                               <li
@@ -52,7 +50,7 @@ export const ActiveFilterListMobile = ({ className }: IProps) => {
                               </li>
                           )
                       })
-                    : null}
+                    : null} */}
             </ul>
         </div>
     )
