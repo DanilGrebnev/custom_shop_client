@@ -1,0 +1,57 @@
+$size: 20px;
+$effect: 1px solid var(--global-palette1);
+
+@mixin effect-2 {
+    border-color: transparent;
+    outline: $effect;
+}
+
+.checkbox {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: max-content;
+    cursor: pointer;
+    user-select: none;
+
+    &:focus .square {
+        @include effect-2;
+    }
+}
+
+.label {
+    color: var(--text-color5);
+}
+
+.input {
+    display: none;
+}
+
+.icon {
+    display: none;
+    width: 100%;
+    height: 100%;
+    fill: white;
+
+    &.checked {
+        display: block;
+    }
+}
+
+.square {
+    display: block;
+    width: $size;
+    height: $size;
+    padding: 1%;
+    border: 1px solid var(--global-palette9);
+    border-radius: 15%;
+
+    &:hover {
+        @include effect-2;
+    }
+
+    &.checked {
+        background: var(--global-palette1);
+        border-color: transparent;
+    }
+}

@@ -2,6 +2,21 @@
     outline: 5px solid rgb(var(--global-palette1) 0.5);
 }
 
+@mixin scroll-hide($hidden: true) {
+    @if $hidden {
+        /* Скрываем scrollbar для Chrome, Safari и Opera */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Скрываем scrollbar для IE, Edge и Firefox */
+        & {
+            -ms-overflow-style: none; /* IE и Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    }
+}
+
 @mixin styled-scroll($width: 5px) {
     &::-webkit-scrollbar {
         width: $width; /* ширина всей полосы прокрутки */

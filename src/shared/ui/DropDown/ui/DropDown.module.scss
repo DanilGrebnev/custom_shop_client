@@ -1,0 +1,72 @@
+@import '@/app/styles/variables';
+
+$transition: 0.2s;
+$bg-light: rgb(0 0 0 / 5%);
+$bg-dark: rgb(255 255 255 / 5%);
+
+@mixin btn-effect {
+    color: var(--global-palette1);
+    background: $bg-light;
+
+    &.dark {
+        background: $bg-dark;
+    }
+}
+
+.drop-down {
+    width: 100%;
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+    fill: var(--text-color2);
+    transition: $transition;
+    transform: rotate(180deg);
+
+    &.open {
+        transform: rotate(0deg);
+    }
+}
+
+.label {
+    &.open {
+        font-weight: bold;
+    }
+}
+
+.button {
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+    transition: color $transition;
+
+    &:hover,
+    &:focus {
+        @include btn-effect;
+
+        .icon {
+            fill: var(--global-palette1);
+        }
+    }
+}
+
+@mixin test($t) {
+    @if $t {
+        background: black;
+    }
+}
+
+.children-wrapper {
+    max-height: 0;
+    overflow: hidden;
+
+    &.open {
+        max-height: 1000px;
+        overflow: auto;
+
+        @include styled-scroll;
+    }
+}
