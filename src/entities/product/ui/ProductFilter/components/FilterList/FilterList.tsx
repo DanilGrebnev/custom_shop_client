@@ -1,49 +1,54 @@
-import { ChangeEvent, useRef } from 'react'
+import { ChangeEvent } from 'react'
 
+import { ProductSelectors } from '@/entities/product'
+
+import { useAppSelector } from '@/shared/hooks'
 import { CheckBox } from '@/shared/ui/CheckBox'
 import { DropDown } from '@/shared/ui/DropDown'
 
-import { IProductFilterResponse } from '@/app/types/product'
+import { isCheckedFilter } from '@/app/types/product'
 
+import { CustomCheckedFilter } from '../CustomCheckedFilter/CustomCheckedFilter'
 import s from './FilterList.module.scss'
 
 import clsx from 'clsx'
+import { v4 } from 'uuid'
 
-interface Props {
-    data?: IProductFilterResponse
-    className?: string
-}
-
-export const FilterList = (props: Props) => {
-    const { data, className } = props
-
+export const FilterList = () => {
+    const filters = useAppSelector(ProductSelectors.getAllFilters)
+    console.log(filters)
     const onChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {}
 
     return (
         <>
-            {data?.map((filter) => {
-                return (
-                    <DropDown
-                        key={filter.id}
-                        title={filter.name}
-                        label={filter.name}>
-                        <div className={clsx(s['filter-list'])}>
-                            {filter.choices.map(({ label, value }) => {
-                                return (
-                                    <CheckBox
-                                        className={s['choice-wrapper']}
-                                        key={label}
-                                        label={label}
-                                        name={label}
-                                        value={value}
-                                        title={label}
-                                        onChange={onChange}
-                                    />
-                                )
-                            })}
-                        </div>
-                    </DropDown>
-                )
+            {filters?.map((filter) => {
+                if (isCheckedFilter(filter)) {
+                    return (
+                        <DropDown
+                            key={filter.id}
+                            title={filter.name}
+                            label={filter.name}>
+                            <div className={clsx(s['filter-list'])}>
+                                {filter?.choices?.map((choice) => {
+                                    const { label, value, checked } = choice
+
+                                    return (
+                                        <CustomCheckedFilter
+                                            className={s['choice-wrapper']}
+                                            key={v4()}
+                                            label={label}
+                                            name={label}
+                                            checked={checked}
+                                            value={value}
+                                            title={label}
+                                            onChange={onChange}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        </DropDown>
+                    )
+                }
             })}
         </>
     )

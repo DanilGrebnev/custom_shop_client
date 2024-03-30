@@ -1,6 +1,9 @@
-export type IProductFilterList = []
+import { IProductFilterResponse } from '@/app/types/product'
+
+export interface IProductFilter extends IProductFilterResponse {}
+
 export interface IProductSchema {
-    filters: IProductFilterList
+    filters: IProductFilter
     openFilter: boolean
     usp: string
 }

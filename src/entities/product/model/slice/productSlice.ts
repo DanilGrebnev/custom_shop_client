@@ -1,18 +1,10 @@
-import { addUrlParams } from '@/shared/lib/addUrlParams'
-import { deleteUrlParams } from '@/shared/lib/deleteUrlParams'
-
-import {
-    IProductCheckBoxFilter,
-    IProductChoiceFilter,
-    IProductRangeFilter,
-    isChoiceFilter,
-    isRangeFilter,
-} from '@/app/types/product'
+import { isCheckedFilter } from '@/app/types/product'
 
 import { productApi } from '../..'
 import { type IProductSchema } from '../types/productListTypes'
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { v4 } from 'uuid'
 
 const initialState: IProductSchema = {
     filters: [],
@@ -41,7 +33,34 @@ export const productSlice = createSlice({
         builder.addMatcher(
             productApi.endpoints.getProductFiltersByCategoryId.matchFulfilled,
 
-            (state, action) => {}
+            (state, action) => {
+                const updatedFilters = action.payload.map((filter) => {
+                    if (isCheckedFilter(filter)) {
+                        return {
+                            ...filter,
+                            choices: filter.choices.map((choice) => {
+                                if (filter.type === 'choice') {
+                                    return {
+                                        ...choice,
+                                        checked: false,
+                                        checkedId: filter.slug,
+                                        id: v4(),
+                                    }
+                                }
+                                if (filter.type === 'multiple_choices') {
+                                    return {
+                                        ...choice,
+                                        checked: false,
+                                        id: v4(),
+                                    }
+                                }
+                            }),
+                        }
+                    }
+                })
+
+                state.filters = updatedFilters as any
+            }
         )
     },
 })

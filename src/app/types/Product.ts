@@ -33,6 +33,7 @@ export enum ProductListPreviewType {
     LIST = 'list',
 }
 
+/** Типы для фильтров, приходящих с сервера */
 export interface ProductChoiceFilter {
     categoryId: string
     id: string
@@ -41,8 +42,19 @@ export interface ProductChoiceFilter {
     slug: string
     type: FilterType
 }
-
-type Choice = { label: string; value: string }
+export type Choice = {
+    label: string
+    value: string
+    id?: string
+    checkedId?: string
+    checked?: boolean
+}
 type FilterType = 'choice' | 'multiple_choices'
 
 export type IProductFilterResponse = ProductChoiceFilter[]
+
+export const isCheckedFilter = (
+    filter: ProductChoiceFilter
+): filter is ProductChoiceFilter => {
+    return filter.type === 'choice' || filter.type === 'multiple_choices'
+}

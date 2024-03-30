@@ -23,9 +23,7 @@ interface IProductFilter {
 export const ProductFilter = memo((props: IProductFilter) => {
     const { categoryId, className } = props
     const actions = useActionCreators(productActions)
-    const { data } = useGetProductFiltersByCategoryIdQuery(categoryId)
-
-    console.log(data)
+    useGetProductFiltersByCategoryIdQuery(categoryId)
 
     const isOpen = useAppSelector(ProductSelectors.getIsOpenFilter)
 
@@ -47,7 +45,7 @@ export const ProductFilter = memo((props: IProductFilter) => {
                 className
             )}>
             <ActiveFilterListMobile />
-            <FilterList data={data} />
+            <FilterList />
         </div>
     )
 })
