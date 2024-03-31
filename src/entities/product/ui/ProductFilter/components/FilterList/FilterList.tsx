@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { ProductSelectors } from '@/entities/product'
 
 import { useAppSelector } from '@/shared/hooks'
@@ -10,7 +12,12 @@ import { CustomCheckBoxFilter } from '../CustomCheckBoxFilter/CustomCheckBoxFilt
 import { RatingLabel } from '../RatingLabel/RatingLabel'
 
 import clsx from 'clsx'
-import { v4 } from 'uuid'
+
+interface SelectLabelArgs {
+    slug: string
+    value: string
+    label: string
+}
 
 export const FilterList = () => {
     const filters = useAppSelector(ProductSelectors.getAllFilters)
@@ -20,7 +27,6 @@ export const FilterList = () => {
             {filters?.map((filter) => {
                 if (isCheckedFilter(filter)) {
                     const { slug } = filter
-
                     return (
                         <DropDown
                             key={filter.id}
@@ -29,18 +35,13 @@ export const FilterList = () => {
                             <div className={clsx(s['filter-list'])}>
                                 {filter?.choices?.map((choice) => {
                                     const { label, value, checked, id } = choice
-
                                     return (
                                         <CustomCheckBoxFilter
                                             key={id}
                                             slug={slug}
                                             id={id}
                                             className={s['choice-wrapper']}
-                                            label={isRatingLabel({
-                                                slug,
-                                                label,
-                                                value,
-                                            })}
+                                            label={label}
                                             name={slug}
                                             checked={checked}
                                             value={value}
@@ -55,14 +56,4 @@ export const FilterList = () => {
             })}
         </>
     )
-}
-
-interface SelectLabelArgs {
-    slug: string
-    value: string
-    label: string
-}
-
-function isRatingLabel({ slug, value, label }: SelectLabelArgs) {
-    return slug === 'rating' ? <RatingLabel amount={+value} /> : label
 }

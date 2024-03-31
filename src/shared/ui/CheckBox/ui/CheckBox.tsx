@@ -3,11 +3,9 @@
 import {
     ChangeEvent,
     ComponentPropsWithRef,
-    FocusEvent,
-    ReactElement,
     ReactNode,
     forwardRef,
-    useCallback,
+    memo,
     useEffect,
     useState,
 } from 'react'
@@ -24,42 +22,44 @@ interface CheckBox extends Omit<ComponentPropsWithRef<'input'>, 'onChange'> {
     onChange?: (e: ChangeEvent<HTMLInputElement>, checked: boolean) => void
 }
 
-export const CheckBox = forwardRef<HTMLInputElement, CheckBox>((props, ref) => {
-    const { className, checked, title, label, onChange, ...other } = props
+export const CheckBox = memo(
+    forwardRef<HTMLInputElement, CheckBox>((props, ref) => {
+        const { className, checked, title, label, onChange, ...other } = props
 
-    const [isChecked, setChecked] = useState<boolean>(checked || false)
+        const [isChecked, setChecked] = useState<boolean>(checked || false)
 
-    const onCheckedChange = (e: ChangeEvent<HTMLInputElement>) => {
-        e.stopPropagation()
-        setChecked(!isChecked)
-        onChange?.(e, isChecked)
-    }
+        const onCheckedChange = (e: ChangeEvent<HTMLInputElement>) => {
+            e.stopPropagation()
+            setChecked(!isChecked)
+            onChange?.(e, isChecked)
+        }
 
-    useEffect(() => {
-        setChecked(checked || false)
-    }, [checked])
+        useEffect(() => {
+            setChecked(checked || false)
+        }, [checked])
 
-    return (
-        <label
-            title={title}
-            tabIndex={0}
-            className={clsx(s.checkbox, className)}>
-            <div className={clsx(s.square, { [s.checked]: isChecked })}>
-                <input
-                    {...other}
-                    ref={ref}
-                    className={s.input}
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={onCheckedChange}
-                />
-                <CheckMarkIcon
-                    className={clsx(s.icon, { [s.checked]: isChecked })}
-                />
-            </div>
-            {label && <Label className={s.label}>{label}</Label>}
-        </label>
-    )
-})
+        return (
+            <label
+                title={title}
+                tabIndex={0}
+                className={clsx(s.checkbox, className)}>
+                <div className={clsx(s.square, { [s.checked]: isChecked })}>
+                    <input
+                        {...other}
+                        ref={ref}
+                        className={s.input}
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={onCheckedChange}
+                    />
+                    <CheckMarkIcon
+                        className={clsx(s.icon, { [s.checked]: isChecked })}
+                    />
+                </div>
+                {label && <Label className={s.label}>{label}</Label>}
+            </label>
+        )
+    })
+)
 
 CheckBox.displayName = 'CheckBox'

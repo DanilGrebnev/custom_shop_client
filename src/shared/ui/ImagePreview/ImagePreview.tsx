@@ -1,5 +1,7 @@
 'use client'
 
+import { memo, useCallback, useEffect } from 'react'
+
 import Image from 'next/image'
 
 import { IImage } from '@/app/types/product'
@@ -16,30 +18,37 @@ interface IImagePreview {
     sizes?: string
 }
 
-export const ImagePreview = (props: IImagePreview) => {
+export const ImagePreview = memo((props: IImagePreview) => {
     const { images, name, className } = props
 
-    const renderImage = ({ image }: IImage, i: number) => {
-        if (i < 2) {
-            return (
-                <Image
-                    key={v4()}
-                    fill={true}
-                    src={image}
-                    alt={name + ' icon'}
-                    className={clsx(s.img, {
-                        [s['img_' + i]]: images.length !== 1,
-                    })}
-                    sizes="(max-width: 1920px 100vw)"
-                    priority={true}
-                />
-            )
+    useEffect(() => {
+        console.log('mounted', name)
+        return () => {
+            console.log('unmounted', name)
         }
-    }
+    }, [name])
 
     return (
         <div className={clsx(s.wrapper, className)}>
-            {images.map(renderImage)}
+            {images.map(({ image }: IImage, i: number) => {
+                if (i < 2) {
+                    return (
+                        <Image
+                            key={image + ''}
+                            fill={true}
+                            src={image}
+                            alt={name + ' icon'}
+                            className={clsx(s.img, {
+                                [s['img_' + i]]: images.length !== 1,
+                            })}
+                            sizes="(max-width: 1920px 100vw)"
+                            priority={true}
+                        />
+                    )
+                }
+            })}
         </div>
     )
-}
+})
+
+ImagePreview.displayName = 'ImagePreview'

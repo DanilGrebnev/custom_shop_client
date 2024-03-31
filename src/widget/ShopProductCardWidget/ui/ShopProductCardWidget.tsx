@@ -1,14 +1,8 @@
 'use client'
 
-import { ReactNode, memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 
 import Link from 'next/link'
-
-import { useAddProductInBasketByIdMutation } from '@/features/basket'
-import {
-    useGetProfileQuery,
-    useToggleWishListMutation,
-} from '@/features/userProfile'
 
 import { useGetSettingsQuery } from '@/entities/settings'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, memo, useState } from 'react'
 
 import { useAddProductInBasketByIdMutation } from '@/features/basket'
 import { ToggleAmountItemInBasket } from '@/features/basket'
@@ -16,7 +16,7 @@ interface BuyButton {
     quantity?: number
 }
 
-export const BuyButton = (props: BuyButton) => {
+export const BuyButton = memo((props: BuyButton) => {
     const { productId, children, disabled, quantity: productQuantity } = props
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -61,4 +61,6 @@ export const BuyButton = (props: BuyButton) => {
             </Dialog>
         </>
     )
-}
+})
+
+BuyButton.displayName = 'BuyButton'

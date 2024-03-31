@@ -1,11 +1,13 @@
 'use client'
 
-import { ChangeEvent, memo } from 'react'
+import { memo } from 'react'
 
 import { productActions } from '@/entities/product'
 
-import { useActionCreators } from '@/shared/hooks/useActionCreators'
+import { useAppDispatch } from '@/shared/hooks'
 import { CheckBox } from '@/shared/ui/CheckBox'
+
+import { RatingLabel } from '../RatingLabel/RatingLabel'
 
 type Props = {
     id?: string
@@ -13,23 +15,30 @@ type Props = {
 } & Omit<Parameters<typeof CheckBox>[0], 'onChange'>
 
 export const CustomCheckBoxFilter = memo((props: Props) => {
-    const { id, slug, ...otherProps } = props
+    const { id, slug, label, value, ...otherProps } = props
+    const dispatch = useAppDispatch()
 
-    const actions = useActionCreators(productActions)
-
-    const onChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-        actions.toggleChecked({
-            id,
-            name: e.target.name,
-            value: e.target.value,
-            checked: checked,
-            slug,
-        })
+    const onChange = (_: any, checked: boolean) => {
+        dispatch(
+            productActions.toggleChecked({
+                id,
+                checked,
+                slug,
+            })
+        )
     }
 
     return (
         <CheckBox
             {...otherProps}
+            value={value}
+            label={
+                slug === 'rating' ? (
+                    <RatingLabel amount={Number(value) || 0} />
+                ) : (
+                    label
+                )
+            }
             onChange={onChange}
         />
     )

@@ -10,8 +10,8 @@ export interface IProductSchema {
 
 export interface ToggleChecekd {
     id?: string
-    name: string
-    value: string
+    // name: string
+    // value: string
     checked: boolean
     slug: string
 }

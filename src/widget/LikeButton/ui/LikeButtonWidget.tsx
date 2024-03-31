@@ -1,6 +1,6 @@
 'use client'
 
-import React, { FC, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 import {
@@ -17,7 +17,7 @@ interface IProps extends Pick<TLikeButton, 'variant' | 'className'> {
     productId: number
 }
 
-export const LikeButtonWidget: FC<IProps> = (props) => {
+export const LikeButtonWidget: FC<IProps> = memo((props) => {
     const { productId, ...other } = props
     const [isopen, setIsOpen] = useState<boolean>(false)
 
@@ -55,4 +55,6 @@ export const LikeButtonWidget: FC<IProps> = (props) => {
             </Dialog>
         </>
     )
-}
+})
+
+LikeButtonWidget.displayName = 'LikeButtonWidget'

@@ -1,16 +1,18 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
+
 import { CreateArrayAndFill } from '@/shared/HOC/CreateArrayAndFill'
+
+import s from './Rating.module.scss'
 import StarIcon from '/public/static/icons/star-icon.svg'
 
 import clsx from 'clsx'
-import s from './Rating.module.scss'
 
 interface IRatingProps {
     className?: string
     rating?: number
 }
 
-export const Rating: FC<IRatingProps> = (props) => {
+export const Rating: FC<IRatingProps> = memo((props) => {
     const { rating = 0, className } = props
 
     return (
@@ -20,6 +22,6 @@ export const Rating: FC<IRatingProps> = (props) => {
             </CreateArrayAndFill>
         </div>
     )
-}
+})
 
 Rating.displayName = 'Rating'

@@ -7,9 +7,9 @@ import { v4 } from 'uuid'
 export const RatingLabel = memo((props: { amount: number }) => {
     return Array(props.amount)
         .fill('')
-        .map(() => (
+        .map((_, i) => (
             <Image
-                key={v4()}
+                key={i}
                 alt=""
                 src={'/static/icons/star-icon.svg'}
                 width={20}
