@@ -3,22 +3,20 @@ import { ChangeEvent } from 'react'
 import { ProductSelectors } from '@/entities/product'
 
 import { useAppSelector } from '@/shared/hooks'
-import { CheckBox } from '@/shared/ui/CheckBox'
 import { DropDown } from '@/shared/ui/DropDown'
 
 import { isCheckedFilter } from '@/app/types/product'
 
-import { CustomCheckedFilter } from '../CustomCheckedFilter/CustomCheckedFilter'
-import s from './FilterList.module.scss'
+import s from '../../ProductFilter.module.scss'
+import { CustomCheckBoxFilter } from '../CustomCheckBoxFilter/CustomCheckBoxFilter'
+import { RatingFilter } from '../RatingFilter/RatingFilter'
 
 import clsx from 'clsx'
 import { v4 } from 'uuid'
 
 export const FilterList = () => {
     const filters = useAppSelector(ProductSelectors.getAllFilters)
-    console.log(filters)
-    const onChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {}
-
+    // console.log(filters)
     return (
         <>
             {filters?.map((filter) => {
@@ -26,22 +24,22 @@ export const FilterList = () => {
                     return (
                         <DropDown
                             key={filter.id}
-                            title={filter.name}
+                            title={'Открыть фильтр ' + filter.name}
                             label={filter.name}>
                             <div className={clsx(s['filter-list'])}>
                                 {filter?.choices?.map((choice) => {
-                                    const { label, value, checked } = choice
+                                    const { label, value, checked, id } = choice
 
                                     return (
-                                        <CustomCheckedFilter
+                                        <CustomCheckBoxFilter
+                                            id={id}
                                             className={s['choice-wrapper']}
                                             key={v4()}
                                             label={label}
-                                            name={label}
+                                            name={filter.slug}
                                             checked={checked}
                                             value={value}
                                             title={label}
-                                            onChange={onChange}
                                         />
                                     )
                                 })}
@@ -50,6 +48,7 @@ export const FilterList = () => {
                     )
                 }
             })}
+            <RatingFilter />
         </>
     )
 }

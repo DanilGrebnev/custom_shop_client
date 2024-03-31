@@ -4,8 +4,6 @@ import { ChangeEvent, FC, useCallback, useRef } from 'react'
 
 import { usePathname } from 'next/navigation'
 
-import { searchProductParamsActions } from '@/entities/searchProductParams'
-
 import { useAppDispatch } from '@/shared/hooks'
 import { useAppSelector } from '@/shared/hooks'
 import { debounce } from '@/shared/lib/debounce'
@@ -13,10 +11,8 @@ import { InputSearchProductList } from '@/shared/ui/InputSearchProductList'
 
 import { NavigationRoutes } from '@/app/providers/NavigationRoutes'
 
-import { useOnChangeForShopPage } from '../model/hooks/useOnChangeForShopPage'
 import { useToggleVisibleSearchList } from '../model/hooks/useToggleVisibleSearchList'
 import { ProductSearchInputState } from '../model/selectors/ProductSearchInputState'
-import { fetchSearchInputProducts } from '../model/services/fetchSearchInputProducts'
 import {
     resetState,
     toggleVisibleSearchList,
@@ -41,7 +37,6 @@ export const ProductSearchInput: FC<ProductSearchInputProps> = (props) => {
     const isOpenSearchList = useAppSelector(
         ProductSearchInputState.getIsOpenSearchList
     )
-    const { onChangeForShopPage } = useOnChangeForShopPage()
 
     const uspInstance = new URLSearchParams()
 
@@ -49,19 +44,14 @@ export const ProductSearchInput: FC<ProductSearchInputProps> = (props) => {
         const value = e.target.value.trim()
 
         if (pathname === NavigationRoutes.shop) {
-            onChangeForShopPage(value)
             return
         }
 
         uspInstance.set('search', value)
 
-        dispatch(searchProductParamsActions.setUSP(uspInstance.toString()))
-
         if (!value) {
             return dispatch(resetState())
         }
-
-        dispatch(fetchSearchInputProducts(value))
     }, 1000)
 
     const onClose = useCallback(() => {

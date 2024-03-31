@@ -4,6 +4,8 @@ import {
     ChangeEvent,
     ComponentPropsWithRef,
     FocusEvent,
+    ReactElement,
+    ReactNode,
     forwardRef,
     useCallback,
     useEffect,
@@ -18,8 +20,8 @@ import { Label } from './Label'
 import clsx from 'clsx'
 
 interface CheckBox extends Omit<ComponentPropsWithRef<'input'>, 'onChange'> {
-    label?: string
-    onChange: (e: ChangeEvent<HTMLInputElement>, checked: boolean) => void
+    label?: ReactNode
+    onChange?: (e: ChangeEvent<HTMLInputElement>, checked: boolean) => void
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, CheckBox>((props, ref) => {

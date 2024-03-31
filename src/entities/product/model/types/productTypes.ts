@@ -7,3 +7,10 @@ export interface IProductSchema {
     openFilter: boolean
     usp: string
 }
+
+export interface ToggleChecekd {
+    id?: string
+    name: string
+    value: string
+    checked: boolean
+}

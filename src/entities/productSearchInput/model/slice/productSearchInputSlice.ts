@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
 import { IProductSearchInputSchema } from '../schema/productSearchInputSchema'
-import { fetchSearchInputProducts } from '../services/fetchSearchInputProducts'
+
+import { createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: IProductSearchInputSchema = {
@@ -33,23 +33,6 @@ const productSearchInputSlice = createSlice({
         isHiddenSearchList(state, action: PayloadAction<boolean>) {
             state.hiddenSearchList = action.payload
         },
-    },
-    extraReducers(builder) {
-        builder
-            .addCase(fetchSearchInputProducts.fulfilled, (state, action) => {
-                state.products = action.payload.products
-                state.totalСount = action.payload.totalСount
-                state.loading = false
-                state.error = ''
-            })
-            .addCase(fetchSearchInputProducts.pending, (state) => {
-                state.loading = true
-            })
-            .addCase(fetchSearchInputProducts.rejected, (state, action) => {
-                state.products = []
-                state.loading = false
-                state.error = action.error
-            })
     },
 })
 export const { resetState, setInput, toggleVisibleSearchList, resetInput } =

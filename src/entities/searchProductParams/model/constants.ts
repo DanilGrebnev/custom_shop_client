@@ -1,3 +1,0 @@
-export enum SEARCH_PRODUCT_PARAMS_CONSTANTS {
-    URL_PARAMS_KEY = 'search',
-}
