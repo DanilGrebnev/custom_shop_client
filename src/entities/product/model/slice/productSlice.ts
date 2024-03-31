@@ -3,6 +3,7 @@ import { isCheckedFilter } from '@/app/types/product'
 import { productApi } from '../..'
 import { ToggleChecekd } from '../types/productTypes'
 import { type IProductSchema } from '../types/productTypes'
+import { defaultFilters } from './defaultFilters'
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { v4 } from 'uuid'
@@ -10,7 +11,7 @@ import { v4 } from 'uuid'
 const initialState: IProductSchema = {
     filters: [],
     openFilter: false,
-    usp: 'offset=0&limit=5',
+    usp: '',
 }
 
 export const productSlice = createSlice({
@@ -25,43 +26,41 @@ export const productSlice = createSlice({
             state.openFilter = action.payload ?? !state.openFilter
         },
         /**
-         * Переключение состояния
+         * Переключение состояния checkbox фильтра
          */
         toggleChecked(state, action: PayloadAction<ToggleChecekd>) {
-            // Переключаем
-            state.filters = state.filters.map((filter) => {
-                if (isCheckedFilter(filter)) {
-                    return {
-                        ...filter,
-                        choices: filter.choices.map((choice) => {
-                            return {
-                                ...choice,
-                                checked:
-                                    action.payload.id === choice.id
-                                        ? !choice.checked
-                                        : choice.checked,
-                            }
-                        }),
+            for (const filter of state.filters) {
+                if (filter.slug !== action.payload.slug) continue
+                if (!isCheckedFilter(filter)) continue
+
+                const { choices, type } = filter
+
+                for (const choice of choices) {
+                    if (type === 'choice') {
+                        choice.id === action.payload.id
+                            ? (choice.checked = !choice.checked)
+                            : (choice.checked = false)
+                    }
+
+                    if (type === 'multiple_choices') {
+                        if (choice.id !== action.payload.id) continue
+                        choice.checked = !choice.checked
                     }
                 }
-
-                return filter
-            })
-
-            const key = action.payload.name
-            const value = action.payload.value
-            const checked = action.payload.checked
-            const params = new URLSearchParams(state.usp)
-
-            if (!checked) {
-                state.usp = new URLSearchParams(
-                    state.usp.replace(key + '=' + value, '')
-                ).toString()
-
-                return
             }
 
-            params.append(key, value)
+            const params = new URLSearchParams()
+
+            for (const filter of state.filters) {
+                if (!isCheckedFilter(filter)) continue
+                for (const choice of filter.choices) {
+                    if (choice.checked) {
+                        params.append(choice.slug, choice.value)
+                        continue
+                    }
+                }
+            }
+
             state.usp = params.toString()
         },
     },
@@ -71,27 +70,18 @@ export const productSlice = createSlice({
             productApi.endpoints.getProductFiltersByCategoryId.matchFulfilled,
 
             (state, action) => {
-                const updatedFilters = action.payload.map((filter) => {
+                const filters = [...action.payload, ...defaultFilters]
+
+                const updatedFilters = filters.map((filter) => {
                     if (isCheckedFilter(filter)) {
                         return {
                             ...filter,
-                            choices: filter.choices.map((choice) => {
-                                if (filter.type === 'choice') {
-                                    return {
-                                        ...choice,
-                                        checked: false,
-                                        checkedId: filter.slug,
-                                        id: v4(),
-                                    }
-                                }
-                                if (filter.type === 'multiple_choices') {
-                                    return {
-                                        ...choice,
-                                        checked: false,
-                                        id: v4(),
-                                    }
-                                }
-                            }),
+                            choices: filter.choices.map((choice) => ({
+                                ...choice,
+                                slug: filter.slug,
+                                checked: false,
+                                id: v4(),
+                            })),
                         }
                     }
                 })

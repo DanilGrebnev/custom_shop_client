@@ -55,40 +55,38 @@ export const ShopProductCardWidget = memo((props: Props) => {
     })
 
     return (
-        <>
-            <div className={clsx(s.card, s[type])}>
-                <ImagePreview
-                    name={name}
-                    images={images}
-                    className={s.preview}
+        <div className={clsx(s.card, s[type])}>
+            <ImagePreview
+                name={name}
+                images={images}
+                className={s.preview}
+            />
+            <Link
+                className={s.title}
+                href={NavigationRoutes.product(productId)}>
+                {name}
+            </Link>
+            <Link
+                className={s.description}
+                href={NavigationRoutes.product(productId)}>
+                {description}
+            </Link>
+            <Rating
+                className={s.rating}
+                rating={rating}
+            />
+            <p className={s.price}>
+                {price} {currency}
+            </p>
+            <p className={s.quantity}>{quantity} в наличии</p>
+            <div className={s['btn-group']}>
+                <LikeButtonWidget productId={productId} />
+                <BuyButton
+                    quantity={quantity}
+                    productId={productId}
                 />
-                <Link
-                    className={s.title}
-                    href={NavigationRoutes.product(productId)}>
-                    {name}
-                </Link>
-                <Link
-                    className={s.description}
-                    href={NavigationRoutes.product(productId)}>
-                    {description}
-                </Link>
-                <Rating
-                    className={s.rating}
-                    rating={rating}
-                />
-                <p className={s.price}>
-                    {price} {currency}
-                </p>
-                <p className={s.quantity}>{quantity} в наличии</p>
-                <div className={s['btn-group']}>
-                    <LikeButtonWidget productId={productId} />
-                    <BuyButton
-                        quantity={quantity}
-                        productId={productId}
-                    />
-                </div>
             </div>
-        </>
+        </div>
     )
 })
 

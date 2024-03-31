@@ -13,4 +13,5 @@ export interface ToggleChecekd {
     name: string
     value: string
     checked: boolean
+    slug: string
 }

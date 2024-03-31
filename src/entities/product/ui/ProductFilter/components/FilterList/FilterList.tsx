@@ -1,5 +1,3 @@
-import { ChangeEvent } from 'react'
-
 import { ProductSelectors } from '@/entities/product'
 
 import { useAppSelector } from '@/shared/hooks'
@@ -9,18 +7,20 @@ import { isCheckedFilter } from '@/app/types/product'
 
 import s from '../../ProductFilter.module.scss'
 import { CustomCheckBoxFilter } from '../CustomCheckBoxFilter/CustomCheckBoxFilter'
-import { RatingFilter } from '../RatingFilter/RatingFilter'
+import { RatingLabel } from '../RatingLabel/RatingLabel'
 
 import clsx from 'clsx'
 import { v4 } from 'uuid'
 
 export const FilterList = () => {
     const filters = useAppSelector(ProductSelectors.getAllFilters)
-    // console.log(filters)
+
     return (
         <>
             {filters?.map((filter) => {
                 if (isCheckedFilter(filter)) {
+                    const { slug } = filter
+
                     return (
                         <DropDown
                             key={filter.id}
@@ -32,11 +32,16 @@ export const FilterList = () => {
 
                                     return (
                                         <CustomCheckBoxFilter
+                                            key={id}
+                                            slug={slug}
                                             id={id}
                                             className={s['choice-wrapper']}
-                                            key={v4()}
-                                            label={label}
-                                            name={filter.slug}
+                                            label={isRatingLabel({
+                                                slug,
+                                                label,
+                                                value,
+                                            })}
+                                            name={slug}
                                             checked={checked}
                                             value={value}
                                             title={label}
@@ -48,7 +53,16 @@ export const FilterList = () => {
                     )
                 }
             })}
-            <RatingFilter />
         </>
     )
+}
+
+interface SelectLabelArgs {
+    slug: string
+    value: string
+    label: string
+}
+
+function isRatingLabel({ slug, value, label }: SelectLabelArgs) {
+    return slug === 'rating' ? <RatingLabel amount={+value} /> : label
 }

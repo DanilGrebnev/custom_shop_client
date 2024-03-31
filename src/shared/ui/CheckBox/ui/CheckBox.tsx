@@ -27,20 +27,17 @@ interface CheckBox extends Omit<ComponentPropsWithRef<'input'>, 'onChange'> {
 export const CheckBox = forwardRef<HTMLInputElement, CheckBox>((props, ref) => {
     const { className, checked, title, label, onChange, ...other } = props
 
-    const [isChecked, setChecked] = useState<boolean>(false)
+    const [isChecked, setChecked] = useState<boolean>(checked || false)
 
     const onCheckedChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.stopPropagation()
         setChecked(!isChecked)
-        onChange?.(e, e.target.checked)
+        onChange?.(e, isChecked)
     }
 
     useEffect(() => {
-        if (checked) {
-            setChecked(checked)
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        setChecked(checked || false)
+    }, [checked])
 
     return (
         <label

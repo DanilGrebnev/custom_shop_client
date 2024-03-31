@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, memo, useCallback, useMemo, useState } from 'react'
 
 import ArrowIcon from '@/shared/assets/arrow.svg'
 
@@ -17,10 +17,11 @@ interface Props {
     title?: string
 }
 
-export const DropDown = (props: Props) => {
+export const DropDown = memo((props: Props) => {
     const { children, label, title, className } = props
     const { theme } = useToggleTheme()
     const [open, setIsOpen] = useState<boolean>(false)
+
     const openCls = open && s.open
 
     const toggleOpen = () => {
@@ -43,4 +44,6 @@ export const DropDown = (props: Props) => {
             </div>
         </div>
     )
-}
+})
+
+DropDown.displayName = 'DropDown'

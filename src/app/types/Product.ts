@@ -46,10 +46,10 @@ export type Choice = {
     label: string
     value: string
     id?: string
-    checkedId?: string
     checked?: boolean
+    slug: string
 }
-type FilterType = 'choice' | 'multiple_choices'
+export type FilterType = 'choice' | 'multiple_choices'
 
 export type IProductFilterResponse = ProductChoiceFilter[]
 

@@ -1,4 +1,6 @@
-import { ChangeEvent } from 'react'
+'use client'
+
+import { ChangeEvent, memo } from 'react'
 
 import { productActions } from '@/entities/product'
 
@@ -7,10 +9,11 @@ import { CheckBox } from '@/shared/ui/CheckBox'
 
 type Props = {
     id?: string
+    slug: string
 } & Omit<Parameters<typeof CheckBox>[0], 'onChange'>
 
-export const CustomCheckBoxFilter = (props: Props) => {
-    const { id, ...otherProps } = props
+export const CustomCheckBoxFilter = memo((props: Props) => {
+    const { id, slug, ...otherProps } = props
 
     const actions = useActionCreators(productActions)
 
@@ -20,8 +23,8 @@ export const CustomCheckBoxFilter = (props: Props) => {
             name: e.target.name,
             value: e.target.value,
             checked: checked,
+            slug,
         })
-        // console.log(e.target.name, checked)
     }
 
     return (
@@ -30,4 +33,6 @@ export const CustomCheckBoxFilter = (props: Props) => {
             onChange={onChange}
         />
     )
-}
+})
+
+CustomCheckBoxFilter.displayName = 'CustomCheckBoxFilter'
