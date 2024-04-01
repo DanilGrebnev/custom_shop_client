@@ -21,13 +21,6 @@ interface IImagePreview {
 export const ImagePreview = memo((props: IImagePreview) => {
     const { images, name, className } = props
 
-    useEffect(() => {
-        console.log('mounted', name)
-        return () => {
-            console.log('unmounted', name)
-        }
-    }, [name])
-
     return (
         <div className={clsx(s.wrapper, className)}>
             {images.map(({ image }: IImage, i: number) => {

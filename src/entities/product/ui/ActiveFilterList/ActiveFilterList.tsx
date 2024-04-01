@@ -8,18 +8,11 @@ import s from './ActiveFilterList.module.scss'
 import { ActiveFilterButton } from '@/widget/ActiveFilterButton'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { v4 } from 'uuid'
 
 export const ActiveFilterList = memo(() => {
-    const filters = useAppSelector(ProductSelectors.getAllFilters)
+    const activeFilters = useAppSelector(ProductSelectors.getActiveFilters)
 
-    const activeFilters = useMemo(
-        () =>
-            filters.filter((filter) => {
-                // return isTypeCheckedFilter(filter) && Boolean(filter.checked)
-            }),
-        [filters]
-    )
+    console.log(activeFilters)
 
     return (
         <Swiper
@@ -27,20 +20,19 @@ export const ActiveFilterList = memo(() => {
             slidesPerView="auto"
             spaceBetween={20}
             mousewheel={true}>
-            {/* {activeFilters.map((filter) => {
-                if (!isTypeCheckedFilter(filter)) return
+            {activeFilters.map((filter) => {
                 return (
                     <SwiperSlide
-                        key={v4()}
+                        key={filter.id}
                         className={s['swiper-slide']}>
                         <ActiveFilterButton
-                            key={v4()}
-                            id={filter.id}
+                            key={filter.id}
+                            id={filter?.id as string}
                             label={filter.label}
                         />
                     </SwiperSlide>
                 )
-            })} */}
+            })}
         </Swiper>
     )
 })

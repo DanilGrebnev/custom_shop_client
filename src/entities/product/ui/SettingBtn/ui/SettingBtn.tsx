@@ -1,5 +1,7 @@
 'use client'
 
+import { memo } from 'react'
+
 import { productActions } from '@/entities/product'
 
 import SettingIcon from '@/shared/assets/setting.svg'
@@ -13,7 +15,7 @@ interface IProps {
     className?: string
 }
 
-export const SettingBtn = ({ className }: IProps) => {
+export const SettingBtn = memo(({ className }: IProps) => {
     const dispatch = useAppDispatch()
 
     const openModal = () => {
@@ -22,9 +24,10 @@ export const SettingBtn = ({ className }: IProps) => {
 
     return (
         <SettingIcon
-            title="Открыть настройки"
             onClick={openModal}
             className={clsx(s.icon, className)}
         />
     )
-}
+})
+
+SettingBtn.displayName = 'SettingBtn'
