@@ -14,6 +14,13 @@ export class ProductSelectors {
         return state.product.openFilter
     }
 
+    static getFilterBySlug = createSelector(
+        [getAllFilters, (state: StateSchema, slug: string) => slug],
+        (filters, slug) => {
+            return filters.find((filter) => filter.slug === slug)
+        }
+    )
+
     static getActiveFilters = createSelector(
         [getAllFilters],
 

@@ -2,13 +2,13 @@
 
 import { memo } from 'react'
 
-import { productActions } from '@/entities/product'
+import { ProductSelectors, productActions } from '@/entities/product'
 
-import CrossIcon from '@/shared/assets/cross.svg'
-import { useAppDispatch } from '@/shared/hooks'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
 
 import { useToggleTheme } from '@/app/providers/ThemeProvider'
+import { isCheckedFilter } from '@/app/types/product'
 
 import s from './ActiveFilterButton.module.scss'
 
@@ -18,22 +18,29 @@ interface IProps {
     label: string
     id: string
     className?: string
+    slug: string
 }
 
 export const ActiveFilterButton = memo((props: IProps) => {
-    const { id, label, className } = props
-
+    const { id, label, slug, className } = props
     const dispatch = useAppDispatch()
 
-    const deleteFilter = (id: string) => {
-        // dispatch(productActions.changeCheckedValue({ id, checked: false }))
+    const currentFilter = useAppSelector((state) =>
+        ProductSelectors.getFilterBySlug(state, slug)
+    )
+
+    const deleteFilter = () => {
+        if (!currentFilter) return
+        if (isCheckedFilter(currentFilter)) {
+            dispatch(productActions.toggleChecked({ id, slug }))
+        }
     }
 
     return (
         <FilterButton
             className={className}
             title={`Удалить фильтр ${label}`}
-            onClick={deleteFilter.bind(null, id)}
+            onClick={deleteFilter}
             label={label}>
             {label}
         </FilterButton>

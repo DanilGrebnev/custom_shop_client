@@ -12,8 +12,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 export const ActiveFilterList = memo(() => {
     const activeFilters = useAppSelector(ProductSelectors.getActiveFilters)
 
-    console.log(activeFilters)
-
     return (
         <Swiper
             className={s.swiper}
@@ -26,6 +24,7 @@ export const ActiveFilterList = memo(() => {
                         key={filter.id}
                         className={s['swiper-slide']}>
                         <ActiveFilterButton
+                            slug={filter.slug}
                             key={filter.id}
                             id={filter?.id as string}
                             label={filter.label}

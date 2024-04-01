@@ -2,13 +2,13 @@ import { isCheckedFilter } from '@/app/types/product'
 
 import { productApi } from '../..'
 import { ToggleChecekd } from '../types/productTypes'
-import { type IProductSchema } from '../types/productTypes'
+import { type ProductSchema } from '../types/productTypes'
 import { defaultFilters } from './defaultFilters'
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { v4 } from 'uuid'
 
-const initialState: IProductSchema = {
+const initialState: ProductSchema = {
     filters: [],
     openFilter: false,
     usp: '',
@@ -25,6 +25,11 @@ export const productSlice = createSlice({
         toggleOpenSetting(state, action: PayloadAction<boolean>) {
             state.openFilter = action.payload ?? !state.openFilter
         },
+
+        deleteAllFilters(state, action: PayloadAction<{ id: string }>) {
+            
+        },
+
         /**
          * Переключение состояния checkbox фильтра
          */

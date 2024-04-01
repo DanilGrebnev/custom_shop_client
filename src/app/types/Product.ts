@@ -45,13 +45,13 @@ export interface ProductChoiceFilter {
 export type Choice = {
     label: string
     value: string
-    id?: string
+    id: string
     checked?: boolean
     slug: string
 }
 export type FilterType = 'choice' | 'multiple_choices'
 
-export type IProductFilterResponse = ProductChoiceFilter[]
+export type ProductFilterResponse = ProductChoiceFilter[]
 
 export const isCheckedFilter = (
     filter: ProductChoiceFilter

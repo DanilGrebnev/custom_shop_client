@@ -1,6 +1,6 @@
 export { productActions } from './model/slice/productSlice'
 
-export { type IProductSchema } from './model/types/productTypes'
+export { type ProductSchema } from './model/types/productTypes'
 export { productReducer } from './model/slice/productSlice'
 export { ProductSelectors } from './model/selectors/productSelectors'
 export { ProductFilter } from './ui/ProductFilter/ProductFilter'

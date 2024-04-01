@@ -1,14 +1,14 @@
 import { type IUserProfileSchema } from '@/features/userProfile'
 
 import { type ICategorySchema } from '@/entities/categories'
-import { type IProductSchema } from '@/entities/product'
+import { type ProductSchema } from '@/entities/product'
 import { type IProductSearchInputSchema } from '@/entities/productSearchInput'
 
 import { type AxiosInstance } from 'axios'
 
 export interface StateSchema {
     categories: ICategorySchema
-    product: IProductSchema
+    product: ProductSchema
     productSearchInput: IProductSearchInputSchema
     userProfile: IUserProfileSchema
 }

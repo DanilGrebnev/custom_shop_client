@@ -1,17 +1,14 @@
-import { IProductFilterResponse } from '@/app/types/product'
+import { ProductFilterResponse } from '@/app/types/product'
 
-export interface IProductFilter extends IProductFilterResponse {}
+export interface ProductFilter extends ProductFilterResponse {}
 
-export interface IProductSchema {
-    filters: IProductFilter
+export interface ProductSchema {
+    filters: ProductFilter
     openFilter: boolean
     usp: string
 }
 
 export interface ToggleChecekd {
     id?: string
-    // name: string
-    // value: string
-    checked: boolean
     slug: string
 }

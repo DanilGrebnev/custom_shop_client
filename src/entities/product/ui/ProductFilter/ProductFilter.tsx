@@ -22,6 +22,7 @@ interface IProductFilter {
 
 export const ProductFilter = memo((props: IProductFilter) => {
     const { categoryId, className } = props
+    
     const actions = useActionCreators(productActions)
     useGetProductFiltersByCategoryIdQuery(categoryId)
 

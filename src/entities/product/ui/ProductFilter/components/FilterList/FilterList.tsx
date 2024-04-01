@@ -9,17 +9,10 @@ import { isCheckedFilter } from '@/app/types/product'
 
 import s from '../../ProductFilter.module.scss'
 import { CustomCheckBoxFilter } from '../CustomCheckBoxFilter/CustomCheckBoxFilter'
-import { RatingLabel } from '../RatingLabel/RatingLabel'
 
 import clsx from 'clsx'
 
-interface SelectLabelArgs {
-    slug: string
-    value: string
-    label: string
-}
-
-export const FilterList = () => {
+export const FilterList = memo(() => {
     const filters = useAppSelector(ProductSelectors.getAllFilters)
 
     return (
@@ -56,4 +49,6 @@ export const FilterList = () => {
             })}
         </>
     )
-}
+})
+
+FilterList.displayName = 'FilterList'
