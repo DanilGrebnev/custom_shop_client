@@ -1,5 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider'
 import { Choice } from '@/app/types/product'
+import { isChoiceFilter } from '@/app/types/product'
 
 import { createSelector } from '@reduxjs/toolkit'
 
@@ -15,7 +16,7 @@ export class ProductSelectors {
     }
 
     static getFilterBySlug = createSelector(
-        [getAllFilters, (state: StateSchema, slug: string) => slug],
+        [getAllFilters, (_, slug: string) => slug],
         (filters, slug) => {
             return filters.find((filter) => filter.slug === slug)
         }
@@ -25,12 +26,15 @@ export class ProductSelectors {
         [getAllFilters],
 
         (filters) => {
-            return filters.reduce<Choice[]>((activeFilters, filter) => {
-                filter.choices.forEach((choice) => {
-                    if (choice?.checked) activeFilters.push(choice)
-                })
+            return filters.reduce((activeFilters, filter) => {
+                if (isChoiceFilter(filter)) {
+                    filter.choices.forEach((choice) => {
+                        if (choice?.checked) activeFilters.push(choice)
+                    })
+                }
+
                 return activeFilters
-            }, [])
+            }, [] as Choice[])
         }
     )
 

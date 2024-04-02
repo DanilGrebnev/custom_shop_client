@@ -1,7 +1,7 @@
-import { isCheckedFilter } from '@/app/types/product'
+import { isChoiceFilter, isRangeFilter } from '@/app/types/product'
 
 import { productApi } from '../..'
-import { ToggleChecekd } from '../types/productTypes'
+import type { ChangeRange, ToggleChecekd } from '../types/productTypes'
 import { type ProductSchema } from '../types/productTypes'
 import { defaultFilters } from './defaultFilters'
 
@@ -26,17 +26,13 @@ export const productSlice = createSlice({
             state.openFilter = action.payload ?? !state.openFilter
         },
 
-        deleteAllFilters(state, action: PayloadAction<{ id: string }>) {
-            
-        },
-
         /**
          * Переключение состояния checkbox фильтра
          */
         toggleChecked(state, action: PayloadAction<ToggleChecekd>) {
             for (const filter of state.filters) {
                 if (filter.slug !== action.payload.slug) continue
-                if (!isCheckedFilter(filter)) continue
+                if (!isChoiceFilter(filter)) continue
 
                 const { choices, type } = filter
 
@@ -54,19 +50,57 @@ export const productSlice = createSlice({
                 }
             }
 
-            const params = new URLSearchParams()
-
             for (const filter of state.filters) {
-                if (!isCheckedFilter(filter)) continue
+                if (!isChoiceFilter(filter)) continue
+
                 for (const choice of filter.choices) {
+                    const param = `${choice.slug}=${choice.value}`
+
                     if (choice.checked) {
+                        if (state.usp.includes(param)) continue
+                        const params = new URLSearchParams(state.usp)
                         params.append(choice.slug, choice.value)
+                        state.usp = params.toString()
+                        continue
+                    }
+
+                    if (!choice.checked) {
+                        if (!state.usp.includes(param)) continue
+                        const prevParamsString = new URLSearchParams(
+                            state.usp
+                        ).toString()
+
+                        const params = new URLSearchParams(
+                            prevParamsString.replace(param, '')
+                        ).toString()
+                        state.usp = params
                         continue
                     }
                 }
             }
+        },
 
-            state.usp = params.toString()
+        changeRangeValue(state, action: PayloadAction<ChangeRange>) {
+            for (const filter of state.filters) {
+                const { id, name, value } = action.payload
+                if (!isRangeFilter(filter)) continue
+                if (id !== filter.id) continue
+
+                const params = new URLSearchParams(state.usp)
+
+                filter.range[name] = value
+
+                if (!filter.range[name]) {
+                    if (!params.has(name)) return
+                    params.delete(name)
+
+                    state.usp = params.toString()
+                    return
+                }
+
+                params.set(name, value)
+                state.usp = params.toString()
+            }
         },
     },
 
@@ -78,16 +112,20 @@ export const productSlice = createSlice({
                 const filters = [...action.payload, ...defaultFilters]
 
                 const updatedFilters = filters.map((filter) => {
-                    if (isCheckedFilter(filter)) {
+                    if (isChoiceFilter(filter)) {
                         return {
                             ...filter,
-                            choices: filter.choices.map((choice) => ({
+                            choices: filter?.choices?.map((choice) => ({
                                 ...choice,
                                 slug: filter.slug,
                                 checked: false,
                                 id: v4(),
                             })),
                         }
+                    }
+
+                    if (isRangeFilter(filter)) {
+                        return filter
                     }
                 })
 

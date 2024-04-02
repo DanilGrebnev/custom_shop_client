@@ -7,21 +7,16 @@ import { ProductSelectors, productActions } from '@/entities/product'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
 
-import { useToggleTheme } from '@/app/providers/ThemeProvider'
-import { isCheckedFilter } from '@/app/types/product'
+import { isChoiceFilter } from '@/app/types/product'
 
-import s from './ActiveFilterButton.module.scss'
-
-import clsx from 'clsx'
-
-interface IProps {
+interface Props {
     label: string
     id: string
     className?: string
     slug: string
 }
 
-export const ActiveFilterButton = memo((props: IProps) => {
+export const ActiveFilterButton = memo((props: Props) => {
     const { id, label, slug, className } = props
     const dispatch = useAppDispatch()
 
@@ -31,7 +26,7 @@ export const ActiveFilterButton = memo((props: IProps) => {
 
     const deleteFilter = () => {
         if (!currentFilter) return
-        if (isCheckedFilter(currentFilter)) {
+        if (isChoiceFilter(currentFilter)) {
             dispatch(productActions.toggleChecked({ id, slug }))
         }
     }

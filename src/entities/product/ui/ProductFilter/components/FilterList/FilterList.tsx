@@ -5,10 +5,11 @@ import { ProductSelectors } from '@/entities/product'
 import { useAppSelector } from '@/shared/hooks'
 import { DropDown } from '@/shared/ui/DropDown'
 
-import { isCheckedFilter } from '@/app/types/product'
+import { isChoiceFilter, isRangeFilter } from '@/app/types/product'
 
 import s from '../../ProductFilter.module.scss'
 import { CustomCheckBoxFilter } from '../CustomCheckBoxFilter/CustomCheckBoxFilter'
+import { RangeFilter } from '../RangeFilter'
 
 import clsx from 'clsx'
 
@@ -18,8 +19,7 @@ export const FilterList = memo(() => {
     return (
         <>
             {filters?.map((filter) => {
-                if (isCheckedFilter(filter)) {
-                    const { slug } = filter
+                if (isChoiceFilter(filter)) {
                     return (
                         <DropDown
                             key={filter.id}
@@ -27,7 +27,8 @@ export const FilterList = memo(() => {
                             label={filter.name}>
                             <div className={clsx(s['filter-list'])}>
                                 {filter?.choices?.map((choice) => {
-                                    const { label, value, checked, id } = choice
+                                    const { label, value, checked, id, slug } =
+                                        choice
                                     return (
                                         <CustomCheckBoxFilter
                                             key={id}
@@ -44,6 +45,15 @@ export const FilterList = memo(() => {
                                 })}
                             </div>
                         </DropDown>
+                    )
+                }
+
+                if (isRangeFilter(filter)) {
+                    return (
+                        <RangeFilter
+                            key={filter.id}
+                            {...filter}
+                        />
                     )
                 }
             })}

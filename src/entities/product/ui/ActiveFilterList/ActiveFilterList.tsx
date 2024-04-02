@@ -12,6 +12,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 export const ActiveFilterList = memo(() => {
     const activeFilters = useAppSelector(ProductSelectors.getActiveFilters)
 
+    console.log(activeFilters)
+
     return (
         <Swiper
             className={s.swiper}

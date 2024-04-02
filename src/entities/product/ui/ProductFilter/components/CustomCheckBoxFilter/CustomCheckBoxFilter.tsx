@@ -18,11 +18,10 @@ export const CustomCheckBoxFilter = memo((props: Props) => {
     const { id, slug, label, value, ...otherProps } = props
     const dispatch = useAppDispatch()
 
-    const onChange = (_: any, checked: boolean) => {
+    const onChange = (_: any) => {
         dispatch(
             productActions.toggleChecked({
                 id,
-                checked,
                 slug,
             })
         )

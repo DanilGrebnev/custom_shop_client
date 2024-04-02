@@ -12,3 +12,9 @@ export interface ToggleChecekd {
     id?: string
     slug: string
 }
+
+export interface ChangeRange {
+    id: string
+    name: string
+    value: string
+}

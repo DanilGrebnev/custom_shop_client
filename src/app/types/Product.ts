@@ -34,14 +34,19 @@ export enum ProductListPreviewType {
 }
 
 /** Типы для фильтров, приходящих с сервера */
-export interface ProductChoiceFilter {
+export interface ProductFilter {
     categoryId: string
     id: string
-    choices: Choice[]
     name: string
     slug: string
     type: FilterType
 }
+
+// Choice фильтр
+export interface ChoiceFilter extends ProductFilter {
+    choices: Choice[]
+}
+
 export type Choice = {
     label: string
     value: string
@@ -49,12 +54,22 @@ export type Choice = {
     checked?: boolean
     slug: string
 }
-export type FilterType = 'choice' | 'multiple_choices'
 
-export type ProductFilterResponse = ProductChoiceFilter[]
+// Range фильтр
+export interface RangeFilter extends ProductFilter {
+    range: { [key: string]: string }
+}
 
-export const isCheckedFilter = (
-    filter: ProductChoiceFilter
-): filter is ProductChoiceFilter => {
-    return filter.type === 'choice' || filter.type === 'multiple_choices'
+export type FilterType = 'choice' | 'multiple_choices' | 'range'
+
+export type ProductFilterResponse = (RangeFilter | ChoiceFilter)[]
+
+export const isChoiceFilter = (
+    filter: ProductFilter
+): filter is ChoiceFilter => {
+    return filter?.type === 'choice' || filter?.type === 'multiple_choices'
+}
+
+export const isRangeFilter = (filter: ProductFilter): filter is RangeFilter => {
+    return filter.type === 'range'
 }
