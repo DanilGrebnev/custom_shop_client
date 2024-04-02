@@ -64,18 +64,15 @@ export const productSlice = createSlice({
                         continue
                     }
 
-                    if (!choice.checked) {
-                        if (!state.usp.includes(param)) continue
-                        const prevParamsString = new URLSearchParams(
-                            state.usp
-                        ).toString()
+                    if (!state.usp.includes(param)) continue
+                    const prevStringParams = new URLSearchParams(
+                        state.usp
+                    ).toString()
 
-                        const params = new URLSearchParams(
-                            prevParamsString.replace(param, '')
-                        ).toString()
-                        state.usp = params
-                        continue
-                    }
+                    const params = new URLSearchParams(
+                        prevStringParams.replace(param, '')
+                    ).toString()
+                    state.usp = params
                 }
             }
         },
@@ -113,14 +110,18 @@ export const productSlice = createSlice({
 
                 const updatedFilters = filters.map((filter) => {
                     if (isChoiceFilter(filter)) {
-                        return {
-                            ...filter,
-                            choices: filter?.choices?.map((choice) => ({
+                        const updatedChoices = filter?.choices?.map(
+                            (choice) => ({
                                 ...choice,
                                 slug: filter.slug,
                                 checked: false,
                                 id: v4(),
-                            })),
+                            })
+                        )
+
+                        return {
+                            ...filter,
+                            choices: updatedChoices,
                         }
                     }
 

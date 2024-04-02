@@ -7,7 +7,7 @@ import { ProductSelectors, productActions } from '@/entities/product'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { FilterButton } from '@/shared/ui/Buttons/ui/FilterButton'
 
-import { isChoiceFilter } from '@/app/types/product'
+import { isChoiceFilter, isRangeFilter } from '@/app/types/product'
 
 interface Props {
     label: string

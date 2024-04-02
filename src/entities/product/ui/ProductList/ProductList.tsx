@@ -1,20 +1,20 @@
-import { IProductData } from '@/app/types/product'
+import { IProduct, IProductData } from '@/app/types/product'
 
 import { IContextPreviewProvider } from '../../model/provider/PreviewProvider'
 
 import { ShopProductCardWidget } from '@/widget/ShopProductCardWidget'
 
 interface Props {
-    productData?: IProductData
+    products?: IProduct[]
     preview: IContextPreviewProvider['preview']
 }
 
 export const ProductList = (props: Props) => {
-    const { productData, preview } = props
+    const { products, preview } = props
 
     return (
         <>
-            {productData?.products?.map(
+            {products?.map(
                 ({ id, price, images, name, description, quantity }) => {
                     return (
                         <ShopProductCardWidget

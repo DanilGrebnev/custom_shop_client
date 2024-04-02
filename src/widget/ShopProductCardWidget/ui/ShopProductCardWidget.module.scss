@@ -137,7 +137,7 @@
 @media screen and (max-width: 550px) {
     .preview {
         max-width: 150px;
-        height: 150px !important;
+        min-height: 120px !important;
     }
 
     .title,

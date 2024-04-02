@@ -6,17 +6,21 @@ import { ProductSelectors } from '../../model/selectors/productSelectors'
 import s from './ActiveFilterList.module.scss'
 
 import { ActiveFilterButton } from '@/widget/ActiveFilterButton'
+import clsx from 'clsx'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-export const ActiveFilterList = memo(() => {
-    const activeFilters = useAppSelector(ProductSelectors.getActiveFilters)
+interface Props {
+    className?: string
+}
 
-    console.log(activeFilters)
+export const ActiveFilterList = memo((props: Props) => {
+    const { className } = props
+    const activeFilters = useAppSelector(ProductSelectors.getActiveFilters)
 
     return (
         <Swiper
-            className={s.swiper}
+            className={clsx(s.swiper, className)}
             slidesPerView="auto"
             spaceBetween={20}
             mousewheel={true}>
@@ -28,7 +32,7 @@ export const ActiveFilterList = memo(() => {
                         <ActiveFilterButton
                             slug={filter.slug}
                             key={filter.id}
-                            id={filter?.id as string}
+                            id={filter.id}
                             label={filter.label}
                         />
                     </SwiperSlide>
@@ -37,5 +41,24 @@ export const ActiveFilterList = memo(() => {
         </Swiper>
     )
 })
+
+export const ActiveFilterListMobile = (props: Props) => {
+    const activeFilters = useAppSelector(ProductSelectors.getActiveFilters)
+
+    return (
+        <>
+            {activeFilters.map(({ slug, id, label }) => {
+                return (
+                    <ActiveFilterButton
+                        slug={slug}
+                        key={id}
+                        id={id}
+                        label={label}
+                    />
+                )
+            })}
+        </>
+    )
+}
 
 ActiveFilterList.displayName = 'ActiveFilterList'

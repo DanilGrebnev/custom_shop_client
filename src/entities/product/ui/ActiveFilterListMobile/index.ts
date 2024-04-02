@@ -1,1 +1,0 @@
-export { ActiveFilterListMobile } from './ActiveFilterListMobile'

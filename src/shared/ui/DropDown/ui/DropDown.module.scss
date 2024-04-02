@@ -40,7 +40,7 @@ $bg-dark: rgb(255 255 255 / 5%);
     gap: 5%;
     align-items: center;
     width: 100%;
-    padding: 5%;
+    padding: 15px;
     transition: color $transition;
 
     &:hover,
@@ -50,12 +50,6 @@ $bg-dark: rgb(255 255 255 / 5%);
         .icon {
             fill: var(--global-palette1);
         }
-    }
-}
-
-@mixin test($t) {
-    @if $t {
-        background: black;
     }
 }
 

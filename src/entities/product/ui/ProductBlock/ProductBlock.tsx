@@ -29,15 +29,15 @@ const ProductBlock = () => {
 
     return (
         <div
-            id="Product_List"
-            className={clsx(s['product-list'])}>
+            id="Product_block"
+            className={clsx(s['product-block'])}>
             <DynamicProductListHeader />
             <SettingBtn />
-            <div className={clsx(s['product-list__content'], s[preview])}>
+            <div className={clsx(s['product-list'], s[preview])}>
                 {isLoading && <ProductListSkeleton />}
                 <ProductList
                     preview={preview}
-                    productData={data}
+                    products={data?.products}
                 />
             </div>
 
