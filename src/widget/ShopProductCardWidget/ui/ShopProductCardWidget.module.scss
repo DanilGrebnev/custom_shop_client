@@ -1,10 +1,6 @@
 @import '@/app/styles/variables';
 
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
     padding: 10px;
     overflow: hidden;
     background: var(--card-background-2);
@@ -13,15 +9,8 @@
 }
 
 .title {
-    height: 100%;
-    overflow: hidden;
     font-size: var(--font-size-5);
     color: var(--text-color3);
-}
-
-.preview {
-    justify-self: center;
-    min-height: 200px;
 }
 
 .description {
@@ -66,16 +55,14 @@
 .card.cell {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+
+    .title {
+        flex-grow: 1;
+    }
 
     .description {
         display: none;
-    }
-
-    .price,
-    .rating,
-    .btn-group,
-    .quantity {
-        align-self: flex-start;
     }
 }
 
@@ -89,11 +76,11 @@
         'preview quantity'
         'preview btn-group';
     grid-template-columns: 200px 1fr;
-    grid-auto-rows: auto;
     gap: 10px;
 
     .preview {
         grid-area: preview;
+        height: 100%;
     }
 
     .title {
@@ -119,14 +106,20 @@
         grid-area: btn-group;
     }
 
-    @media screen and (width <= 600px) {
+    @media screen and (max-width: 600px) {
         grid-template-areas:
-            'preview title'
-            'preview description'
-            'preview description'
-            'preview rating'
-            'btn-group price';
-        grid-template-columns: 150px 1fr;
+            'preview preview '
+            'title title'
+            'description description'
+            'rating rating'
+            'price price'
+            'quantity quantity'
+            'btn-group btn-group';
+        grid-template-columns: minmax(120px, 150px) 1fr;
+
+        .preview {
+            height: 100px;
+        }
 
         .description {
             max-height: 120px;
@@ -135,11 +128,6 @@
 }
 
 @media screen and (max-width: 550px) {
-    .preview {
-        max-width: 150px;
-        min-height: 120px !important;
-    }
-
     .title,
     .description {
         font-size: var(--font-size-5);

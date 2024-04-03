@@ -1,11 +1,14 @@
 .wrapper {
     position: relative;
     width: 100%;
-    max-width: 200px;
-    height: 200px;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: white;
     border-radius: var(--global-border-radius);
+
+    .img_1 {
+        opacity: 0;
+    }
 
     &:hover {
         .img_0 {
@@ -21,8 +24,4 @@
 .img {
     object-fit: contain;
     transition: 0.2s;
-}
-
-.img_1 {
-    opacity: 0;
 }
