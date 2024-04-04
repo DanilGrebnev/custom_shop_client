@@ -97,8 +97,7 @@ export const SearchWidget = (props: ISearchWidget) => {
             />
 
             {isOpen && <ModalBackgroundFilter />}
-            <ModalBackgroundFilter />
-            {isNotEmpty && isOpen && (
+            {isOpen && isNotEmpty && (
                 <ProductsList
                     className={s['product-list']}
                     products={currentData?.products}
