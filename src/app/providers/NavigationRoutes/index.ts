@@ -7,6 +7,7 @@ export class NavigationRoutes {
     static wishlist = '/profile/wishlist'
     static registration = '/registration'
     static profileOrders = '/profile/orders'
+    static productSearch = '/product-search'
 
     static category(categoryId: string) {
         return `/category/${categoryId}`

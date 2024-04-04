@@ -1,27 +1,62 @@
 'use client'
 
-import { ChangeEvent, type FC, InputHTMLAttributes } from 'react'
+import {
+    ChangeEvent,
+    ComponentPropsWithoutRef,
+    type FC,
+    memo,
+    useState,
+} from 'react'
 import { BeatLoader } from 'react-spinners'
 
+import SearchIcon from '@/shared/assets/search.svg'
+
+import { Cancel } from '../Cancel'
 import s from './Input.module.scss'
 
 import clsx from 'clsx'
 
-interface IInputProps {
+interface Props extends ComponentPropsWithoutRef<'input'> {
     isLoading?: boolean
     value?: string
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    className?: string
 }
 
-export const Input: FC<IInputProps> = (props) => {
-    const { isLoading, ...otherProps } = props
+export const Input: FC<Props> = memo((props) => {
+    const {
+        isLoading,
+        className,
+        onChange: onChangeFromProps,
+        ...otherProps
+    } = props
+    const [state, setState] = useState<string>('')
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        onChangeFromProps?.(e)
+        setState(e.target.value)
+    }
+
+    const clear = () => {
+        setState('')
+    }
 
     return (
-        <div className={s['input-wrapper']}>
+        <div className={clsx(s['input-wrapper'], className)}>
             <input
                 {...otherProps}
+                onChange={onChange}
+                value={state}
                 className={s.input}
             />
+            {state && (
+                <Cancel
+                    onClick={clear}
+                    className={s.cancel}
+                />
+            )}
+            {!isLoading && !state && (
+                <SearchIcon className={s['search-icon']} />
+            )}
             {isLoading && (
                 <BeatLoader
                     className={s.loader}
@@ -31,6 +66,6 @@ export const Input: FC<IInputProps> = (props) => {
             )}
         </div>
     )
-}
+})
 
 Input.displayName = 'Input'

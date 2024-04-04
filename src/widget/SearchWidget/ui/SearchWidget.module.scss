@@ -1,5 +1,27 @@
+$br-rad: 5px;
+
 .search-widget {
     position: relative;
+    z-index: 4;
     display: grid;
     grid-template-columns: 1fr auto;
+    background: white;
+    border-radius: $br-rad;
+}
+
+.input {
+    border-radius: $br-rad;
+
+    &.active {
+        border-radius: $br-rad $br-rad 0 0;
+    }
+}
+
+.product-list {
+    position: absolute;
+    top: 100%;
+    z-index: 3;
+    border: 2px solid var(--border-ui-color1);
+    border-top: none;
+    border-radius: 0 0 $br-rad $br-rad;
 }

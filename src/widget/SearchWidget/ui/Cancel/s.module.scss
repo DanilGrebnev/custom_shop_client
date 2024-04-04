@@ -1,0 +1,33 @@
+@mixin transform($rotate) {
+    & {
+        transform: translate(-50%, -50%) rotate($rotate);
+    }
+}
+
+.cancel {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: var(--border-ui-color1);
+    border-radius: 50%;
+
+    & > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 70%;
+        height: 2px;
+        background: white;
+        border-radius: 5px;
+    }
+}
+
+.item {
+    &-1 {
+        @include transform(45deg);
+    }
+
+    &-2 {
+        @include transform(-45deg);
+    }
+}
