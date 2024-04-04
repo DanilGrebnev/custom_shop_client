@@ -1,7 +1,7 @@
 import {
     IProduct,
     IProductData,
-    type IProductFilterResponse,
+    type ProductFilterResponse,
 } from '@/app/types/product'
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
@@ -18,7 +18,7 @@ export const productApi = createApi({
             query: (urlParams: string) => '/products?' + urlParams || '',
         }),
         getProductFiltersByCategoryId: build.query<
-            IProductFilterResponse,
+            ProductFilterResponse,
             string
         >({
             query: (categoryId) => `filters?category_id=${categoryId}`,

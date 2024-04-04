@@ -5,13 +5,11 @@ import { categoryApi, categoryReducer } from '@/entities/categories'
 import { footerApi } from '@/entities/footer'
 import { homePageApi } from '@/entities/homePage'
 import { productApi, productReducer } from '@/entities/product'
-import { productSearchInputReducer } from '@/entities/productSearchInput'
 import { settingApi } from '@/entities/settings'
 
 export const staticReducers = {
     categories: categoryReducer,
     product: productReducer,
-    productSearchInput: productSearchInputReducer,
     userProfile: userProfileReducer,
     [basketApi.reducerPath]: basketApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,

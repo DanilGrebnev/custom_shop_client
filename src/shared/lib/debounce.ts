@@ -1,12 +1,10 @@
-type TDebounce = <T extends any[], R extends any>(
-    callback: (...args: T) => R,
+export const debounce = <T extends (...args: Parameters<T>) => ReturnType<T>>(
+    callback: T,
     delay: number
-) => (...args: T) => void
-
-export const debounce: TDebounce = (callback, delay) => {
+) => {
     let timeoutId: ReturnType<typeof setTimeout>
 
-    return (...args) => {
+    return (...args: Parameters<T>): void => {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(callback, delay, ...args)
     }
